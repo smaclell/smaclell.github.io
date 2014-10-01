@@ -24,7 +24,7 @@ The Idea: Library, Service or Component!
 
 In talking to my boss, Craig, about the problem and we came up with 3 places we could swap in the new functionality. These 3 places a single library, a complete service or configuring a new component within an existing service.
 
-**TODO: Include the diagram outlining the areas**
+<img title="Yes, this image was made using paint." src="/images/posts/LibraryServiceOrComponent.png" />
 
 Each of these options present different trade-offs. Regardless of the approach the complexity of that area will increase, i.e. using a different service increases the dependence on service's API. The options provides differing code isolation and maintainability challenges. Adjusting the library has the lowest operating cost but has the highest impacting to the existing running code especially if multi-libraries are used. Changing the service or underlying components are natural extension points within a system like this but would likely add to our configuration complexity.
 
