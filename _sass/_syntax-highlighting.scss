@@ -1,4 +1,12 @@
 /**
+ * Styles from base that now get to be included
+ */
+$spacing-unit:     30px;
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+/**
  * Syntax highlighting styles
  */
 .highlight {
