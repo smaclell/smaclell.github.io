@@ -1,7 +1,7 @@
 smaclell.github.io
 ==================
 
-My personal blog to share fun about Deployment, Development and Shipping Software
+My personal blog to share about Deployment, Development and Shipping Software
 
 
 If you find any problems feel free to create an issue or [pull request](https://github.com/smaclell/smaclell.github.io/compare/) and I will be happy to take a look. Otherwise if you are enjoying what I have to say then I would love to hear from you.

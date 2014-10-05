@@ -2,7 +2,7 @@
 title: Scott-tastic
 email: s.j.maclell@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Fun about Deployments, Development and Shipping Quality Software
+  Sharing about Deployments, Development and Shipping Quality Software
 
   This my personal blog and any opinions found here are my own. The posts do not necessarily reflect the views of my employer.
 baseurl: "" # the subpath of your site, e.g. /blog/
