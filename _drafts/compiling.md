@@ -31,7 +31,12 @@ him by sharing my passion for helping others and inspire him to achieve his
 potential. It doesn't hurt that he is very cute and you will probably be
 seeing more this little guy.
 
--> ![Jude with milk all over his face][jude] <-
+<p class="center-image">
+	<img
+		title="Oh, hi"
+		alt="Jude with milk all over his face"
+		src="/images/posts/MilkFace.png" />
+</p>
 
 In the coming weeks, months and hopefully years I would like to share the
 journey I am going through and the things I am learning. Topics will cover
