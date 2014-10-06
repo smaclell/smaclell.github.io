@@ -48,7 +48,10 @@ could swap in the new functionality. These 3 places a single library, a
 complete service or configuring a new component within an existing service.
 
 <p class="center-image">
-<img title="Yes, this image was made using paint." src="/images/posts/LibraryServiceOrComponent.png" />
+	<img
+		title="Yes, this image was made using paint."
+		alt="The three places to make the change, i.e. library, service or component"
+		src="/images/posts/LibraryServiceOrComponent.png" />
 </p>
 
 Each of these options present different trade-offs. Regardless of the approach
