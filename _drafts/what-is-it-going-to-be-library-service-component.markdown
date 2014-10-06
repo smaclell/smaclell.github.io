@@ -2,7 +2,7 @@
 layout: post
 title:  "What is it going to be? Library, Service or Component!"
 date:   2014-10-01 23:35:07
-categories: development design craig
+tags: development design craig
 ---
 
 Take Away
