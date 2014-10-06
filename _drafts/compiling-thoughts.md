@@ -2,7 +2,7 @@
 layout: post
 title:  "Compiling Thoughts ..."
 date:   2014-10-05 20:08:08
-categories: meta
+category: meta
 ---
 
 I am not sure how you got here. It is great you made it, but things aren't
