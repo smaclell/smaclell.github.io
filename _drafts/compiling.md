@@ -31,23 +31,21 @@ him by sharing my passion for helping others and inspire him to achieve his
 potential. It doesn't hurt that he is very cute and you will probably be
 seeing more this little guy.
 
-![Jude with milk all over his face][jude]
+-> ![Jude with milk all over his face][jude] <-
 
 In the coming weeks, months and hopefully years I would like to share the
-journey I am going through and the things I am learning. There are a alot of
-things I would like to write about and I will probably cover a great deal in
-the software development life cycle from first commit to when the system is
-being decommisioned. programming, testing, operating and deploying software.
-Including changes in how I understand building, architecting, operating and
-deploying software into the wild. This will include an element of culture as
+journey I am going through and the things I am learning. Topics will cover
+almost anything about creating and shipping software, from the first commit
+to turning of a service forever. This will include an element of culture as
 I strongly believe that creating great things needs a team of passionate
-individuals aligned to a common purpose. There will be an element of
-lean/agile philosophy and where it helps simplify the process of producing
-sustainable value. Continuous delivery, release management and similiar topic
-will be unsual offenders.
+individuals aligned to a common purpose. Lean and agile ideals resonate with me
+and I will talk about how they have helped simplify the process of producing
+sustainable value. Delivery pipelines, release management, continuous delivery
+and similiar topics will be unsual offenders.
 
-Things might not be regular at first and I am sure Jude will have something to
-say about it but I hope that you stick around. Enjoy.
+Things might not be regular at first thanks to the ups and down of live but I
+will do my best to stay on track. I hope that you join me on this journey and
+enjoy what I have to share. See you soon.
 
 [devopsdaysto]: http://devopsdays.org/events/2014-toronto/
 [d2l]:          http://d2l.com
