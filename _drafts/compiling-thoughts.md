@@ -16,14 +16,16 @@ fantastic sessions really struck a chord with me. I could not shake the idea
 that the hard fought lessons we had learned are not too different than what
 others encounter on thier journey.
 
-From a very early age I wanted to help people, to truly care about
-others and make a difference in their lives. The creativity and potential
-people have is limitless. In University I discovered that I really enjoyed
-programming and automation. It made me feel like I had super powers to create
-a brand new experience or new understanding. The years that have followed
-taught me a great deal but I still feel I have barely scratched the surface.
-This new passion for creating great software became a means to improve lives
-and delight users.
+From a very early age I wanted to help people, to truly care about others and
+make a difference in their lives. With the billions of people on our planet
+I would hope that in some small way I could help unlock their creativity or
+encourage their limitless potential. In University I discovered programming
+which provided a new outlet for this desire. It made me feel like I had super
+powers to create new worlds and do things I never thought possible. The years
+that have followed taught me a great deal about this craft but I still feel I
+have barely scratched the surface. My new passion for creating great software
+became a means to improve lives, delight users and solve problems in a
+completely new way.
 
 Earlier this year I welcomed my son, Jude, into the world and cannot describe
 in words the happiness he gives me. My hope is that I can be a role model for
