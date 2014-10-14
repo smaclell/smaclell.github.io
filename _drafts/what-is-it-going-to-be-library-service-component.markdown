@@ -8,44 +8,42 @@ tags: development design craig
 Take Away
 =======================================
 
-Consider what level or where you are trying to design for and the accompanying
-tradeoffs.
+Consider where different changes could be made and the accompanying tradeoffs.
+It might be as easy as swapping at one of the existing extension points.
 
-The Problem: New Design Constraints
+New Requirements
 =======================================
 
 A few weeks ago we had an interesting team discussion about how best to
-introduce a series of changes to a system we maintain. The system is fairly
-complicated with a variety of moving pieces. Each piece typically has one
-responsibility and are very specialized. The overall system performs a limited
-set of operations in one and only one way. This was a choice that we made early
-on that lead to more coupling overall with the goal of being simpler by
-focusing on the needs at the time.
+introduce changes to a system we maintain. The system is fairly complicated
+with a variety of moving pieces that collaborate together to form a complete
+solution. Each piece typically has a [single responsibility][srp] and is fairly
+specialized. We have also tried to limit the number of operations the overall
+system could perform. This minimalist intent resulted in a more focused design
+targeting the current needs and few extension points.
 
 In a few areas we decided to create small services to perform long running
-tasks or interact with other complex software. We spent a bit of time up front
-determining generic APIs for each service so that this would be a potential
-avenue to augment the system in the future. These services isolate operational
-complexity and provide users a way to manage the system within each service.
-The domain we are working in can provide a great deal of configuration which
-would lead to horrible complexity and difficulty to use if left unchecked.
-This meant we hid most that complexity/configuration behind the service API and
-adjust setting on each service independently. Manage our configuration this way
-hasn't all been a bed of roses but we will come back to that in a different
-post.
+tasks or interact with other complex software. We tried to design the APIs
+for these services generically so that other implementers use the same contract
+in the future. We then use internal configuration for different options that
+could modify the service behaviour and closely reflect the implementation.
+Managing our configuration in this way hasn't all been a bed of roses but we
+will come back to that in a different post.
 
 We were approached by another team who wanted to extend our system so that they
-could perform some of the operations in a different way. The new extensions
-would be similar to the existing pieces but different enough that it put new
-stress on our design. Think gala apples to granny smith apples instead of
-apples to oranges. Our problem was where to make the change to our system.
+could perform some of the operations differently. The new extensions would be
+logically similar to the existing pieces but different enough that it put new
+stress on our design and did not belong in the original components.
+Think gala apples to granny smith apples instead of apples to oranges. Our
+challenge was where in the system to make these changes.
 
-The Idea: Library, Service or Component!
+Library, Service or Component
 =======================================
 
 In talking to my boss, Craig, about the problem and we came up with 3 places we
-could swap in the new functionality. These 3 places a single library, a
-complete service or configuring a new component within an existing service.
+could swap in the new functionality. These 3 places were within a single
+library, a complete service or configuring a new component within an existing
+service.
 
 <p class="center-image">
 	<img
@@ -54,27 +52,46 @@ complete service or configuring a new component within an existing service.
 		src="/images/posts/LibraryServiceOrComponent.png" />
 </p>
 
-Each of these options present different trade-offs. Regardless of the approach
-the complexity of that area will increase, i.e. using a different service
-increases the dependence on service's API. The options provides differing code
-isolation and maintainability challenges. Adjusting the library has the lowest
-operating cost but has the highest impacting to the existing running code
-especially if multi-libraries are used. Changing the service or underlying
-components are natural extension points within a system like this but would
-likely add to our configuration complexity.
+These options present a range of benefits and trade-offs. The options provide
+different code isolation and maintainability challenges. Each choice would
+further increase the importance of how that area is connected to the rest of
+the system. For example, the swapping the service would increase the important
+of the API used to call the service or swapping the component would increase
+the coupling to that specific service and the associated configuration.
+
+Adjusting the library has the lowest operating cost but has the highest
+impacting to anything running within the same process. Alternative libraries
+would be best suited to use the same language/runtime. This route seems simple
+and can keep the changes closer to where they would be consumed. This option
+makes lots of sense when talking to other services that already manage their
+own state.
+
+Changing the service or underlying components are natural extension points
+within a system like this. Running a new service may need additional hardware
+and effort from operations. There may be more trouble getting started with this
+method if your teams do not typically write many services.
+
+Depending on the implementation of the service it may be easy to extend to add
+the new functionality. This can effectively hide the change behind the existing
+service. Using a new component within an existing service may dilute the
+responsibilities performed by the service and diminish how specialized it can
+be. More configuration would be required to enable the new capabilities.
 
 Conclusion
 =======================================
 
-In the end we decided to swap out individual libraries. While this did
-represent additional refactoring it helped to greatly improve the clarity of
-the design while reducing the coupling to the existing operations. We then
-wrapped up small client libraries for each service to isolate how they are
-used. In the end we tried to minimize the changes needed by our clients so that
-they would not need to do any work to take advantage of the new implemention.
-Had we decided to introduce a new service or component this would have
-increased the work required to operate the system and so we decided against
-that path.
+In the end we decided to swap out individual libraries. This required some
+refactoring to isolate each operation performed by the system. The resulting
+changes helped clarify how the system works and decouple the operations.
 
-Next time you are faced with a design decision like this consider swapping a
-library, service or component.
+The existing service calls were also converted these new extension
+points which let us move their implementations closer to the services they
+consume. Had we decided to introduce a new service or component this would have
+increased the work required to operate the system and configuration complexity.
+The teams wanting to make the changes felt comfortable enough with this
+approach that they contributed the new libraries that were needed.
+
+Next time you are faced with a design decision like this consider whether
+swapping a library, service or component would work for you.
+
+[srp]: http://en.wikipedia.org/wiki/Single_responsibility_principle "A SOLID start"
