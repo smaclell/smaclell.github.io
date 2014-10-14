@@ -6,15 +6,15 @@ category: meta
 ---
 
 I am not sure how you got here. It is great you made it, but things aren't
-exciting yet. Read on to discover why you will want to stick around.
+ready yet. Read on to discover why you will want to stick around.
 
-Recently, I decided that I wanted to share more of the things I was learning.
-It was after going to [DevOps Days Toronto][devopsdaysto] and that I realized
-I wanted to do more. The weekend made me incredibly fired up about what doing
-at my [job][d2l] and the potential we have to make an impact. After each of the
+Recently, I decided that I wanted to share more of the things I am learning.
+It was after going to [DevOpsDays Toronto][devopsdaysto] and that I realized
+I wanted to do more. The weekend got me incredibly fired up about what we are
+doing at my [job][d2l] and the potential we have to make an impact. Each of the
 fantastic sessions really struck a chord with me. I could not shake the idea
 that the hard fought lessons we had learned are not too different than what
-others encounter on thier journey.
+others encounter on thier own journey.
 
 From a very early age I wanted to help people, to truly care about others and
 make a difference in their lives. With the billions of people on our planet
@@ -24,8 +24,7 @@ which provided a new outlet for this desire. It made me feel like I had super
 powers to create new worlds and do things I never thought possible. The years
 that have followed taught me a great deal about this craft but I still feel I
 have barely scratched the surface. My new passion for creating great software
-became a means to improve lives, delight users and solve problems in a
-completely new way.
+became a means to improve lives, delight users and solve problems.
 
 Earlier this year I welcomed my son, Jude, into the world and cannot describe
 in words the happiness he gives me. My hope is that I can be a role model for
@@ -56,4 +55,3 @@ enjoy what I have to share. See you soon.
 
 [devopsdaysto]: http://devopsdays.org/events/2014-toronto/
 [d2l]:          http://d2l.com
-[jude]:         /images/posts/MilkFace.png "Oh, hi"
