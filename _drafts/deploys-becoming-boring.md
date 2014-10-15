@@ -19,6 +19,8 @@ serious event whenever the deployment window opened up. We had all the
 ceremony, fear and pressure to make our dates that are talked about as
 continuous delivery anti-patterns within the [continuous delivery][cd] book.
 
+TODO: Block quote CD
+
 Our software was doing what it needed to do functionally but had defects. These
 defects affected our clients a great deal and discouraged them from taking new
 releases. This gave us a catch-22 where we could not fix the problems by
@@ -78,25 +80,6 @@ Notes to self:
 * Believe in the best intent
 * Avoid editorializing the reactions of others
 * Switch to lack of confidence instead of lack of trust
-
-In The Beginning
-=======================================
-
-Cite CD book regarding
-
-* Ceremony
-* Fear
-* Pressure to make the date
-
-__Trouble Promoting__
-
-* Defects
-* Lack of Trust
-* Deadlocking - want stability and hurting from defects
-* Forked code
-* Different goals
-
-Bogdan's comment of Rocket Ship and a Steam Engine
 
 The Agreement
 =======================================
