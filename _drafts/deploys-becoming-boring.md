@@ -81,13 +81,6 @@ Notes to self:
 * Avoid editorializing the reactions of others
 * Switch to lack of confidence instead of lack of trust
 
-The Agreement
-=======================================
-
-* regular weekly deployments
-* known changes
-* validated
-
 The Iterations
 =======================================
 
