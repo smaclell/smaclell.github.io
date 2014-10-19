@@ -6,15 +6,70 @@ tags: thoughts
 ---
 
 At two extremes are knife edge and incremental changes. You can either make
-your changes right away sharply or in small constructive pieces. Between them
-there is a spectrum of ways they can be mixed and matched to form interesting
-solutions.
+your changes right away sharply or in small pieces. Between them there is a
+spectrum of ways they can be mixed and matched to form interesting solutions.
 
-Lately, I have been heavily promoting incremental changes at our company. For
-most situations I feel that they can performed more reliablely and with higher
-reproducibilty.
+The tradeoff is speed vs safety. Both are perfectly viable options but you need
+to plan ahead 
 
-TODO: form this into a more coherent presentation. Wrap it up and ship it.
+Single Points of Failure.
+Incremental Minimal affect on the original system. Recovery is easier.
+Up and Down are different operation for knife edge changes. Modifying the actual
+thing and hoping that works out.
+
+-
+Be aware of this, I think it is better, you might too.
+Realzing you have these options.
+
+Address the different labels for it then stick with it. 
+--> In place vs Incremental
+
+really quick and could get stabbed.
+Incremental an outage is never required.
+
+Future Post:
+Does the scale you make your change adjust it? Impact or potential affect of the change.
+
+Bias for incremental
+No one fixes thier car with the engine running.
+Not a great analogy because they are different.
+
+Car is critical.
+House you can tolerate an outage.
+Faulty switch, full replacement <= immutable, tinker in place to try and get it or just swap it.
+
+Knife edge - Natural
+Incremental - Not intuitive, not thinking the change will break things. More important to be up and working then to have the new change.
+
+In place
+Blue/Green
+
+Real life example.
+
+A knife edge change would take effect write away 
+
+TODO Chris will review.
+
+Lately, I have been heavily promoting incremental changes for the work we are
+doing. For most situations I feel that they can performed more reliablely and
+with higher reproducibilty.
+
+Lets take an example. You are deploying an update to an existing service. BAM!
+
+A) Change the code in place on the server and restart.
+B) Make a new server and replace the original when it is done.
+
+Option A) is the knide edge. What if it has defects? How do you test the
+system to make sure that everything is up right? If things go poorly you get
+cut! If things go well then you are probably done much faster.
+
+How about Option B) doing it increntally? You needed a whole new server! That
+takes time to make a new one. Maybe you are using Chef or Puppet or Ansible or
+Bash to setup servers from scratch to make it reproducable. If something is not
+right with the new server you can go back to the old one you have not changed
+and the system can ideally keep running.
+
+Some things are really hard to change safely all at once. Tke a major version udpatesdkasakskaksakasksakaskkaskakskakksakkk
 
 Incrementally
 =======================================
@@ -50,3 +105,5 @@ balancer or core switch where costs and complexity make it prohibative to run
 with sufficient redundancy to perform the change incrementally. Another good
 application would be quickly switching the load of an application between
 versions.
+
+Thank Chris for helping me work through this and make it more concise.
