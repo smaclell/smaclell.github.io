@@ -5,50 +5,59 @@ date:   2014-09-22 23:11:07
 tags: thoughts
 ---
 
-At two extremes are knife edge and incremental changes. You can either make
-your changes right away sharply or in small pieces. Between them there is a
-spectrum of ways they can be mixed and matched to form interesting solutions.
+At two extremes are in place and incremental changes. You can either make
+your changes to the entire system all at once or incremental in small pieces.
+Between these extremes there are a spectrum of ways they can be mixed and
+matched to form interesting solutions.
 
-The tradeoff is speed vs safety. Both are perfectly viable options but you need
-to plan ahead 
+The tradeoffs focus on speed vs potential impact. The faster you make the
+change the more impactful it will be. When things are going well the impact is
+just what you want but if the change causes problems then things go downhill
+fast. With in place changes that affect the entire system this can be "fun".
 
-Single Points of Failure.
-Incremental Minimal affect on the original system. Recovery is easier.
-Up and Down are different operation for knife edge changes. Modifying the actual
-thing and hoping that works out.
+<div class="center-align">
+<blockquote class="twitter-tweet" lang="en"><p>To make error is human. To propagate error to all server in automatic way is <a href="https://twitter.com/hashtag/devops?src=hash">#devops</a>.</p>&mdash; DevOps Borat (@DEVOPS_BORAT) <a href="https://twitter.com/DEVOPS_BORAT/status/41587168870797312">February 26, 2011</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+In Place
+
+* Great for small/simple/safe changes that happen infrequently
+* Dangerous for any single points of failure
+* Dangerous when done on the majority of the system
+* Making the change and undo the change are two different operations
+* Not good for high risk environments or changes
+
+Incremental
+
+* Not great for urgent changes
+* Can minimize the effect to the existing version
+* Easier to implement rollback
+* May need to run multiple versions at once
+* Making the change and undoing the change can be the same operation reversed
+
+A common pattern for incremental updates would be swap out or change small
+parts of the system without affecting the existing system. This reduces the
+affect on the original system dramatically and can often be recovered by
+switching back over to the original system using a load balancer or dns.
+
+To learn more about common incremental techniques I would recommend:
+
+* Swapping between [blue and green][BlueGreen] servers and rollback if there are problems
+* Treat your servers as completely [immutable][ImmutableServers] and never make in place changes
+* Send a small amount of traffic to the new release as a [canary][CanaryRelease] to validate the new functionality
 
 -
 Be aware of this, I think it is better, you might too.
 Realzing you have these options.
 
-Address the different labels for it then stick with it. 
+Address the different labels for it then stick with it.
 --> In place vs Incremental
 
 really quick and could get stabbed.
 Incremental an outage is never required.
 
-Future Post:
-Does the scale you make your change adjust it? Impact or potential affect of the change.
-
-Bias for incremental
-No one fixes thier car with the engine running.
-Not a great analogy because they are different.
-
-Car is critical.
-House you can tolerate an outage.
-Faulty switch, full replacement <= immutable, tinker in place to try and get it or just swap it.
-
-Knife edge - Natural
-Incremental - Not intuitive, not thinking the change will break things. More important to be up and working then to have the new change.
-
-In place
-Blue/Green
-
-Real life example.
-
-A knife edge change would take effect write away 
-
-TODO Chris will review.
+A knife edge change would take effect right away
 
 Lately, I have been heavily promoting incremental changes for the work we are
 doing. For most situations I feel that they can performed more reliablely and
@@ -106,4 +115,10 @@ with sufficient redundancy to perform the change incrementally. Another good
 application would be quickly switching the load of an application between
 versions.
 
-Thank Chris for helping me work through this and make it more concise.
+
+Thank Chris for helping edit this post and bouncing ideas off.
+
+[DevOpsBorat]:      https://twitter.com/DEVOPS_BORAT
+[BlueGreen]:        http://martinfowler.com/bliki/BlueGreenDeployment.html
+[CanaryRelease]:    http://martinfowler.com/bliki/CanaryRelease.html
+[ImmutableServers]: http://martinfowler.com/bliki/ImmutableServer.html
