@@ -37,8 +37,8 @@ Incremental
 * Making the change and undoing the change can be the same operation reversed
 
 A common pattern for incremental updates would be swap out or change small
-parts of the system without affecting the existing system. This reduces the
-affect on the original system dramatically and can often be recovered by
+parts of the system without affecting the existing system. This dramatically
+reduces the affect on the original system and can often be recovered by
 switching back over to the original system using a load balancer or dns.
 
 To learn more about common incremental techniques I would recommend:
