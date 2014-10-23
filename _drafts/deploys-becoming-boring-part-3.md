@@ -21,7 +21,7 @@ Stakeholders who wanted to slow previously now want fixes and features early.
 > After you have deployed a complex system for the fiftieth or hundredth time
 > without a hitch, you don't think about it as a big event any more.
 >
-> -- <cite>Page 130 of [Continous Delivery][cd]
+> <cite>Page 130 of [Continous Delivery][cd]
 > by [Jez Humble][jez] and [Dave Farley][dave]
 > </cite>
 
@@ -38,6 +38,6 @@ Even faster, full continous deployment. Twice as fast to other environments.
 > improved, identifying any problems as close to the point at which they were
 > introduced as possible.
 >
-> -- <cite>Page 130 of [Continous Delivery][cd]
+> <cite>Page 130 of [Continous Delivery][cd]
 > by [Jez Humble][jez] and [Dave Farley][dave]
 > </cite>

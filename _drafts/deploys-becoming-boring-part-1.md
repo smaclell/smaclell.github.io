@@ -27,7 +27,7 @@ continuous delivery anti-patterns within the [continuous delivery][cd] book.
 > here is that releases into production are big events. As long as this is true
 > they will be surrounded with a lot of ceremony and nervousness.
 >
-> -- <cite>Page 20 of [Continous Delivery][cd]
+> <cite>Page 20 of [Continous Delivery][cd]
 > by [Jez Humble][jez] and [Dave Farley][dave]
 > </cite>
 
