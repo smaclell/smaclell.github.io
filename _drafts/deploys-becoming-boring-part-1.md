@@ -21,7 +21,15 @@ serious event whenever the deployment window opened up. We had all the
 ceremony, fear and pressure to make our dates that are talked about as
 continuous delivery anti-patterns within the [continuous delivery][cd] book.
 
-TODO: Block quote CD
+> Both examples of quick hacks to get newly deployed production systems running
+> weren' being driven by such immediate commerical imperatives, but rather by
+> the more subtle pressure to release on the day that was planned. The problem
+> here is that releases into production are big events. As long as this is true
+> they will be surrounded with a lot of ceremony and nervousness.
+>
+> -- <cite>Page 20 of [Continous Delivery][cd]
+> by [Jez Humble][jez] and [Dave Farley][dave]
+> </cite>
 
 Our software was doing what it needed to do functionally but had defects. These
 defects affected our clients a great deal and discouraged them from taking new
@@ -62,5 +70,7 @@ then came to the following agreement with our clients for how to proceed.
 # Documented Changes
 # More Testing
 
+[jez]:      https://twitter.com/jezhumble
+[dave]:     https://twitter.com/davefarley77
 [cd]:       http://www.amazon.com/dp/B003YMNVC0/
 [pipeline]: http://martinfowler.com/bliki/DeploymentPipeline.html
