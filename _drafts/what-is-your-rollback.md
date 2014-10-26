@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "What is your rollback?"
+title:  "What is your rollback plan?"
 date:   2014-09-22 23:11:07
 categories: deployments rollback
 ---
 Are you afraid of your deployments? Dread that moment when you hear your fellow
-employee deploying new code and they utter the phrase "oh no". It doesn't have
-to be this way.
+employee deploying new code and they utter the phrase "oh no, this isn't good".
+It doesn't have to be this way.
 
 Perhaps the best way to reduce the fear of deployments is to have a good
 rollback plan. This is never a silver bullet but can take the heat out of
@@ -20,7 +20,7 @@ application.
 </a>
 
 <p>
-* <a href="https://www.flickr.com/photos/rudolf_schuba/153225000" style="display: inline" title="UNIX - Server used under Creative Commons from Flickr">Photo by Rudolf Schuba</a> used under <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons</a> (Who I am sure is not doing bad things)
+* <a href="https://www.flickr.com/photos/rudolf_schuba/153225000" style="display: inline" title="UNIX - Server used under Creative Commons from Flickr">Photo by Rudolf Schuba</a> used under <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons</a> (Who I am sure is doing good things to his computers)
 </p>
 
 The Application
@@ -34,7 +34,7 @@ Since we hate manual work we have fully automated the process.
 
 We decided to use [Blue/Green](http://martinfowler.com/bliki/BlueGreenDeployment.html)
 deployments for our product. This is a very popular technique that can allow
-for zero downtime changes to a system. The jist is that you change one piece of
+for zero downtime changes to a system. The gist is that you change one piece of
 the application at a time by setting up the new version (green) beside the old
 version (blue) then switching traffic to the new version.
 
@@ -47,7 +47,7 @@ To deploy new application code our process looks like this:
 
 **BOOM!!!!**, if something horrible goes wrong do this.
 
-1. Put the old server into the laod and start serving traffic
+1. Put the old server into the load and start serving traffic
 1. Take the new server out of the load
 
 The beauty of this is that switching between the new and old version is the
@@ -64,8 +64,8 @@ The Database
 
 This gets a whole lot harder for systems that need to maintain state or access
 a database. For this we follow roughly the same pattern but have a migration
-scripts for upgrading and downgrading out database. For most applications we
-have deicded to make the database changes backwards compatible with the
+scripts for upgrading and downgrading out database. For several applications we
+have decided to make the database changes backwards compatible with the
 previous application code. This means that for complicated changes we need to
 perform them over several releases but this has seldom been a problem. We then
 ship the migration scripts with the application so that we always know what
@@ -84,7 +84,7 @@ Our process typically looks like this:
 
 Looks roughly the same but typically has very different scripts because for
 databases the operations required to upgrade are completely different than the
-opertions required to downgrade. To make this easier for .NET we have been
+operations required to downgrade. To make this easier for .NET we have been
 enjoying a library called [FluentMigrator](https://github.com/schambers/fluentmigrator/wiki)
 which makes writing your upgrades and downgrades really easy. If .NET is not
 your style there is always [Active Record Migrations](http://guides.rubyonrails.org/migrations.html)
@@ -100,20 +100,25 @@ change data contained within the system. We have typically employed one three
 choices:
 
 1. Use triggers/database tools to replicate necessary data
-1. Leave the data and mgirate it next release
+1. Leave the data and migrate it with the next release
 1. Have the application tolerate the difference or do the conversion
 1. Write a more complicated migration to keep it safe online
 
 For the last option a co-worker of mine, Michael J. Swart, had a fantastic
 series about doing complex migration online using SQL Server called
 [Modifying Tables Online](http://michaeljswart.com/2012/04/modifying-tables-online-part-1-migration-strategy/).
-If you really want to persevre and do your migrations online I would recommend
+If you really want to persevere and do your migrations online I would recommend
 reading Michael's post.
 
 The Result
 -------------------------------------------------------------------------------
 
-By having a strong rollback we are less afraid of our releases.
+Having a strong rollback plan has changed the way we do releases. We have not
+needed it very often but when we did it was a lifesaver. We are no longer live
+in fear of bad deployments and are confident we can get back to workign state
+quickly and easily. What is your rollback plan?
+
+Ours rollback plan is:
 
 * Automated
 * Practiced
