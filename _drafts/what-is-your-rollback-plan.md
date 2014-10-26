@@ -115,7 +115,7 @@ The Result
 
 Having a strong rollback plan has changed the way we do releases. We have not
 needed it very often but when we did it was a lifesaver. We are no longer live
-in fear of bad deployments and are confident we can get back to workign state
+in fear of bad deployments and are confident we can get back to working state
 quickly and easily. What is your rollback plan?
 
 Ours rollback plan is:
