@@ -23,21 +23,28 @@ application or make any outage worst.
 * <a href="https://www.flickr.com/photos/rudolf_schuba/153225000" style="display: inline" title="UNIX - Server used under Creative Commons from Flickr">Photo by Rudolf Schuba</a> used under <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons</a> (Who I am sure is doing good things to his computers)
 </p>
 
-The Application
--------------------------------------------------------------------------------
-
 With a recent system we were working on we decided that a good rollback was a
-priority for us and wanted it to be simple and reliable. We decided on using
-the same process to deploy the application in reverse for rollback to older
-versions. Since we deploy with every commit in our [Deployment Pipeline](http://martinfowler.com/bliki/DeploymentPipeline.html)
+priority for us and decided that there were four key properties we wanted:
+
+* Automated
+* Practiced
+* Simple
+* Reliable
+
+To achieve these goals we decided on using the same process to deploy the
+application in reverse so that we could rollback to older versions. Since we
+deploy with every commit in our [Deployment Pipeline](http://martinfowler.com/bliki/DeploymentPipeline.html)
 (or a detailed [Deployment Pipeline](http://www.informit.com/articles/article.aspx?p=1621865) overview)
-we practice upgrading on every change. This means we also practice what we need
-for rollback all the time so that if we need to use it in a moment of panic we
-are confident that it will work. In order to deploy with every commit there
-could not be any manual steps which meant we quickly automated the entire
+we practice upgrading on every change. This means we also practice the process
+we need for rollback all the time so that if we need to use it in a moment of
+panic we are confident that it will work. In order to deploy with every commit
+there could not be any manual steps which meant we quickly automated the entire
 process. The resulting automation has made the rollback process very simple and
 since we use the same process on each build we are very confident it is
 reliable.
+
+The Application
+-------------------------------------------------------------------------------
 
 We decided to use [Blue/Green](http://martinfowler.com/bliki/BlueGreenDeployment.html)
 deployments for our product. This is a very popular technique that can allow
