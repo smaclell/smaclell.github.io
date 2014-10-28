@@ -66,9 +66,9 @@ fast as we could was no good if clients did not receive our updates. Slowing
 down would also mean investing more into our testing and validation early. We
 then came to the following agreement with our clients for how to proceed.
 
-# Regular Weekly Deployments
-# Documented Changes
-# More Testing
+1. Regular Weekly Deployments
+1. Documented Changes
+1. More Testing
 
 [jez]:      https://twitter.com/jezhumble
 [dave]:     https://twitter.com/davefarley77
