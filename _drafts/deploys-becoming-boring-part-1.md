@@ -5,7 +5,7 @@ date:   2014-09-22 23:11:07
 tags: deployment process series
 ---
 
-It wasn't always easy for us to promote our system. It took time and effort to
+It wasn't always easy for us to promote our code. It took time and effort to
 get there and a whole lot of iterating. This is our story about how over the
 course of a few weeks we were able to go from a system with little confidence
 to smooth regular updates that are downright boring.
@@ -18,11 +18,11 @@ In The Beginning
 We started out our project with large releases. This was not how we wanted it
 to be but this is how things ended up. Promoting each release turned into a
 serious event whenever the deployment window opened up. We had all the
-ceremony, fear and pressure to make our dates that are talked about as
-continuous delivery anti-patterns within the [continuous delivery][cd] book.
+ceremony, fear and pressure to make our dates that are talked about as delivery
+anti-patterns within the [Continuous Delivery][cd] book.
 
-> Both examples of quick hacks to get newly deployed production systems running
-> weren' being driven by such immediate commerical imperatives, but rather by
+> ... quick hacks to get newly deployed production systems running
+> weren't being driven by such immediate commerical imperatives, but rather by
 > the more subtle pressure to release on the day that was planned. The problem
 > here is that releases into production are big events. As long as this is true
 > they will be surrounded with a lot of ceremony and nervousness.
@@ -39,10 +39,10 @@ they needed to in the wild. This led to some undesirable forks in the code
 where new functionality needed to be introduced on old releases instead of
 shipping an updated version with the new changes.
 
-Most of our defects centerred around environment instability. Our favourites
+Most of our problems centerred around environment instability. Our favourites
 were running out of disk space or IP addresses that would prevent the running
 system from continuing to function. We had one big pool for every environment
-and so any one environment that misbehaved could hurt its nieghbours.
+and so any environment that misbehaved would hurt its nieghbours.
 
 We had competeting goals compared to some of our clients. They needed stability
 whereas we needed to introduce and validate new functionality. Our ability to
@@ -58,17 +58,21 @@ The Agreement
 =======================================
 
 For months we had been operating a fairly sophisticated [Deployment Pipeline][pipeline]
-that would validate each commit. This helped us feel confident that would could
-ship more frequently.
+that would validate each commit. This helped us feel confident that we could
+ship more frequently with out sacrificing quality.
 
 In order to speed up we realized that we first needed to slow down. Going as
 fast as we could was no good if clients did not receive our updates. Slowing
-down would also mean investing more into our testing and validation early. We
-then came to the following agreement with our clients for how to proceed.
+down would also mean investing more into our testing and validation for each
+change we made and overall stability. We then came to the following agreement
+with our clients for how to proceed.
 
 1. Regular Weekly Deployments
 1. Documented Changes
 1. More Testing
+
+In the next installment we will explain how the story unfolds and what changed
+so that we get better.
 
 [jez]:      https://twitter.com/jezhumble
 [dave]:     https://twitter.com/davefarley77
