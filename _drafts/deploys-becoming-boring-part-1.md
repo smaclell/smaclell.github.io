@@ -22,12 +22,12 @@ ceremony, fear and pressure to make our dates that are talked about as delivery
 anti-patterns within the [Continuous Delivery][cd] book.
 
 > ... quick hacks to get newly deployed production systems running
-> weren't being driven by such immediate commerical imperatives, but rather by
+> weren't being driven by such immediate commericial imperatives, but rather by
 > the more subtle pressure to release on the day that was planned. The problem
 > here is that releases into production are big events. As long as this is true
 > they will be surrounded with a lot of ceremony and nervousness.
 >
-> <cite>Page 20 of [Continous Delivery][cd]
+> <cite>Page 20 of [Continuous Delivery][cd]
 > by [Jez Humble][jez] and [Dave Farley][dave]
 > </cite>
 
@@ -39,12 +39,12 @@ they needed to in the wild. This led to some undesirable forks in the code
 where new functionality needed to be introduced on old releases instead of
 shipping an updated version with the new changes.
 
-Most of our problems centerred around environment instability. Our favourites
+Most of our problems centered on environment instability. Our favourites
 were running out of disk space or IP addresses that would prevent the running
 system from continuing to function. We had one big pool for every environment
-and so any environment that misbehaved would hurt its nieghbours.
+and so any environment that misbehaved would hurt its neighbours.
 
-We had competeting goals compared to some of our clients. They needed stability
+We had competing goals compared to some of our clients. They needed stability
 whereas we needed to introduce and validate new functionality. Our ability to
 produce new software at a certain level of testing vastly out stripped the rate
 that it was being consumed downstream. We had been behaving like we could
