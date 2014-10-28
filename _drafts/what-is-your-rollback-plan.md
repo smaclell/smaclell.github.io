@@ -2,7 +2,7 @@
 layout: post
 title:  "What is your rollback plan?"
 date:   2014-09-22 23:11:07
-categories: deployments rollback
+tags: deployments rollback
 ---
 Are you afraid of your deployments? Dread that moment when you hear your fellow
 employee deploying new code and they utter the phrase "oh no, this isn't good".
