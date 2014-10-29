@@ -44,6 +44,8 @@ were running out of disk space or IP addresses that would prevent the running
 system from continuing to function. We had one big pool for every environment
 and so any environment that misbehaved would hurt its neighbours.
 
+TODO: Ecosystems picture
+
 We had competing goals compared to some of our clients. They needed stability
 whereas we needed to introduce and validate new functionality. Our ability to
 produce new software at a certain level of testing vastly out stripped the rate
