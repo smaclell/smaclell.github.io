@@ -57,6 +57,13 @@ smoke test it then run a series of acceptance tests. These are more complicated
 and test larger portions of the system. They still try to isolate each service
 but can include other stable collaborators as needed.
 
+<p class="center-image">
+	<img
+		title="One little service building in a row."
+		alt="A single pipeline with a commit state, acceptance stage and finally a deploy"
+		src="/images/posts/SimplePipeline.png" />
+</p>
+
 We then run the automated manual acceptance tests to comprehensively verify the
 new changes while keeping the rest of the system stable. This second level of
 end to end testing makes it easy to find issues introduced by the new changes
@@ -65,7 +72,12 @@ testing for areas particularly hard to test automatically or of limitted use.
 Due to the coverage of the automated testing we rarely need more manual
 testing and try hard to automate it whenever possible.
 
-TODO: Funnel
+<p class="center-image">
+	<img
+		title="Three little service building in a row."
+		alt="A three pipelines then integrated testing followed up by shipping!!"
+		src="/images/posts/PipelineFunnel.png" />
+</p>
 
 Commits trigger the individual deployment pipelines which are responsible for
 the commit and acceptance tests. Once each pipeline is complete they trigger
