@@ -42,9 +42,17 @@ shipping an updated version with the new changes.
 Most of our problems centered on environment instability. Our favourites
 were running out of disk space or IP addresses that would prevent the running
 system from continuing to function. We had one big pool for every environment
-and so any environment that misbehaved would hurt its neighbours.
+and so any environment that misbehaved would hurt its neighbours. This is
+particularly troublesome with our Dev, QA and Cert environments which promote
+sequentially. Our clients who care the most about QA and Cert are impacted when
+Dev is running larger tests that take use lots of resources.
 
-TODO: Ecosystems picture
+<p class="center-image">
+	<img
+		title="All the ducks in a row"
+		alt="Our three main ecosystems, Dev to QA to CERT"
+		src="/images/posts/Ecosystems.png" />
+</p>
 
 We had competing goals compared to some of our clients. They needed stability
 whereas we needed to introduce and validate new functionality. Our ability to
