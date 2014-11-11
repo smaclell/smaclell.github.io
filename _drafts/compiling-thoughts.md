@@ -19,12 +19,15 @@ others encounter on their own journey.
 From a very early age I wanted to help people, to truly care about others and
 make a difference in their lives. With the billions of people on our planet,
 I would hope that in some small way I could help unlock their creativity or
-encourage their limitless potential. In University I discovered programming
-which provided a new outlet for this desire. It made me feel like I had super
-powers to create new worlds and do things I never thought possible. The years
-that have followed taught me a great deal about this craft but I still feel I
-have barely scratched the surface. My new passion for creating great software
-became a means to improve lives, delight users and solve problems.
+encourage their limitless potential. I didn't know how to act on this feeling
+or a have means to scale what one person could do until I learned how to
+program. It made me feel like I had super powers to create new worlds and do
+things I never thought possible. An app or website can easily reach the whole
+world and have connected humanity more than anything else. The recent years
+have taught me a great deal about software development and craftsmanship but I
+still feel I have barely scratched the surface. Over time programming became a
+new passion of mine for creating great software as a means to improve lives,
+delight users and solve problems.
 
 Earlier this year I welcomed my son Jude into the world and I cannot describe
 in words the happiness he gives me. My hope is that I can be a role model for
