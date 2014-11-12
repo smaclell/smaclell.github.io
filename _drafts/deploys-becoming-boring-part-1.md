@@ -5,21 +5,22 @@ date:   2014-09-22 23:11:07
 tags: deployment process series
 ---
 
-It wasn't always easy for us to promote our code. It took time and effort to
-get there and a whole lot of iterating. This is our story about how over the
-course of a few weeks we were able to go from a system with little confidence
-to smooth regular updates that are downright boring.
+It wasn't always easy for us to promote our code. Releases were deadlocked and
+were not confident about how they would work. This first part outlines the
+starting point before we started to change our releases. This is our story
+about how over the course of a few weeks we were able to go from a system with
+little confidence to smooth regular updates that are downright boring.
 
 {% include series/deploys-becoming-boring.html %}
 
 In The Beginning
 =======================================
 
-We started out our project with large releases. This was not how we wanted it
-to be but this is how things ended up. Promoting each release turned into a
+We started our project with large releases. This was not how we wanted it
+to be but it was how things ended up. Promoting each release turned into a
 serious event whenever the deployment window opened up. We had all the
-ceremony, fear and pressure to make our dates that are talked about as delivery
-anti-patterns within the [Continuous Delivery][cd] book.
+ceremony, fear and pressure to make our dates that are cited as delivery
+anti-patterns by the [Continuous Delivery][cd] book.
 
 > ... quick hacks to get newly deployed production systems running
 > weren't being driven by such immediate commericial imperatives, but rather by
@@ -36,16 +37,16 @@ defects affected our clients a great deal and discouraged them from taking new
 releases. This gave us a catch-22 where we could not fix the problems by
 shipping new updates in a timely manner and the problems lived much longer than
 they needed to in the wild. This led to some undesirable forks in the code
-where new functionality needed to be introduced on old releases instead of
-shipping an updated version with the new changes.
+where new functionality needed to be made against old releases instead of
+shipping an new fixed version.
 
 Most of our problems centered on environment instability. Our favourites
 were running out of disk space or IP addresses that would prevent the running
 system from continuing to function. We had one big pool for every environment
-and so any environment that misbehaved would hurt its neighbours. This is
-particularly troublesome with our Dev, QA and Cert environments which promote
+and so any misbehaving environment would hurt its neighbours. This was
+particularly troublesome with our Dev, QA and Cert environments which receieved updates
 sequentially. Our clients who care the most about QA and Cert are impacted when
-Dev is running larger tests that take use lots of resources.
+Dev is running larger tests that take lots of resources.
 
 <p class="center-image">
 	<img
@@ -54,9 +55,9 @@ Dev is running larger tests that take use lots of resources.
 		src="/images/posts/Ecosystems.png" />
 </p>
 
-We had competing goals compared to some of our clients. They needed stability
+We had competing goals with some of our clients. They needed stability
 whereas we needed to introduce and validate new functionality. Our ability to
-produce new software at a certain level of testing vastly out stripped the rate
+produce new software with automated testing vastly out stripped the rate
 that it was being consumed downstream. We had been behaving like we could
 deploy changes the second they were done but this was not reality everywhere.
 We were a rocket strapped to a steam engine.
@@ -72,10 +73,10 @@ that would validate each commit. This helped us feel confident that we could
 ship more frequently with out sacrificing quality.
 
 In order to speed up we realized that we first needed to slow down. Going as
-fast as we could was no good if clients did not receive our updates. Slowing
-down would also mean investing more into our testing and validation for each
-change we made and overall stability. We then came to the following agreement
-with our clients for how to proceed.
+fast as we could was no good if clients did not use our updates. Slowing down
+would also mean investing more into stability, testing and validation for each
+change made. We then struck the following agreement with our clients for how to
+proceed.
 
 1. Regular Weekly Deployments
 1. Documented Changes
