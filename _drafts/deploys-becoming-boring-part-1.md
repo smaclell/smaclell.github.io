@@ -6,15 +6,15 @@ tags: deployment process series
 ---
 
 It wasn't always easy for us to promote our code. Releases were deadlocked and
-were not confident about how they would work. This first part outlines the
-starting point before we started to change our releases. This is our story
+our clients were not confident about they would work. This first part outlines
+the status quo before we started to change our release process. This is our story
 about how over the course of a few weeks we were able to go from a system with
-little confidence to smooth regular updates that are downright boring.
+little confidence to smooth regular updates that became downright boring.
 
 {% include series/deploys-becoming-boring.html %}
 
 In The Beginning
-=======================================
+---------------------------------------
 
 We started our project with large releases. This was not how we wanted it
 to be but it was how things ended up. Promoting each release turned into a
@@ -32,21 +32,26 @@ anti-patterns by the [Continuous Delivery][cd] book.
 > by [Jez Humble][jez] and [Dave Farley][dave]
 > </cite>
 
-Our software was doing what it needed to do functionally but had defects. These
-defects affected our clients a great deal and discouraged them from taking new
-releases. This gave us a catch-22 where we could not fix the problems by
-shipping new updates in a timely manner and the problems lived much longer than
-they needed to in the wild. This led to some undesirable forks in the code
-where new functionality needed to be made against old releases instead of
-shipping an new fixed version.
+Our software worked as advertised but had intermitent issues for some clients.
+This discouraged these clients from taking new
+releases. This caused a catch-22 prevented us from releasing new version that
+fixed the issues which made problems worst and meant issues went unsolved
+longer. Other software used with our continued to change in ways that forced us
+to create small forks in the code to add new functionality against the old
+releases instead of
+shipping an new fixed version. Needless to say these forks were not what we
+wanted to do long term and were a stop gap for our clients.
 
-Most of our problems centered on environment instability. Our favourites
+Many problems centered on environment instability. Our favourites
 were running out of disk space or IP addresses that would prevent the running
 system from continuing to function. We had one big pool for every environment
-and so any misbehaving environment would hurt its neighbours. This was
-particularly troublesome with our Dev, QA and Cert environments which receieved updates
-sequentially. Our clients who care the most about QA and Cert are impacted when
-Dev is running larger tests that take lots of resources.
+and so any misbehaving environment takes resources from its neighbours. This was
+particularly troublesome with our Dev, QA and Cert environments which receieved
+updates sequentially and failing in one environment prevented progressing to
+the next one. Our clients who cared the most about QA and Cert would be
+impacted when Dev is running larger tests that take lots of resources.
+
+TODO: Talk about other changes in the environments causing breakages
 
 <p class="center-image">
 	<img
@@ -55,18 +60,20 @@ Dev is running larger tests that take lots of resources.
 		src="/images/posts/Ecosystems.png" />
 </p>
 
+TODO: Siloed knowledge around who could deploy
+
 We had competing goals with some of our clients. They needed stability
 whereas we needed to introduce and validate new functionality. Our ability to
-produce new software with automated testing vastly out stripped the rate
-that it was being consumed downstream. We had been behaving like we could
-deploy changes the second they were done but this was not reality everywhere.
+produce new tested software vastly out stripped the rate that it was being
+consumed downstream. We had been behaving like we could deploy changes the
+second they were done but this was not reality beyond the Dev environment.
 We were a rocket strapped to a steam engine.
 
 We wanted to do better. We wanted to break this deployment deadlock and
 accelerate the rate at which we could release with confidence.
 
 The Agreement
-=======================================
+---------------------------------------
 
 For months we had been operating a fairly sophisticated [Deployment Pipeline][pipeline]
 that would validate each commit. This helped us feel confident that we could
@@ -75,15 +82,15 @@ ship more frequently with out sacrificing quality.
 In order to speed up we realized that we first needed to slow down. Going as
 fast as we could was no good if clients did not use our updates. Slowing down
 would also mean investing more into stability, testing and validation for each
-change made. We then struck the following agreement with our clients for how to
-proceed.
+change made to improve feedback on each release. We then struck the following
+agreement to improve the situation with our clients:
 
 1. Regular Weekly Deployments
 1. Documented Changes
 1. More Testing
 
 In the next installment we will explain how the story unfolds and what changed
-so that we get better.
+to get better at releasing with confidence.
 
 [jez]:      https://twitter.com/jezhumble
 [dave]:     https://twitter.com/davefarley77

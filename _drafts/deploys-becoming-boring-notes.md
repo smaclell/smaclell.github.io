@@ -21,3 +21,17 @@ Notes to self:
 * Avoid editorializing the reactions of others
 * Switch to lack of confidence instead of lack of trust
 
+# Part 1 - Problems / Solutions
+
+* Large Releases > Small Releases
+* Issues Releasing, clients would not take them, forks
+* Environment instability (include HAL/PROD?)
+* TODO: Other changes being impactful
+* Conflicting Goals
+* Not confident
+* TODO: Siloed deploy knowledge
+* Slow down to speed up
+
+1. Weekly
+2. Docs
+3. Tests

@@ -9,10 +9,15 @@ In order to make things easy what happened? What changes did we make and what
 did we learn? This is the story about how things changed over time and became
 what they are today, downright boring.
 
+It wasn't always easy for us to promote our code. It took time and effort to
+get there and a whole lot of iterating. This is our story about how over the
+course of a few weeks we were able to go from a system with little confidence
+to smooth regular updates that are downright boring.
+
 {% include series/deploys-becoming-boring.html %}
 
 Going Weekly
-=======================================
+---------------------------------------
 
 Deploying weekly was not smooth at first but soon became much better. We still had alot
 of habits from our early deployments which resulted in some bad behaviour. In
@@ -21,7 +26,7 @@ at the last minute. This was a risky proposition given our track record and
 client confidence but we wanted to get more shipped! This resulted in back to
 back [brown paper bag][bag] releases that need to be patched right away.
 Luckily these issues we caught by our smoke tests and thanks to the existing
-deployment pipelines were diagnosed then fixed immediately.
+deployment pipelines were reproduced and fixed immediately.
 
 From these initial hiccups we started to catch our stride. We spent more time
 fixing defects and stabilizing the system. As we got into a rhythm the releases
@@ -32,30 +37,32 @@ As things became easier we started to rotate the team members doing the
 updates to share the knowledge more widely and further refine our efforts.
 
 Testing
-=======================================
+---------------------------------------
 
 As part of [The Agreement](TODO#the-agreement) we instituted more comprehensive
 smoke testing. We verified that entire system could perform the most critical
 operations. This was done with our clients to share the new releases with them
 and collaborate more.
 
-In our dev environment we bolstered our testing with more scenarios that
+In our Dev environment we bolstered our testing with more scenarios that
 covered the use cases that our clients cared about the most. This started as
 manual acceptance testing near the end of each release that was time consuming
 and onerous. Week by week we automated this process so that it was no longer a
 final stamp on each release but was triggered by every commit as part of the
-deployment pipeline. Once fully automated we could be very confident in each
-change that was being made to the system and certify new releases faster than
-ever.
+deployment pipeline to act as release acceptance tests. Once fully automated,
+we could be very confident in each change that was being made to the system
+and validate new releases faster than ever.
+
+TODO: Talk about these tests running more often to find environmental problems
 
 The testing forms two levels, the individual services then fully integrated.
 
 First commit tests run to verify the basic functionality at the lowest level.
 These are not all unit tests so that we could verify the most important parts
-of each component as early as possible. Next we typically deploy that service,
-smoke test it then run a series of acceptance tests. These are more complicated
-and test larger portions of the system. They still try to isolate each service
-but can include other stable collaborators as needed.
+of each component as early as possible. Next we typically deploy that service
+in isolation, execute smoke tests and then run acceptance tests. These tests
+are more complicated and cover larger portions of the system. They still try to
+isolate each service but can include other stable collaborators as needed.
 
 <p class="center-image">
 	<img
@@ -64,13 +71,13 @@ but can include other stable collaborators as needed.
 		src="/images/posts/SimplePipeline.png" />
 </p>
 
-We then run the automated manual acceptance tests to comprehensively verify the
-new changes while keeping the rest of the system stable. This second level of
-end to end testing makes it easy to find issues introduced by the new changes
-affecting the rest of the system. Occasionally, we would perform some manual
-testing for areas particularly hard to test automatically or of limitted use.
-Due to the coverage of the automated testing we rarely need more manual
-testing and try hard to automate it whenever possible.
+We then update the changed service(s) followed by running the release acceptance
+tests to comprehensively verify the new changes. Where possible we try to keep
+the other services unchanged so failures can be attributed to the changes.
+This has been instrumental at finding subtle system level integration issues.
+Occasionally, we would perform some manual testing for areas particularly hard
+to check automatically or would provide limitted use. We try very hard to
+automate all of our testing and reduce what needs to be verified manually.
 
 <p class="center-image">
 	<img
@@ -81,11 +88,11 @@ testing and try hard to automate it whenever possible.
 
 Commits trigger the individual deployment pipelines which are responsible for
 the commit and acceptance tests. Once each pipeline is complete they trigger
-the final integration tests. This exercises all changes early and often so that
+the release acceptance tests. This exercises all changes early and often so that
 we receive feedback right away.
 
 The Effects of Speed
-=======================================
+---------------------------------------
 
 Each new issue that came up was dealt with immediately and then more permanent
 fixes were put into place to prevent them from occuring again. This included
@@ -116,8 +123,10 @@ over multiple releases. This tradeoff was routinely frustrating but we
 persisted because it helped us make a better product and was easier for our
 users.
 
+TODO: Full continuous delivery in Dev
+
 Conclusions
-=======================================
+---------------------------------------
 
 We were now able to consistently add new functionality and improve the
 capabilities of the system safely. We started building things smaller, more
