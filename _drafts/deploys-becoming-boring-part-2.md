@@ -5,9 +5,9 @@ date:   2014-09-22 23:11:07
 tags: deployment process series
 ---
 
-In order to make things easy what happened? What changes did we make and what
-did we learn? This is the story about how things changed over time and became
-what they are today, downright boring.
+In order to make releases smooth what happened? What changes did we make and what
+did we learn? This is the story about how releases changed over time and became
+what they are today.
 
 It wasn't always easy for us to promote our code. It took time and effort to
 get there and a whole lot of iterating. This is our story about how over the
