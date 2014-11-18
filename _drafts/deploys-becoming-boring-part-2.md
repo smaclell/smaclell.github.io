@@ -21,7 +21,7 @@ Going Weekly
 
 Deploying weekly was not smooth at first but soon became much better. We still had alot
 of habits from our early deployments which resulted in some bad behaviour. In
-the first two updates we tried to put more new functionality into the releases
+the first two updates we tried to cram more new functionality into the releases
 at the last minute. This was a risky proposition given our track record and
 client confidence but we wanted to get more shipped! This resulted in back to
 back [brown paper bag][bag] releases that need to be patched right away.
@@ -35,6 +35,23 @@ habits and stress of big releases faded. By the third deployment we had
 polished the promotion process so that is was a single click for each service.
 As things became easier we started to rotate the team members doing the
 updates to share the knowledge more widely and further refine our efforts.
+
+We decided to up the ante by doing Continuous Deployment in our Dev
+environment. When releases passed sufficient testing they were automatically
+deployed and the necessary high fives performed! Each commit would kick off
+this cycle and so new deployments happened all of the time during active
+development. There was so little overhead to each release that we barely
+noticed that they were happening except for flashing colours on our dashboard.
+This pressured us to automate even more of the feedback process so that no
+human intervention was required.
+
+Manual deployments quickly became a thing of the past. We extended our scripts
+used in the Dev environment to deploy to any other environment. This simplified
+the process and made it easy enough for more people perform updates.
+We problems were found they would be fixed immediately which helped make them
+more robust and resilient. By continuously exercising these scripts we became
+very confident they would work as intended.
+
 
 Testing
 ---------------------------------------
@@ -121,8 +138,6 @@ features which helped guide future changes. Breaking changes took more time and
 often spanned multiple releases so there was always a smooth transition. This
 tradeoff was routinely frustrating but we persisted because it helped us make a
 better product and allowed our users adopt new releases sooner.
-
-TODO: Full continuous delivery in Dev
 
 Conclusions
 ---------------------------------------
