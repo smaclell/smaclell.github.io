@@ -44,14 +44,12 @@ wanted to do long term and were a stop gap for our clients.
 
 Many problems centered on environment instability. Our favourites
 were running out of disk space or IP addresses that would prevent the running
-system from continuing to function. We had one big pool for every environment
-and so any misbehaving environment takes resources from its neighbours. This was
+system from continuing to function. We had one big set of hardware for every environment
+and so any misbehaving environment would take resources from its neighbours. This was
 particularly troublesome with our Dev, QA and Cert environments which receieved
 updates sequentially and failing in one environment prevented progressing to
 the next one. Our clients who cared the most about QA and Cert would be
 impacted when Dev is running larger tests that take lots of resources.
-
-TODO: Talk about other changes in the environments causing breakages
 
 <p class="center-image">
 	<img
@@ -59,6 +57,13 @@ TODO: Talk about other changes in the environments causing breakages
 		alt="Our three main ecosystems, Dev to QA to CERT"
 		src="/images/posts/Ecosystems.png" />
 </p>
+
+Another unfortunate consequence of sharing infrastructure between environments
+was normal changes could have unintended side effects. Dev, QA and CERT are
+internal environments and do not have formal change management processes.
+Reconfiguring a network in QA might break Dev. Routine cleanup could remove
+important records for a neighbouring environment. These open changes further
+reduced our stablity and reliability.
 
 TODO: Siloed knowledge around who could deploy
 

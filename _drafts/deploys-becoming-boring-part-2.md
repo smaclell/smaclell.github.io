@@ -139,6 +139,8 @@ often spanned multiple releases so there was always a smooth transition. This
 tradeoff was routinely frustrating but we persisted because it helped us make a
 better product and allowed our users adopt new releases sooner.
 
+TODO: Implications on change management
+
 Conclusions
 ---------------------------------------
 
