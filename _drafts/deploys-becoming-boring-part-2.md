@@ -114,14 +114,13 @@ improve the quality of our releases.
 With such frequent releases meant that releases were always on our mind. Every
 change we introduced needed to be consider how it would impact the deployment
 and our users. Backwards compatiblity became a very important design
-consideration. Overall I feel like this slowed down how fast we could make some
-changes but deliver new functionality sooner with less effort for our users.
-Since we could deliver earlier we received better feedback on new features
-which helped us make more effective changes. However, the downside is code that
-could have been removed quickly with a breaking change now needed to be planned
-over multiple releases. This tradeoff was routinely frustrating but we
-persisted because it helped us make a better product and was easier for our
-users.
+consideration and needed extra testing/development effort. Although more work
+was required to keep the code stable we were able to ship new functionality
+sooner and with less ceremony. Earlier delivery meant better feedback on new
+features which helped guide future changes. Breaking changes took more time and
+often spanned multiple releases so there was always a smooth transition. This
+tradeoff was routinely frustrating but we persisted because it helped us make a
+better product and allowed our users adopt new releases sooner.
 
 TODO: Full continuous delivery in Dev
 
