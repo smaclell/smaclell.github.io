@@ -70,8 +70,6 @@ deployment pipeline to act as release acceptance tests. Once fully automated,
 we could be very confident in each change that was being made to the system
 and validate new releases faster than ever.
 
-TODO: Talk about these tests running more often to find environmental problems
-
 The testing forms two levels, the individual services then fully integrated.
 
 First commit tests run to verify the basic functionality at the lowest level.
@@ -107,6 +105,12 @@ Commits trigger the individual deployment pipelines which are responsible for
 the commit and acceptance tests. Once each pipeline is complete they trigger
 the release acceptance tests. This exercises all changes early and often so that
 we receive feedback right away.
+
+We also started running the release acceptance tests periodically to test the
+environment. By exercising the entire system regularly at a working state we
+isolated environmental issues before they caused other problems. Finding
+infastructure issues right away helped with finding the root cause and learning
+what changes were harmful.
 
 The Effects of Speed
 ---------------------------------------
