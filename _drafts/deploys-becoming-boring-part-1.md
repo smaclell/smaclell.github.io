@@ -23,7 +23,7 @@ ceremony, fear and pressure to make our dates that are cited as delivery
 anti-patterns by the [Continuous Delivery][cd] book.
 
 > ... quick hacks to get newly deployed production systems running
-> weren't being driven by such immediate commericial imperatives, but rather by
+> weren't being driven by such immediate commercial imperatives, but rather by
 > the more subtle pressure to release on the day that was planned. The problem
 > here is that releases into production are big events. As long as this is true
 > they will be surrounded with a lot of ceremony and nervousness.
@@ -32,21 +32,21 @@ anti-patterns by the [Continuous Delivery][cd] book.
 > by [Jez Humble][jez] and [Dave Farley][dave]
 > </cite>
 
-Our software worked as advertised but had intermitent issues for some clients.
+Our software worked as advertised but had intermittent issues for some clients.
 This discouraged these clients from taking new
 releases. This caused a catch-22 prevented us from releasing new version that
 fixed the issues which made problems worst and meant issues went unsolved
 longer. Other software used with our continued to change in ways that forced us
 to create small forks in the code to add new functionality against the old
 releases instead of
-shipping an new fixed version. Needless to say these forks were not what we
+shipping a new fixed version. Needless to say these forks were not what we
 wanted to do long term and were a stop gap for our clients.
 
 Many problems centered on environment instability. Our favourites
 were running out of disk space or IP addresses that would prevent the running
 system from continuing to function. We had one big set of hardware for every environment
 and so any misbehaving environment would take resources from its neighbours. This was
-particularly troublesome with our Dev, QA and Cert environments which receieved
+particularly troublesome with our Dev, QA and Cert environments which received
 updates sequentially and failing in one environment prevented progressing to
 the next one. Our clients who cared the most about QA and Cert would be
 impacted when Dev is running larger tests that take lots of resources.
@@ -63,7 +63,7 @@ was normal changes could have unintended side effects. Dev, QA and CERT are
 internal environments and do not have formal change management processes.
 Reconfiguring a network in QA might break Dev. Routine cleanup could remove
 important records for a neighbouring environment. These open changes further
-reduced our stablity and reliability.
+reduced our stability and reliability.
 
 TODO: Siloed knowledge around who could deploy
 
@@ -82,7 +82,7 @@ The Agreement
 
 For months we had been operating a fairly sophisticated [Deployment Pipeline][pipeline]
 that would validate each commit. This helped us feel confident that we could
-ship more frequently with out sacrificing quality.
+ship more frequently without sacrificing quality.
 
 In order to speed up we realized that we first needed to slow down. Going as
 fast as we could was no good if clients did not use our updates. Slowing down
