@@ -19,7 +19,7 @@ to smooth regular updates that are downright boring.
 Going Weekly
 ---------------------------------------
 
-Deploying weekly was not smooth at first but soon became much better. We still had alot
+Deploying weekly was not smooth at first but soon became much better. We still had a lot
 of habits from our early deployments which resulted in some bad behaviour. In
 the first two updates we tried to cram more new functionality into the releases
 at the last minute. This was a risky proposition given our track record and
@@ -91,7 +91,7 @@ tests to comprehensively verify the new changes. Where possible we try to keep
 the other services unchanged so failures can be attributed to the changes.
 This has been instrumental at finding subtle system level integration issues.
 Occasionally, we would perform some manual testing for areas particularly hard
-to check automatically or would provide limitted use. We try very hard to
+to check automatically or would provide limited use. We try very hard to
 automate all of our testing and reduce what needs to be verified manually.
 
 <p class="center-image">
@@ -109,32 +109,32 @@ we receive feedback right away.
 We also started running the release acceptance tests periodically to test the
 environment. By exercising the entire system regularly at a working state we
 isolated environmental issues before they caused other problems. Finding
-infastructure issues right away helped with finding the root cause and learning
+infrastructure issues right away helped with finding the root cause and learning
 what changes were harmful.
 
 The Effects of Speed
 ---------------------------------------
 
 Each new issue that came up was dealt with immediately and then more permanent
-fixes were put into place to prevent them from occuring again. This included
+fixes were put into place to prevent them from occurring again. This included
 more monitoring and diagnostics which enabled us to find and deal with issues
 before they hindered the services we had created. We invested further into
-hardenning our environments and isolating the different resources used by each
+hardening our environments and isolating the different resources used by each
 one. This prevented the cross contamination we were seeing and vastly improved
 the environment stability. Thanks to weekly releases our clients would get the
 changes right away instead of having to wait weeks for fixes to be deployed.
 
 Another interesting side effect occurred as we continued this process. Early on
-the changes were quite large but eventually shrunk much smaller. The acclerated
+the changes were quite large but eventually shrunk much smaller. The accelerated
 releases meant that we could no longer do large sweeping changes to the system
 and instead needed to think about how they could be introduced incrementally.
 By having small changes it was easier to get the quick feedback we wanted while
 keeping the entire system stable. Smaller incremental changes continued to
 improve the quality of our releases.
 
-With such frequent releases meant that releases were always on our mind. Every
-change we introduced needed to be consider how it would impact the deployment
-and our users. Backwards compatiblity became a very important design
+Such frequent releases meant that releases were always on our mind. Every
+change we introduced needed to consider how it would impact the deployment
+and our users. Backwards compatibility became a very important design
 consideration and needed extra testing/development effort. Although more work
 was required to keep the code stable we were able to ship new functionality
 sooner and with less ceremony. Earlier delivery meant better feedback on new
@@ -146,9 +146,9 @@ better product and allowed our users adopt new releases sooner.
 Change management began to take form around our regular updates. At first we
 stuck to a strict weekly scheduled but relax the process with more confidence.
 We started collaboratively deciding when new versions should be deployed.
-Previously it was lots of ceremony and negotiating to decided when we could
+Previously there was lots of ceremony and negotiating to decide when we could
 deploy new versions. The weekly schedule provided a reliable time frame and
-easier to accomodate short delays or adjustments. The confidence then improved
+easier to accommodate short delays or adjustments. The confidence then improved
 our collaboration which let us work through conflicting changes before they
 became a problem.
 
@@ -158,7 +158,7 @@ Conclusions
 We were now able to consistently add new functionality and improve the
 capabilities of the system safely. We started building things smaller, more
 backwards compatible and our quality went up. By investing in changes to
-stablize the system we were able to radically improve how we ship software.
+stabilize the system we were able to radically improve how we ship software.
 
 [cd]:       http://www.amazon.com/dp/B003YMNVC0/
 [pipeline]: http://martinfowler.com/bliki/DeploymentPipeline.html
