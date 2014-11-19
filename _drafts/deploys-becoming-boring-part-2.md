@@ -143,7 +143,14 @@ often spanned multiple releases so there was always a smooth transition. This
 tradeoff was routinely frustrating but we persisted because it helped us make a
 better product and allowed our users adopt new releases sooner.
 
-TODO: Implications on change management
+Change management began to take form around our regular updates. At first we
+stuck to a strict weekly scheduled but relax the process with more confidence.
+We started collaboratively deciding when new versions should be deployed.
+Previously it was lots of ceremony and negotiating to decided when we could
+deploy new versions. The weekly schedule provided a reliable time frame and
+easier to accomodate short delays or adjustments. The confidence then improved
+our collaboration which let us work through conflicting changes before they
+became a problem.
 
 Conclusions
 ---------------------------------------
