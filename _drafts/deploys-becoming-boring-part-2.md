@@ -5,7 +5,7 @@ date:   2014-09-22 23:11:07
 tags: deployment process series
 ---
 
-In order to make releases smooth what happened? What changes did we make and what
+In order to make our releases smooth what happened? What changes did we make and what
 did we learn? This is the story about how releases changed over time and became
 what they are today.
 
@@ -18,6 +18,9 @@ to smooth regular updates that are downright boring.
 
 Going Weekly
 ---------------------------------------
+
+Our first order of business to adhere to [The Agreement](TODO#the-agreement)
+was deploying weekly, rain or shine.
 
 Deploying weekly was not smooth at first but soon became much better. We still had a lot
 of habits from our early deployments which resulted in some bad behaviour. In
@@ -52,14 +55,20 @@ We problems were found they would be fixed immediately which helped make them
 more robust and resilient. By continuously exercising these scripts we became
 very confident they would work as intended.
 
+TODO: Sharing deployments
+
 
 Testing
 ---------------------------------------
 
-As part of [The Agreement](TODO#the-agreement) we instituted more comprehensive
+Next step to satisfy [The Agreement](TODO#the-agreement) was to tighten up our quality
+assurance and testing practices.
+
+A very simple change that we began immediately was performing more comprehensive
 smoke testing. We verified that entire system could perform the most critical
 operations. This was done with our clients to share the new releases with them
-and collaborate more.
+and collaborate more. This was primarily manual in later environments with some
+automation per service.
 
 In our Dev environment we bolstered our testing with more scenarios that
 covered the use cases that our clients cared about the most. This started as
@@ -112,8 +121,53 @@ isolated environmental issues before they caused other problems. Finding
 infrastructure issues right away helped with finding the root cause and learning
 what changes were harmful.
 
+Another quality improvement was mandatory code reviews. To maximize learning we
+would include an expert on the code being modified and someone less familiar
+with it. Passively knowledge flowed from expert to the unfamiliar raising the
+team's ability to contribute across the entire codebase. These reviews were not
+intended to act as a replacement for other testing but instead a sober second
+thought and often a fresh pair of eyes to help review automated test cases.
+
+Managing the Changes
+---------------------------------------
+
+Next step to satisfy [The Agreement](TODO#the-agreement) was to tighten up our quality
+assurance and testing practices.
+
+Change management began to take form around our regular updates. At first we
+stuck to a strict weekly scheduled but relax the process with more confidence.
+We started collaboratively deciding when new versions should be deployed.
+Previously there was lots of ceremony and negotiating to decide when we could
+deploy new versions. The weekly schedule provided a reliable time frame and
+easier to accommodate short delays or adjustments. The confidence then improved
+our collaboration which let us work through conflicting changes before they
+became a problem.
+
+Each release started to include release notes and more documentation. Handoffs
+typically involved detailed instructions regarding how each part worked within
+the larger system. This took effort and time from improving the system and we
+did not think these documents were overly helpful. More automation meant we
+could elminate documentation for how to perform these steps. The smaller and
+smaller releases helped us decrease what was being documented and highlighting
+just what had changed.
+
+Our biggest break through came when we moved this change log into the project's
+repository. While this might seem like a small thing it made a very big
+difference. Developers no longer had to break their flow to maintain
+documentation and they could include updated documents within pull requests.
+This was a simple markdown file within the repository and lined up to version
+numbers which were also set within the repo. It was now our responsibility to
+keep these documents up to date which helped reinforce getting it done.
+
+TODO: SEMVER
+TODO: Clean up this section
+TODO: Release documentation
+
 The Effects of Speed
 ---------------------------------------
+
+While not strictly caused by [The Agreement](TODO#the-agreement) strange things
+started happenning with our more frequent deployments.
 
 Each new issue that came up was dealt with immediately and then more permanent
 fixes were put into place to prevent them from occurring again. This included
@@ -142,15 +196,6 @@ features which helped guide future changes. Breaking changes took more time and
 often spanned multiple releases so there was always a smooth transition. This
 tradeoff was routinely frustrating but we persisted because it helped us make a
 better product and allowed our users adopt new releases sooner.
-
-Change management began to take form around our regular updates. At first we
-stuck to a strict weekly scheduled but relax the process with more confidence.
-We started collaboratively deciding when new versions should be deployed.
-Previously there was lots of ceremony and negotiating to decide when we could
-deploy new versions. The weekly schedule provided a reliable time frame and
-easier to accommodate short delays or adjustments. The confidence then improved
-our collaboration which let us work through conflicting changes before they
-became a problem.
 
 Conclusions
 ---------------------------------------

@@ -84,15 +84,40 @@ accelerate the rate at which we could release with confidence.
 The Agreement
 ---------------------------------------
 
-For months we had been operating a fairly sophisticated [Deployment Pipeline][pipeline]
-that would validate each commit. This helped us feel confident that we could
-ship more frequently without sacrificing quality.
-
 In order to speed up we realized that we first needed to slow down. Going as
-fast as we could was no good if clients did not use our updates. Slowing down
+fast as we could was no good if clients did not receive our updates. Slowing down
 would also mean investing more into stability, testing and validation for each
-change made to improve feedback on each release. We then struck the following
-agreement to improve the situation with our clients:
+change which would improve the feedback on each release.
+
+After discussing how to improve the current situation decided we wanted to
+deploy as part of a normal cycle that would happen fairly often. For us the
+ideal was always immediately after a commit has passed through normal testing but
+given our track record that remained a dream. We wanted a speed that would
+make things routine, provide feedback early/often and stretch the organization
+to achieve it by being faster than the norm but not painfully fast.
+
+TODO: if it hurts do it more often quote
+
+We wanted to improve the confidence in our releases. We thought the easiest way
+to rebuild confidence would be to have fewer issues and provide more
+opportunities for validation. The defects experienced by our clients were a big
+issue for them and were a focal point of our conversations together. Improving
+our consistency and quality was natually an imperative.
+
+We had be using [Deployment Pipelines][pipeline] to validate our software as we
+built it. This helped us feel confident that we could ship more frequently and
+improve quality at the same time. What was lacking in this feedback loop were
+tests that could prevent the types of defects being reported.
+
+In order to reduce the ceremony around releases we wanted to change how they
+were documented. We had been trying to be very lean by including little to no
+documentation but we were being asked for extensive manuals and walkthroughs.
+We felt that there was a workable comprimised somewhere in the middle. We
+thought that clear and transparent communication would help improve our
+relationship.
+
+With our clients, we then struck the following agreement to improve the
+situation and enable us to ship:
 
 1. Regular Weekly Deployments
 1. Documented Changes
