@@ -65,7 +65,11 @@ Reconfiguring a network in QA might break Dev. Routine cleanup could remove
 important records for a neighbouring environment. These open changes further
 reduced our stability and reliability.
 
-TODO: Siloed knowledge around who could deploy
+Early in the development process small groups of developers on our team were
+able to work together on individual services that compose the overall system.
+While this was great for getting things done at the beginning of the project it
+formed mini silos around each service. Deploying new versions would mean
+getting the original developers to work their magic and ship the new update.
 
 We had competing goals with some of our clients. They needed stability
 whereas we needed to introduce and validate new functionality. Our ability to
