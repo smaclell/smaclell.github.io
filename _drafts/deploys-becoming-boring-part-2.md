@@ -53,9 +53,9 @@ used in the Dev environment to deploy to any other environment. This simplified
 the process and made it easy enough for more people perform updates.
 We problems were found they would be fixed immediately which helped make them
 more robust and resilient. By continuously exercising these scripts we became
-very confident they would work as intended.
-
-TODO: Sharing deployments
+very confident they would work as intended. No longer was it a process that
+could only be done by the original contributors but something anyone on the
+team could do.
 
 
 Testing
