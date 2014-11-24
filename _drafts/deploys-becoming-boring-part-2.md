@@ -159,9 +159,18 @@ This was a simple markdown file within the repository and lined up to version
 numbers which were also set within the repo. It was now our responsibility to
 keep these documents up to date which helped reinforce getting it done.
 
-TODO: SEMVER
-TODO: Clean up this section
-TODO: Release documentation
+To clearly show the scope of changes with each release we started to adopt
+[semantic versioning][semver]. I would highly recommend reading the article as
+this versionning scheme is a great stratedgy for managing API's and their
+compatibility. Of all the changes we made this felt hit or miss. It started as
+extra work near the end of a release to bump all version numbers. We then
+standardized so that all repos declare their own version as used during builds.
+As developers would make their changes they could then adjust the version based
+on the scope of the changes. Some projects unfortunately went to 1.0.0 too soon
+and have been incremented much faster due to subsequent breaking changes. We
+had been trying to keep our projects small which has led to interesting
+relationships between projects that sometimes will cascade. Overall it helps
+keep our releases clear and is an area for future discussions.
 
 The Effects of Speed
 ---------------------------------------
@@ -200,11 +209,16 @@ better product and allowed our users adopt new releases sooner.
 Conclusions
 ---------------------------------------
 
-We were now able to consistently add new functionality and improve the
-capabilities of the system safely. We started building things smaller, more
-backwards compatible and our quality went up. By investing in changes to
-stabilize the system we were able to radically improve how we ship software.
+We are now able to consistently add new functionality and improve the
+capabilities of the system safely. We started building things smaller, with
+better backwards compatiblity and with more thorough testing resulting in
+smoother updates and improved quality. By stabilizing our releases we were able
+to radically improve. For us and our clients the difference is dramatic.
+
+This isn't the end; we are still working at improving. In the next part of this
+series I will recap the shifts we have seen and share where we want to go next.
 
 [cd]:       http://www.amazon.com/dp/B003YMNVC0/
 [pipeline]: http://martinfowler.com/bliki/DeploymentPipeline.html
 [bag]:      http://www.catb.org/jargon/html/B/brown-paper-bag-bug.html
+[semver]:   http://semver.org/
