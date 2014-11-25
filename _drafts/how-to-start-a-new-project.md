@@ -12,7 +12,7 @@ separates you from the competition?
 That sounds great. I would love to be able to use it but you need to deploy it
 first! Before any user can see your wondrous creation you need to be able
 to deploy your software to a prod like environment. It doesn't have to be
-pretty; it just has to work™.
+pretty; it just has to work.
 
 All to often being able to deploy software is thought of as an afterthought.
 Building that cool idea takes the for thought but don't you want to share it?
