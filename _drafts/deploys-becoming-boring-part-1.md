@@ -120,8 +120,8 @@ With our clients, we then struck the following agreement to improve the
 situation and enable us to ship:
 
 1. Regular Weekly Deployments
-1. Documented Changes
 1. More Testing
+1. Documented Changes
 
 In the next installment we will explain how the story unfolds and what changed
 to get better at releasing with confidence.
