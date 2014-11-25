@@ -76,7 +76,7 @@ whereas we needed to introduce and validate new functionality. Our ability to
 produce new tested software vastly out stripped the rate that it was being
 consumed downstream. We had been behaving like we could deploy changes the
 second they were done but this was not reality beyond the Dev environment.
-We were a rocket strapped to a steam engine.
+One of our clients described us as a rocket strapped to a steam engine.
 
 We wanted to do better. We wanted to break this deployment deadlock and
 accelerate the rate at which we could release with confidence.
@@ -94,9 +94,13 @@ deploy as part of a normal cycle that would happen fairly often. For us the
 ideal was always immediately after a commit has passed through normal testing but
 given our track record that remained a dream. We wanted a speed that would
 make things routine, provide feedback early/often and stretch the organization
-to achieve it by being faster than the norm but not painfully fast.
+to achieve it by being faster than the norm but not too painfully fast.
 
-TODO: if it hurts do it more often quote
+There is a common agile adage that "if it hurts, do it more often". By
+feeling the pains in our release process we would learn first hand what our
+biggest hurdles were and it would force us to address them head on. Bottling
+up changes in large releases months away meant we could work around them or
+accept subpar work instead of dealing with the root cause.
 
 We wanted to improve the confidence in our releases. We thought the easiest way
 to rebuild confidence would be to have fewer issues and provide more
