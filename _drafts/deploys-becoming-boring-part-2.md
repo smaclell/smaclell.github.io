@@ -144,7 +144,7 @@ weekly schedule helped both us and our clients work together to perform the
 updates. This weekly update became a great change to discuss other changes that
 needed to happen or might conflict with planned updates. This has meant fewer
 unplanned environmental changes around when the deployments occur helping
-stablize the whole process.
+stabilize the whole process.
 
 Releases started to include additional release notes and more documentation.
 Handoffs typically involved detailed instructions regarding how each part
@@ -156,23 +156,23 @@ the tomes we created.
 As the automation around releases and testing grew the walkthroughs outlining
 deploying and validation the system became obsolete. Along with smaller
 releases we were able to slim down the documentation to highlight just what had
-changed from the previous release. More collaboratin with our clients helped us
+changed from the previous release. More collaboration with our clients helped us
 focus the documentation on their concerns and use cases. Having our clients
 involved earlier in the releases further streamlined what documentation was
 needed.
 
-Our biggest documenation break through came when we moved the change log into
+Our biggest documentation breakthrough came when we moved the change log into
 source control along with the rest of the code. While this might seem like a
 small thing it made a very big difference. Developers could maintain their flow
 while adding features and update documentation all in the same pull request.
 We use a simple markdown file within the repository highlighting changes
 for each version. These documents are now the developer's responsibility to
-keep up to date. No longer can documentation be an after thought and instead is
-done along side all the other work.
+keep up to date. No longer can documentation be an afterthought and instead is
+done alongside all the other work.
 
 To clearly show a release's impact we started to adopt
 [semantic versioning][semver]. I would highly recommend reading the overview as
-[semantic versioning][semver] is a great stratedgy for managing API's and their
+[semantic versioning][semver] is a great strategy for managing API's and their
 compatibility. This change in particular felt hit or miss. It started as
 extra work near the end of a release to bump all version numbers. Due to this
 late addition it would often accidentally need to be done release day. This was
@@ -185,7 +185,7 @@ version numbers all the time. We are very actively developing many of our
 projects which has resulted in rapidly incrementing the version number. We have
 tried to reduce the impact of this by keeping some project prior to 1.0.0 for
 much longer but this feels like an anti-pattern. Other projects that went to
-1.0.0 before the API stablized have suffered from quickly incremented major
+1.0.0 before the API stabilized have suffered from quickly incremented major
 versions due to small breaking changes (like 5.0.0+ for one project). Overall
 I think that our versioning scheme has been useful but remains an area for
 future discussions.
@@ -194,8 +194,8 @@ Another challenging area was around several small projects that frequently
 collaborated. Changes to these projects would occasionally cause cascading
 updates and were generally very impactful to anything that depended on them.
 This immediately felt like a code smell caused by how we structured our
-dependencies and poor coupling between them. We then interated on the design to
-break up some of these dependencies by flattenning these relatinoships and
+dependencies and poor coupling between them. We then iterated on the design to
+break up some of these dependencies by flattening these relationships and
 making some dependencies more abstract. This has simplified the testing for
 areas that consume these components and made them more flexible and modular.
 
@@ -203,7 +203,7 @@ The Effects of Speed
 ---------------------------------------
 
 While not strictly caused by [The Agreement](TODO#the-agreement) strange things
-started happenning with our more frequent deployments.
+started happening with our more frequent deployments.
 
 Each new issue that came up was dealt with immediately and then more permanent
 fixes were put into place to prevent them from occurring again. This included
@@ -238,7 +238,7 @@ Conclusions
 
 We are now able to consistently add new functionality and improve the
 capabilities of the system safely. We started building things smaller, with
-better backwards compatiblity and with more thorough testing resulting in
+better backwards compatibility and with more thorough testing resulting in
 smoother updates and improved quality. By stabilizing our releases we were able
 to radically improve. For us and our clients the difference is dramatic.
 
