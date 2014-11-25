@@ -131,73 +131,69 @@ thought and often a fresh pair of eyes to help review automated test cases.
 Managing the Changes
 ---------------------------------------
 
-To share our changes more effectively we adjusted how we documented, managed
+To share our updates more effectively we adjusted how we managed, documented
 and versioned our releases. This was the final part of the
 [The Agreement](TODO#the-agreement).
 
-Change management began to take form around our regular updates. At first we
-stuck to a strict weekly scheduled but relaxed the process after we confidently
-had several smooth updates. The process of deciding when has become alot more
-collaborative. Previously there was lots of ceremony and negotiating to decide
-when and if we could deploy new versions. To gain that initial confidence the
-weekly schedule helped both us and our clients work together to perform the
-updates. This weekly update became a great change to discuss other changes that
-needed to happen or might conflict with planned updates. This has meant fewer
-unplanned environmental changes around when the deployments occur helping
-stabilize the whole process.
+Simple change management began to take form around our regular updates. At
+first we stuck to a strict weekly scheduled but relaxed the process after we
+had several smooth updates. Previously there was lots of ceremony and
+negotiating to decide when and if we could deploy new versions. To gain initial
+confidence we worked with our clients to perform first several weekly updates.
+This routine activity became a great chance to discuss other changes that
+needed to happen or might conflict with planned updates. The extra coordination
+had resulted in fewer unplanned environmental changes around the planned
+deployments helping stabilize the environments for the updates.
 
-Releases started to include additional release notes and more documentation.
-Handoffs typically involved detailed instructions regarding how each part
+Releases started to include additional documentation. Prior to [The Agreement](TODO#the-agreement)
+there were handoffs involving detailed instructions regarding how each component
 worked within the larger system. This took effort and time away from improving
-the system and we did not think these documents were overly helpful. Most
-requests were for more detailed documentation but our users did not often use
+the system and we did not think these documents were helpful. Most
+requests were for more detailed documentation but our users did not often read or use
 the tomes we created.
 
-As the automation around releases and testing grew the walkthroughs outlining
-deploying and validation the system became obsolete. Along with smaller
-releases we were able to slim down the documentation to highlight just what had
-changed from the previous release. More collaboration with our clients helped us
-focus the documentation on their concerns and use cases. Having our clients
-involved earlier in the releases further streamlined what documentation was
-needed.
+As the automation around releases and testing grew the handoff instructions for
+deploying and validating the system became obsolete. With smaller releases and
+one click deployments we were able to slim down the documentation to
+highlight just differences between the new update and the previous release. More
+collaboration with our clients helped us focus the documentation on their
+concerns and use cases allowing it to be more effective and less verbose.
 
-Our biggest documentation breakthrough came when we moved the change log into
+Our biggest documentation breakthrough came when we moved the release differences into
 source control along with the rest of the code. While this might seem like a
-small thing it made a very big difference. Developers could maintain their flow
+small thing it made a very big difference for our team. Developers could maintain their flow
 while adding features and update documentation all in the same pull request.
-We use a simple markdown file within the repository highlighting changes
-for each version. These documents are now the developer's responsibility to
+We use a simple markdown file within the repository for tracking larger changes
+in each version. These documents are now the developer's responsibility to
 keep up to date. No longer can documentation be an afterthought and instead is
-done alongside all the other work.
+best done alongside all the other work.
 
 To clearly show a release's impact we started to adopt
-[semantic versioning][semver]. I would highly recommend reading the overview as
-[semantic versioning][semver] is a great strategy for managing API's and their
-compatibility. This change in particular felt hit or miss. It started as
-extra work near the end of a release to bump all version numbers. Due to this
-late addition it would often accidentally need to be done release day. This was
-simplified when like documentation we started defining the version number with
-the code instead of in Jenkins or other artifacts. Again developers could
-proactively change the version as they made their changes.
+[semantic versioning][semver]. This change in particular felt hit or miss. It started as
+extra work near the end of a release to bump all version numbers. As a result
+it would often be forgotten and need to be done on the release day. This was
+simplified when we started defining the version number with
+the code instead of in Jenkins or with other artifacts. Like the documentation,
+developers could proactively update the version number as they made their changes.
 
-Due to our moderately fast release frequency it feels like we increment our
-version numbers all the time. We are very actively developing many of our
-projects which has resulted in rapidly incrementing the version number. We have
-tried to reduce the impact of this by keeping some project prior to 1.0.0 for
-much longer but this feels like an anti-pattern. Other projects that went to
+Due to our release frequency, it felt like we incremented our
+version numbers all the time. We were actively developing many of our
+projects which rapidly increased the version numbers. We
+tried to reduce the impact of locking down the public API by keeping some project prior to 1.0.0 for
+longer but this feels like an anti-pattern. Other projects that went to
 1.0.0 before the API stabilized have suffered from quickly incremented major
-versions due to small breaking changes (like 5.0.0+ for one project). Overall
+versions due to small breaking changes (like 5.0.0+ for one project). Overall,
 I think that our versioning scheme has been useful but remains an area for
 future discussions.
 
-Another challenging area was around several small projects that frequently
-collaborated. Changes to these projects would occasionally cause cascading
-updates and were generally very impactful to anything that depended on them.
-This immediately felt like a code smell caused by how we structured our
-dependencies and poor coupling between them. We then iterated on the design to
-break up some of these dependencies by flattening these relationships and
-making some dependencies more abstract. This has simplified the testing for
-areas that consume these components and made them more flexible and modular.
+Another versioning challenge was around several small projects that had deep
+dependency chains. Updating these projects would occasionally cause cascading
+modifications and were impactful throughout the codebase.
+This immediate code smell showed that our projects were
+coupled in a bad way. We then iterated on the design to break up these
+dependencies by flattening them and making some more abstract. This has
+made the system more modular and flexible which has simplified our testing by
+allowing stubs/fakes across natural boundaries.
 
 The Effects of Speed
 ---------------------------------------
@@ -215,10 +211,10 @@ the environment stability. Thanks to weekly releases our clients would get the
 changes right away instead of having to wait weeks for fixes to be deployed.
 
 Another interesting side effect occurred as we continued this process. Early on
-the changes were quite large but eventually shrunk much smaller. The accelerated
+the updates were quite large but eventually shrunk much smaller. The accelerated
 releases meant that we could no longer do large sweeping changes to the system
 and instead needed to think about how they could be introduced incrementally.
-By having small changes it was easier to get the quick feedback we wanted while
+By having smaller releases it was easier to get the quick feedback we wanted while
 keeping the entire system stable. Smaller incremental changes continued to
 improve the quality of our releases.
 
