@@ -108,7 +108,7 @@ opportunities for validation. The defects experienced by our clients were a big
 issue for them and were a focal point of our conversations together. Improving
 our consistency and quality was natually an imperative.
 
-We had be using [Deployment Pipelines][pipeline] to validate our software as we
+We had been using [Deployment Pipelines][pipeline] to validate our software as we
 built it. This helped us feel confident that we could ship more frequently and
 improve quality at the same time. What was lacking in this feedback loop were
 tests that could prevent the types of defects being reported.
