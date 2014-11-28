@@ -44,10 +44,10 @@ your Minimum Viable Product on track as shown by Bill Gross via Andrew Wilkinson
 
 There are lots of fantastic ideas packed on how to approach your Minimum
 Viable Product and shape your business one release at a time in the book
-[Lean Startup][startup]. By shipping multiple small releases you can learn faster
+[Lean Startup][startup]. Shipping multiple small releases helps you learn faster
 what works or does not work about your product.
 
-By getting that first release out early you can avoid many distractions along
+Getting that first release out early avoids many distractions along
 the way. You can plan for eventualities, but spending time building an
 incredibly complicated system that only attract one user (hi mom!) is overkill.
 This is why a simpler deployment initially is recommended. By all means
