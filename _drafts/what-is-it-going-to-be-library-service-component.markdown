@@ -33,8 +33,8 @@ roses but we will come back to that in a different post.
 We were approached by another team who wanted to extend our system so that they
 could perform some of the operations differently. The new extensions would be
 logically similar to the existing pieces but different enough that it put new
-stress on our design and did not belong in the original components. Think gala
-apples to granny smith apples instead of apples to oranges. Our challenge was
+stress on our design and did not belong in the original components. Think Gala
+apples to Granny Smith apples instead of apples to oranges. Our challenge was
 where in the system to make these changes.
 
 Library, Service or Component
