@@ -13,3 +13,5 @@ Notes to self:
 * No complaints
 * Believe in the best intent
 * Avoid editorializing the reactions of others
+* Avoid using like or by
+* Be confident in what you are saying, avoid maybe might can
