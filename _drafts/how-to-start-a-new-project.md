@@ -21,8 +21,8 @@ development path before trying to settle on how they would deploy their new
 product. Up until now they had been testing on developer boxes and did not see
 any problems with this.
 
-The inverse would be building that one killer feature and just enough to ship
-it. Depending on your product that minimum point might be a little further, but
+The inverse would be building just enough to ship that one killer feature.
+Depending on your product that minimum point might be a little further, but
 typically it is earlier than you would think. By focusing on this minimum you
 can start to iterate and improve what you have by adding to the initial
 release. Adding a new feature here, smoothing out the operations experience there, expanding
