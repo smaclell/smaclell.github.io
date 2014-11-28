@@ -23,7 +23,7 @@ encourage their limitless potential. I didn't know how to act on this feeling
 or a have means to scale what one person could do until I learned how to
 program. It made me feel like I had super powers to create new worlds and do
 things I never thought possible. An app or website can easily reach the whole
-world and have connected humanity more than anything else. The recent years
+world and connect humanity more than anything else that has come before. The recent years
 have taught me a great deal about software development and craftsmanship but I
 still feel I have barely scratched the surface. Over time programming became a
 new passion of mine for creating great software as a means to improve lives,
