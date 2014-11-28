@@ -9,23 +9,23 @@ If you had to pick one thing to include in your new project what would it be?
 Would it be that killer feature your clients are crazy about? Something that
 separates you from the competition?
 
-That sounds great. I would love to be able to use it but you need to deploy it
+That sounds great. I would love to be able to use it, but you need to deploy it
 first! Before any user can see your wondrous creation you need to be able
-to deploy your software to a prod like environment. It doesn't have to be
+to deploy your software to a prod-like environment. It doesn't have to be
 pretty; it just has to work.
 
-All to often being able to deploy software is thought of as an afterthought.
-Building that cool idea takes the for thought but don't you want to share it?
+All too often being able to deploy software is thought of as an afterthought.
+Building that cool idea takes the forethought, but don't you want to share it?
 We have worked with a few teams lately who have gotten fairly far down the
 development path before trying to settle on how they would deploy their new
 product. Up until now they had been testing on developer boxes and did not see
 any problems with this.
 
 The inverse would be building that one killer feature and just enough to ship
-it. Depending on your product that minimum point might be a little further but
+it. Depending on your product that minimum point might be a little further, but
 typically it is earlier than you would think. By focusing on this minimum you
 can start to iterate and improve what you have by adding to the initial
-release. A new feature here, smoothing out the operations experience, expanding
+release. Adding a new feature here, smoothing out the operations experience there, expanding
 the initial focus further or any number of paths that make sense.
 
 This is where the concept of an Minimum Viable Product kicks in. To remain
@@ -42,17 +42,18 @@ your Minimum Viable Product on track as shown by Bill Gross via Andrew Wilkinson
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-There is lots of fantastic ideas packed into how to approach your Minimum
+There are lots of fantastic ideas packed on how to approach your Minimum
 Viable Product and shape your business one release at a time in the book
 [Lean Startup][startup]. By shipping multiple small releases you can learn faster
 what works or does not work about your product.
 
 By getting that first release out early you can avoid many distractions along
-the way. You can plan for eventualities but spending time building an
+the way. You can plan for eventualities, but spending time building an
 incredibly complicated system that only attract one user (hi mom!) is overkill.
 This is why a simpler deployment initially is recommended. By all means
-incorporate it into your continuous integration/deployment system but does not
-need multi region deployments with automatic fail-over. Find your minimum and
+incorporate it into your continuous integration/deployment system, but focus on
+what you need now and maybe not really complex things like multi region
+deployments with automatic fail-over. Find your minimum and
 iterate slowly to gradually become more comprehensive and robust.
 
 There are many great ways to start deploying today like [Heroku][heroku],
@@ -61,7 +62,7 @@ I am sure many places have their own way to deploy things that is somewhat
 standardized. Talk to your favourite person in operations and I am sure they
 have some suggestions. No one in operations? No problem! That means the person
 you are looking for is you. Either way you should probably be nice to this
-person since you will be working **ALOT** with them over the life time of your
+person since you will be working with them **all the time** over the course of your
 project. When you finally get called at 2 am with a genuine outage it
 helps to have friends.
 
