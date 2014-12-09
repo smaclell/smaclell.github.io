@@ -8,8 +8,14 @@ tags: development design craig
 Take Away
 =======================================
 
-Consider where different changes could be made and the accompanying tradeoffs.
-It might be as easy as swapping part of the existing system.
+Extending a existing system results in tradeoffs depending on where you choose
+to make the change.
+
+Consider using changing one of the following:
+
+* A library along a known boundary
+* A service behind a consistent protocol
+* A component within a service
 
 New Requirements
 =======================================
