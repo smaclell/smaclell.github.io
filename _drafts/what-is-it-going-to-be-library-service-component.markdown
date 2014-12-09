@@ -19,14 +19,14 @@ introduce changes to a system we maintain. The system is fairly complicated
 with a variety of moving pieces that collaborate together to form a complete
 solution. Each piece typically has a [single responsibility][srp] and is fairly
 specialized. We have also tried to limit the number of operations the overall
-system could perform. This minimalist intent resulted in a more focused design
+system performs. This minimalist intent resulted in a more focused design
 targeting the current needs but included few extension points.
 
 In a few areas we decided to create small services to perform long running
 tasks or interact with other complex software. We tried to design the APIs
 for these services generically so that other implementers use the same contract
 in the future. We then use internal configuration for different options that
-could modify the service behaviour wbile still closely reflecting the
+could modify the service behaviour while still closely reflecting the
 implementation. Managing our configuration in this way hasn't all been a bed of
 roses but we will come back to that in a different post.
 
@@ -35,13 +35,13 @@ could perform some of the operations differently. The new extensions would be
 logically similar to the existing pieces but different enough that it put new
 stress on our design and did not belong in the original components. Think Gala
 apples to Granny Smith apples instead of apples to oranges. Our challenge was
-where in the system to make these changes.
+to determine where in the system to make these changes.
 
-Library, Service or Component
+Library, Service or Component?
 =======================================
 
-In talking to my boss, Craig, about the problem and we came up with 3 places we
-could swap in the new functionality. These 3 places were within a single
+In talking to my boss, Craig, about the problem, we came up with three places we
+could swap in the new functionality. These three places were within a single
 library, a complete service or configuring a new component within an existing
 service.
 
@@ -60,10 +60,10 @@ of the API used to call the service or swapping the component would increase
 the coupling to that specific service and the associated configuration.
 
 Adjusting the library has the lowest operating cost but has the highest
-impacting to anything running within the same process. Alternative libraries
+impact to anything running within the same process. Alternative libraries
 would be best suited to use the same language/runtime. This route seems simple
 and can keep the changes closer to where they would be consumed. This option
-makes lots of sense when talking to services that already manage their
+makes a lot of sense when talking to services that already manage their
 own state.
 
 Changing the service or underlying components can be natural extension points
