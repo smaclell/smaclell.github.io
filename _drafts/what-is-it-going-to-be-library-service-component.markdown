@@ -95,10 +95,10 @@ probably be needed to enable the new capabilities.
 Conclusion
 =======================================
 
-In the end we decided to swap out individual libraries. This included some
-refactoring to isolate each operation performed by the system. The resulting
+In the end we decided to swap out individual libraries called by the scripts.
+We needed to refactor some of the operations to better isolate them. The resulting
 changes helped clarify how the system works and decouple the operations. The
-service calls were also converted these new extension points which let us
+service calls were also converted to these new extension points which let us
 move their implementations closer to the services they consume.
 
 Had we decided to introduce a new service or component this would have
