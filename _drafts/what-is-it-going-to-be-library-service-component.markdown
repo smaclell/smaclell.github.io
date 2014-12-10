@@ -8,14 +8,14 @@ tags: development design craig
 Take Away
 =======================================
 
-Extending a existing system results in tradeoffs depending on where you choose
+Extending an existing system results in tradeoffs depending on where you choose
 to make the change.
 
-Consider using changing one of the following:
+Consider making your changes in one of the following areas:
 
-* A library along a known boundary
-* A service behind a consistent protocol
-* A component within a service
+* A new library along a known boundary
+* A new service behind a consistent protocol
+* A new component within an existing service
 
 New Requirements
 =======================================
@@ -32,20 +32,21 @@ The services are primarily used to interact with our infrastructure and/or
 perform long running tasks. One service we have made,
 Machinator, is used to simplify the creation and deletion of virtual machines.
 It has a very generic API to abstract the underlying implementation and
-allow other implementers use the same contract in the future.
+allow other implementers to use the same contract in the future.
 
-We then use configuration in Machinator to modify what underlying hardware can
-be used to create new virtual machines. This aligns closely with the underlying
-hypervisor which simplified the code and is clearer for our operators. This has
-led to many internal settings that need to be configured which hasn't all been
-a bed of roses but we will come back to that in a different post.
+Configuration in Machinator modifies what underlying hardware is used to create
+new virtual machines. This aligns closely with the underlying hypervisor which
+simplifies the code and operating the service. This has led to many internal
+settings that need to be configured which hasn't always been a bed of roses but
+we will come back to that in a different post.
 
 We were approached by another team who wanted to use a different virtualization
 platform and load balancer. The orchestration scripts already did these
-operations but only in very specific ways with and only with integrations we
-had implemented. This placed new stress on our design and these additions did
-not belong in the original components. Our challenge was to determine where in
-the system to make these changes without making future maintenance harder.
+operations but only in very specific ways and only with integrations we had
+implemented, like the virtualization consumed by Machinator. This placed new
+stress on our design because these additions did not belong in the original
+components. Our challenge was to determine where in the system to make these
+changes without over complicating future maintenance.
 
 Library, Service or Component?
 =======================================
