@@ -21,35 +21,40 @@ New Requirements
 =======================================
 
 A few weeks ago we had an interesting team discussion about how best to
-introduce changes to a system we maintain. The system is fairly complicated
-with a variety of moving pieces that collaborate together to form a complete
-solution. Each piece typically has a [single responsibility][srp] and is fairly
-specialized. We have also tried to limit the number of operations the overall
-system performs. This minimalist intent resulted in a more focused design
-targeting the current needs but included few extension points.
+change the system we use to orchestrate updates and deployments for
+some of our products. The main activities are performed by a series of scripts
+that call other services or libraries to do additional work. Each piece
+that makes up the system specializes in a [single responsibility][srp].
+We have also tried to limit the number of operations the overall
+system performs to focus the design on our current needs.
 
-In a few areas we decided to create small services to perform long running
-tasks or interact with other complex software. We tried to design the APIs
-for these services generically so that other implementers use the same contract
-in the future. We then use internal configuration for different options that
-could modify the service behaviour while still closely reflecting the
-implementation. Managing our configuration in this way hasn't all been a bed of
-roses but we will come back to that in a different post.
+The services are primarily used to interact with our infrastructure and/or
+perform long running tasks. One service we have made,
+Machinator, is used to simplify the creation and deletion of virtual machines.
+It has a very generic API to abstract the underlying implementation and
+allow other implementers use the same contract in the future.
 
-We were approached by another team who wanted to extend our system so that they
-could perform some of the operations differently. The new extensions would be
-logically similar to the existing pieces but different enough that it put new
-stress on our design and did not belong in the original components. Think Gala
-apples to Granny Smith apples instead of apples to oranges. Our challenge was
-to determine where in the system to make these changes.
+We then use configuration in Machinator to modify what underlying hardware can
+be used to create new virtual machines. This aligns closely with the underlying
+hypervisor which simplified the code and is clearer for our operators. This has
+led to many internal settings that need to be configured which hasn't all been
+a bed of roses but we will come back to that in a different post.
+
+We were approached by another team who wanted to use a different virtualization
+platform and load balancer. The orchestration scripts already did these
+operations but only in very specific ways with and only with integrations we
+had implemented. This placed new stress on our design and these additions did
+not belong in the original components. Our challenge was to determine where in
+the system to make these changes without making future maintenance harder.
 
 Library, Service or Component?
 =======================================
 
-In talking to my boss, Craig, about the problem, we came up with three places we
-could swap in the new functionality. These three places were within a single
-library, a complete service or configuring a new component within an existing
-service.
+In talking to my boss, Craig, about the problem, we came up with three places
+where we could introduce the new functionality. These three places were as a
+standardized library, a similar service or configuring a new component within
+an existing service. In this way you could swap any one of these building
+blocks with existing functionality to change the behaviour of the workflow.
 
 <p class="center-image">
 	<img
