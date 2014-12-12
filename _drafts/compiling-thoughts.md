@@ -57,7 +57,7 @@ will do my best to stay on track. I hope that you join me on this journey and
 enjoy what I have to share. See you soon.
 
 *I would like to thank [Michael Swart][swart] and Matt Campbell for helping
-review this and several other of the early posts.*
+review this and several other early posts.*
 
 [devopsdaysto]: http://devopsdays.org/events/2014-toronto/
 [d2l]:          http://d2l.com
