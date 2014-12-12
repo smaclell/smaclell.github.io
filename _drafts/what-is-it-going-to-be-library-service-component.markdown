@@ -51,55 +51,67 @@ changes without over complicating future maintenance.
 Library, Service or Component?
 =======================================
 
-In talking to my boss, Craig, about the problem, we came up with three places
-where we could introduce the new functionality. These three places were as a
-standardized library, a similar service or configuring a new component within
-an existing service. In this way you could swap any one of these building
-blocks with existing functionality to change the behaviour of the workflow.
+In talking to my boss, Craig, about the problem, we came up with three areas
+where we could introduce the new functionality. By replacing one of these
+building blocks with a different implmentation that provided the desired
+functionality or integration. Using compliation or runtime configuration the
+system could then determine which concrete implementation to use, such as green
+or blue in the diagram below. The areas within our scripts/workflow we
+identified were:
+
+* A library along a known boundary
+* A service behind a consistent protocol
+* A component within an existing service
 
 <p class="center-image">
 	<img
 		title="Yes, this image was made using paint."
-		alt="The three places to make the change, i.e. library, service or component"
+		alt="The replacing the library, service or component"
 		src="/images/posts/LibraryServiceOrComponent.png" />
 </p>
 
-These options present a range of benefits and trade-offs. The options provide
-different code isolation and maintainability challenges. Each choice would
-further increase the importance of how that area is connected to the rest of
-the system. For example, swapping the service would increase the importance
-of the API used to call the service or swapping the component would increase
-the coupling to that specific service and the associated configuration.
+These options present a range of benefits and trade-offs such as how isolated the
+change is and the maintainence cost. The boundary used to isolate the change
+becomes more important and harder to evolve in the future. For example,
+Machinator with a service that used the same protocol/contract would make it
+harder to change the protocol/contract being used. Similiarly, adding the
+functionality using configuration within Machinator would make Machinator more
+important and harder to replace in the future.
 
-Adjusting the library has the lowest operating cost but has the highest
-impact to anything running within the same process. Alternative libraries
-would be best suited to use the same language/runtime. This route seems simple
-and can keep the changes closer to where they would be consumed. This option
-makes a lot of sense when talking to services that already manage their
-own state.
+Using a different library has the lowest operating cost but might impact other
+things running in the same process. It would make sense to use the same
+language/runtime and might be necessary depending on how the library is loaded
+and invoked. This route seems simple and in our system would keep the changes
+closer to the entry point instead of buried deep within other layers. Another
+complexity would be if the operation needed to preserve long running state
+which would make a standalone library less suitable.
 
-Changing the service or underlying components can be natural extension points
-within a system like this. Running a new service may need additional hardware
-and effort from operations. There may be more trouble getting started with this
-method if your teams do not typically write many services. A completely new
-service is unencumbered by the choices made by the existing services and
-libraries.
+Replacing a service can be a natural extension point due to the existing API
+boundary. Running a new service will undoubtably need additional hardware and
+effort from operations. There may be more trouble getting started if your teams
+does not typically write many services and have not optimized for a service
+oriented architecture or microservices. Since using microservices is the new
+hotness you can find out the [good and bad][micro] thanks to all that has been
+written about it in the past few months. For us one of the more compelling
+reasons is that you can change some fundamental choices made in other areas of
+the system like platform or development language.
 
 Depending on the current services their implementations may be easily extended
 to add the new functionality. Doing so would effectively hide the changes
-behind the existing service APIs. There is a risk that the responsibilities of
-the enhanced service would become diluted with the new functionality or would
-lose the benefits of being highly specialized. More configuration would
-probably be needed to enable the new capabilities.
+behind the existing service APIs. There is a risk that this would over
+complicate the service due to the new responsibilties it would have. When
+evaluating this option for Machinator new configuration would have been needed
+to choose between the existing functionality and the new capabilities.
 
 Conclusion
 =======================================
 
-In the end we decided to swap out individual libraries called by the scripts.
-We needed to refactor some of the operations to better isolate them. The resulting
-changes helped clarify how the system works and decouple the operations. The
-service calls were also converted to these new extension points which let us
-move their implementations closer to the services they consume.
+In the end we decided to better define boundaries within the scripts so that we
+could use different libraries. This required more refactoring due to our
+dependencies against the existing services and processes. The resulting changes
+helped clarify how the system works and decouple the operations better from the
+scripts. The service calls were also converted to these new extension points
+which let us move their implementations closer to the services they consume.
 
 Had we decided to introduce a new service or component this would have
 increased the effort required to operate the system and configuration
@@ -115,4 +127,5 @@ swapping a library, service or component would work for you.
 review this and several other of the early posts.*
 
 [srp]: http://en.wikipedia.org/wiki/Single_responsibility_principle "A SOLID start"
+[micro]: http://highscalability.com/blog/2014/10/27/microservices-in-production-the-good-the-bad-the-it-works.html
 [swart]: http://michaeljswart.com
