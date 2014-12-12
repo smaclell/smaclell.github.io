@@ -121,7 +121,7 @@ The teams wanting to make the changes felt comfortable enough with this
 approach that they contributed the new libraries that were needed.
 
 Next time you are faced with a design decision like this consider whether
-swapping a library, service or component would work for you.
+replacing a library, service or component would work for you.
 
 *I would like to thank [Michael Swart][swart] and Matt Campbell for helping
 review this and several other of the early posts.*
