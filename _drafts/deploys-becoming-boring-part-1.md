@@ -46,7 +46,7 @@ Many problems centered on environment instability. Our favourites
 were running out of disk space or IP addresses that would prevent the running
 system from continuing to function. We had one big set of hardware for every environment
 and so any misbehaving environment would take resources from its neighbours. This was
-particularly troublesome with our Dev, QA and Cert environments which received
+particularly troublesome with our Dev, QA and Certification (Cert) environments which received
 updates sequentially and failing in one environment prevented progressing to
 the next one. Our clients who cared the most about QA and Cert would be
 impacted when Dev is running larger tests that take lots of resources.
