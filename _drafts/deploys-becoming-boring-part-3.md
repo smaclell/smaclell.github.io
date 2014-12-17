@@ -61,9 +61,7 @@ Next
 
 To build on our success it is time for the next step.
 
-> If we want to be wholly confident in the release process and the technology,
-> we must use it and prove it to be good on a regular basis, just like any
-> other aspect of our system. It should be possible to deploy a single change
+> It should be possible to deploy a single change
 > to production through the deployment pipeline with the minimum possible time
 > and ceremony. The release process should be continuously evaluated and
 > improved, identifying any problems as close to the point at which they were
