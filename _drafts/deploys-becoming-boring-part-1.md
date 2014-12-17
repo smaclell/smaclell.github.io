@@ -78,6 +78,15 @@ consumed downstream. We had been behaving like we could deploy changes the
 second they were done but this was not reality beyond the Dev environment.
 One of our clients described us as a rocket strapped to a steam engine.
 
+<p class="center-image">
+	<a href="http://pixabay.com/en/rack-railway-locomotive-tracks-174363/">
+		<img
+			title="Full Speed Ahead! Courtesy of Pixabay"
+			alt="An open rail track going off into the distances beside an old steam engine"
+			src="/images/posts/rack-railway-174363_640.jpg" />
+	</a>
+</p>
+
 We wanted to do better. We wanted to break this deployment deadlock and
 accelerate the rate at which we could release with confidence.
 
