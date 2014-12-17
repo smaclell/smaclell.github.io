@@ -130,7 +130,11 @@ situation and enable us to ship:
 In the next installment we will explain how the story unfolds and what changed
 to get better at releasing with confidence.
 
+*I would like to thank [Michael Swart][swart], Matt Campbell and Bogdan Matu
+for helping review this and several other early posts.*
+
 [jez]:      https://twitter.com/jezhumble
 [dave]:     https://twitter.com/davefarley77
 [cd]:       http://www.amazon.com/dp/B003YMNVC0/
 [pipeline]: http://martinfowler.com/bliki/DeploymentPipeline.html
+[swart]:    http://michaeljswart.com

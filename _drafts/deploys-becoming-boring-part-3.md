@@ -86,6 +86,10 @@ right away. With more effort we can achieve the bare minimum required to ship an
 Defects can be fixed faster. Features done more safely. Our software can keep
 evolving.
 
+*I would like to thank [Michael Swart][swart], Matt Campbell and Bogdan Matu
+for helping review this and several other early posts.*
+
 [jez]:      https://twitter.com/jezhumble
 [dave]:     https://twitter.com/davefarley77
 [cd]:       http://www.amazon.com/dp/B003YMNVC0/
+[swart]:    http://michaeljswart.com

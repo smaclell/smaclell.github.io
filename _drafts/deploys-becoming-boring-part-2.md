@@ -241,7 +241,11 @@ to radically improve. For us and our clients the difference is dramatic.
 This isn't the end; we are still working at improving. In the next part of this
 series I will recap the shifts we have seen and share where we want to go next.
 
+*I would like to thank [Michael Swart][swart], Matt Campbell and Bogdan Matu
+for helping review this and several other early posts.*
+
 [cd]:       http://www.amazon.com/dp/B003YMNVC0/
 [pipeline]: http://martinfowler.com/bliki/DeploymentPipeline.html
 [bag]:      http://www.catb.org/jargon/html/B/brown-paper-bag-bug.html
 [semver]:   http://semver.org/
+[swart]:    http://michaeljswart.com
