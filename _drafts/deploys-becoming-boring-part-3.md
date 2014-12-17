@@ -49,6 +49,19 @@ Deployment Pipeline to validate small changes and are willing to accelerate.
 The way we work together and talk about what is happening are night and day
 from low confidence before to fully supporting each other now.
 
+Instead of being a rocket strapped to steam engine we used to be, we are much
+closer to being finely meshed gears working together to ship new releases.
+
+<p class="center-image">
+	<a href="https://www.flickr.com/photos/thomasclaveirole/463202335" style="display: inline" title="Gears by Thomas Claveirole used under Creative Commons 2.0 SA from Flickr">
+		<img src="https://farm1.staticflickr.com/167/463202335_fb1766d33c_z.jpg" width="640" height="427" alt="A series of beautiful gears meshing together">
+	</a>
+</p>
+
+<p>
+* <a href="https://www.flickr.com/photos/thomasclaveirole/463202335" style="display: inline" title="Gears by Thomas Claveirole used under Creative Commons 2.0 SA from Flickr">Photo by Thomas Claveirole</a> used under <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons 2.0 SA</a>
+</p>
+
 Our clients who were most resistant to change we have started to
 collaborate on larger projects together. Savvy members of their team have sent
 pull requests and other patches to smooth out their workflows. Not only are the
