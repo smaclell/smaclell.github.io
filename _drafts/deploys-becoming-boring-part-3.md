@@ -39,7 +39,7 @@ continue to evolve the entire system safely.
 Environmental issues are infrequent and less impactful. We know well in advance
 if there maybe issues in the future and can address them proactively. Working
 together with our clients we understand what is happening in the environments
-and can accomodate larger changes. Environments do not impact each other with
+and can accommodate larger changes. Environments do not impact each other with
 regular activity.
 
 The biggest change has been how our stakeholders view the whole process. Once
@@ -50,11 +50,11 @@ The way we work together and talk about what is happening are night and day
 from low confidence before to fully supporting each other now.
 
 Our clients who were most resistant to change we have started to
-collaborate on larger projects together. Savy members of their team have sent
+collaborate on larger projects together. Savvy members of their team have sent
 pull requests and other patches to smooth out their workflows. Not only are the
 fixes we are doing for them making the process go smoother they are adding new
 functionality to address their needs where we have not been able to. This is
-very exicting and I hope we can continue to encourage this behaviour.
+very exciting and I hope we can continue to encourage this behaviour.
 
 Next
 ---------------------------------------
@@ -80,7 +80,7 @@ level of confidence and collaboration.
 
 Our future looks promising and we will continue to iterate on our problems. We
 have come a long way since we first started but there are still more
-oppertunities. Simple changes will be able to ship much faster and be useful
+opportunities. Simple changes will be able to ship much faster and be useful
 right away. With more effort we can achieve the bare minimum required to ship any change.
 Defects can be fixed faster. Features done more safely. Our software can keep
 evolving.

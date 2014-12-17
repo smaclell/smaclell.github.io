@@ -106,7 +106,7 @@ make things routine, provide feedback early/often and stretch the organization
 to achieve it by being faster than the norm but not too painfully fast.
 
 There is a common agile adage that "if it hurts, do it more often". By
-feeling the pains in our release process we would learn first hand what our
+feeling the pains in our release process we would learn firsthand what our
 biggest hurdles were and it would force us to address them head on. Bottling
 up changes in large releases months away meant we could work around them or
 accept subpar work instead of dealing with the root cause.
@@ -115,7 +115,7 @@ We wanted to improve the confidence in our releases. We thought the easiest way
 to rebuild confidence would be to have fewer issues and provide more
 opportunities for validation. The defects experienced by our clients were a big
 issue for them and were a focal point of our conversations together. Improving
-our consistency and quality was natually an imperative.
+our consistency and quality was naturally an imperative.
 
 We had been using [Deployment Pipelines][pipeline] to validate our software as we
 built it. This helped us feel confident that we could ship more frequently and
@@ -125,7 +125,7 @@ tests that could prevent the types of defects being reported.
 In order to reduce the ceremony around releases we wanted to change how they
 were documented. We had been trying to be very lean by including little to no
 documentation but we were being asked for extensive manuals and walkthroughs.
-We felt that there was a workable comprimised somewhere in the middle. We
+We felt that there was a workable compromised somewhere in the middle. We
 thought that clear and transparent communication would help improve our
 relationship.
 

@@ -226,7 +226,7 @@ was required to keep the code stable we were able to ship new functionality
 sooner and with less ceremony. Earlier delivery meant better feedback on new
 features which helped guide future changes. Breaking changes took more time and
 often spanned multiple releases so there was always a smooth transition. This
-tradeoff was routinely frustrating but we persisted because it helped us make a
+trade-off was routinely frustrating but we persisted because it helped us make a
 better product and allowed our users adopt new releases sooner.
 
 Conclusions
