@@ -72,10 +72,11 @@ To build on our success it is time for the next step.
 > </cite>
 
 We want to take our continuous deployments in the Dev
-environment and start doing the same thing in our QA environment. For everything else
-downstream we want to drasticly reduce the delays that are currently present.
-This will potentially double the rate we can ship changes by shortenning the time
-required before getting to production.
+environment and start doing the same thing in our QA environment.
+We have discussed shipping each change as soon as they are ready through the
+various environments. This will eliminate large wait times for fixes while also
+allowing us to have smaller and safer releases. This is all thanks to our new
+level of confidence and collaboration.
 
 Our future looks promising and we will continue to iterate on our problems. We
 have come a long way since we first started but there are still more
