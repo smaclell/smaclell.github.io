@@ -69,6 +69,12 @@ What are you waiting for? Go deploy your first feature!
 
 <hr />
 
+*I would like to thank Joshua Groen and Matt Campbell for helping review this
+post. Stay tuned to more about deploying first thanks to the lively discussion
+we had about it.*
+
+<hr />
+
 <span id="note-1"></span>
 1. Yes, you could get feedback on just your UI and whether the data looks okay.
    That is a nice start but is only one aspect of your system. Go all the way.
