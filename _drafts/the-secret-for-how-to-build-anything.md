@@ -32,4 +32,17 @@ incorporate it into your continuous integration/deployment system but does not
 need multi region deployments with automatic fail-over. Find your minimum and
 iterate slowly to gradually become more comprehensive and robust.
 
+Getting that first release out early avoids many distractions along
+the way. Design your architecture so that it is extensible but defer in a way you
+don't need spend all your time fleshing out early on. Starting small will help
+you understand those first few users (hi mom!) while you build out more
+functionality, capacity and/or reliability.
+
+The inverse would be building just enough to ship that one killer feature.
+Depending on your product that minimum point might be a little further, but
+typically is earlier than you would think. By focusing on this minimum you
+can start to iterate and improve what you have by adding to the initial
+release. Adding a new feature here, smoothing out the operations experience there, expanding
+the initial focus further or any number of paths that make sense.
+
 [startup]:   http://www.amazon.com/Lean-Startup-Eric-Ries/dp/0670921602/ref=tmm_pap_swatch_0?_encoding=UTF8&sr=&qid=
