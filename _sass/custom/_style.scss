@@ -172,7 +172,7 @@ main.container, main.content > .container{
     h2{
         font-family: Georgia, 'Times New Roman', Times, serif;
         @extend .center-txt;
-        font-size: 5em;
+        font-size: 4em;
         padding: 1.5em 0 0.5em;
         letter-spacing: 0.05em;
     }
@@ -180,6 +180,23 @@ main.container, main.content > .container{
     section{
         font-family: 'Noto Serif';
         line-height: 1.9em;
+
+        h1 {
+            font-size: 3em;
+            border-bottom: 1px none $grayDarker;
+        }
+
+        h2 {
+            font-size: 2em
+        }
+
+        h3 {
+            font-size: 1.75em
+        }
+
+        h4 {
+            font-size: 1.5em
+        }
     }
 }
 
