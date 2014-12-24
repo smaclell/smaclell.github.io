@@ -1,11 +1,11 @@
 # Site settings
-title: Scott-tastic
-email: s.j.maclell@gmail.com
+title: smaclellan
+email: scott@smaclellan.com
 description: > # this means to ignore newlines until "baseurl:"
   Thoughts, stories and other other development fun about shipping software
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://smaclell.github.io" # the base hostname & protocol for your site
-#twitter_username: jekyllrb
+url: "http://www.smaclellan.com" # the base hostname & protocol for your site
+twitter_username: smaclell
 github_username:  smaclell
 
 # Build settings

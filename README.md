@@ -1,4 +1,4 @@
-smaclell.github.io
+smaclellan.com
 ==================
 
 My personal blog for thoughts, stories and other other development fun about shipping software.
