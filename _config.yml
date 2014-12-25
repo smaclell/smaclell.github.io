@@ -11,20 +11,12 @@ url:
 owner:
   name:           Scott MacLellan
   avatar:         avatar.jpg
-  bio:            "Aspiring software developer hoping to be a good role model."
+  bio:            "Aspiring software developer and Dad."
   email:          scott@smaclellan.com
   # Social networking links used in footer. Update and remove as you like.
-#  twitter:        smaclell
-#  facebook:       
   github:         smaclell
   stackexchange:  smaclell
   linkedin:       smaclell
-#  instagram:      
-#  flickr:         
-#  tumblr:         
-  # For Google Authorship https://plus.google.com/authorship
-  # google plus id, include the '+', eg +mmistakes
-#  google_plus:    
 
 # Background image to be tiled on all pages
 background: 
