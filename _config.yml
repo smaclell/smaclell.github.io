@@ -5,7 +5,7 @@ reading_time:     true
 words_per_minute: 200
 # Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
 # When testing locally leave blank or use http://localhost:4000
-url: http://www.smaclellan.com
+url: 
 
 # Owner/author information
 owner:
@@ -14,7 +14,7 @@ owner:
   bio:            "Aspiring software developer hoping to be a good role model."
   email:          scott@smaclellan.com
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        smaclell
+#  twitter:        smaclell
 #  facebook:       
   github:         smaclell
   stackexchange:  smaclell
