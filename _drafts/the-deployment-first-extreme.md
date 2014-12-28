@@ -11,19 +11,16 @@ image:
 
 In my previous post about [how to start new projects][new-projects] I talked
 about building a killer feature and deployment at the same time then releasing.
-This idea caused an interesting discussion with my coworkers that included the
-extreme position of shipping only the deployment as the first feature.
-
-I don't fully agree with the idea but my one coworker Matt was adamant about
-it. Matt is a pretty smart guy so I decided to think about it some more. This
-is what I was able to come up with and I think there is a range of situations
-that doing the deployment before the main project could be worth while.
+This idea started an interesting discussion with my coworkers that included the
+extreme of shipping only the deployment first with nothing in the product.
 
 Why?
 ===============================================================================
 
-The deployment first or empty release was was particularly attractive for my
-coworker Matt. Taking this approach has the following benefits:
+I don't fully agree with the idea but my one coworker, Matt, was adamant about
+it. Matt is a pretty smart guy so I decided to think about it some more. This
+is what I was able to come up with and I think there is a range of situations
+that doing the deployment before the main project could be worth while.
 
 **All features include deployment considerations from day zero.** This idea is
 from Mike Mooney who advocates for doing your deployment early. According to
@@ -39,17 +36,17 @@ the shadows. Removing concerns over how the project will be deployed lets the
 team focus on the core project. For me this is a little counter intuitive since
 the deployment is a critical part of being able to release new features. If you
 consider that most features do not impact the deployment or can be adjusted to
-minimize the changes it can provide a foundation for growing the project.
+minimize the changes it can provide a solid foundation for growing the project.
 
 **Practices deploying/releasing immediately.** Teams that ship infrequently or
 are less comfortable with deployments/releases can benefit by taking time out
-just for this activity. The start of a project is the least risky time to do
-invest in the deployment since any deadlines are the furthest away. If they
-have never tried anything like this before or have not worked with the other
+for this activity. The start of a project is the least risky time to
+invest in the deployment and practice these activities. If the delivery team
+has never tried to deploy thier own products or have not worked with the other
 teams that control production this can be a great introduction before delving
-deeper into the actual project. This is particularly important in an enterprise
-environment which can have many additional touch points or stakeholders that
-are included in deployments. Startups probably care less about this since
+deeper into the actual project. In an enterprise environment getting to know
+the touch points or stakeholders that are included in deployments is extremely
+beneficial. Startups probably care less about this since
 every minute spent is one step closer to extinction or outlandish riches.
 
 Why I am Not Convinced
@@ -61,13 +58,14 @@ little of the application included at the start feel like throwing the baby out
 with the bath water. The whole reason you are trying to deploy your code is to
 ship your application!
 
-The closest comparison I can think of is "doing" TDD. For most people do
+The closest comparison I can think of is "doing" TDD. Most people do
 something similar to TDD but not the real thing. One common variant is to
 over think it and start writing a great deal of code in anticipation for what
-is needed. Your solution matches you what you think you need but not necessary
-the best model that would evolve from iteratively implementing the solution
-one test at a time then refactoring. For fun examples of this check out
-[TDD as if you meant it][tdd].
+is needed next. Your solution matches you what you think you need but not
+necessarily the best model. This is readily seen in a workshop called
+[TDD as if you meant it][tdd]. The most intuitive solutions turns out to be a
+harder to work with and less flexible than if the participants had iteratively
+implemented thier code guided by tests, one at a time.
 
 The same would be true if you built a deployment process without the
 application to go with it. You want your deployment to grow and change with
@@ -80,7 +78,7 @@ The Final Word
 
 However, the more we discussed it the more the other side seemed attractive for
 environments where deploying is hard or normally an after thought. If you think
-that your could benefit from being more deployment conscious, concentrating on
+that your project could benefit from being more deployment conscious, concentrating on
 your deployment over your project temporarily or practicing deploying more then
 consider starting with only your deployment before anything else.
 
