@@ -3,6 +3,10 @@ layout: post
 title:  "Extreme Deployment As A Feature"
 date:   2014-09-22 23:11:07
 tags: deployment, projects
+image:
+  feature: skys-the-limit-feature.jpg
+  credit: Jackie Meredith
+  creditlink: skys-the-limit-thumb.jpg
 ---
 
 In my previous post about [how to start new projects][new-projects] I talked
