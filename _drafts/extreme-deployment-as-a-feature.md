@@ -10,6 +10,11 @@ about building a killer feature and deployment at the same time then releasing.
 This idea caused an interesting discussion with my coworkers that included the
 extreme position of shipping only the deployment as the first feature.
 
+I don't fully agree with the idea but my one coworker Matt was adamant about
+it. Matt is a pretty smart guy so I decided to think about it some more. This
+is what I was able to come up with and I think there is a range of situations
+that doing the deployment before the main project could be worth while.
+
 Why go to the extreme?
 ===============================================================================
 
