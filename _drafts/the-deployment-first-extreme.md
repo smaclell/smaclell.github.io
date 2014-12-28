@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Extreme Deployment As A Feature"
+title:  "Deployment First To The Extreme"
 date:   2014-09-22 23:11:07
 tags: deployment, projects
 image:
   feature: skys-the-limit-feature.jpg
-  credit: Jackie Meredith
+  credit: "Jackie Meredith"
   creditlink: skys-the-limit-thumb.jpg
 ---
 
@@ -19,7 +19,7 @@ it. Matt is a pretty smart guy so I decided to think about it some more. This
 is what I was able to come up with and I think there is a range of situations
 that doing the deployment before the main project could be worth while.
 
-Why go to the extreme?
+Why?
 ===============================================================================
 
 The deployment first or empty release was was particularly attractive for my
@@ -52,7 +52,7 @@ environment which can have many additional touch points or stakeholders that
 are included in deployments. Startups probably care less about this since
 every minute spent is one step closer to extinction or outlandish riches.
 
-Why you might want to not go all the way
+Why I am Not Convinced
 ===============================================================================
 
 I was not convinced that this strategy is necessary or that it has significant
@@ -75,11 +75,14 @@ your application. Getting too far ahead of yourself can cause things to become
 unbalanced or over engineered. I would much rather have a more basic deployment
 and some minimal features than an amazing deployment with nothing in it.
 
+The Final Word
+===============================================================================
+
 However, the more we discussed it the more the other side seemed attractive for
 environments where deploying is hard or normally an after thought. If you think
 that your could benefit from being more deployment conscious, concentrating on
-your project over your deployment or practicing deploying more then consider
-starting with only your deployment.
+your deployment over your project temporarily or practicing deploying more then
+consider starting with only your deployment before anything else.
 
 [new-projects]: /posts/how-to-start-a-new-project/
 [cd-intro]:     https://www.airpair.com/continuous-deployment/posts/continuous-deployment-for-practical-people#6-1-automate-deployments-from-step-zero
