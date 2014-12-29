@@ -10,24 +10,24 @@ image:
 ---
 
 In my previous post about [how to start new projects][new-projects] I talked
-about building a killer feature and deployment at the same time then releasing.
+about building a killer feature and deployment at the same time before releasing.
 This idea started an interesting discussion with my coworkers that included the
 extreme of shipping only the deployment first with nothing in the product.
 
 Why?
 ===============================================================================
 
-I don't fully agree with the idea but my one coworker, Matt, was adamant about
+I don't fully agree with the idea but my colleague, Matt, was adamant about
 it. Matt is a pretty smart guy so I decided to think about it some more. This
 is what I was able to come up with and I think there is a range of situations
-that doing the deployment before the main project could be worth while.
+where doing the deployment before the main project could be worthwhile.
 
 **All features include deployment considerations from day zero.** This idea is
 from Mike Mooney who advocates for doing your deployment early. According to
-Mike an early deployment forces developers to ask
+Mike, an early deployment forces developers to ask
 ["How will this affect the deployment process?"][cd-intro]. It becomes part of
-adding any feature. This would be even more so if the first thing the team does
-is implement a basic deployment process.
+adding any feature. If the first thing the team does is implement a basic
+deployment process they will be more mindful of changes that affect it.
 
 **Better separation between the deployment and initial product features.** In a
 new project the team is probably still coming up to speed on what problems are
@@ -81,6 +81,11 @@ environments where deploying is hard or normally an after thought. If you think
 that your project could benefit from being more deployment conscious, concentrating on
 your deployment over your project temporarily or practicing deploying more then
 consider starting with only your deployment before anything else.
+
+<hr />
+
+*I would like to thank Joshua Groen and Matt Campbell for helping review this
+post.*
 
 [new-projects]: /posts/how-to-start-a-new-project/
 [cd-intro]:     https://www.airpair.com/continuous-deployment/posts/continuous-deployment-for-practical-people#6-1-automate-deployments-from-step-zero
