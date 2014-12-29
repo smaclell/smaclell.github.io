@@ -5,15 +5,15 @@ date:   2014-09-22 23:11:07
 tags: deployments rollback
 ---
 Are you afraid of your deployments? Dread that moment when you hear your fellow
-employee deploying new code and they utter the phrase "oh no, this isn't good".
+employee deploying new code and they utter the phrase "oh no, this isn't good"?
 It doesn't have to be this way.
 
 Perhaps the best way to reduce the fear of deployments is to have a good
-rollback plan. This is never a silver bullet but can take the heat out of
+rollback plan. This is never a silver bullet but it can take the heat out of
 deployments that go poorly. If you don't have a rollback plan people will do
 very silly things to get the system up and running again. This means cutting
 corners that may completely invalidate any testing you did for your
-application or make any outage worst.
+application or make any outage worse.
 
 <a href="https://www.flickr.com/photos/rudolf_schuba/153225000" style="display: inline" title="UNIX - Server Photo by Rudolf Schuba used under Creative Commons from Flickr">
 	<img src="https://c1.staticflickr.com/1/44/153225000_698c62c38a_z.jpg?zz=1" width="640" height="480" alt="Programming at an old UNIX Server alone in an attic">
@@ -33,12 +33,12 @@ priority for us and decided that there were four key properties we wanted:
 
 To achieve these goals we decided on using the same process to deploy the
 application in reverse so that we could rollback to older versions. Since we
-deploy with every commit in our [Deployment Pipeline](http://martinfowler.com/bliki/DeploymentPipeline.html)
+deploy with every commit in our TODO: Links [Deployment Pipeline](http://martinfowler.com/bliki/DeploymentPipeline.html)
 (or a detailed [Deployment Pipeline](http://www.informit.com/articles/article.aspx?p=1621865) overview)
 we practice upgrading on every change. This means we also practice the process
 we need for rollback all the time so when it is needed in that moment of
 panic we are confident it will work. In order to deploy with every commit
-there could not be any manual steps which meant we automated the entire
+there could not be any manual steps; which meant we automated the entire
 process. This automation has made the rollback process very simple and
 since we use the same process on each build we are very confident it is
 reliable.
@@ -111,8 +111,8 @@ need to run. This makes it simple to go from nothing to a complete database in
 minutes and rollback changes when needed.
 
 We needed to plan so that all our migration scripts could run online. Most
-migrations are minor and don't need alot of effort. Where it starts to get much
-harder is data needs to be migrated between tables or shifting large parts of
+migrations are minor and don't need a lot of effort. Where it starts to get much
+harder is when data needs to be migrated between tables or shifting large parts of
 the schema such as splitting/combining/killing tables. These are some successful
 strategies we have used to perform safe online migrations:
 
@@ -135,7 +135,7 @@ The Result
 -------------------------------------------------------------------------------
 
 Having a strong rollback plan has changed the way we do releases. We have not
-needed it very often but when we did it was a lifesaver. We are no longer live
+needed it very often, but when we did it was a lifesaver. We are no longer live
 in fear of bad deployments and are confident we can get back to a working state
 quickly and easily.
 
