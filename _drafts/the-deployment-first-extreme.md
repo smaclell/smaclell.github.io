@@ -17,7 +17,7 @@ extreme of shipping only the deployment first with nothing in the product.
 Why?
 ===============================================================================
 
-I don't fully agree with the idea but my colleague, Matt, was adamant about
+I didn't fully agree with the idea at first but my colleague, Matt, was adamant about
 it. Matt is a pretty smart guy so I decided to think about it some more. This
 is what I was able to come up with and I think there is a range of situations
 where doing the deployment before the main project could be worthwhile.
@@ -49,29 +49,30 @@ the touch points or stakeholders that are included in deployments is extremely
 beneficial. Startups probably care less about this since
 every minute spent is one step closer to extinction or outlandish riches.
 
-Why I am Not Convinced
+Moderation
 ===============================================================================
 
-I was not convinced that this strategy is necessary or that it has significant
-advantages over including the deployment with your first feature. Having very
+I was not convinced that this strategy was had significant
+advantages over implementing a simple deployment with your first feature. Having very
 little of the application included at the start feels like throwing the baby out
 with the bath water. The whole reason you are trying to deploy your code is to
 ship your application!
 
-The closest comparison I can think of is "doing" TDD. Most people do
-something similar to TDD but not the real thing. One common variant is to
-over think it and start writing a great deal of code in anticipation for what
-is needed next. Your solution matches what you think you need but not
-necessarily the best model. This is readily seen in a workshop called
-[TDD as if you meant it][tdd]. The most intuitive solutions turn out to be a
-harder to work with and less flexible than if the participants had iteratively
-implemented their code guided by tests, one at a time.
+Both implementing the deployment first or implementing the deployment with the
+early functionality promotes a greater focus on deployablity. As with most
+architecture, the deployment grows best incrementally with the application it
+is designed for. For many projects this means moderating the investment in any
+one area to preserve focus on what provides the most value. Early in a project
+being able to deploy anything is extremely valuable to get early feedback. The
+more functional and complete this process becomes the more diminishing the
+returns for spending more time working on it.
 
-The same would be true if you built a deployment process without the
-application to go with it. You want your deployment to grow and change with
-your application. Getting too far ahead of yourself can cause things to become
-unbalanced or over engineered. I would much rather have a more basic deployment
-and some minimal features than an amazing deployment with nothing in it.
+When it comes to implementing your deployment before any functionality it is
+imperative to balance how much effort and time is dedicated to creating the
+deployment process before focusing on the application. Ideally it is a
+relatively painless process that can be finished within a few days or sprint.
+Working solely on the deployment for months is a warning sign that you are
+doing too much or waited to long to address the problem.
 
 The Final Word
 ===============================================================================
@@ -85,8 +86,7 @@ consider starting with only your deployment before anything else.
 <hr />
 
 *I would like to thank Joshua Groen and Matt Campbell for helping review this
-post.*
+post and eventually winning me over.*
 
 [new-projects]: /posts/how-to-start-a-new-project/
 [cd-intro]:     https://www.airpair.com/continuous-deployment/posts/continuous-deployment-for-practical-people#6-1-automate-deployments-from-step-zero
-[tdd]:          http://cumulative-hypotheses.org/2011/08/30/tdd-as-if-you-meant-it/
