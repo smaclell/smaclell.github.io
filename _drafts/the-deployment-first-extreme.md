@@ -58,8 +58,8 @@ little of the application included at the start feels like throwing the baby out
 with the bath water. The whole reason you are trying to deploy your code is to
 ship your application!
 
-Both implementing the deployment first or implementing the deployment with the
-early functionality promotes a greater focus on deployablity. As with most
+Both implementing the deployment first and implementing the deployment with the
+early functionality promote a greater focus on deployablity. As with most
 architecture, the deployment grows best incrementally with the application it
 is designed for. For many projects this means moderating the investment in any
 one area to preserve focus on what provides the most value. Early in a project
@@ -72,7 +72,7 @@ imperative to balance how much effort and time is dedicated to creating the
 deployment process before focusing on the application. Ideally it is a
 relatively painless process that can be finished within a few days or sprint.
 Working solely on the deployment for months is a warning sign that you are
-doing too much or waited to long to address the problem.
+doing too much or waited too long to address the problem.
 
 The Final Word
 ===============================================================================
