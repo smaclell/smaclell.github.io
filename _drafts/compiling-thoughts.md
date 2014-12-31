@@ -35,7 +35,7 @@ him by sharing my passion for helping others and inspire him to achieve his
 potential. It doesn't hurt that he is very cute and you will probably be
 seeing more of this little guy.
 
-<p class="center-image">
+<p class="image-center">
 	<img
 		title="Oh, hi"
 		alt="Jude with milk all over his face"
@@ -55,6 +55,8 @@ and similar topics will be usual offenders.
 Things might not be regular at first thanks to the ups and down of life but I
 will do my best to stay on track. I hope that you join me on this journey and
 enjoy what I have to share. See you soon.
+
+<hr />
 
 *I would like to thank [Michael Swart][swart] and Matt Campbell for helping
 review this and several other early posts.*

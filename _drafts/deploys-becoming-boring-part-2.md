@@ -88,7 +88,7 @@ in isolation, execute smoke tests and then run acceptance tests. These tests
 are more complicated and cover larger portions of the system. They still try to
 isolate each service but can include other stable collaborators as needed.
 
-<p class="center-image">
+<p class="image-center">
 	<img
 		title="One little service building in a row."
 		alt="A single pipeline with a commit state, acceptance stage and finally a deploy"
@@ -103,9 +103,9 @@ Occasionally, we would perform some manual testing for areas particularly hard
 to check automatically or would provide limited use. We try very hard to
 automate all of our testing and reduce what needs to be verified manually.
 
-<p class="center-image">
+<p class="image-center">
 	<img
-		title="Three little service building in a row."
+		title="Three little services building in a row."
 		alt="A three pipelines then integrated testing followed up by shipping!!"
 		src="/images/posts/PipelineFunnel.png" />
 </p>
@@ -240,6 +240,8 @@ to radically improve. For us and our clients the difference is dramatic.
 
 This isn't the end; we are still working at improving. In the next part of this
 series I will recap the shifts we have seen and share where we want to go next.
+
+<hr />
 
 *I would like to thank [Michael Swart][swart], Matt Campbell and Bogdan Matu
 for helping review this and several other early posts.*

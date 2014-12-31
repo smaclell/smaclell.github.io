@@ -149,7 +149,7 @@ What is your rollback plan?
 
 <hr/>
 
-I would like to thank Josh Groen for helping review this post.
+*I would like to thank Josh Groen for helping review this post.*
 
 [deployment]:        http://martinfowler.com/bliki/DeploymentPipeline.html
 [pipeline]:          http://www.informit.com/articles/article.aspx?p=1621865
