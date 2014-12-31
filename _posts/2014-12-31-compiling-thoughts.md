@@ -39,7 +39,7 @@ seeing more of this little guy.
 	<img
 		title="Oh, hi"
 		alt="Jude with milk all over his face"
-		src="/images/posts/MilkFace.png" />
+		src="{{ site.url }}/images/posts/MilkFace.png" />
 </p>
 
 In the coming weeks, months and hopefully years I would like to share the

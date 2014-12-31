@@ -55,7 +55,7 @@ impacted when Dev is running larger tests that take lots of resources.
 	<img
 		title="All the ducks in a row"
 		alt="Our three main ecosystems, Dev to QA to CERT"
-		src="/images/posts/Ecosystems.png" />
+		src="{{ site.url }}/images/posts/Ecosystems.png" />
 </p>
 
 Another unfortunate consequence of sharing infrastructure between environments
@@ -83,7 +83,7 @@ One of our clients described us as a rocket strapped to a steam engine.
 		<img
 			title="Full Speed Ahead! Courtesy of Pixabay"
 			alt="An open rail track going off into the distances beside an old steam engine"
-			src="/images/posts/rack-railway-174363_640.jpg" />
+			src="{{ site.url }}/images/posts/rack-railway-174363_640.jpg" />
 	</a>
 </p>
 

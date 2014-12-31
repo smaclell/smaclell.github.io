@@ -67,7 +67,7 @@ identified were:
 	<img
 		title="The different options in full techni-colour. There are even scrolls!"
 		alt="Replacing a library, service or component"
-		src="/images/posts/LibraryServiceOrComponent.png" />
+		src="{{ site.url }}/images/posts/LibraryServiceOrComponent.png" />
 </p>
 
 These options present a range of benefits and trade-offs such as how isolated the

@@ -92,7 +92,7 @@ isolate each service but can include other stable collaborators as needed.
 	<img
 		title="One little service building in a row."
 		alt="A single pipeline with a commit state, acceptance stage and finally a deploy"
-		src="/images/posts/SimplePipeline.png" />
+		src="{{ site.url }}/images/posts/SimplePipeline.png" />
 </p>
 
 We then update the changed service(s) followed by running the release acceptance
@@ -107,7 +107,7 @@ automate all of our testing and reduce what needs to be verified manually.
 	<img
 		title="Three little services building in a row."
 		alt="A three pipelines then integrated testing followed up by shipping!!"
-		src="/images/posts/PipelineFunnel.png" />
+		src="{{ site.url }}/images/posts/PipelineFunnel.png" />
 </p>
 
 Commits trigger the individual deployment pipelines which are responsible for
