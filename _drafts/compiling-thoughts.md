@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Compiling Thoughts ..."
-date:   2014-10-05 20:08:08
+date:   2014-12-31 17:55:00
 category: meta
 ---
 
