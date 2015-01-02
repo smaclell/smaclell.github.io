@@ -51,11 +51,11 @@ updates sequentially and failing in one environment prevented progressing to
 the next one. Our clients who cared the most about QA and Cert would be
 impacted when Dev is running larger tests that take lots of resources.
 
-<p class="center-image">
+<p class="image-center">
 	<img
 		title="All the ducks in a row"
 		alt="Our three main ecosystems, Dev to QA to CERT"
-		src="/images/posts/Ecosystems.png" />
+		src="{{ site.url }}/images/posts/Ecosystems.png" />
 </p>
 
 Another unfortunate consequence of sharing infrastructure between environments
@@ -78,12 +78,12 @@ consumed downstream. We had been behaving like we could deploy changes the
 second they were done but this was not reality beyond the Dev environment.
 One of our clients described us as a rocket strapped to a steam engine.
 
-<p class="center-image">
+<p class="image-center">
 	<a href="http://pixabay.com/en/rack-railway-locomotive-tracks-174363/">
 		<img
 			title="Full Speed Ahead! Courtesy of Pixabay"
 			alt="An open rail track going off into the distances beside an old steam engine"
-			src="/images/posts/rack-railway-174363_640.jpg" />
+			src="{{ site.url }}/images/posts/rack-railway-174363_640.jpg" />
 	</a>
 </p>
 
@@ -138,6 +138,8 @@ situation and enable us to ship:
 
 In the next installment we will explain how the story unfolds and what changed
 to get better at releasing with confidence.
+
+<hr />
 
 *I would like to thank [Michael Swart][swart], Matt Campbell and Bogdan Matu
 for helping review this and several other early posts.*

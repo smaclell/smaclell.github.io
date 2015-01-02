@@ -52,7 +52,7 @@ from low confidence before to fully supporting each other now.
 Instead of being a rocket strapped to steam engine we used to be, we are much
 closer to being finely meshed gears working together to ship new releases.
 
-<p class="center-image">
+<p class="image-center">
 	<a href="https://www.flickr.com/photos/thomasclaveirole/463202335" style="display: inline" title="Gears by Thomas Claveirole used under Creative Commons 2.0 SA from Flickr">
 		<img src="https://farm1.staticflickr.com/167/463202335_fb1766d33c_z.jpg" width="640" height="427" alt="A series of beautiful gears meshing together">
 	</a>
@@ -97,6 +97,8 @@ opportunities. Simple changes will be able to ship much faster and be useful
 right away. With more effort we can achieve the bare minimum required to ship any change.
 Defects can be fixed faster. Features done more safely. Our software can keep
 evolving.
+
+<hr/>
 
 *I would like to thank [Michael Swart][swart], Matt Campbell and Bogdan Matu
 for helping review this and several other early posts.*

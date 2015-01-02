@@ -63,11 +63,11 @@ identified were:
 * A service behind a consistent protocol
 * A component or classes within an existing service
 
-<p class="center-image">
+<p class="image-center">
 	<img
 		title="The different options in full techni-colour. There are even scrolls!"
 		alt="Replacing a library, service or component"
-		src="/images/posts/LibraryServiceOrComponent.png" />
+		src="{{ site.url }}/images/posts/LibraryServiceOrComponent.png" />
 </p>
 
 These options present a range of benefits and trade-offs such as how isolated the
@@ -124,6 +124,8 @@ approach that they contributed the new libraries that were needed.
 
 Next time you are faced with a design decision like this consider whether
 replacing a library, service or component would work for you.
+
+<hr />
 
 *I would like to thank [Michael Swart][swart] and Matt Campbell for helping
 review this and several other early posts.*
