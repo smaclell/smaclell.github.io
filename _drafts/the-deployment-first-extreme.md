@@ -62,7 +62,7 @@ Both implementing the deployment first and implementing the deployment with the
 early functionality promote a greater focus on deployablity. As with most
 architecture, the deployment grows best incrementally with the application it
 is designed for. For many projects this means moderating the investment in any
-one area to preserve focus on what provides the most value. Early in a project
+one area while focusing on what provides the most value. Early in a project
 being able to deploy anything is extremely valuable to get early feedback. The
 more functional and complete this process becomes the more diminishing the
 returns for spending more time working on it.
@@ -73,6 +73,20 @@ deployment process before focusing on the application. Ideally it is a
 relatively painless process that can be finished within a few days or sprint.
 Working solely on the deployment for months is a warning sign that you are
 doing too much or waited too long to address the problem.
+
+Dedicating too much time to the deployment process without the application can
+result in over-engineering and be more effort to maintain in the long run.
+Ideally it is a very simple process at first because initially your application
+will be simple. Start by finding the minimal requirements for the deployment
+then automating only that. Think of the simplest thing you could possibly to
+then try it. It is easy to get carried away envisioning scenarios that require
+more automation only to find that it isn't actually needed. By doing the
+absolute minimum deployment then focusing solely on your application
+lets you avoid over complicating your deployment and your application.
+
+Software is a means to an end. Your deployment too is a vehicle to ship your
+software. Using this approach requires that you finish your deployment then
+get back to the project at hand quickly.
 
 The Final Word
 ===============================================================================
@@ -88,5 +102,5 @@ consider starting with only your deployment before anything else.
 *I would like to thank Joshua Groen and Matt Campbell for helping review this
 post and eventually winning me over.*
 
-[new-projects]: /posts/how-to-start-a-new-project/
+[new-projects]: {{site.url}}/posts/how-to-start-a-new-project
 [cd-intro]:     https://www.airpair.com/continuous-deployment/posts/continuous-deployment-for-practical-people#6-1-automate-deployments-from-step-zero
