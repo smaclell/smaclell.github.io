@@ -22,7 +22,7 @@ cool idea takes the forethought, but shipping it doesn't. It can be easy to
 work for months without shipping. This delays critical feedback about whether
 the application will work as a complete package with the current design.
 Perhaps it does not scale adequately or is not quite right end to end but you
-would never know unless you tried it in the wild<a href="#note-1">*</a>.
+would never know unless you tried it in the wild<sup id="reverse-note-1"><a href="#note-1">1</a></sup>.
 
 Bolting on a deployment later in the process becomes progressively harder the
 larger and more complicated the application becomes. On a developer machine
@@ -37,7 +37,7 @@ This is why starting with a simple deployment is recommended. Try this approach:
 1. Implement killer feature
 1. Automate enough to use killer feature
 1. Ship it
-1. GOTO **<a href="step-1">Step 1</a>**
+1. GOTO **<a href="#step-1">Step 1</a>**
 
 Is the server up? Can it receive traffic? Do the pages for the feature work?
 That is probably enough of a deployment. Once you have hit this basic milestone
@@ -77,10 +77,11 @@ we had about it.*
 <hr />
 
 <span id="note-1"></span>
-1. Yes, you could get feedback on just your UI and whether the data looks okay.
-   That is a nice start but is only one aspect of your system. Go all the way.
-   Deploy it. Seriously. If you got this far and tasted a bit of the Kool-Aid,
-   what are you waiting for?
+<a href="#reverse-note-1">1.</a>
+  Yes, you could get feedback on just your UI and whether the data looks okay.
+  That is a nice start but is only one aspect of your system. Go all the way.
+  Deploy it. Seriously. If you got this far and tasted a bit of the Kool-Aid,
+  what are you waiting for?
 
 [github]:    https://github.com/
 [heroku]:    https://www.heroku.com/
