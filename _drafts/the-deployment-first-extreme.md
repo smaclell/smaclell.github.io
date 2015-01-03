@@ -52,19 +52,18 @@ for this activity. The start of a project is the least risky time to
 invest in the deployment and practice these activities. If the delivery team
 has never tried to deploy their own products or have not worked with the other
 teams that control production this can be a great introduction before delving
-deeper into the actual project. Practicing the deployment in complete isolation
-prior to having a project to maintain on top of it provides a safe way for the
-team to get experience with their deployment process.
+deeper into the actual project.
 
 **Getting connected**. Another big theme of the conversation was understanding
-the social dynamics around processes within a company. This relates to larger
+the dynamics around deployment process. This is not applicable
+for startups that have more autonomy over their projects and less overhead. This relates to larger
 companies where there likely are established norms for how to deploy software
 and perform projects. Establishing relationships with the other teams connected
 to the process will help streamline future releases and avoid common errors
 they already know about. It might be easy to find out who you need to work with
 to get things done but it can be a completely different experience than
-actually going through with it. This is not applicable for startups who have
-more autonomy over their projects.
+actually going through with it. Working with these teams early is another
+aspect of practicing the release process.
 
 Moderation
 ===============================================================================
@@ -78,11 +77,11 @@ ship your application!
 Both implementing the deployment first and implementing the deployment with the
 early functionality promote a greater focus on deployablity. As with most
 architecture, the deployment grows best incrementally with the application it
-is designed for. For many projects this means moderating the investment in any
+is designed to support. For many projects this means moderating the investment in any
 one area while focusing on what provides the most value. Early in a project
-being able to deploy anything is extremely valuable to get early feedback. The
-more functional and complete this process becomes the more diminishing the
-returns for spending more time working on it.
+being able to deploy anything is extremely valuable to get early feedback.
+The more functional and complete this process becomes the more diminishing
+the returns for spending more time working on it.
 
 When it comes to implementing your deployment before any functionality it is
 imperative to balance how much effort and time is dedicated to creating the
@@ -95,25 +94,29 @@ Dedicating too much time to the deployment process without the application can
 result in over-engineering and be more effort to maintain in the long run.
 Ideally it is a very simple process at first because initially your application
 will be simple. Start by finding the minimal requirements for the deployment
-then automating only that. Think of the simplest thing you could possibly to
+then building only that. Think of the simplest thing you could possibly do
 then try it. It is easy to get carried away envisioning scenarios that require
 more automation only to find that it isn't actually needed. By doing the
 absolute minimum deployment then focusing solely on your application
 lets you avoid over complicating your deployment and your application.
 
 Software is a means to an end. Your deployment too is a vehicle to ship your
-software. Using this approach requires that you finish your deployment then
-get back to the project at hand quickly.
+software. Creating your deployment first requires that you finish your
+deployment then get back to the project at hand quickly to be successful.
 
 
 The Final Word
 ===============================================================================
 
-However, the more we discussed it the more the other side seemed attractive for
-environments where deploying is hard or normally an afterthought. If you think
-that your project could benefit from being more deployment conscious, concentrating on
-your deployment over your project temporarily or practicing deploying more, then
-consider starting with only your deployment before anything else.
+The more we discussed doing the deployment first the more the it seemed
+attractive for environments where deploying is hard or normally an afterthought.
+Consider starting with only your deployment before anything else if you think
+that your project could benefit from:
+
+- Being more deployment conscious
+- Concentrating on your deployment over your project temporarily
+- Practicing deploying more
+- Getting connected to others in deployment process
 
 <hr />
 
