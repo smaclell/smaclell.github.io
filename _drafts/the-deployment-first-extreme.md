@@ -6,20 +6,28 @@ tags: deployment, projects
 image:
   feature: skys-the-limit-feature.jpg
   credit: "Jackie Meredith"
-  creditlink: skys-the-limit-thumb.jpg
+  creditlink: https://flic.kr/p/jk1B8J
 ---
 
 In my previous post about [how to start new projects][new-projects] I talked
 about building a killer feature and deployment at the same time before releasing.
-This idea started an interesting discussion with my coworkers that included the
-extreme of shipping only the deployment first with nothing in the product.
+This follow up post was inspired by an interesting discussion with my co-workers
+while writing the original post. The conversation shifted to what would happen
+if you took deploying early to the limit. What if you released only the
+deployment first with nothing in the product?
 
-Why?
+What do you mean released it with nothing? I mean build your product, package
+the binaries and then deploy them into a testing environment and ideally
+production. Go as far as you can. Do not include any features you intend for
+the final application. Only do a basic deployment and maybe some hooks for
+monitoring. Then ship it.
+
+The Reasons
 ===============================================================================
 
 I didn't fully agree with the idea at first but my colleague, Matt, was adamant about
-it. Matt is a pretty smart guy so I decided to think about it some more. This
-is what I was able to come up with and I think there is a range of situations
+it. Matt is a pretty smart guy so I decided to think about it some more. These
+are the benefits I was able to come up with and I think there is a range of situations
 where doing the deployment before the main project could be worthwhile.
 
 **All features include deployment considerations from day zero.** This idea is
@@ -29,14 +37,14 @@ Mike, an early deployment forces developers to ask
 adding any feature. If the first thing the team does is implement a basic
 deployment process they will be more mindful of changes that affect it.
 
-**Better separation between the deployment and initial product features.** In a
+**Separation between the deployment and initial product features.** In a
 new project the team is probably still coming up to speed on what problems are
 being solved, how best to approach them and what unknowns may be lurking in
 the shadows. Removing concerns over how the project will be deployed lets the
-team focus on the core project. For me this is a little counter intuitive since
-the deployment is a critical part of being able to release new features. If you
-consider that most features do not impact the deployment or can be adjusted to
-minimize the changes it can provide a solid foundation for growing the project.
+team focus on the core project. If you consider that most features do not
+impact the deployment or can be adjusted to minimize the changes required, an
+existing deployment process can provide a solid foundation for growing the
+project.
 
 **Practices deploying/releasing immediately.** Teams that ship infrequently or
 are less comfortable with deployments/releases can benefit by taking time out
@@ -44,10 +52,19 @@ for this activity. The start of a project is the least risky time to
 invest in the deployment and practice these activities. If the delivery team
 has never tried to deploy their own products or have not worked with the other
 teams that control production this can be a great introduction before delving
-deeper into the actual project. In an enterprise environment getting to know
-the touch points or stakeholders that are included in deployments is extremely
-beneficial. Startups probably care less about this since
-every minute spent is one step closer to extinction or outlandish riches.
+deeper into the actual project. Practicing the deployment in complete isolation
+prior to having a project to maintain on top of it provides a safe way for the
+team to get experience with their deployment process.
+
+**Getting connected**. Another big theme of the conversation was understanding
+the social dynamics around processes within a company. This relates to larger
+companies where there likely are established norms for how to deploy software
+and perform projects. Establishing relationships with the other teams connected
+to the process will help streamline future releases and avoid common errors
+they already know about. It might be easy to find out who you need to work with
+to get things done but it can be a completely different experience than
+actually going through with it. This is not applicable for startups who have
+more autonomy over their projects.
 
 Moderation
 ===============================================================================
@@ -87,6 +104,7 @@ lets you avoid over complicating your deployment and your application.
 Software is a means to an end. Your deployment too is a vehicle to ship your
 software. Using this approach requires that you finish your deployment then
 get back to the project at hand quickly.
+
 
 The Final Word
 ===============================================================================
