@@ -23,7 +23,8 @@ A good message would look like this:
   "message": "Hello World",
   "context": {
     "event": "StartUp",
-    "level": "Info"
+    "level": "Info",
+    "data": "Example"
   }
 }
 {% endhighlight %}
@@ -35,7 +36,37 @@ A bad message would look like this:
   "message": "Hello World",
   "context": {
     "event": "StartUp",
-    "level": "Info"
+    "level": "Info",
+    "data": {
+        "Members": [
+          {
+            "MemberType": 4,
+            "Value": 7,
+            "IsSettable": false,
+            "IsGettable": true,
+            "TypeNameOfValue": "System.Int32",
+            "Name": "Length",
+            "IsInstance": true
+          },
+          {
+            "MemberType": 64,
+            "OverloadDefinitions": [
+              "bool Equals(System.Object obj)",
+              "bool Equals(string value)",
+              "bool Equals(string value, System.StringComparison comparisonType)"
+            ],
+            "TypeNameOfValue": "System.Management.Automation.PSMethod",
+            "Name": "Equals",
+            "IsInstance": true
+          }
+      ],
+      "ImmediateBaseObject": "Example",
+      "BaseObject": "Example",
+      "TypeNames": [
+        "System.String",
+        "System.Object"
+      ]
+    }
   }
 }
 {% endhighlight %}
@@ -49,8 +80,10 @@ incorporate it into a new project.
 
 In working on the code I had seen a small issue with the serialization early on
 that I introduced a small change (*cough* hack *cough*) to work around. The
-serialization output looked about the same as the bad message above but wrote
-it off at the time.
+data was causing a circular reference while serializing which I adjusted to
+ignore since I knew that our input data did not have any circular references.
+The serialization output looked about the same as the bad message above but
+wrote it off at the time.
 
 Okay, now back to digging into the issue.
 
@@ -122,27 +155,33 @@ TODO: Talk about the earlier debugging where stepping through did not show it
 Consider the following example:
 
 {% highlight powershell %}
+# In this example to avoid dependencies I am using the built in serializer but
+# you could happily substitute in your favourite
+Add-Type -AssemblyName System.Web.Extensions
+
 # Our function to do the serialization looked something like this
 function Convert-ToJsonString( $data ) {
-	$output = TODO: Finish this code!
-	return $output
+    $serializer = New-Object System.Web.Script.Serialization.JavaScriptSerializer
+    $output = $serializer.Serialize( $data )
+    return $output
 }
 
 # This will output the same string with the right formatting
 function Test-Good {
-	"pass"
+    "pass"
 }
 
 $pass = Test-Good
-Convert-ToJsonString $pass
+Convert-ToJsonString @{ test = $pass }
 
-# This will look like the bad message and it's crazy format
+# This will be a bad message and will throw due to a circular reference
+# Ignoring circular references would then result in the bad format
 function Test-Bad {
-	return "fail"
+    return "fail"
 }
 
-$fail = Test-Fail
-Convert-ToJsonString $fail
+$fail = Test-Bad
+Convert-ToJsonString @{ test = $fail }
 {% endhighlight %}
 
 We tried a few more cases and found that the issue only occurred in
