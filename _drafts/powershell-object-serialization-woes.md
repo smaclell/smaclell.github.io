@@ -74,6 +74,14 @@ a new index for the data daily which explained why which messages which meant
 the first schema for the first message each day decided which messages were
 shown.
 
+TODO: This paragraph sucks but I think adds to the narrative. Clean it up
+After finding this we realized that a single bad message from the new system
+could break the log messages for other users of the LogStash server. This
+expand the surface area that was affected by the defect dramatically and meant
+we needed to find the defect before it caused more adverse affects. The
+existing behaviour was bad enough but we knew that there was no way it could go
+to production like this.
+
 We then focused all our effort on LogStash. Daryl, an amazing developer on our
 team, suggested that we try looking closer at the messages from the new library
 by tapping into the logs directly. After we had tried recording the messages
@@ -86,9 +94,9 @@ changes were happening throughout everything logging to LogStash. We then honed
 in on some obvious differences between the new code and how the old code sent
 their messages to LogStash. Both sent the content as JSON blobs over TCP but
 used a slightly different to pass data around in PowerShell. The original used
-primarily HashTable's whereas the new format converted to PSObject's as an
+primarily <code>HashTable</code>'s whereas the new format converted to <code>PSObject</code>'s as an
 intermediate. We tried a few different fixes eliminating or moving the ways
-PSObject was used to make the new code closer to the old code but nothing
+<code>PSObject</code> was used to make the new code closer to the old code but nothing
 worked. Testing this was made harder since we needed to wait an entire day to
 confirm whether the fixed worked.
 
@@ -140,14 +148,73 @@ Convert-ToJsonString $fail
 We tried a few more cases and found that the issue only occurred in
 PowerShell 2.0 and not on 3.0 or 4.0.
 
+From what we could tell the normal .NET objects were being wrapped by what
+looked like a <code>PSObject</code>. In our earlier debugging it was impossible to see when
+it was happening from a normal PowerShell prompt since as soon as the object
+was outputted it would only show the base object. Detecting when the case
+happened in code also proved to be troublesome because you could not see the
+wrapping type or output when it was present. The only way to reliably reproduce
+this case was to attempt to serialize it by passing it to the .NET class doing
+the serialization.
+
+The Solution
+===============================================================================
+
+At this point we knew exactly where the issue was and came up with three fixes
+that would solve it.
+
+1. **Change all the code to not return values using this pattern.**
+   At this point there was enough code spread out far enough that it would have
+   taken a large amount of time to update everything. The easiest thing to do
+   here would have been to pull the release and then redo the development. It
+   would have been costly but better than affecting production with the defect.
+
+2. **Upgrade to PowerShell 3+.**
+   We have wanted to do this for a VERY long time and often talk about it. Even
+   though it is an important (but not urgent) technical change we have decided
+   against taking the plunge. We realized that in this instance while there is
+   significantly more urgency to performed the update if this was the solution,
+   for that reason it makes this the worst time to update the PowerShell
+   version. The added pressure of fixing this defect and one way nature of
+   updating PowerShell would greatly increase the likelihood of more issues.
+
+3. **Serialize ourselves to "unwrap" the objects.**
+   Once we narrowed down the interaction between the returned objects and the
+   serialization we found that it was possible to get just the desired value
+   back. You could do so by casting to the correct type and normally determine
+   the type using the <code>-is</code> operator. I say normally because again
+   some of the potential values that actually were wrapped appeared their
+   intended type but were actually still wrapped when passed to the serializer.
+
+We chose option 3. because it was relatively isolated, could be easily tested
+with the case we reproduced and would be easy to implement. After weeks of
+tracking down this defect a developer was able to implement this fix in a
+day. Once it was everywhere and we confirmed that there were no more missing
+log messages there were high-fives all around.
+
+We did strongly consider moving to PowerShell 4.0 to fix the issue but the risk
+was too great. Our solution can be easily replaced when we finally do and even
+be made future compatible before we make the switch so that things go smoothly.
+
+Lessons Learnt
+===============================================================================
+
+Phew. You made it this far! Congratulations. The ups and downs of investigating
+this defect were tough but finding the root cause and fix the problem was worth
+it. Throughout it all we did learn a few things.
+
+Know why something works or especially why it does not work.
+Do not do mini hax. I could have fixed the problem when it was first introduced
+
+
 <hr />
 
 *I would like to thank Josh Groen and Daryl McMillan for their patience and
-help as we looked into this issue.*
+looking into this issue.*
 
 <hr />
 
 <span id="note-1"></span>
-<a href="#revese-note-1">1.</a> I have weird definition for fun ... not everyone agreed.
+<a href="#reverse-note-1">1.</a> I have weird definition for fun ... not everyone agreed.
 
 [logstash]: todo
