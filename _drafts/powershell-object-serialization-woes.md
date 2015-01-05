@@ -243,8 +243,44 @@ this defect were tough but finding the root cause and fix the problem was worth
 it. Throughout it all we did learn a few things.
 
 Know why something works or especially why it does not work.
-Do not do mini hax. I could have fixed the problem when it was first introduced
+-------------------------------------------------------------------------------
 
+Throughout most of the investigation we did not know what was causing the
+problem. We knew exactly what changes had been made to the system but even then
+did not have much to go on in determining the root cause.
+
+Daryl kept pressing the team to dig deeper into the code and find the root
+cause. He stressed understanding **why** the system was behaving the way it was
+and only fixing that exact problem. Guided by the desire to understand, he
+systematically found the reason behind the issue and a concise way to reproduce
+the it. Part of why the issue took longer fix was because we tried several
+fixes based on hunches to address what we thought was the most likely cause.
+
+TODO: How did Daryl do it?
+I think we call can troubleshoot like Daryl if we want to. Patiently isolating
+potential areas until the only code left contains the problem.
+
+Small "band-aid" changes cause problems.
+-------------------------------------------------------------------------------
+
+I could have fixed this entire problem when I found the circular reference
+issue with the serialization. I was being sloppy, lazy and any other word you
+like to describe a bad programmer with.
+
+Instead of hastily slapping code in place and moving on, I needed to take the
+time to investigate further. Since I was not expecting any circular references
+and making a change to allow them is a dead give away something else is wrong.
+I had briefly spent time working on it and looking into it but needed to the
+professional thing and ask for help.
+
+At the time I felt like I needed to make some artificial deadline and pushed
+through the hacky fix. The final fix took a day. Debugging it and finding it
+the second time took weeks on and off for multiple people. Taking a shortcut
+like this just is not worth it and cost much more than it saved.
+
+Rather than beating myself up about this dumb decision; I decided that I wanted
+to share this story with you so that we both can avoid the same mistake that I
+made.
 
 <hr />
 
