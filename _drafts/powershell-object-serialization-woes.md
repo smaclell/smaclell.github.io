@@ -2,21 +2,21 @@
 layout: post
 title:  "PowerShell Object Serialization Woes"
 date:   2014-09-22 23:11:07
-tags: troubleshooting, powershell, logstash
+tags: troubleshooting, powershell, logstash, elasticsearch
 ---
 
-Recently we found a fun<sup id="reverse-note-1"><a href="#note-1">1</a></sup>
+Recently, we found a fun<sup id="reverse-note-1"><a href="#note-1">1</a></sup>
 intermittent defect that was very hard to pin down and reproduce. This is our
-story about what happened and how resolved it.
+story about what happened, how we resolved it and what we learnt.
 
-We have some PowerShell scripts that write messages to [LogStash][logstash]
-that started to have messages that would not show up. What messages that would
-go through seemed to change day to day. Many different systems use the same
-LogStash and most of our messages were written in a similar way. We did notice
-that some of the messages that were getting through looked completed different
-than the others.
+We have some PowerShell scripts that write messages to [LogStash][elk] that
+started to have messages that would not show up in [ElasticSearch][elk]. What
+messages that would go through seemed to change day to day. Many different
+systems use the same LogStash and all our messages were written in a similar
+way, JSON over TCP. We did notice that some of the messages that were getting
+through looked completed different than the others.
 
-A good message would look like this:
+A good message body would look like this:
 
 {% highlight json %}
 {
@@ -29,7 +29,7 @@ A good message would look like this:
 }
 {% endhighlight %}
 
-A bad message would look like this:
+A bad message body would look like this:
 
 {% highlight json %}
 {
@@ -74,16 +74,21 @@ A bad message would look like this:
 The Changes
 ===============================================================================
 
+Before going deep into the issue itself I wanted to explain how the changes
+that caused the problem were first introduced.
+
 The changes that led to this issue happened weeks before finding the issue. We
 were trying to refactor our logging to make it more consistent, simplify it and
-incorporate it into a new project.
+incorporate it into a new project. The new project brought with it a large set
+of new libraries and changes that remained relatively isolated.
 
-In working on the code I had seen a small issue with the serialization early on
-that I introduced a small change (*cough* hack *cough*) to work around. The
+In working on the new code I had seen a small issue with the log serialization and
+introduced a small change (*cough* hack *cough*) to workaround the issue. The
 data was causing a circular reference while serializing which I adjusted to
 ignore since I knew that our input data did not have any circular references.
 The serialization output looked about the same as the bad message above but
-wrote it off at the time.
+wrote it off at the time. With my small change in place the system seemed to
+work and so I moved onto the next thing.
 
 Okay, now back to digging into the issue.
 
@@ -92,28 +97,30 @@ The Troubleshooting
 
 Digging into the issue was hard because it only happened intermittently. We
 started trying to isolate the issue to which log messages caused the error but
-could not find any discernible patterns. The messages that were logged changed
+could not find any discernible patterns. The messages that were logged or not logged changed
 daily. At first we did not know why the messages were not showing up and we did
-not find any of the messages in the bad format.
+not know about the messages in the bad format.
 
-We thought the problem might be with LogStash but could not find anything in
-the system or error logs.  The first breakthrough came after we talked to some
-other LogStash [TODO link to Jeff's blog] users from another team in the
-company. He had found an issue where using messages with different formats
-would result in LogStash ignoring the messages. When LogStash has messages with
-multiple conflicting schemas only the messages with the first schema are shown.
-This was why we only were seeing some messages make it through. We also create
-a new index for the data daily which explained why which messages which meant
-the first schema for the first message each day decided which messages were
-shown.
+The first breakthrough came after we talked to
+[Jeffery Charles][jeff], a LogStash/ElasticSearch user from another team in the
+company. They were having the same issue from on a different system. He saw
+error logs on their LogStash server indicating that messages with different
+formats were being ignored by ElasticSearch. LogStash/ElasticSearch work by
+receiving messages using LogStash and then ElasticSearch indexes them. If there
+are two messages sent with a conflicting schema then the only messages matching
+the first schema are written to the index. Messages where a property's type
+changes, i.e. from a ``string`` to and ``object``, cause this conflict to
+occur. A new index is created daily which explained is why the messages that
+were being saved changed daily and why only some messages made it through.
 
 TODO: This paragraph sucks but I think adds to the narrative. Clean it up
-After finding this we realized that a single bad message from the new system
-could break the log messages for other users of the LogStash server. This
-expand the surface area that was affected by the defect dramatically and meant
-we needed to find the defect before it caused more adverse affects. The
-existing behaviour was bad enough but we knew that there was no way it could go
-to production like this.
+This behaviour meant that a single bad message from the new system could break
+the log messages for other systems using our LogStash server. This expanded the
+surface area that we thought was affected by the defect dramatically. Messages
+not getting indexed meat that there was data-loss and that none of the affected
+code could be released into production. Originally, we thought it was just
+confined to the new project but by this point our refactored logging module had
+been reused by several other projects. We needed to find a fix fast.
 
 We then focused all our effort on LogStash. Daryl, an amazing developer on our
 team, suggested that we try looking closer at the messages from the new library
@@ -284,12 +291,14 @@ made.
 
 <hr />
 
-*I would like to thank Josh Groen and Daryl McMillan for their patience and
+*I would like to thank Josh Groen and Daryl McMillan for their patience while
 looking into this issue.*
 
 <hr />
 
 <span id="note-1"></span>
-<a href="#reverse-note-1">1.</a> I have weird definition for fun ... not everyone agreed.
+<a href="#reverse-note-1">1.</a> I have weird definition for fun ... not
+everyone feels the same.
 
-[logstash]: todo
+[elk]:  http://www.elasticsearch.org/overview/
+[jeff]: http://www.beyondtechnicallycorrect.com/
