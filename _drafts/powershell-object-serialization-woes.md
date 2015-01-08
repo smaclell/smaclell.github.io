@@ -99,7 +99,9 @@ Digging into the issue was hard because it only happened intermittently. We
 started trying to isolate the issue to which log messages caused the error but
 could not find any discernible patterns. The messages that were logged or not logged changed
 daily. At first we did not know why the messages were not showing up and we did
-not know about the messages in the bad format.
+not know about the messages in the bad format. What was really weird is that we
+would step line by line through the code and output potential messages and
+everything would look fine.
 
 The first breakthrough came after we talked to
 [Jeffery Charles][jeff], a LogStash/ElasticSearch user from another team in the
@@ -113,57 +115,58 @@ changes, i.e. from a ``string`` to and ``object``, cause this conflict to
 occur. A new index is created daily which explained is why the messages that
 were being saved changed daily and why only some messages made it through.
 
-TODO: This paragraph sucks but I think adds to the narrative. Clean it up
 This behaviour meant that a single bad message from the new system could break
 the log messages for other systems using our LogStash server. This expanded the
 surface area that we thought was affected by the defect dramatically. Messages
 not getting indexed meat that there was data-loss and that none of the affected
-code could be released into production. Originally, we thought it was just
-confined to the new project but by this point our refactored logging module had
-been reused by several other projects. We needed to find a fix fast.
+code could be released into production. Originally, we thought only message
+from the new system were missing but this defect meant that the new system
+could write bad messages that could break existing systems. We needed to find a
+fix fast.
 
-We then focused all our effort on LogStash. Daryl, an amazing developer on our
-team, suggested that we try looking closer at the messages from the new library
-by tapping into the logs directly. After we had tried recording the messages
-directly from the sender we started seeing the bad format. We also checked the
-existing systems writing to LogStash and found that they did not have this new
-format which helped narrow it down to our new changes.
+We then focused all our effort on LogStash and the logging module. Daryl, an
+amazing developer on our team, suggested that we try looking closer at the
+messages sent from the new library by faking being the LogServer receiving
+messages. This helped us find the bad message format and what logs were
+affected. We were very confident that this problem was introduced somewhere
+with our new changes. Using this technique we were able to confirm that only
+the new project was affected.
 
-We had suspected the new changes all along because they were where most of the
-changes were happening throughout everything logging to LogStash. We then honed
+We then honed
 in on some obvious differences between the new code and how the old code sent
-their messages to LogStash. Both sent the content as JSON blobs over TCP but
-used a slightly different to pass data around in PowerShell. The original used
-primarily <code>HashTable</code>'s whereas the new format converted to <code>PSObject</code>'s as an
-intermediate. We tried a few different fixes eliminating or moving the ways
-<code>PSObject</code> was used to make the new code closer to the old code but nothing
-worked. Testing this was made harder since we needed to wait an entire day to
-confirm whether the fixed worked.
+their messages to LogStash. Both sent the message content as JSON blobs over
+TCP but used a slightly different intermediate data structure to pass data
+around in PowerShell. The original used primarily <code>HashTable</code>'s
+whereas the new format converted to <code>PSObject</code>'s as an intermediate.
+This seemed like a good area to focus on because the fields in the message were
+similar to those found on a <code>PSObject</code>. We tried a few different
+fixes eliminating or moving the ways <code>PSObject</code> was used to make the
+new code closer to the old code but nothing worked. Due to different messages
+being filtered daily, testing each change required waiting until the next day
+to confirm whether the fixed worked.
 
-After a few attempts at fixing it Daryl became frustrated and for good reason.
+After a few failed fixes, Daryl became frustrated and for good reason.
 At no point did we understand the underlying problem and had only been trying
-to address symptoms around what we thought the issue was. We had thought that
+to address potential differences around what we thought the issue was. We had thought that
 there was something specific to the new logging we had introduced that caused
-the issue that was different than the old code and so had only worked to reduce
-the differences.
+the issue and so had tried eliminating any differences from the old code.
 
 Daryl wanted to go deeper and truly understand the problem. He then tried to
-reproduce the issue by replicating just the code writing out the log message to
-LogStash and a series of messages that could be provided. Within a day he found
-exactly what caused the issue and then made an even simpler way to reproduce it
-so that we could prevent it from ever happening again. The problem was
-introduced not directly by the new code but by the serialization from objects
-in PowerShell to JSON. It appeared that depending on how the object was created
-that was being serialized it would result in a completely different object that
-would be serialized.
+reproduce the issue by isolating the code writing messages to LogStash and an
+mix of messages with different contents, formatting and creation techniques.
+Within a day he found exactly what caused the issue and then refined a simple
+way to reproduce it.
 
-TODO: Talk about the earlier debugging where stepping through did not show it
+The problem was not introduced directly by the new code but serializing from
+different objects to JSON in PowerShell. Depending on how the message was
+created it may be wrapped in an additional PowerShell object that would
+cause something completely different to be serialized.
 
 Consider the following example:
 
 {% highlight powershell %}
 # In this example to avoid dependencies I am using the built in serializer but
-# you could happily substitute in your favourite
+# you could happily substitute in your favourite like Json.NET
 Add-Type -AssemblyName System.Web.Extensions
 
 # Our function to do the serialization looked something like this
@@ -197,11 +200,10 @@ PowerShell 2.0 and not on 3.0 or 4.0.
 From what we could tell the normal .NET objects were being wrapped by what
 looked like a <code>PSObject</code>. In our earlier debugging it was impossible to see when
 it was happening from a normal PowerShell prompt since as soon as the object
-was outputted it would only show the base object. Detecting when the case
+was printed it would only show the base object. Detecting when the case
 happened in code also proved to be troublesome because you could not see the
 wrapping type or output when it was present. The only way to reliably reproduce
-this case was to attempt to serialize it by passing it to the .NET class doing
-the serialization.
+this the bad content was to call .NET class to serialize it.
 
 The Solution
 ===============================================================================
