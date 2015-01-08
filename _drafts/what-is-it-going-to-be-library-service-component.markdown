@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "What is it going to be? Library, Service or Component!"
-date:   2014-10-01 23:35:07
+date:   2015-01-07 23:55:00
 tags: development design craig
 ---
 
