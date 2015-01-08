@@ -100,7 +100,7 @@ started trying to isolate the issue to which log messages caused the error but
 could not find any discernible patterns. The messages that were logged or not logged changed
 daily. At first we did not know why the messages were not showing up and we did
 not know about the messages in the bad format. What was really weird is that we
-would step line by line through the code and output potential messages and
+would step through the code line by line and output potential messages and
 everything would look fine.
 
 The first breakthrough came after we talked to
@@ -208,8 +208,8 @@ this the bad content was to call .NET class to serialize it.
 The Solution
 ===============================================================================
 
-At this point we knew exactly where the issue was and came up with three fixes
-that would solve it.
+At this point we knew exactly where the issue was and came up with three ways
+to fix it.
 
 1. **Change all the code to not return values using this pattern.**
    At this point there was enough code spread out far enough that it would have
@@ -220,24 +220,24 @@ that would solve it.
 2. **Upgrade to PowerShell 3+.**
    We have wanted to do this for a VERY long time and often talk about it. Even
    though it is an important (but not urgent) technical change we have decided
-   against taking the plunge. We realized that in this instance while there is
-   significantly more urgency to performed the update if this was the solution,
-   for that reason it makes this the worst time to update the PowerShell
-   version. The added pressure of fixing this defect and one way nature of
-   updating PowerShell would greatly increase the likelihood of more issues.
+   against taking the plunge. We realized that in this instance we finally had
+   an urgent reason to perform the update, but for that reason it made this the
+   worst time to hastily update the PowerShell version. The added pressure of
+   fixing this defect and one way nature of updating PowerShell would greatly
+   increase the likelihood of more issues.
 
 3. **Serialize ourselves to "unwrap" the objects.**
    Once we narrowed down the interaction between the returned objects and the
-   serialization we found that it was possible to get just the desired value
+   serialization we found that it was possible to get the desired value
    back. You could do so by casting to the correct type and normally determine
-   the type using the <code>-is</code> operator. I say normally because again
-   some of the potential values that actually were wrapped appeared their
-   intended type but were actually still wrapped when passed to the serializer.
+   the type using the <code>-is</code> operator. I say normally because
+   some values that actually were wrapped appeared to be their
+   intended type which would not serialize correctly.
 
-We chose option 3. because it was relatively isolated, could be easily tested
-with the case we reproduced and would be easy to implement. After weeks of
-tracking down this defect a developer was able to implement this fix in a
-day. Once it was everywhere and we confirmed that there were no more missing
+We chose option 3 because it was relatively isolated, could be easily tested
+with the cases we reproduced and would be easy to implement. After weeks of
+tracking down this defect a developer implemented the fix in one day. Once it
+was everywhere and we confirmed that there were no more missing
 log messages there were high-fives all around.
 
 We did strongly consider moving to PowerShell 4.0 to fix the issue but the risk
@@ -249,47 +249,45 @@ Lessons Learnt
 
 Phew. You made it this far! Congratulations. The ups and downs of investigating
 this defect were tough but finding the root cause and fix the problem was worth
-it. Throughout it all we did learn a few things.
+it. Throughout it all we did learn a few things that I think are important.
 
-Know why something works or especially why it does not work.
+Know why something works and especially when it doesn't.
 -------------------------------------------------------------------------------
 
 Throughout most of the investigation we did not know what was causing the
 problem. We knew exactly what changes had been made to the system but even then
-did not have much to go on in determining the root cause.
+did not have much to go on while determining the root cause.
 
 Daryl kept pressing the team to dig deeper into the code and find the root
 cause. He stressed understanding **why** the system was behaving the way it was
-and only fixing that exact problem. Guided by the desire to understand, he
+and only making changes based on understanding the system. Guided by the desire to know what was happening, he
 systematically found the reason behind the issue and a concise way to reproduce
-the it. Part of why the issue took longer fix was because we tried several
+it. Part of why the issue took longer fix was because we tried several
 fixes based on hunches to address what we thought was the most likely cause.
-
-TODO: How did Daryl do it?
-I think we call can troubleshoot like Daryl if we want to. Patiently isolating
-potential areas until the only code left contains the problem.
 
 Small "band-aid" changes cause problems.
 -------------------------------------------------------------------------------
 
-I could have fixed this entire problem when I found the circular reference
-issue with the serialization. I was being sloppy, lazy and any other word you
-like to describe a bad programmer with.
+I could have prevented this entire investigation when I found the serialization
+circular reference.
 
 Instead of hastily slapping code in place and moving on, I needed to take the
 time to investigate further. Since I was not expecting any circular references
-and making a change to allow them is a dead give away something else is wrong.
-I had briefly spent time working on it and looking into it but needed to the
-professional thing and ask for help.
+the fact they were present is a clear sign something was wrong. I had tried
+stepping through the code to see what was causing it but could not pin it down.
+At this point I should have asked for help instead of ignoring the issue.
 
 At the time I felt like I needed to make some artificial deadline and pushed
-through the hacky fix. The final fix took a day. Debugging it and finding it
-the second time took weeks on and off for multiple people. Taking a shortcut
-like this just is not worth it and cost much more than it saved.
+through my fix. Compared to the original change which was trivial, the final
+fix took a day. Debugging the problem and finding it the second time took weeks
+on and off for multiple people. Taking a shortcut like this just is not worth
+it and costs much more than it saves.
 
-Rather than beating myself up about this dumb decision; I decided that I wanted
+Rather than beating myself up about this decision; I decided that I wanted
 to share this story with you so that we both can avoid the same mistake that I
-made.
+made. My hope is that this blog post stands as a reminder of why understanding
+the problem is important and to encourage investigating further instead of
+taking the easy way out.
 
 <hr />
 
