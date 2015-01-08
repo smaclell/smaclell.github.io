@@ -83,7 +83,7 @@ incorporate it into a new project. The new project brought with it a large set
 of new libraries and changes that remained relatively isolated.
 
 In working on the new code I had seen a small issue with the log serialization and
-introduced a small change (*cough* hack *cough*) to workaround the issue. The
+introduced a small change (*cough* hack *cough*) to work around the issue. The
 data was causing a circular reference while serializing which I adjusted to
 ignore since I knew that our input data did not have any circular references.
 The serialization output looked about the same as the bad message above but
@@ -126,7 +126,7 @@ fix fast.
 
 We then focused all our effort on LogStash and the logging module. Daryl, an
 amazing developer on our team, suggested that we try looking closer at the
-messages sent from the new library by faking being the LogServer receiving
+messages sent from the new library by faking being the LogStash receiving
 messages. This helped us find the bad message format and what logs were
 affected. We were very confident that this problem was introduced somewhere
 with our new changes. Using this technique we were able to confirm that only
@@ -152,7 +152,7 @@ there was something specific to the new logging we had introduced that caused
 the issue and so had tried eliminating any differences from the old code.
 
 Daryl wanted to go deeper and truly understand the problem. He then tried to
-reproduce the issue by isolating the code writing messages to LogStash and an
+reproduce the issue by isolating the code writing messages to LogStash and a
 mix of messages with different contents, formatting and creation techniques.
 Within a day he found exactly what caused the issue and then refined a simple
 way to reproduce it.
@@ -203,7 +203,7 @@ it was happening from a normal PowerShell prompt since as soon as the object
 was printed it would only show the base object. Detecting when the case
 happened in code also proved to be troublesome because you could not see the
 wrapping type or output when it was present. The only way to reliably reproduce
-this the bad content was to call .NET class to serialize it.
+the bad content was to call .NET class to serialize it.
 
 The Solution
 ===============================================================================
