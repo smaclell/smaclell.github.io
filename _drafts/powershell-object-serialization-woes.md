@@ -10,10 +10,10 @@ intermittent defect that was very hard to pin down and reproduce. This is our
 story about what happened, how we resolved it and what we learnt.
 
 We have some PowerShell scripts that write messages to [LogStash][elk] that
-started to have messages that would not show up in [ElasticSearch][elk]. What
-messages that would go through seemed to change day to day. Many different
+started to have messages that would not show up in [ElasticSearch][elk]. The
+messages which did go through seemed to change from day to day. Many different
 systems use the same LogStash and all our messages were written in a similar
-way, JSON over TCP. We did notice that some of the messages that were getting
+way, JSON over TCP. We did notice some of the messages that were getting
 through looked completed different than the others.
 
 A good message body would look like this:
@@ -74,10 +74,10 @@ A bad message body would look like this:
 The Changes
 ===============================================================================
 
-Before going deep into the issue itself I wanted to explain how the changes
-that caused the problem were first introduced.
+Before going deep into the issue itself, I want to explain how we introduced the changes
+that caused the problem.
 
-The changes that led to this issue happened weeks before finding the issue. We
+The changes leading to this issue happened weeks before finding the issue. We
 were trying to refactor our logging to make it more consistent, simplify it and
 incorporate it into a new project. The new project brought with it a large set
 of new libraries and changes that remained relatively isolated.
@@ -85,8 +85,8 @@ of new libraries and changes that remained relatively isolated.
 In working on the new code I had seen a small issue with the log serialization and
 introduced a small change (*cough* hack *cough*) to work around the issue. The
 data was causing a circular reference while serializing which I adjusted to
-ignore since I knew that our input data did not have any circular references.
-The serialization output looked about the same as the bad message above but
+ignore since I knew our input data did not have any circular references.
+The serialization output looked about the same as the bad message above, but I
 wrote it off at the time. With my small change in place the system seemed to
 work and so I moved onto the next thing.
 
@@ -96,31 +96,31 @@ The Troubleshooting
 ===============================================================================
 
 Digging into the issue was hard because it only happened intermittently. We
-started trying to isolate the issue to which log messages caused the error but
-could not find any discernible patterns. The messages that were logged or not logged changed
+started trying to isolate the issue to which log messages caused the error, but
+could not find any discernible patterns. The messages logged or not logged changed
 daily. At first we did not know why the messages were not showing up and we did
-not know about the messages in the bad format. What was really weird is that we
-would step through the code line by line and output potential messages and
+not know about the messages in the bad format. What was really weird is when we
+would step through the code line by line and output potential messages
 everything would look fine.
 
 The first breakthrough came after we talked to
 [Jeffery Charles][jeff], a LogStash/ElasticSearch user from another team in the
 company. They were having the same issue from on a different system. He saw
-error logs on their LogStash server indicating that messages with different
+error logs on their LogStash server indicating messages with different
 formats were being ignored by ElasticSearch. LogStash/ElasticSearch work by
 receiving messages using LogStash and then ElasticSearch indexes them. If there
 are two messages sent with a conflicting schema then the only messages matching
 the first schema are written to the index. Messages where a property's type
 changes, i.e. from a ``string`` to and ``object``, cause this conflict to
-occur. A new index is created daily which explained is why the messages that
-were being saved changed daily and why only some messages made it through.
+occur. ElasticSearch creates a new index daily, which explains why the saved
+messages changed daily and why only some messages made it through.
 
-This behaviour meant that a single bad message from the new system could break
+This behaviour meant a single bad message from the new system could break
 the log messages for other systems using our LogStash server. This expanded the
-surface area that we thought was affected by the defect dramatically. Messages
-not getting indexed meat that there was data-loss and that none of the affected
-code could be released into production. Originally, we thought only message
-from the new system were missing but this defect meant that the new system
+surface area we thought was affected by the defect dramatically. Messages
+not getting indexed meant there was potentially data loss and that none of the affected
+code could be released into production. Originally, we thought only messages
+from the new system were missing, but this defect meant the new system
 could write bad messages that could break existing systems. We needed to find a
 fix fast.
 
@@ -128,20 +128,20 @@ We then focused all our effort on LogStash and the logging module. Daryl, an
 amazing developer on our team, suggested that we try looking closer at the
 messages sent from the new library by faking being the LogStash receiving
 messages. This helped us find the bad message format and what logs were
-affected. We were very confident that this problem was introduced somewhere
-with our new changes. Using this technique we were able to confirm that only
-the new project was affected.
+affected. We were very confident this problem was introduced somewhere
+with our new changes. Using this technique we were able to confirm only
+the new project caused the missing log messages.
 
 We then honed
 in on some obvious differences between the new code and how the old code sent
 their messages to LogStash. Both sent the message content as JSON blobs over
-TCP but used a slightly different intermediate data structure to pass data
+TCP, but used a slightly different intermediate data structure to pass data
 around in PowerShell. The original used primarily <code>HashTable</code>'s
 whereas the new format converted to <code>PSObject</code>'s as an intermediate.
 This seemed like a good area to focus on because the fields in the message were
 similar to those found on a <code>PSObject</code>. We tried a few different
 fixes eliminating or moving the ways <code>PSObject</code> was used to make the
-new code closer to the old code but nothing worked. Due to different messages
+new code closer to the old code, but nothing worked. Due to different messages
 being filtered daily, testing each change required waiting until the next day
 to confirm whether the fixed worked.
 
@@ -157,15 +157,17 @@ mix of messages with different contents, formatting and creation techniques.
 Within a day he found exactly what caused the issue and then refined a simple
 way to reproduce it.
 
-The problem was not introduced directly by the new code but serializing from
-different objects to JSON in PowerShell. Depending on how the message was
-created it may be wrapped in an additional PowerShell object that would
-cause something completely different to be serialized.
+The new code did not directly introduce the problem; serializing different
+objects to PowerShell did. Depending on how the message was
+created it could be wrapped in an additional PowerShell object which would
+cause something completely different to be serialized. We started using a
+pattern in the new code that caused this situation which is why we had not seen
+it with other code sending messages to LogStash.
 
 Consider the following example:
 
 {% highlight powershell %}
-# In this example to avoid dependencies I am using the built in serializer but
+# In this example to avoid dependencies I am using the built in serializer, but
 # you could happily substitute in your favourite like Json.NET
 Add-Type -AssemblyName System.Web.Extensions
 
@@ -194,8 +196,8 @@ $fail = Test-Bad
 Convert-ToJsonString @{ test = $fail }
 {% endhighlight %}
 
-We tried a few more cases and found that the issue only occurred in
-PowerShell 2.0 and not on 3.0 or 4.0.
+We tried a few more cases and found the issue only occurred in
+PowerShell 2.0 and not in 3.0 or 4.0.
 
 From what we could tell the normal .NET objects were being wrapped by what
 looked like a <code>PSObject</code>. In our earlier debugging it was impossible to see when
@@ -215,12 +217,12 @@ to fix it.
    At this point there was enough code spread out far enough that it would have
    taken a large amount of time to update everything. The easiest thing to do
    here would have been to pull the release and then redo the development. It
-   would have been costly but better than affecting production with the defect.
+   would have been costly, but better than affecting production with the defect.
 
 2. **Upgrade to PowerShell 3+.**
    We have wanted to do this for a VERY long time and often talk about it. Even
    though it is an important (but not urgent) technical change we have decided
-   against taking the plunge. We realized that in this instance we finally had
+   against taking the plunge. We realized in this instance we finally had
    an urgent reason to perform the update, but for that reason it made this the
    worst time to hastily update the PowerShell version. The added pressure of
    fixing this defect and one way nature of updating PowerShell would greatly
@@ -228,34 +230,34 @@ to fix it.
 
 3. **Serialize ourselves to "unwrap" the objects.**
    Once we narrowed down the interaction between the returned objects and the
-   serialization we found that it was possible to get the desired value
+   serialization we found it was possible to get the desired value
    back. You could do so by casting to the correct type and normally determine
    the type using the <code>-is</code> operator. I say normally because
-   some values that actually were wrapped appeared to be their
+   some values which actually were wrapped appeared to be their
    intended type which would not serialize correctly.
 
 We chose option 3 because it was relatively isolated, could be easily tested
 with the cases we reproduced and would be easy to implement. After weeks of
 tracking down this defect a developer implemented the fix in one day. Once it
-was everywhere and we confirmed that there were no more missing
+was everywhere and we confirmed there were no more missing
 log messages there were high-fives all around.
 
-We did strongly consider moving to PowerShell 4.0 to fix the issue but the risk
+We did strongly consider moving to PowerShell 4.0 to fix the issue, but the risk
 was too great. Our solution can be easily replaced when we finally do and even
-be made future compatible before we make the switch so that things go smoothly.
+be made future compatible before we make the switch so things go smoothly.
 
 Lessons Learnt
 ===============================================================================
 
 Phew. You made it this far! Congratulations. The ups and downs of investigating
-this defect were tough but finding the root cause and fix the problem was worth
-it. Throughout it all we did learn a few things that I think are important.
+this defect were tough, but finding the root cause and fixing the problem was worth
+it. Throughout it all we did learn a few things which I think are important.
 
 Know why something works and especially when it doesn't.
 -------------------------------------------------------------------------------
 
 Throughout most of the investigation we did not know what was causing the
-problem. We knew exactly what changes had been made to the system but even then
+problem. We knew exactly what changes had been made to the system, but even then
 did not have much to go on while determining the root cause.
 
 Daryl kept pressing the team to dig deeper into the code and find the root
@@ -274,7 +276,7 @@ circular reference.
 Instead of hastily slapping code in place and moving on, I needed to take the
 time to investigate further. Since I was not expecting any circular references
 the fact they were present is a clear sign something was wrong. I had tried
-stepping through the code to see what was causing it but could not pin it down.
+stepping through the code to see what was causing it, but could not pin it down.
 At this point I should have asked for help instead of ignoring the issue.
 
 At the time I felt like I needed to make some artificial deadline and pushed
