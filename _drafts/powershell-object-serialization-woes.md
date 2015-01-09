@@ -294,7 +294,8 @@ taking the easy way out.
 <hr />
 
 *I would like to thank Josh Groen and Daryl McMillan for their patience while
-looking into this issue.*
+looking into this issue. Josh also helped review this post and double check my
+version of what happened.*
 
 <hr />
 
