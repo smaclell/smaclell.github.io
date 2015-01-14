@@ -133,7 +133,7 @@ using System.Linq;
 using Autofac;
 
 namespace Conventions {
-    internal class SimpleInterfacesModule : Module  {
+    internal class InterfaceConventionsModule : Module  {
         protected override void Load( ContainerBuilder builder ) {
             var types = from t in ThisAssembly.GetTypes()
                         let i = t.GetInterface( "I" + t.Name, true )
