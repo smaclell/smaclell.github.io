@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Deploys Becoming Boring - Part 1: In the Beginning"
-date:   2014-09-22 23:11:07
+date:   2015-01-14 22:53:00
 tags: deployment process series
 ---
 
