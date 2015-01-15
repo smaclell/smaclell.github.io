@@ -21,7 +21,7 @@ We want our applications to be easy to use and maintain. Doesn't everyone? For
 the domain we are working in, deploying complex software, the list of essential
 things that you need to get your jobs done is very long.
 
-Lets take a simple example, cloning a virtual machine from a template. You need
+Let's take a simple example, cloning a virtual machine from a template. You need
 the following information just to do something reasonable.
 
 1. What do you want to name your new machine?
@@ -85,7 +85,7 @@ sense for your application.
 **Do all clients have the same value for a setting?** It is a constant in
 disguise and should be treated like one. Use the value and remove the setting.
 
-**Configuration in unused functionality or unused configuration?** Deprecate
+**Unused functionality or configuration?** Deprecate
 and remove the code eliminating the need to support these options. If you are
 keeping around dead code for a rainy day remove it! You can always bring it
 back from source control if you need it. Keeping it around and maintaining it
@@ -96,7 +96,7 @@ and then never used. These too need to go!
 **Provide defaults wherever possible.** Defaults improve the "out of the box"
 experience and good defaults let most customers not care about a setting.
 Again if every client uses the default then it becomes a good candidate to
-remove completely. Another technique is configuring a groups of options that
+remove completely. Another technique is configuring groups of options that
 can be used together. In some systems we have used hierarchical settings to
 provide more flexible defaults or layering. We learnt this technique from
 [hiera][hiera] when first adopting Puppet and have tried to apply it when it
@@ -173,7 +173,7 @@ Closing Thoughts
 ===============================================================================
 
 Pursuing simpler configuration that contains only the essential elements for
-your application is worth while. There are many aspects to consider when doing
+your application is worthwhile. There are many aspects to consider when doing
 so that will be applicable to your application. Understanding what can be
 eliminated and where conventions are appropriate can help address this problem.
 
@@ -191,9 +191,8 @@ configuration.
 <hr />
 
 <a id="note-1" href="#reverse-note-1">1.</a>
-*Disclaimer:* I have not used Entity Framework in an application. My goal has
-been to keep all applications small enough that a tool like [Dapper][dapper] is
-more than sufficient.
+*Disclaimer:* Yes this is the same Machinator from my
+[Lib, Service or Component][lsb] post.
 
 <a id="note-2" href="#reverse-note-2">2.</a>
 *Disclaimer:* I have not used Entity Framework in an application. My goal has
@@ -204,3 +203,5 @@ more than sufficient.
 [autofac]: http://autofac.org/
 [dry]: http://www.artima.com/intv/dry.html
 [ef]:  http://msdn.microsoft.com/en-us/data/jj819164.aspx
+[lsb]: {% post_url 2015-01-07-what-is-it-going-to-be-library-service-component %}
+[dapper]: https://github.com/StackExchange/dapper-dot-net
