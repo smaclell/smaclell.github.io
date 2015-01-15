@@ -88,12 +88,12 @@ in isolation, execute smoke tests and then run acceptance tests. These tests
 are more complicated and cover larger portions of the system. They still try to
 isolate each service but can include other stable collaborators as needed.
 
-<p class="image-center">
+<figure>
 	<img
 		title="One little service building in a row."
 		alt="A single pipeline with a commit state, acceptance stage and finally a deploy"
 		src="{{ site.url }}/images/posts/SimplePipeline.png" />
-</p>
+</figure>
 
 We then update the changed service(s) followed by running the release acceptance
 tests to comprehensively verify the new changes. Where possible we try to keep
@@ -103,12 +103,12 @@ Occasionally, we would perform some manual testing for areas particularly hard
 to check automatically or would provide limited use. We try very hard to
 automate all of our testing and reduce what needs to be verified manually.
 
-<p class="image-center">
+<figure>
 	<img
 		title="Three little services building in a row."
 		alt="A three pipelines then integrated testing followed up by shipping!!"
 		src="{{ site.url }}/images/posts/PipelineFunnel.png" />
-</p>
+</figure>
 
 Commits trigger the individual deployment pipelines which are responsible for
 the commit and acceptance tests. Once each pipeline is complete they trigger
