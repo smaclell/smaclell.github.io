@@ -5,9 +5,6 @@ date:   2015-01-07 23:55:00
 tags: development design craig
 ---
 
-Take Away
-=======================================
-
 Extending an existing system results in tradeoffs depending on where you choose
 to make the change.
 
