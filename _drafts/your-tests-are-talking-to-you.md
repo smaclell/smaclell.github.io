@@ -77,23 +77,52 @@ reliability of external components is critical to our applications. When
 services we consume on a regular basis begin to break our tests it demonstrates
 areas were we could make our application more resilient.
 
+Frequently failing tests caused by team member commits is a great opportunity
+for a conversation. Infrequent breaks caused accidentally are not a big deal
+but when it becomes a weekly or daily occurrence it can start to hold up the
+whole team. It can be easy to blame the individual for their actions and I
+think it is important to keep people accountable, but it is important to take
+the time to help them understand how to avoid these issues and learn from what
+happened. Perhaps they were having a bad day or did not know about the build
+and tests that were available. If they have not seen the tests in action then
+using any failures as a teaching/learning opportunity to make the system
+better.
+
+Tests that are easily broken fall into another category. When these tests fail
+from the slightest change it can either be brittle tests or overly complicated
+code. Mocking in tests can cause tests to become extremely easy to break since
+they often mirror the functionality in the method being tested too tightly.
+These restrictive tests do not provide enough flexibility for other potential
+solutions to the responsibilities performed by the classes being tested.
+
+Last year there was an interesting discussion around unit testing and apparent
+[harm caused by TDD][harm]. I was at the time using too many mocks in my tests
+which affected the design quite a bit. Martin Fowler has a great article
+contrasting TDD done [classically or with mocking][mockist]. I am a recovering
+mockist. We talked about this in depth and came to the conclusion that TDD and
+unit testing were not the issue but instead bad mocking was the reason. You
+could even call [mocks a code smell][mocks-smell].
+
+Rather than dogmatically covering everything with unit tests we began to
+strength our integration tests. For systems whose sole purpose was to integrate
+two other systems we did not implement unit tests or removed them if they
+frequently failed due to fragile mocks. Deleting the tests was better than
+needing to rewrite them with every minor code changes with the integrated
+components. Our applications we maintain now have a healthy mix of unit and
+integration tests which helps us remain confident as we make changes throughout
+the system. In many ways this resulted in better test coverage for the most
+important aspects of our systems.
+
 If the test is valuable but needs some work take the time to do it right.
 However, if you don't think it is worth it then delete the test and move on.
 Your coverage does not change and your tests become more reflective of what
 they are doing.
 
-Brittle tests are bad. Good tests give clear and consistent feedback confirming
-your application behaves the way you expect. Tests that routinely fail are
-always suspect. Intermittently failing tests tend to erode any confidence in
-the entire test suite.
-
-Tests that frequently fail due to code changes are
-a great way to highlight areas that probably have more bugs. Easy to break with
-new code means the existing code is fragile or over complicated.
-
-Intermittently Failing tests, brittle is bad. You are not getting your moneys worth
 Ignored tests, warning flag that means the test should be deleted or reenabled. Probably hiding a defect or change in requirements
 
 Complicated setup, your code is too complicated => probably over mocking
 
 [cd]: http://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley-ebook/dp/B003YMNVC0/
+[harm]: http://david.heinemeierhansson.com/2014/test-induced-design-damage.html
+[mockist]: http://martinfowler.com/articles/mocksArentStubs.html
+[mocks-smell]: http://devblog.avdi.org/2011/09/06/making-a-mockery-of-tdd/
