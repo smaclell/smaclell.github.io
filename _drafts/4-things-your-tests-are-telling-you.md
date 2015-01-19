@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Your Tests Are Talking To You"
+title:  "4 Things Your Tests Are Telling You"
 date:   2014-09-22 23:11:07
 tags: testing feedback
 ---
