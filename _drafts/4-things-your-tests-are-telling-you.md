@@ -139,6 +139,8 @@ work take the time to do it right. However, if you don't think it is worth it
 then delete the test and move on. Ignored or failing tests don't improve your
 test coverage at all and provide only an artificial sense of safety.
 
+Are your tests telling you anything?
+
 [cd]: http://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley-ebook/dp/B003YMNVC0/
 [harm]: http://david.heinemeierhansson.com/2014/test-induced-design-damage.html
 [mockist]: http://martinfowler.com/articles/mocksArentStubs.html
