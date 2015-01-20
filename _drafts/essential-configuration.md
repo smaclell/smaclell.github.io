@@ -36,7 +36,7 @@ configure it. The ability to choose makes the system more powerful but comes at
 a cost when configuring the application and any future maintenance on the code.
 
 This was the exact problem we faced when we built a tool called Machinator
-<sup id="reverse-note-1"><a href="#note-1">1</a></sup> that creates virtual
+<sup id="essential-configuration-reverse-note-1"><a href="#essential-configuration-note-1">1</a></sup> that creates virtual
 machines. We could either have users provide all of this information through
 the API or hide it as configuration within the system but would be unable to
 eliminate any of this configuration. From these initial pieces of information
@@ -162,7 +162,7 @@ directories. These simple conventions made it very easy to understand how the
 application worked and the order it would consume the files in.
 
 It can be beneficial to allow users to extend or define their own conventions.
-You can see this used by [Entity Framework][ef]<sup id="reverse-note-2"><a href="#note-2">2</a></sup>
+You can see this used by [Entity Framework][ef]<sup id="essential-configuration-reverse-note-2"><a href="#essential-configuration-note-2">2</a></sup>
 to allow new conventions to be added. We use this effectively with [hiera][hiera]
 to provider greater consistency for determining how servers are configured. If
 you feel this is necessary for your situation I would highly recommend
@@ -190,11 +190,11 @@ configuration.
 
 <hr />
 
-<a id="note-1" href="#reverse-note-1">1.</a>
+<a id="essential-configuration-note-1" href="#essential-configuration-reverse-note-1">1.</a>
 *Disclaimer:* Yes this is the same Machinator from my
 [Lib, Service or Component][lsb] post.
 
-<a id="note-2" href="#reverse-note-2">2.</a>
+<a id="essential-configuration-note-2" href="#essential-configuration-reverse-note-2">2.</a>
 *Disclaimer:* I have not used Entity Framework in an application. My goal has
 been to keep all applications small enough that a tool like [Dapper][dapper] is
 more than sufficient.
