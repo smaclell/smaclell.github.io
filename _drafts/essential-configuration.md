@@ -31,15 +31,15 @@ the following information to do something reasonable and complete the action.
 5. Which host should be running the new virtual machine?
 6. etc.
 
-You might be able to skip some of the later options but doing so limits the
+You might be able to skip some of the later options, but doing so limits the
 control your operators may want. The ability to choose these options makes the
-system more powerful but comes at a cost when configuring the application and
+system more powerful, but comes at a cost when configuring the application and
 any future maintenance on the code.
 
 This was the exact problem we faced when we built Machinator,
 <sup id="essential-configuration-reverse-note-1"><a href="#essential-configuration-note-1">1</a></sup> a service that creates virtual
 machines. We could either have users provide all of this information through
-the API or hide it as configuration within the system but would be unable to
+the API or hide it as configuration within the system, but would be unable to
 eliminate any of this configuration. From these initial pieces of required
 information we determined what our essential configuration needed to be for the
 operation we wanted to accomplish.
@@ -80,8 +80,8 @@ Eliminate Unnecessary Configuration
 The best way to reduce your configuration is to remove as many options as
 possible. To have only the essential configuration then you must have the
 absolute minimum required for your application. How can you eliminate
-unnecessary configuration? I think there are many ways to do so that might be
-useful when considering your application.
+unnecessary configuration? I think there are many ways to do so which might be
+useful depending on your context.
 
 **Do all clients have the same value for a setting?** It is a constant in
 disguise and should be treated like one. Use the value and remove the setting.
@@ -91,13 +91,13 @@ and remove the code eliminating the need to support these options. If you are
 keeping around dead code for a rainy day remove it! You can always bring it
 back from source control if you need it. Keeping it around and maintaining it
 is taking your attention away from the things you actually should be doing.
-Sometimes settings are added in anticipation for a potential need but forgotten
-and then never used. These need to go!
+Sometimes settings are added in anticipation for a potential need, but are then
+forgotten and never used. These need to go!
 
 **Provide defaults wherever possible.** Defaults improve the "out of the box"
 experience and good defaults let most customers not care about a setting.
 Again if every client uses the default then it becomes a good candidate to
-remove completely. Another technique is configuring groups of options that
+remove completely. Another technique is configuring groups of options which
 can be used together. In some systems we have used hierarchical settings to
 provide more flexible defaults or layering. We learnt this technique from
 [hiera][hiera] when first adopting Puppet and have tried to apply it when it
@@ -114,13 +114,13 @@ made these areas robust enough that the extra settings can be removed.
 use a simple regex to select from existing items. Duplication is a good
 indicator that things could be made simpler. We were able to change our
 configuration to eliminate duplication resulting in a much clearer settings
-that contained the bare minimum information. Remember [DRY][dry] is your friend.
+containing the bare minimum information. Remember [DRY][dry] is your friend.
 
 **[YAGNI][yagni].** Some settings might not be needed yet and should be left
 until later. I was recently refactoring some code that implemented a simple
-state machine and a coworker suggested that I make it completely configurable.
-It would have allowed the system to be reused for other activities but would
-have introduced complicated configuration that would be easy to get wrong.
+state machine and a coworker suggested I make it completely configurable.
+It would have allowed the system to be reused for other activities, but would
+have introduced complicated configuration which would be easy to get wrong.
 We could happily defer this request until later when hopefully we have a
 concrete problem to solve and/or other systems that simplify the solution.
 

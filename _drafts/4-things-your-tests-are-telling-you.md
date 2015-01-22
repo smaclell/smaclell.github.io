@@ -27,7 +27,7 @@ test long term. If it is a good test and passes then why is it not turned on?
 Often ignore tests happen when there are breaking changes to a system or they
 start to fail or one of the other reasons tests are taking to you. Developers
 use ignored tests to not deal with a problem immediately that could be left for
-later. This is the easy way out but is hiding the actual problem. Instead of
+later. This is the easy way out, but is hiding the actual problem. Instead of
 sweeping the problem under the rug make the decision whether the test should be
 fixed or removed permanently.
 
@@ -54,7 +54,7 @@ take hours. With additional hardware we setup isolate test runs that ran part
 of the whole test suite. With this change we managed to reduce the duration
 linearly with each separate test run, i.e. 2 runners ~2 times as fast. For
 more tests we were able to run them without additional setup and had moderate
-success. The tests were much faster but now the tests are more brittle and need
+success. The tests were much faster, but now the tests are more brittle and need
 to be managed to ensure we know which tests can execute in parallel or
 sequentially.
 
@@ -78,7 +78,7 @@ services we consume on a regular basis begin to break our tests it demonstrates
 areas were we could make our application more resilient.
 
 Frequently failing tests caused by team member commits is a great opportunity
-for a conversation. Infrequent breaks caused accidentally are not a big deal
+for a conversation. Infrequent breaks caused accidentally are not a big deal,
 but when it becomes a weekly or daily occurrence it can start to hold up the
 whole team. It can be easy to blame the individual for their actions and I
 think it is important to keep people accountable, but it is important to take
@@ -100,7 +100,7 @@ Last year there was an interesting discussion around unit testing and apparent
 which affected the design quite a bit. Martin Fowler has a great article
 contrasting TDD done [classically or with mocking][mockist]. I am a recovering
 mockist. We talked about this in depth and came to the conclusion that TDD and
-unit testing were not the issue but instead bad mocking was the reason. You
+unit testing were not the issue, but instead bad mocking was the reason. You
 could even call [mocks a code smell][mocks-smell] or recommend [avoiding mocks][avoiding-mocks]
 to improve test isolation.
 
@@ -134,7 +134,7 @@ Broken tests are work left undone. I believe that it is important to now leave
 your tests in this state. If the results are showing an issue with the new code
 then you probably should not ship your software until the problem is fixed and
 the tests pass. You are ignoring this feedback at your own peril. Choose
-between fixing the test and removing it. If the test is valuable but needs some
+between fixing the test and removing it. If the test is valuable, but needs some
 work take the time to do it right. However, if you don't think it is worth it
 then delete the test and move on. Ignored or failing tests don't improve your
 test coverage at all and provide only an artificial sense of safety.
