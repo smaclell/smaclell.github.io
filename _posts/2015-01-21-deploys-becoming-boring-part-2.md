@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Deploys Becoming Boring - Part 2: Iterating"
-date:   2014-09-22 23:11:07
+date:   2015-01-21 21:21:00
 tags: deployment process series
 ---
 
@@ -19,7 +19,7 @@ to smooth regular updates that are downright boring.
 Going Weekly
 ---------------------------------------
 
-Our first order of business to adhere to [The Agreement](TODO#the-agreement)
+Our first order of business to adhere to [The Agreement][agreement]
 was deploying weekly, rain or shine.
 
 Deploying weekly was not smooth at first but soon became much better. We still had a lot
@@ -61,7 +61,7 @@ team could do.
 Testing
 ---------------------------------------
 
-Next step to satisfy [The Agreement](TODO#the-agreement) was to tighten up our quality
+Next step to satisfy [The Agreement][agreement] was to tighten up our quality
 assurance and testing practices.
 
 A very simple change that we began immediately was performing more comprehensive
@@ -133,7 +133,7 @@ Managing the Changes
 
 To share our updates more effectively we adjusted how we managed, documented
 and versioned our releases. This was the final part of the
-[The Agreement](TODO#the-agreement).
+[The Agreement][agreement].
 
 Simple change management began to take form around our regular updates. At
 first we stuck to a strict weekly scheduled but relaxed the process after we
@@ -145,7 +145,7 @@ needed to happen or might conflict with planned updates. The extra coordination
 had resulted in fewer unplanned environmental changes around the planned
 deployments helping stabilize the environments for the updates.
 
-Releases started to include additional documentation. Prior to [The Agreement](TODO#the-agreement)
+Releases started to include additional documentation. Prior to [The Agreement][agreement]
 there were handoffs involving detailed instructions regarding how each component
 worked within the larger system. This took effort and time away from improving
 the system and we did not think these documents were helpful. Most
@@ -198,7 +198,7 @@ allowing stubs/fakes across natural boundaries.
 The Effects of Speed
 ---------------------------------------
 
-While not strictly caused by [The Agreement](TODO#the-agreement) strange things
+While not strictly caused by [The Agreement][agreement] strange things
 started happening with our more frequent deployments.
 
 Each new issue that came up was dealt with immediately and then more permanent
@@ -246,6 +246,7 @@ series I will recap the shifts we have seen and share where we want to go next.
 *I would like to thank [Michael Swart][swart], Matt Campbell and Bogdan Matu
 for helping review this and several other early posts.*
 
+[agreement]: {% post_url 2015-01-14-deploys-becoming-boring-part-1 %}
 [cd]:       http://www.amazon.com/dp/B003YMNVC0/
 [pipeline]: http://martinfowler.com/bliki/DeploymentPipeline.html
 [bag]:      http://www.catb.org/jargon/html/B/brown-paper-bag-bug.html
