@@ -19,17 +19,35 @@ There are 4 quick and dirty pieces of feedback unhealthy tests can give you:
 3. Intermittently Failing Tests
 4. Failing Tests
 
+### Ignored Tests
+
 Ignored tests is where tests go to die. Few teams have the discipline required
-to return and re-enable ignored tests. The big question to ask is why is the
-test ignored. I think there are no legitimate reasons to completely ignore a
+to return and re-enable ignored tests. The big question to ask is why are the
+tests ignored. I think there are no legitimate reasons to completely ignore a
 test long term. If it is a good test and passes then why is it not turned on?
 
-Often ignore tests happen when there are breaking changes to a system or they
-start to fail or one of the other reasons tests are taking to you. Developers
-use ignored tests to not deal with a problem immediately that could be left for
-later. This is the easy way out, but is hiding the actual problem. Instead of
-sweeping the problem under the rug make the decision whether the test should be
-fixed or removed permanently.
+Often ignore tests happen when there are breaking changes to a system, they
+start to fail or one of the other reasons tests are talking to you. Developers
+use ignored tests avoid dealing with a problem immediately. This is the easy
+way out, but is hiding the actual problem. A decision on whether the test
+should be fixed or removed permanently needs to be made instead of hiding
+the results.
+
+Tests that are configured to only run when explicitly requested are similar but
+I think more acceptable for short periods of time. They represent a conscious
+choice that the test should only be run in specific circumstances. They could
+be completely broken when you try to run them and it is important to make sure
+they are exercised at least once a release. Ideally the tests would only be
+explicit for a short period of time or are configured to run as a later in the
+automated testing.
+
+The risk is that they would not be run for long periods of time and fall into
+disrepair. Running tests frequently helps by identifying when they break much
+sooner or ideally immediately after the code change that broken them. Explicit
+or ignored tests that have not been run for a long time have no guarantee that
+they still test what they were originally intended for or are passing.
+
+### Slow Tests
 
 For easy places to speed up your Deployment Pipeline look no further than slow
 tests. Accordingly to [the book on Continuous Delivery][cd] the ideal goal for
@@ -68,6 +86,8 @@ integration/acceptance tests run every time your commit new code, as
 recommended by the [Continuous Delivery Book][cd]. Performance tests and other
 intensive validation only makes sense to validate after basic functionality is
 verified.
+
+### Intermittently Failing Tests
 
 Trust is an important aspect teams and test suites alike. Tests that fail often
 or do not pass reliably reduce trust and confidence that the tests are useful.
@@ -114,6 +134,8 @@ integration tests which helps us remain confident as we make changes throughout
 the system. In many ways this resulted in better test coverage for the most
 important aspects of our systems.
 
+### Failing Tests
+
 Some unlucky applications have the final form on bad tests; tests that always
 fail. It happens and I hope not to you. I am sure there are many rational ways
 that teams get into this state and begin to accept it as a reality. These tests
@@ -138,6 +160,13 @@ between fixing the test and removing it. If the test is valuable, but needs some
 work take the time to do it right. However, if you don't think it is worth it
 then delete the test and move on. Ignored or failing tests don't improve your
 test coverage at all and provide only an artificial sense of safety.
+
+Conclusion
+===============================================================================
+
+There are many things you can learn from your tests beyond whether they pass or
+fail. Listening the insights they are sharing can help you improve your code
+base and tests.
 
 Are your tests telling you anything?
 
