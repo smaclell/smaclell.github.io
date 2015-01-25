@@ -295,7 +295,8 @@ taking the easy way out.
 
 *I would like to thank Josh Groen and Daryl McMillan for their patience while
 looking into this issue. Josh also helped review this post and double check my
-version of what happened.*
+version of what happened. I would also like to thank [Michael Swart][swart] for
+reviewing this post and helping me become a better writer.*
 
 <hr />
 
@@ -305,3 +306,4 @@ everyone feels the same.
 
 [elk]:  http://www.elasticsearch.org/overview/
 [jeff]: http://www.beyondtechnicallycorrect.com/
+[swart]: http://michaeljswart.com
