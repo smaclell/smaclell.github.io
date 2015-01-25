@@ -61,10 +61,6 @@ closer to being finely meshed gears working together to ship new releases.
 	</figcaption>
 </figure>
 
-<p>
-*
-</p>
-
 Our clients who were most resistant to change we have started to
 collaborate on larger projects together. Savvy members of their team have sent
 pull requests and other patches to smooth out their workflows. Not only are the
