@@ -82,7 +82,7 @@ were trying to refactor our logging to make it more consistent, simplify it and
 incorporate it into a new project. The new project brought with it a large set
 of new libraries and changes that remained relatively isolated.
 
-In working on the new code I had seen a small issue with the log serialization and
+When working on the new code I saw a small issue with the log serialization and
 introduced a small change (*cough* hack *cough*) to work around the issue. The
 data was causing a circular reference while serializing which I adjusted to
 ignore since I knew our input data did not have any circular references.
@@ -96,8 +96,8 @@ The Troubleshooting
 ===============================================================================
 
 Digging into the issue was hard because it only happened intermittently. We
-started trying to isolate the issue to which log messages caused the error, but
-could not find any discernible patterns. The messages logged or not logged changed
+started trying to isolate the issue to see which log messages were missing, but
+could not find any discernible patterns. The messages that were not logged changed
 daily. At first we did not know why the messages were not showing up and we did
 not know about the messages in the bad format. What was really weird is when we
 would step through the code line by line and output potential messages
@@ -105,13 +105,13 @@ everything would look fine.
 
 The first breakthrough came after we talked to
 [Jeffery Charles][jeff], a LogStash/ElasticSearch user from another team in the
-company. They were having the same issue from on a different system. He saw
+company. They were having the same issue on a different system. He saw
 error logs on their LogStash server indicating messages with different
 formats were being ignored by ElasticSearch. LogStash/ElasticSearch work by
 receiving messages using LogStash and then ElasticSearch indexes them. If there
 are two messages sent with a conflicting schema then the only messages matching
 the first schema are written to the index. Messages where a property's type
-changes, i.e. from a ``string`` to and ``object``, cause this conflict to
+changes, i.e. from a ``string`` to an ``object``, cause this conflict to
 occur. ElasticSearch creates a new index daily, which explains why the saved
 messages changed daily and why only some messages made it through.
 
@@ -136,8 +136,8 @@ We then honed
 in on some obvious differences between the new code and how the old code sent
 their messages to LogStash. Both sent the message content as JSON blobs over
 TCP, but used a slightly different intermediate data structure to pass data
-around in PowerShell. The original used primarily <code>HashTable</code>'s
-whereas the new format converted to <code>PSObject</code>'s as an intermediate.
+around in PowerShell. The original used primarily <code>HashTable</code>s
+whereas the new format converted to <code>PSObject</code>s as an intermediate.
 This seemed like a good area to focus on because the fields in the message were
 similar to those found on a <code>PSObject</code>. We tried a few different
 fixes eliminating or moving the ways <code>PSObject</code> was used to make the
@@ -147,21 +147,21 @@ to confirm whether the fixed worked.
 
 After a few failed fixes, Daryl became frustrated and for good reason.
 At no point did we understand the underlying problem and had only been trying
-to address potential differences around what we thought the issue was. We had thought that
-there was something specific to the new logging we had introduced that caused
-the issue and so had tried eliminating any differences from the old code.
+to address potential differences related to the issue. We thought that
+there was something specific to the new logging we introduced that caused
+the issue and so we tried eliminating any differences from the old code.
 
 Daryl wanted to go deeper and truly understand the problem. He then tried to
 reproduce the issue by isolating the code writing messages to LogStash and a
 mix of messages with different contents, formatting and creation techniques.
-Within a day he found exactly what caused the issue and then refined a simple
+Within a day he found exactly what caused the issue and then he created a simple
 way to reproduce it.
 
 The new code did not directly introduce the problem; serializing different
 objects to PowerShell did. Depending on how the message was
 created it could be wrapped in an additional PowerShell object which would
-cause something completely different to be serialized. We started using a
-pattern in the new code that caused this situation which is why we had not seen
+cause something completely different to be serialized. We had started using a
+pattern in the new code that caused the new format which is why we had not seen
 it with other code sending messages to LogStash.
 
 Consider the following example:
@@ -205,7 +205,7 @@ it was happening from a normal PowerShell prompt since as soon as the object
 was printed it would only show the base object. Detecting when the case
 happened in code also proved to be troublesome because you could not see the
 wrapping type or output when it was present. The only way to reliably reproduce
-the bad content was to call .NET class to serialize it.
+the bad content was to call a .NET class to serialize it.
 
 The Solution
 ===============================================================================
@@ -215,8 +215,8 @@ to fix it.
 
 1. **Change all the code to not return values using this pattern.**
    At this point there was enough code spread out far enough that it would have
-   taken a large amount of time to update everything. The easiest thing to do
-   here would have been to pull the release and then redo the development. It
+   taken a large amount of time to update everything. Instead of fixing our code,
+   it would have been easier to pull the release and redo the development. It
    would have been costly, but better than affecting production with the defect.
 
 2. **Upgrade to PowerShell 3+.**
