@@ -3,6 +3,9 @@ layout: post
 title:  "PowerShell Object Serialization Woes"
 date:   2014-09-22 23:11:07
 tags: troubleshooting, powershell, logstash, elasticsearch
+image:
+  feature: maze-feature.jpg
+  thumb: maze-thumb.jpg
 ---
 
 Recently, we found a fun<sup id="reverse-note-1"><a href="#note-1">1</a></sup>
