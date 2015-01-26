@@ -29,9 +29,15 @@ body {
 // Entry Header
 // --------------------------------------------------
 .entry-header {
-	width: 100%;
+	max-width: 1024px;
 	overflow: hidden;
 	position: relative;
+	margin: 0px auto;
+}
+#post-index .entry-header {
+	max-width: 100%;
+	width: 100%;
+	margin: auto;
 }
 .header-title {
 	text-align: center;
