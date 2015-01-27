@@ -3,6 +3,10 @@ layout: post
 title:  "4 Things Your Tests Are Telling You"
 date:   2014-09-22 23:11:07
 tags: testing feedback
+image:
+  feature: NERVAControlRoom-feature.jpg
+  credit: Wikimedia Commons
+  creditlink: http://commons.wikimedia.org/wiki/File:NERVAControlRoom.jpg
 ---
 
 Your tests can tell you many things about your system. Looking into your test
