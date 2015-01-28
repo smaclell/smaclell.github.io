@@ -38,7 +38,7 @@ should be fixed or removed permanently needs to be made instead of hiding
 the test by ignoring it. This might be covering a very real problem caused by
 the change and understanding the root cause is important.
 
-Tests that are configured to only run when explicitly requested are similar but
+Tests that are configured to only run when explicitly requested are similar, but
 I think more acceptable for short periods of time. They represent a conscious
 choice that the test should only be run in specific circumstances. The tests
 could become completely broken before you try to run them. As a result it is
@@ -84,7 +84,7 @@ almost linearly with each isolated test run, i.e. 2 runners ~2 times as fast.
 Some tests could be run in parallel without extra changes or extra setup. This
 was first implemented by categorizing the tests as "Parallel Safe" and then
 assuming all other tests needed to be sequential. The parallel tests were much
-faster but maintaining this list can be brittle if not managed effectively.
+faster, but maintaining test categories can be brittle if not managed effectively.
 
 Staggering tests to run the most business critical validation early and often can
 improve the feedback cycle. As tests become more comprehensive or require more
@@ -114,9 +114,9 @@ while testing then it can break for the same reasons in production. Using
 accommodate issues with upstream services. More failure or resiliency testing
 might be needed to ensure edge cases not yet encountered are covered. Some companies like
 PagerDuty have included this type of testing into their normal work flow with
-activities like [Failure Friday][failure]. These extra tests are not difficult but
-Preemptively testing these cases by introducing failure instead of waiting
-until a freak incident in the middle of the night.
+activities like [Failure Friday][failure]. These extra tests are not difficult
+to perform, but Preemptively testing these cases by introducing failure instead
+of waiting until a freak incident in the middle of the night.
 
 Frequently failing tests caused by team member commits is a great opportunity
 to dig deeper. Infrequent breaks caused accidentally are not a big deal,
