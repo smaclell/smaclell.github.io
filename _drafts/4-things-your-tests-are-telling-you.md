@@ -48,12 +48,12 @@ for a short period of time or would be updated to run later during the
 Deployment Pipeline.
 
 The risk is that ignored or explicit tests are not run for long periods of time and fall into
-disrepair. Running tests frequently helps by reducing the changes that have
-happened between the last time they were passing. If the tests are run on every
-commit then you can immediately identify the code that broke the test.
+disrepair. Running tests frequently helps by reducing the number of changes
+between the last time the tests passed. If the tests are run on every
+commit then you can immediately identify the code that broke the tests.
 Explicit or ignored tests that have not been run for a long time have no
-guarantee that they still test what they were originally intended to or whether
-the tests pass.
+guarantee they still test what they were originally intended to or whether
+they pass.
 
 ### Slow Tests
 
@@ -75,11 +75,11 @@ the slowest portion can massively improve the performance of your tests. We
 recently did this to one of our services by mocking out external service
 dependencies and testing the remainder
 of the system end to end. This allowed us to add even more tests with better coverage
-than the original that were over 100 times faster.
+than the original and make the new tests over 100 times faster.
 
-On another project we started running tests in parallel that originally would
-take hours to run. Using additional hardware, the team setup isolated test runs
-that ran part of the test suite. The overall duration could then be reduced
+On another project we started running tests would
+take hours to run in parallel. Using additional hardware, the team setup isolated test runs
+which ran part of the test suite. The overall duration could then be reduced
 almost linearly with each isolated test run, i.e. 2 runners ~2 times as fast.
 Some tests could be run in parallel without extra changes or extra setup. This
 was first implemented by categorizing the tests as "Parallel Safe" and then
@@ -89,13 +89,13 @@ faster, but maintaining test categories can be brittle if not managed effectivel
 Staggering tests to run the most business critical validation early and often can
 improve the feedback cycle. As tests become more comprehensive or require more
 integration between components they will naturally take longer. A first step is
-to categorize tests so that the most important and relatively fast tests are
+to categorize tests so the most important and relatively fast tests are
 run early and all other tests can run in later validation stages. Depending on
 your application this might be a blend of unit/integration tests run every time
 new code is committed, as
 recommended by the [Continuous Delivery Book][cd]. Longer running tests like
 performance validation or UI tests can then be run separately. This split
-ensures that the later tests can focus on their intended goal and rely on the
+ensures the later tests can focus on their intended goal and rely on the
 earlier assertions. Bad builds that do not pass the early tests do not need to
 run the more comprehensive tests saving time and money.
 
@@ -104,7 +104,7 @@ run the more comprehensive tests saving time and money.
 Trust is an important aspect of teams and test suites. Tests that fail often
 or do not pass reliably reduce trust and confidence in their results.
 Tests failing intermittently are highlighting opportunities to improve and
-regain that trust.
+regain trust.
 
 The reliability of external components is critical to our applications. When
 services we consume on a regular basis begin to break our tests it demonstrates
@@ -124,13 +124,13 @@ but when it becomes a weekly or daily occurrence it can start to hold up the
 whole team. It can be easy to blame the individual for their actions, but it is
 important to take
 the time to help them understand how to avoid these issues and learn from what
-happened. Perhaps they were having a bad day or did not know about the build
-and tests that were available. If they have not seen the tests in action then
+happened. Perhaps they were having a bad day or did not know about the available build
+and tests. If they have not seen the tests in action then
 build/test breaks are a great a learning opportunity.
 
-Tests that are easily broken fall into another category. When these tests fail
+Another category is easily broken tests. When these tests fail
 from the slightest change it can be from brittle tests or overly complicated
-code. Mocking in tests begin to introduce fragile tests that mirror the
+code. Mocking in tests can begin to introduce fragile tests that mirror the
 functionality being tested too closely.
 These restrictive tests do not provide enough flexibility for other
 implementations by the class(es) being tested.
@@ -160,14 +160,14 @@ important aspects of our systems and less effort to maintain the tests.
 
 Some unlucky applications have the final form on bad tests; tests that always
 fail. I hope it never happens to you. I am sure there are many rational ways
-that teams get into this state and begin to accept it as a reality. These tests
+teams get into this state and begin to accept it as a reality. These tests
 represent something far more sinister; your feedback loop is fully broken. Having a
 single test that is always broken opens the door for more tests to also be left
 in the same state of disrepair. Looking at the test results is no longer a
 binary true/false on whether the code is healthy. The message here is clear
 that something must be done.
 
-Broken tests are work left undone. I believe that it is important to not leave
+Broken tests are work left undone. I believe it is important to not leave
 your tests in this state. You should not ship your application if you have
 permanently broken tests. Without digging deeper, you cannot tell if the new
 code changes have broken something. You are ignoring broken tests as your own
@@ -181,16 +181,15 @@ have thousands of tests that are always broken.
 When Continuous Integration is working well it stays green. The entire team
 supports keeping the build passing and anything that goes wrong is fixed
 immediately or reverted. If the code does not compile, it is fixed right away.
-If a test breaks, it is fixed right away. Developers can trust that everything
+If a test breaks, it is fixed right away. Developers can trust everything
 works as expected and problems are addressed quickly. Failing tests do not
 belong in Continuous Integration and break the normal work flow.
 
-There might be bigger problems at play if you find your code has tests that
-always break. Who is accountable for fixing tests when they break? For our team
+Who is accountable for fixing tests when they break? For our team
 it is the developer who committed the code. If finding who is responsible is
 not clear then no one involved will feel accountable for getting the tests back
 to normal. It might be that the team does not feel empower to spend time on
-improving the code or fixing the tests. This is a short sighted strategy that
+improving the code or fixing the tests. This is a short sighted strategy which
 will ultimately result in hard to maintain code base where every change feels
 impossible. You can break this cycle and take the solution into your own hands
 by holding yourself accountable and doing whatever it takes to fix the tests.
