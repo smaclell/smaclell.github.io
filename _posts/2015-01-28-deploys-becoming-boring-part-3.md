@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Deploys Becoming Boring - Part 3: Boredom and the Future"
-date:   2014-09-22 23:11:07
+date:   2015-01-28 20:48:00
 tags: deployment process series
 ---
 
