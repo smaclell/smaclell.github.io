@@ -12,11 +12,11 @@ Favour using and creating libraries over frameworks.
 Over the past several months I have been trying to learn more from Daryl. He
 helped us track down the insidious [PowerShell problem][ps] and is a phenomenal
 member of our team. I have learnt a great deal from him and feel the least I
-can do is write them down.
+can do is write them down to share with you.
 
-The project we are on has lead to us to build many small applications. Since
+The project we are on has led to us to build many small applications. Since
 the problems we are solving are widely applicable to others at the company we
-have tried to make them reusable. To achieve this goal, Daryl has been
+have tried to make our solutions reusable. To achieve this goal, Daryl has been
 adamant that we write our components as modular libraries instead of custom
 frameworks.
 
@@ -39,46 +39,46 @@ organization. We have been able to extend and replace them as new challenges
 arrive. They are downloaded, integrated and used where they are considered
 useful.
 
-In both cases developers could be extremely productive using or implementing
-either libraries or frameworks but their relationship with each option is
-completely different. Both cases can strive to
-adopt the unix philosophy of "do one thing and do it well" but how they
-approach it is completely different.
+In both cases developers could be productive using or implementing either
+libraries or frameworks but their solutions would be completely different.
 
-Your application fits withins the framework whereas your application decides
+Your application fits within a framework whereas your application decides
 where a library would fit best. Aside from very narrow frameworks they tend to
 have wide implications on the applications they are used in. I have been really
 enjoying [Nancy][nancy], a lightweight MVC web framework for .NET, which
 despite its goal of simplicity partially dictates how your application is
-structured around it. Contrast this to the library [Dapper][dapper], a simple
+structured around it. Contrast this with the library [Dapper][dapper], a simple
 object relational mapper for .NET, that has little impact to your overall
 application and lets you focus on your problem.
 
-The goal should be to solve a problem and not be to use some piece of software.
-Using small interchangeable libraries lets you the developer choose the best
-tool for the problem whereas larger frameworks can become restrictive sooner. As the
+The goal should be to solve a problem and not to use some piece of software.
+Using small interchangeable libraries lets you, the developer, choose the best
+tool for the problem whereas frameworks can restrictive what choices you can make. As the
 application grew our framework became a barrier. It tried to do everything for
 everyone, but ended up limiting what could be done to only what was supported
-by the framework. All enhancements then needed to occur in the frameworks which
-prevented solving the actual problems.
+by the framework. All enhancements needed to occur in the frameworks which
+prevented slowed solving the actual problems.
 
 When a library no longer solves the problem it was intended to you can either
 updated it or replace it. This is not possible with a framework since your core
 application may be intertwined with framework specific dependencies or idioms.
-Like a two edge sword these dependencies constrain the updates to both
-derived applications and the framework alike.
+Like a two edge sword these dependencies constrain the updates to both derived
+applications and the framework alike. Favouring light weight libraries reduces
+the dependencies on external tools which better isolates your application from
+future changes to the library and vice versa.
 
 There comes a point where a simple library does not do enough or the domain
-is large enough that you need something more comprehensive. This is where I
+is large enough that you need something more comprehensive. We use the .NET
+framework and web various frameworks for basic functionality and plumbing. This is where I
 think light-weight frameworks like Nancy really shine. They still do one thing
 really well but that thing happens to be much larger. The way they do it can be
-less opaque and allow you change the parts that don't work they way you need
-them to, i.e. like changing Nancy's JSON serialization conventions.
+less opaque and allow you change the parts that don't work the way you need,
+i.e. changing Nancy's JSON serialization conventions.
 
 We will continue to favour using and creating libraries over frameworks. On our
 latest project we have found that focusing on small purpose driven libraries
-has been very productive and avoided issues we had with large frameworks. The
-flexibility and choice over how best to solve a problem has helped us to be
+has been very useful and avoided issues we had with large frameworks. The
+flexibility and choice over how best to solve problems has helped us to be
 more productive. When approaching large problems where a framework is
 appropriate, try to use one that is light-weight.
 
