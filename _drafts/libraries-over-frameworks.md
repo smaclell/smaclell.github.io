@@ -41,9 +41,10 @@ useful.
 
 In both cases developers could be productive using or implementing either
 libraries or frameworks but their solutions would be completely different.
-
 Your application fits within a framework whereas your application decides
-where a library would fit best. Aside from very narrow frameworks they tend to
+where a library would fit best.
+
+Aside from very narrow frameworks they tend to
 have wide implications on the applications they are used in. I have been really
 enjoying [Nancy][nancy], a lightweight MVC web framework for .NET, which
 despite its goal of simplicity partially dictates how your application is
