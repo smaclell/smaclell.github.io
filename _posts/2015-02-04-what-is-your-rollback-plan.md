@@ -15,13 +15,17 @@ very silly things to get the system up and running again. This means cutting
 corners that may completely invalidate any testing you did for your
 application or make any outage worse.
 
-<a href="https://www.flickr.com/photos/rudolf_schuba/153225000" style="display: inline" title="UNIX - Server Photo by Rudolf Schuba used under Creative Commons from Flickr">
-	<img src="https://c1.staticflickr.com/1/44/153225000_698c62c38a_z.jpg?zz=1" width="640" height="480" alt="Programming at an old UNIX Server alone in an attic">
-</a>
-
-<p>
-* <a href="https://www.flickr.com/photos/rudolf_schuba/153225000" style="display: inline" title="UNIX - Server used under Creative Commons from Flickr">Photo by Rudolf Schuba</a> used under <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons</a> (Who I am sure is doing good things to his computers)
-</p>
+<figure>
+	<a href="https://www.flickr.com/photos/rudolf_schuba/153225000" style="display: inline" title="UNIX - Server Photo by Rudolf Schuba used under Creative Commons from Flickr">
+		<img src="https://c1.staticflickr.com/1/44/153225000_698c62c38a_z.jpg?zz=1"
+			width="640" height="480"
+			title="UNIX - Server used under Creative Commons from Flickr"
+			alt="Programming at an old UNIX Server alone in an attic">
+	</a>
+	<figcaption>
+		<a href="https://www.flickr.com/photos/rudolf_schuba/153225000" style="display: inline" title="UNIX - Server used under Creative Commons from Flickr">Photo by Rudolf Schuba</a> used under <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons</a> <br/> (Who I am sure is doing good things to his computers)
+	</figcaption>
+</figure>
 
 With a recent system we were working on we decided that a good rollback was a
 priority for us and decided that there were four key properties we wanted:
