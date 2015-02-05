@@ -100,8 +100,11 @@ appropriate, try to use one which is light-weight.
 <hr />
 
 *I would like to thank Daryl again for explaining the why behind his
-recommendations.
+recommendations. We tried to find out where Daryl first heard about this idea
+but did not find it. In the process of searching we did find this great [article][other]
+which also highlights why you want to favour libraries over frameworks*
 
 [ps]: TODO
 [nancy]: http://nancyfx.org/
 [dapper]: https://github.com/StackExchange/dapper-dot-net
+[other]: http://tom.lokhorst.eu/2010/09/why-libraries-are-better-than-frameworks
