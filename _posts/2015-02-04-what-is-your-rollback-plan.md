@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "What is your rollback plan?"
-date:   2014-09-22 23:11:07
+date:   2015-02-04 22:28:00
 tags: deployments rollback
 ---
 Are you afraid of your deployments? Dread that moment when you hear your fellow
