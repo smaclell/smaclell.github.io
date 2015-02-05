@@ -3,8 +3,6 @@ layout: post
 title:  "Libraries over Frameworks"
 date:   2015-02-01 23:11:07
 tags: development design daryl
-image:
-  feature: LibraryOverFramework.png
 ---
 
 Favour using and creating libraries over frameworks.
@@ -20,13 +18,16 @@ have tried to make our solutions reusable. To achieve this goal, Daryl has been
 adamant that we write our components as modular libraries instead of custom
 frameworks.
 
-This advice seemed counter intuitive at first but the more we apply it
+This advice seemed counter intuitive at first, but the more we apply it
 the more I agree with him.
 
-For a long time Daryl was part of the team that provided a unifying framework
+The Past and The Present
+===============================================================================
+
+For a long time Daryl was part of the team responsible for providing a unified framework
 for our core application. This framework provided the base functionality for
 almost everything. Likewise, I had written several internal tools as opinionated
-frameworks that would make building/deploying our application easier. You could
+frameworks which would make building/deploying our application easier. You could
 unbox the build framework, plug in your settings and begin development right
 away. Extension points were exposed as needed to allow the frameworks to be
 extended or enhanced.
@@ -39,10 +40,20 @@ organization. We have been able to extend and replace them as new challenges
 arrive. They are downloaded, integrated and used where they are considered
 useful.
 
+Making the Choice
+===============================================================================
+
 In both cases developers could be productive using or implementing either
-libraries or frameworks but their solutions would be completely different.
+libraries or frameworks, but the solutions would be completely different.
 Your application fits within a framework whereas your application decides
 where a library would fit best.
+
+<figure>
+	<img
+		title="Where do you want to do you work? On the inside of the framework or outside of a library."
+		alt="Two black and white squares with another square in the center of each of the opposite colour"
+		src="{{ site.url }}/images/LibraryOverFramework.png" />
+</figure>
 
 Aside from very narrow frameworks they tend to
 have wide implications on the applications they are used in. I have been really
@@ -72,21 +83,24 @@ There comes a point where a simple library does not do enough or the domain
 is large enough that you need something more comprehensive. We use the .NET
 framework and web various frameworks for basic functionality and plumbing. This is where I
 think light-weight frameworks like Nancy really shine. They still do one thing
-really well but that thing happens to be much larger. The way they do it can be
-less opaque and allow you change the parts that don't work the way you need,
+really well, but what they do happens to be much larger. The way they do it can be
+less opaque and allow you change the parts which don't work the way you need,
 i.e. changing Nancy's JSON serialization conventions.
 
+Wrapping Up
+===============================================================================
+
 We will continue to favour using and creating libraries over frameworks. On our
-latest project we have found that focusing on small purpose driven libraries
+latest project we have found focusing on small purpose driven libraries
 has been very useful and avoided issues we had with large frameworks. The
 flexibility and choice over how best to solve problems has helped us to be
 more productive. When approaching large problems where a framework is
-appropriate, try to use one that is light-weight.
+appropriate, try to use one which is light-weight.
 
 <hr />
 
 *I would like to thank Daryl again for explaining the why behind his
-recommendations.*
+recommendations.
 
 [ps]: TODO
 [nancy]: http://nancyfx.org/
