@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "4 Things Your Tests Are Telling You"
-date:   2014-09-21 23:11:07
+date:   2015-02-11 21:15:00
 tags: testing feedback
 image:
   feature: NERVAControlRoom-feature.jpg
