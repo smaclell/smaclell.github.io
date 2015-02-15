@@ -3,11 +3,13 @@ layout: post
 title:  "Essential Configuration"
 date:   2014-09-22 23:11:07
 tags: design configuration
+image:
+  feature: essential-configuration.jpg
 ---
 
 I have been thinking about the idea that every application has a perfect
 minimum configuration. You know the Goldilocks Configuration that just feels
-right with the right amount of information. No more or less.
+good with the right amount of information. No more or less.
 
 New applications we wrote need **LOTS** of configuration to work. This has been
 a big sticking point for our users and for good reason. It makes things hard
@@ -22,7 +24,7 @@ the domain we are working in, deploying complex software, the list of essential
 things that you need to get your jobs done is very long.
 
 Let's take a simple example, cloning a virtual machine from a template. You need
-the following information to do something reasonable and complete the action.
+the following information to do something reasonable and perform the action.
 
 1. What do you want to name your new machine?
 2. What template are you going to clone from?
@@ -40,9 +42,9 @@ This was the exact problem we faced when we built Machinator,
 <sup id="essential-configuration-reverse-note-1"><a href="#essential-configuration-note-1">1</a></sup> a service that creates virtual
 machines. We could either have users provide all of this information through
 the API or hide it as configuration within the system, but would be unable to
-eliminate any of this configuration. From these initial pieces of required
-information we determined what our essential configuration needed to be for the
-operation we wanted to accomplish.
+eliminate any of this configuration. From the required settings, we determined
+what our essential configuration needed to be for the operations we wanted to
+accomplish.
 
 The Ideal
 ===============================================================================
@@ -52,21 +54,21 @@ configuration. Ideally your application would just work out of the box without
 any additional settings.
 
 Configuration increases application complexity and the potential ways things
-can go wrong. Like any user input the values provide a way to break
-the application and need to be validated. This much more complicated when the
+can go wrong. Like any user input, configuration settings provide a way to break
+applications and need to be validated. This much more complicated when the
 settings are coupled to one another or infrastructure connected to the
 application. For Machinator, as underlying hardware changed these settings
-would need to be maintained and monitoring became even more important when
-issues happened.
+would need to be maintained. Monitoring and validating the settings is
+important and highlights issues with connected services.
 
 Settings should be maintained over time and if you are evolving quickly can
-become bloat that makes supporting your application harder. Testing the
+become bloat that makes updating your application harder. Testing the
 application completely becomes combinatorially larger with additional settings.
 You create the potential for odd corner cases that do not interact well or are
-confusing to your users. For our application we have tried to make all updates
+confusing to your users. For our application we make all updates
 online and maintain a policy of "no breaking changes". Extra design effort was
-needed to ensure new configuration did not affect old functionality and was not
-mandatory prior to updates.
+needed to ensure new configuration did not affect old functionality or
+need to be configured before deploying.
 
 I think software configuration and options are a case where less is more.
 Your goal should be to reduce the configuration so that only the essential
@@ -88,15 +90,15 @@ disguise and should be treated like one. Use the value and remove the setting.
 
 **Unused functionality or configuration?** Deprecate
 and remove the code eliminating the need to support these options. If you are
-keeping around dead code for a rainy day remove it! You can always bring it
+keeping around dead code for a rainy day, remove it! You can always bring it
 back from source control if you need it. Keeping it around and maintaining it
-is taking your attention away from the things you actually should be doing.
+is taking your attention away from something else more important you could be doing.
 Sometimes settings are added in anticipation for a potential need, but are then
-forgotten and never used. These need to go!
+forgotten and never used. These need to be deleted!
 
 **Provide defaults wherever possible.** Defaults improve the "out of the box"
 experience and good defaults let most customers not care about a setting.
-Again if every client uses the default then it becomes a good candidate to
+Again, if every client uses the default then it becomes a good candidate to
 remove completely. Another technique is configuring groups of options which
 can be used together. In some systems we have used hierarchical settings to
 provide more flexible defaults or layering. We learnt this technique from
@@ -107,7 +109,7 @@ made sense.
 flags and other use cases that should be short lived. Put a reminder into the
 code or issue tracker to come back and remove the setting later. We included a bunch
 of configuration so more complicated options could be configured explicitly to
-provide a fall back if some infrastructure was not working. We have since
+provide a fall back if some infrastructure was not working or workaround issues in the code. We have since
 made these areas robust enough that the extra settings can be removed.
 
 **Can it be simpler?** You could have users provide large lists of options or
@@ -117,8 +119,8 @@ configuration to eliminate duplication resulting in a much clearer settings
 containing the bare minimum information. Remember [DRY][dry] is your friend.
 
 **[YAGNI][yagni].** Some settings might not be needed yet and should be left
-until later. I was recently refactoring some code that implemented a simple
-state machine and a coworker suggested I make it completely configurable.
+until later. I was recently refactoring some code that implemented a
+state machine and a coworker suggested I make it externally configurable.
 It would have allowed the system to be reused for other activities, but would
 have introduced complicated configuration which would be easy to get wrong.
 We could happily defer this request until later when hopefully we have a
@@ -130,8 +132,8 @@ Conventions over Configuration
 Strong conventions that imply configuration can remove the need for explicit
 configuration. This is a very powerful way to strip down your configuration
 size and complexity while retaining much of the utility and
-flexibility. While typically applied to code it is also readily applicable to
-any application settings.
+flexibility. This pattern is typically applied to code, it is also readily applicable to
+application settings.
 
 Take the following gratuitous example:
 
@@ -156,23 +158,23 @@ namespace Conventions {
 }
 {% endhighlight %}
 
-This small but potent piece of code will register every concrete type, ``Service``, that
-implements an interface named ``IService`` with [Autofac][autofac], a dependency injection
+This small but potent code will register every concrete type, ``Service``, that
+implements an similarly interface named ``IService`` with [Autofac][autofac], a dependency injection
 framework. Code applying conventions like this helps make most programs more
 consistent and as a result easier to understand. Many frameworks leverage
-common conventions to simplify normal tasks like [registering all ASP.NET MVC Controllers][controllers].
+common conventions to simplify normal tasks like [registering all ASP.NET MVC Controllers in Autofac][controllers].
 
 It can be beneficial to allow users to extend or define their own conventions.
-For example, instead something like my example above you could use the built in
-[assembly scanning][scanning] in Autofac to do create your own convention.
+For example, instead of something like my example above you could use the built in
+[assembly scanning][scanning] in Autofac to define your own conventions.
 Another example would be [Entity Framework][ef]<sup id="essential-configuration-reverse-note-2"><a href="#essential-configuration-note-2">2</a></sup>
-which allows new conventions to be added. If you feel allowing users to define
+which allows new conventions to be added. If you feel allowing users to apply
 their own conventions is necessary I would recommend proceeding with caution.
-Due to the power this provides it can enable much more complicated runtime that
-is harder to audit and validate than simpler alternatives. This is why
+Due to the power this provides it can enable much more complicated runtime behaviour that
+is harder to audit and validate than explicit settings or using existing conventions. This is why
 extensible conventions is typically reserved for programming frameworks where
-the audience is expected to understand the trade-offs and be more technically
-inclined.
+the audience is expected to understand the trade-offs, be more technically
+inclined and can be tested more safely away from production.
 
 We have many examples of conventions throughout our new applications. A really
 simple one is using filenames as identifiers to tie different settings together.
@@ -189,13 +191,14 @@ your application is worthwhile. There are many aspects to consider when
 simplifying your application's configuration. Understanding what can be
 eliminated and where conventions are appropriate can help address this problem.
 
-We have needed to work hard to minimize our configuration and continue refining
-what is included always strive to reduce complexity. Machinator has benefited
-from these ideas and allowed us to progressively refine what settings were
+We have needed to work hard to minimize our configuration and always strive to
+reduce complexity by refining what is included. Machinator has benefited
+from these ideas and allowed us to progressively improve what settings were
 needed. We use conventions heavily to group common settings together logically.
 Cascading defaults for common options removes redundant settings and can be
 overridden when the default is not enough.
-Features that were once necessary have been removed to avoid unwanted choices.
+Features that were once necessary have been removed to avoid unwanted choices
+and simplify the code.
 
 With each iteration we have been able to refine what is included, remove
 unnecessary options, determine sensible defaults and leverage conventions to
