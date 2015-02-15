@@ -5,8 +5,8 @@ date:   2014-09-22 23:11:07
 tags: release process
 ---
 
-What if your releases were immutable? Maybe your process or package was not
-allowed to change in any way. Relaxing or solidifying some of the constraints
+What if your releases were immutable? What if your process or package was not
+allowed to change in any way? Relaxing or solidifying some of the constraints
 might change the way you think about your releases.
 
 Building great software takes time. It is not an exact science and needs care
@@ -109,45 +109,70 @@ establish the minimum time required to perform a release.
 The overhead of the release process is clear. If validation must happen to be
 confident no regressions are introduced then this adds to the overhead.
 Delays in validation cycles or delayed shipping dates for immutable processes
-further inflate the time required to release.
+further inflate the time required to release. Changes that take a day to
+complete, test and prepare but can only ship yearly due to a yearly release
+process are extremely impacted.
 
-Mutable Packages
+With a small change the temptation to alter either the process or package from
+a normal release is greater. What would you change? Why would you want to
+change it? These questions can lead you to find pain points in what you do now.
+Would going further towards or away from either immutable packages or process
+help?
 
-Quick, you found a problem with a release you are about to send to your
-clients. What do you do?
+Why Not Both
+===============================================================================
 
-Do you rebuild and ship the new package? Do you open up your release package
-and stuff in new code/binaries/files to fix the problem? What about retesting?
-Do your releases undergo any soak time? Does that need be repeated?
+I think the ideal is if every change is performed consistently, but can adapted
+as needed. I have come to favour completely immutable packages and processes
+that are light weight and flexible. The core activities ideally does not change,
+but can be extended or reduced for smaller changes. If all changes are small
+changes then releases should be very similar. It is not necessary to have a
+completely immutable process, but is worthwhile to think of how it could help
+improve your releases.
 
-How long it takes for you to create, test and prepare new releases
-fundamentally changes how you can respond. A simple test to know how long each
-release takes would be to understand everything that would happen if you
-changed a single line of code [TODO reference]. The answer to this question is
-what makes up your value stream [TODO link] which makes us all the steps and
-people between any change and delighting your customers.
+Our releases have been from immutable packages since the beginning of the
+project. The traceability has been phenomenal and helped us better understand
+exactly what has been included in each release. When defects are found we know
+the commit that they were introduced and what else will be affected. Creating
+new packages is fully automated and completely repeatable.
 
-However, people under pressure do unusual things. Perhaps there is some simpler
-process that is used to fix errors after a release is made. It looks completely
-different than the normal process but as a result may be much faster. Nothing
-is free and faster includes trade-offs that must be made. Otherwise, why
-wouldn't everything be release as fast as this new fix?
+If we wanted to become more immutable with our packages we could incorporate
+more environmental settings and configuration used to validate each release.
+We strictly configure our applications, but encounter problems with aspects
+that are not as strictly maintained. More constraints on these options would
+remove differences and eliminate the issues they cause.
 
-Maybe the
-only thing that happens is building the new code and light testing of just the
-area that changed. Proportional testing effort to mitigate the risks of the
-small change required to fix the issue.
+The major activities for our releases remain consistent, but we try to adjust
+the smaller things we do based on the risk or complexity of the release. This
+does not live up to the fully immutable ideals, but improves the team's ability
+to adapt to changing circumstances and nature of the changes. Where we try to
+strike a balance is by automating all routine activities and running them for
+every release. Planning, testing, documentation and coordination are always
+happen but are adjusted depending on the changes.
 
-Depending on how your code is packaged
-it may be possible to update just the component that changed instead all of the
-software. Again this would mitigate potential risks for other parts of the code
-which might be justifiable if you have a very large code base with good
-boundaries.
+Our current approach to risk mitigation could be improved. We are a very
+developer focused and I know I have trouble testing my own code. The
+assumptions I make when programming are still there when I try to think about
+how to break my code. This leads to unknown unknowns that are extremely hard
+to account for completely without exhaustive testing. This is an area we
+consistently try to improve by expanding our test coverage and spending more
+time with our clients.
 
-Why can't everything be faster? Everything up until this point presumed that it
-was not possible to make everything faster. Automation is not a silver bullet
-that can solve all your problems but can certainly alleviate them. The
-trade-off with automation is development time and maintenance with a resulting
-reliability that is impossible to match through manual processes.
+I love how adaptable our process is and how easily we update and improve it.
+It remains consistent thanks to automation but continues to evolve as we think
+of new ways to enhance it. Changes to our process ship like changes to our
+application, in small safe increments along side solutions it supports. What
+remains flexible are the interactions with others that need a human touch.
+Empathy and supporting others is much easier thanks to our light weight
+process.
+
+Considering immutable releases has helped me understand what I like most about
+our releases, immutable packages and flexible process done consistently. As we
+locked down our packages and how they were built we simplified what needed to
+be done to create them to the point where the process. From here we can care
+about working with others to build great things.
+
+What in your release process needs to be more immutable? Is there something
+that needs to change or be more flexible?
 
 [nuget]: http://www.nuget.org
