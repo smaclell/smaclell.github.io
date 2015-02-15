@@ -11,7 +11,7 @@ make Puppet safer and avoid common pitfalls.
 
 We are sill fairly new to Puppet and use ``exec`` regularly for specific tasks
 with PowerShell. To ensure our manifests run only when needed we use one of
-``unless``, ``onlyif`` or ``creates``. Not including such a condition would
+``unless``, ``onlyif``, ``creates`` or ``refreshonly``. Not including such a condition would
 fill up our dashboard with nodes that think they are always changing and run
 the ``exec`` commands too often.
 
@@ -20,6 +20,8 @@ Syntax errors will cause ``onlyif`` to always run and ``unless`` to never run.
 This is because you need to be very careful with your exit codes. Based on our
 experience it is preferable to use ``unless`` instead of ``onlyif`` and
 imperative to test your modules thoroughly.
+
+TODO: Quote the puppet docs and indicate why that would be great.
 
 Control All Exits
 ===============================================================================
@@ -63,6 +65,33 @@ exec { 'enable_wsman':
 
 Spamming the Dashboard
 ===============================================================================
+
+We really like the Puppet Dashboard to know how our servers are doing. It can
+track what nodes are being updated and what changes have been applied. Or at
+least it would be if ``exec`` resources only ran when they updates are needed.
+If your resources are not configured to run once or when needed, they will run
+every time Puppet executes. This will cause the Dashboard to look like changes
+are being made even when they aren't and makes the Dashboard less useful.
+
+Every Puppet code I check for and recommend:
+
+> If you use ``exec`` in your manifests,
+> make sure they only run if they need to make changes.
+
+Puppet has many ways that you can ensure ``exec`` only runs when required and
+picking one that makes sense for your usage is easy! These are the ``exec``
+attributes control when and whether it will run:
+
+- ``unless`` For every time you can test for exactly what is updated.
+             This is the primary attribute we use to constrain when our
+             ``exec``'s are applied.
+- ``creates`` If the command results in a file or folder being created. This
+              might be a sign one of the other resources like ``file`` or
+              ``package`` would be a better fit.
+- ``refreshonly`` Only run the ``exec`` when triggered by something else.
+                  Use this option sparingly since it does not guarantee that
+                  what the ``exec`` does is still correctly configured.
+- ``onlyif`` Test your stuff and use ``unless`` instead. Read on to learn why.
 
 OnlyIf No Exceptions
 ===============================================================================
@@ -193,13 +222,14 @@ Testing Rule of Thumb
 Dealing with Arguments
 ===============================================================================
 
+Define(-itely) Puppetifying It
+===============================================================================
+
 
 Conclusion
 ===============================================================================
 
 <hr />
-
-While writing this post I found more behaviour that did not make sense to me and decided to revise the post.
 
 [onlyif]:  https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-onlyif
 [unless]:  https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-unless
