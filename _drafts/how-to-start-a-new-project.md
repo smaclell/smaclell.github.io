@@ -5,7 +5,7 @@ date:   2014-09-22 23:11:07
 tags: deployment, projects
 ---
 
-**Takeaway:** Start new projects with one key feature and a simple deployment.
+Start new projects with one key feature and a simple deployment.
 Iterate from there.
 
 If you had to pick one thing to include in your new project what would it be?
@@ -52,7 +52,7 @@ time making it better and repeat. Invest a little each iteration to making it
 better like adding deployment testing to your continuous integration process or
 simplifying how you manage release assets/binaries. After a few iterations, you
 will get into a groove and changing either the software or deployment will be
-easier.
+easier. That is exactly what we did to make our [deployments easier][boring].
 
 There are many great ways to start deploying today like [Heroku][heroku],
 [Google App Engine][google], [Terraform][terraform], [Docker][docker] and countless others.
@@ -84,6 +84,7 @@ we had about it.*
   what are you waiting for?
 
 [github]:    https://github.com/
+[boring]:    {% post_url 2015-01-21-deploys-becoming-boring-part-2 %}
 [heroku]:    https://www.heroku.com/
 [google]:    https://cloud.google.com/appengine/docs
 [terraform]: https://www.terraform.io/
