@@ -10,19 +10,19 @@ allowed to change in any way? Relaxing or solidifying some of the constraints
 might change the way you think about your releases.
 
 Building great software takes time. It is not an exact science and needs care
-throughout the process to result in products that people will want to use.
+throughout the process to result in products people will want to use.
 Consistently being able to release quality software is a challenge and
 balancing rapid iterations with craftsmanship is imperative.
 
 As your practices around releasing software change over time you might be
 tempted to take shortcuts. Perhaps your code needs to be compiled and creates
-a package that your distribute or deploy. Maybe the way you perform
+a package to be distributed or deployed. Maybe the way you perform
 development, validation and time your releases has a consistent process that is
 strictly adhered to. Allowing changes to either the resulting package or
 process used to create it comes with trade-offs for each shortcut used.
 
 Our team and company have tried different approaches making either the package
-or process completely immutable to varying degrees. Knowing that these
+or process completely immutable to varying degrees. Knowing these
 important aspects of how you release software don't change can lead to more
 trust in the resulting applications and more repeatable releases.
 
@@ -48,7 +48,7 @@ We use this to trace our changes all the way back to
 development and the changes included since previous packages. Knowing the exact
 delta between any two builds helps with finding the root cause for defects.
 
-When there is a defect it is clear that you should not adjust or tweak the
+When there is a defect it is clear you should not adjust or tweak the
 contents of a released package. This would violate the traceability and
 can be a source of problems by not using the standard automation.
 Rather than focus on changing the package the conversation shifts to which
@@ -57,9 +57,9 @@ create a new one with the fixes.
 
 Keeping every package will cause you to run out of disk space in a hurry! This
 caused us to shrink our packages, monitor how much space is left and cleaning
-up old unused packages. If you are shipping a new version, N + 1, and are
-currently at N then you should be able to remove every package from before N.
-You can also prune intermediate packages that are not release candidates.
+up old unused packages. If you are shipping the version N + 1 and are
+currently at N, you should be able to remove every package from before N.
+You can also prune intermediate packages which are not release candidates.
 
 Immutable Process
 ===============================================================================
@@ -75,10 +75,10 @@ The expectations on all parties is crystal clear at all times. Upcoming
 obligations are understood by everyone involved. What happens every release is
 not a surprise and should be familiar to everyone after a few releases.
 
-Teams working a regular cadence already have structure that promotes immutable
+Teams working at a regular cadence already have structure promoting immutable
 release processes. Sprints or iterations from agile practices provide a
-consistent rhythm that teams use to perform their release processes. Aligning
-releases to team rituals helps establish team norms and understanding.
+consistent rhythm teams can use to perform their release processes. Aligning
+releases to team rituals helps establish team norms and consistency.
 
 We ensure every application we build has a release process that given the same
 input will produce the same output. All automated tests run associated with
@@ -94,7 +94,7 @@ Single Line Change
 
 The best way to put both these options to the test is to evaluate the time and
 effort required to release a single change. The smaller the change the better.
-Releasing should be easy to do and fast so that the team spends less time
+Releasing should be easy to do and fast so the team spends less time
 releasing and more time building awesome applications. As you scale down the
 size of a change the more apparent the overhead is the release process in
 comparison to the time and effort for the change being made. The pinnacle is
@@ -110,7 +110,7 @@ The overhead of the release process is clear. If validation must happen to be
 confident no regressions are introduced then this adds to the overhead.
 Delays in validation cycles or delayed shipping dates for immutable processes
 further inflate the time required to release. Changes that take a day to
-complete, test and prepare but can only ship yearly due to a yearly release
+complete, test and prepare, but can only ship yearly due to a yearly release
 process are extremely impacted.
 
 With a small change the temptation to alter either the process or package from
@@ -123,8 +123,8 @@ Why Not Both
 ===============================================================================
 
 I think the ideal is if every change is performed consistently, but can adapted
-as needed. I have come to favour completely immutable packages and processes
-that are light weight and flexible. The core activities ideally does not change,
+as needed. I have come to favour completely immutable packages and light weight
+flexible processes. The core activities ideally does not change,
 but can be extended or reduced for smaller changes. If all changes are small
 changes then releases should be very similar. It is not necessary to have a
 completely immutable process, but is worthwhile to think of how it could help
@@ -133,13 +133,13 @@ improve your releases.
 Our releases have been from immutable packages since the beginning of the
 project. The traceability has been phenomenal and helped us better understand
 exactly what has been included in each release. When defects are found we know
-the commit that they were introduced and what else will be affected. Creating
+the commit that they were introduced and which releases will be affected. Creating
 new packages is fully automated and completely repeatable.
 
 If we wanted to become more immutable with our packages we could incorporate
 more environmental settings and configuration used to validate each release.
-We strictly configure our applications, but encounter problems with aspects
-that are not as strictly maintained. More constraints on these options would
+We strictly configure our applications, but encounter problems with environmental
+effects which are not as strictly maintained. More constraints on these options would
 remove differences and eliminate the issues they cause.
 
 The major activities for our releases remain consistent, but we try to adjust
@@ -148,7 +148,7 @@ does not live up to the fully immutable ideals, but improves the team's ability
 to adapt to changing circumstances and nature of the changes. Where we try to
 strike a balance is by automating all routine activities and running them for
 every release. Planning, testing, documentation and coordination are always
-happen but are adjusted depending on the changes.
+happen and are adjusted depending on the changes.
 
 Our current approach to risk mitigation could be improved. We are a very
 developer focused and I know I have trouble testing my own code. The
@@ -159,7 +159,7 @@ consistently try to improve by expanding our test coverage and spending more
 time with our clients.
 
 I love how adaptable our process is and how easily we update and improve it.
-It remains consistent thanks to automation but continues to evolve as we think
+It remains consistent thanks to automation and continues to evolve as we think
 of new ways to enhance it. Changes to our process ship like changes to our
 application, in small safe increments along side solutions it supports. What
 remains flexible are the interactions with others that need a human touch.
