@@ -216,18 +216,85 @@ against the expected value, as shown by the ``Exec['set_wsman_shell_memory_limit
 resource. Each ``exec`` should perform only one change to simplify both the
 command and the condition.
 
-Testing Rule of Thumb
+Checking It Twice
 ===============================================================================
 
+When using ``exec`` it is important to make sure the commands behave as
+expected. At the very minimum, I always run my manifests twice, once to test
+that it runs correctly and then a second time to verify that running again does
+not change anything else and does not run again. Testing the manifests in this
+blog post helped me to find issues that I otherwise would not have found.
+
+This normally involves testing the module locally using specs and/or applying
+the manifest. After I am done testing locally I run the manifest on a blank
+machine twice. Testing locally provides feedback much faster and checks that
+the basics of the manifest work. Repeating the process on a blank machine
+makes sure that there is nothing special about my machine that caused the
+test to pass.
+
+When using PowerShell in a manifest, I will often try running the script
+outside of Puppet to verify it behaves correctly in isolation. If I have used
+any conditions I will then check them in the same manner. Separating the two
+technologies helps limit what is being tested and eliminates the interaction
+with Puppet. Testing both with and without Puppet is comparable to unit testing
+just the PowerShell and then integration testing both technologies together.
+
 Dealing with Arguments
+===============================================================================
+
+Bridging the language differences between PowerShell and Puppet has changed how
+we write our puppet manifests. We initially used a mix of single and double
+quotes for PowerShell strings and escaped everything. To clearly separate the
+PowerShell from Puppet and avoid escaping we started using this pattern:
+
+
+{% highlight puppet %}
+# This value would come from hiera or elsewhere in the manifest
+$max_memory_per_shell_mb = 1024
+
+$args = "\$maxMemoryPerShellMB = ${max_memory_per_shell_mb}"
+
+$command = '
+  Set-Item `
+    -Path WSMan:\localhost\Shell\MaxMemoryPerShellMB `
+    -Value $maxMemoryPerShellMB
+'
+
+$unless = '
+  $value = (Get-Item -Path WSMan:/localhost/Shell/MaxMemoryPerShellMB).Value
+  if ( $value -ge $maxMemoryPerShellMB ) {
+    exit 0
+  } else {
+    exit 1
+  }
+'
+
+exec { 'set_wsman_shell_memory_limit':
+  command  => "${args};${command}",
+  unless   => "${args};${unless}",
+  provider => powershell,
+}
+{% endhighlight %}
+
+Declaring all the arguments up front clearly shows the inputs and separates
+them from the behaviour of the scripts. The scripts themselves do not need any
+escaping thanks to the single quotes. What will be run by PowerShell and the
+Puppet resources are separated, allowing each one to focus on their own
+concerns without being entangled. This works great for small snippets but
+the larger or more complicated the scripts becomes the less useful it is.
+
+Follow The Script
 ===============================================================================
 
 Define(-itely) Puppetifying It
 ===============================================================================
 
 
-Conclusion
+Be Safe
 ===============================================================================
+
+I hope that you found this advice useful. We are still learning how to be use
+Puppet safely.
 
 <hr />
 
