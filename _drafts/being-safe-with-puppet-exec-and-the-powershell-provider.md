@@ -286,6 +286,16 @@ the larger or more complicated the scripts becomes the less useful it is.
 Follow The Script
 ===============================================================================
 
+Ideally the PowerShell scripts being run by Puppet are small. The larger they
+are the harder it is to keep them idempotent and continue to maintain them.
+Like every other language keeping things small and readable is recommended.
+
+There have been some scripts that became much more complicated, but were still
+performing a single atomic operation. To deal with these larger scripts we
+would pull them out into their own file, copy them to the target machine using
+a ``file`` resource and then run them using ``exec``. Another fun twist on this
+pattern is to declare the files as a template and include them inline.
+
 Define(-itely) Puppetifying It
 ===============================================================================
 
@@ -294,7 +304,7 @@ Be Safe
 ===============================================================================
 
 I hope that you found this advice useful. We are still learning how to be use
-Puppet safely.
+Puppet safely, especially when we use it mixed with PowerShell.
 
 <hr />
 
