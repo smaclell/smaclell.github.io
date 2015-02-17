@@ -9,7 +9,7 @@ We have learnt a few thing things since we started that have led us to be more
 cautious when using PowerShell within Puppet. Over time we have learnt ways to
 make Puppet safer and avoid common pitfalls.
 
-We are sill fairly new to Puppet and use ``exec`` regularly for specific tasks
+We are still fairly new to Puppet and use ``exec`` regularly for specific tasks
 with PowerShell. To ensure our manifests run only when needed we use one of
 ``unless``, ``onlyif``, ``creates`` or ``refreshonly``. Not including such a condition would
 fill up our dashboard with nodes that think they are always changing and run
