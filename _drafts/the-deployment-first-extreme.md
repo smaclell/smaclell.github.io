@@ -1,12 +1,10 @@
 ---
 layout: post
 title:  "Deployment First To The Extreme"
-date:   2014-09-22 23:11:07
-tags: deployment, projects
+date:   2015-02-17 23:15:07
+tags: deployment projects
 image:
-  feature: skys-the-limit-feature.jpg
-  credit: "Jackie Meredith"
-  creditlink: https://flic.kr/p/jk1B8J
+  feature: limit.jpg
 ---
 
 In my previous post about [how to start new projects][new-projects] I talked
