@@ -217,6 +217,10 @@ Yes this is the same Machinator from my [Lib, Service or Component][lsb] post.
 been to keep all applications small enough that a tool like [Dapper][dapper] is
 more than sufficient.
 
+The title photo was inspired by [Essentials][tg] by Terminals & Gates. It did
+not fully turn out how I wanted, but decided to leave it and finish this post.
+The items shown are what I carry with me on a daily basis and are essential.
+
 [hiera]: https://docs.puppetlabs.com/hiera/1/#avoiding-repetition
 [autofac]: http://autofac.org/
 [controllers]: http://docs.autofac.org/en/latest/integration/mvc.html
@@ -226,3 +230,4 @@ more than sufficient.
 [ef]:  http://msdn.microsoft.com/en-us/data/jj819164.aspx
 [lsb]: {% post_url 2015-01-07-what-is-it-going-to-be-library-service-component %}
 [dapper]: https://github.com/StackExchange/dapper-dot-net
+[tg]: https://www.flickr.com/photos/terminals/13361563673
