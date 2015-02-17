@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "How to Start a New Project"
-date:   2014-09-22 23:11:07
-tags: deployment, projects
+date:   2015-02-17 23:11:07
+tags: deployment projects
+image:
+  feature: how-to-start.jpg
 ---
 
 Start new projects with one key feature and a simple deployment.
@@ -35,7 +37,7 @@ This is why starting with a simple deployment is recommended. Try this approach:
 <span id="step-1"></span>
 
 1. Implement killer feature
-1. Automate enough to use killer feature
+1. Automate enough to release killer feature
 1. Ship it
 1. GOTO **<a href="#step-1">Step 1</a>**
 
