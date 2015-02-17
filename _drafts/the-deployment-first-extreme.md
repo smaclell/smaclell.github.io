@@ -4,7 +4,7 @@ title:  "Deployment First To The Extreme"
 date:   2015-02-17 23:15:07
 tags: deployment projects
 image:
-  feature: limit.jpg
+  feature: limit-2.jpg
 ---
 
 In my previous post about [how to start new projects][new-projects] I talked
