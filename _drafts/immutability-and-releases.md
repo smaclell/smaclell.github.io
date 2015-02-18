@@ -3,6 +3,8 @@ layout: post
 title:  "Immutablity and Releases"
 date:   2014-09-22 23:11:07
 tags: release process
+image:
+  feature: immutability-and-releases-rocks.jpg
 ---
 
 What if your releases were immutable? What if your process or package was not
