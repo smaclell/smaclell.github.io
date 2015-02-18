@@ -177,4 +177,9 @@ about working with others to build great things.
 What in your release process needs to be more immutable? Is there something
 that needs to change or be more flexible?
 
+<hr />
+
+*I would like to thank Matt Campbell for this original idea and the discussions
+we have had about the concept.*
+
 [nuget]: http://www.nuget.org
