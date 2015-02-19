@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Essential Configuration"
-date:   2014-09-22 23:11:07
+date:   2015-02-19 9:42:00
 tags: design configuration
 image:
   feature: essential-configuration.jpg
