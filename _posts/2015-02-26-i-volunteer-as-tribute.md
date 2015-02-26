@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "I Volunteer As Tribute"
-date:   2015-02-25 23:11:07
+date:   2015-02-26 7:27:07
 tags: career meta
 image:
   feature: volunteer.jpg
@@ -110,7 +110,7 @@ Stick around. I think you are going to like it.
 <hr />
 
 Unlike Katniss I am happy to go. I was not sure if I could use the actual
-Hunger Games picture (or [Brick Tamland][brick]) for this post so settled for
+Hunger Games [picture][games] (or [Brick Tamland][brick]) for this post so settled for
 this patient volunteer tending flowers. I highly recommend looking at the full
 sized image to see the entire picture.
 
@@ -118,3 +118,4 @@ sized image to see the entire picture.
 [hanselman]: http://www.hanselman.com/blog/
 [source]: http://www.hanselman.com/blog/CategoryView.aspx?category=Source+Code
 [brick]: http://img.pandawhale.com/102618-Anchorman-I-volunteer-as-tribu-D6Kf.gif
+[games]: http://giphy.com/gifs/jennifer-lawrence-black-and-white-girl-Raz8gNlDERdS
