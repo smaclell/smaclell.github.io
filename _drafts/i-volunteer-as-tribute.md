@@ -3,6 +3,10 @@ layout: post
 title:  "I Volunteer As Tribute"
 date:   2015-02-25 23:11:07
 tags: career meta
+image:
+  feature: volunteer.jpg
+  credit: www.Michie.ru CC BY 2.0 (resized)
+  creditlink: https://www.flickr.com/photos/michisakai/15253045958
 ---
 
 For the next 4 months, I will be joining another team dedicated to making
