@@ -107,6 +107,14 @@ bring my need for simple and reliable releases to this new challenge.
 
 Stick around. I think you are going to like it.
 
+<hr />
+
+Unlike Katniss I am happy to go. I was not sure if I could use the actual
+Hunger Games picture (or [Brick Tamland][brick]) for this post so settled for
+this patient volunteer tending flowers. I highly recommend looking at the full
+sized image to see the entire picture.
+
 [d2l]: http://www.d2l.com/
 [hanselman]: http://www.hanselman.com/blog/
 [source]: http://www.hanselman.com/blog/CategoryView.aspx?category=Source+Code
+[brick]: http://img.pandawhale.com/102618-Anchorman-I-volunteer-as-tribu-D6Kf.gif
