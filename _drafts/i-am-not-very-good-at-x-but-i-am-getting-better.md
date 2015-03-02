@@ -2,7 +2,7 @@
 layout: post
 title:  "I am not very good at X, but I am getting better"
 date:   2015-02-28 23:11:07
-tags: meta improvement
+tags: improvement
 ---
 
 There are many things I don't think I am particularly good at and that is okay.
