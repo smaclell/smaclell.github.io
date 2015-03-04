@@ -6,52 +6,51 @@ tags: testing services api
 ---
 
 Building services with strong versioned API's provides a great place to test
-applications without the churn. This level is well suited to integration and
-unit tests. Test along API boundaries to more easily prevent regressions and
-validate functionality than if testing directly against the API.
+applications without the churn. Testing along API boundaries can more easily
+prevent regressions and validate functionality.
 
-I have been thinking more about building applications with the API first. This
-promotes decoupling and modularity from the start, but also is an excellent
-place to test the application. This is definitely an area I am not an
-expert and have a great deal to learn.
+I have been thinking more about building applications API first. I don't
+have lots of experience here, but want to learn more since it seems to be the
+direction technology is trending with more decoupled architectures and
+[microservices][microservices].
 
-With the project we were working on, we tried to break up our dependencies
-across smaller libraries, tools and services. Services declared their own APIs
-in a versioned manner using from backwards compatible data/responses and
-sometimes explicit versions within the urls.
+API first promotes decoupling and modularity from the start. Beginning your
+early development by also testing thoroughly at the API is a great way to build
+quality in.
 
-Why
+With our projects we tried to break up our dependencies across smaller
+libraries, tools and services. The service API's are versionned using part
+of the url and/or backwards compatible data/responses.
+
+Why API Testing
 ===============================================================================
 
-Here is why I think you should focus on testing the API.
+I think there are a several reasons why testing along the API is particularly
+useful compared to unit and integration tests.
 
-1. *Less churn*
-
-Intentionally versionning along an API provides more stability compared to
+**Less churn and easier to maintain due to versionning.** Versionning along an API provides more stability compared to
 other code. Smaller classes and UI elements are more likely to change which
-would impact any associated tests. Tests against service endpoints are not
-affected by implementation details directly.
+would impact any associated tests. Tests against service endpoints are less
+affected by implementation details and should not need to change as often.
+Not needing to changes as often results in less churn and easier to maintain
+tests.
 
 Backwards compatibility across versionned contracts will ensure that any tests
-targeting the API continue to server their intended purpose as the contract is
+targeting the API continue to server their intended purpose as long as the contract is
 maintained. When new APIs are made available completely new tests can be added
 without changing existing tests. When APIs are retired their test suites can be
-removed with them.
+removed at the same time.
 
-With less churn testing the service is easier to maintain.
-
-2. *Documentation*
-
-Testing at the API boundary serves as additional documentation. By reviewing
-the tests newer developers unfamiliar with the system can understand how it
-works and what operations are available.
+**Tests provide additional documentation and use case examples.** By reviewing
+the tests developers unfamiliar with the system can understand how it
+works and what operations are available. Edge cases that are important to
+preserve can be highlighted by the tests.
 
 This documentation can be further enhanced with executable specifications, such
 as [cucumber][cukes]. By writing detailed specifications for the service
-against the API directly the desired behaviour is validated to work as
-intended.
+API the desired behaviour it can be clearer what behaviour is being validated.
 
-3. *Preventing regressions*
+3. **Preventing regressions**
 
 Tests that reinforce the public service's API protect against regressions. They
 can easily confirm that a release is ready and prevent issues for the entire
