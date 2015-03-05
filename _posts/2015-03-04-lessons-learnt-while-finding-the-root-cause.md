@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lessons Learnt While Finding The Root Cause"
+title:  "Lessons Learnt Finding The Root Cause"
 date:   2015-03-04 23:33:32
 tags: troubleshooting powershell logstash elasticsearch daryl
 image:
