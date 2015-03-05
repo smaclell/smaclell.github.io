@@ -48,35 +48,40 @@ preserve can be highlighted by the tests.
 
 This documentation can be further enhanced with executable specifications, such
 as [cucumber][cukes]. By writing detailed specifications for the service
-API the desired behaviour it can be clearer what behaviour is being validated.
+API the desired behaviour it can clarified and what is validated.
 
-3. **Preventing regressions**
-
-Tests that reinforce the public service's API protect against regressions. They
-can easily confirm that a release is ready and prevent issues for the entire
-lifespan of the service. Other test coverage is useful, but does not provide
-the same guarantees the service works as intended end to end.
+**Preventing regressions in public API.** They can easily confirm that a
+release is ready and prevent issues for the entire lifespan of the service.
+Other test coverage is useful, but does not provide the same guarantees the
+service works as intended end to end. API tests interact with the target code
+the exact same way that any other callers will allowing them to replicate
+client use cases exactly. UI tests can only indirectly validate functionality
+and unit tests only cover isolated scope.
 
 Necessary, but not sufficient
 ===============================================================================
 
-I think for small services tests against the API may be enough. We have some
+I think for small services testing only against the API may be enough. We have some
 services with very comprehensive API tests and few unit tests. The tests take
 longer to run compared to pure unit tests, but we are very confident about
-integrating with the service due to these higher level tests. This is even
-easier with this particular with this service since it is highly integrated
-with other services and very simple use cases.
+integrating with the service due to these higher level tests. This is easier
+with this service since it is highly integrated with other services and has
+very simple use cases.
 
 Other services have benefit from a higher percentage of unit tests. Unit tests
 are better suited to covering everything beneath the service API. Each class
 may introduce permutations and new behaviour hidden from the API that would be
-impossible to test from the outside. Our services look like ice bergs with most
+much harder to test from the outside. Our services look like ice bergs with most
 of the code beneath the surface. Everything above the water needs to behave as
-expected and all the dangers below the water must be closely watched.
+expected and all the dangers below the water must be closely watched. I feel the
+majority of services would fall into this category and would benefit from
+different types of testing, such unit or exploratory testing.
 
-I think thoroughly testing the API is necessary to reinforce the health of any
-service, but not sufficient to prevent all defects.
+I think thoroughly testing along versionned API's is necessary to protect the
+health of any service, but not sufficient to prevent all defects. Reduced
+churn, improved documentation and preventing regressions are all great reasons
+to invest heavily in comprehensive API testing. How would your development look
+different with more API testing?
 
 [microservices]: http://martinfowler.com/articles/microservices.html
-[hal]: http://stateless.co/hal_specification.html
 [cukes]: https://cukes.info/
