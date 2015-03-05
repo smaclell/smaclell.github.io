@@ -60,7 +60,7 @@ the exact same way that any other callers will allowing them to replicate
 client use cases exactly. UI tests can only indirectly validate functionality
 and unit tests only cover isolated scope.
 
-Necessary, but not sufficient
+Start Here, Go Deeper
 ===============================================================================
 
 I think for small services testing only against the API may be enough. We have some
@@ -80,7 +80,7 @@ majority of services would fall into this category and would benefit from
 different types of testing, such unit or exploratory testing.
 
 I think thoroughly testing along versionned API's is necessary to protect the
-health of any service, but not sufficient to prevent all defects. Reduced
+health of any service and a great starting point for testing. Reduced
 churn, improved documentation and preventing regressions are all great reasons
 to invest heavily in comprehensive API testing. How would your development look
 different with more API testing?
