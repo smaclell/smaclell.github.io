@@ -3,6 +3,8 @@ layout: post
 title:  "Testing at the API Boundary"
 date:   2015-02-28 23:11:07
 tags: testing services api
+image:
+  feature: wall-edge.jpg
 ---
 
 Building services with strong versioned API's provides a great place to test
