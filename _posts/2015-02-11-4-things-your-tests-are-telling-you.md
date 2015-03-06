@@ -14,7 +14,7 @@ results can provide ways to clean up your code or uncover hidden defects.
 High quality unit and integration tests are the cornerstone of any well-functioning
 Deployment Pipeline or Continuous Integration. Keeping your tests and Continuous
 Integration healthy is critical for developing any application. Staying healthy
-includes listening to the feedback the tests are giving you.
+includes listening to the feedback tests are giving you.
 
 There are 4 quick and dirty types of unhealthy tests giving you feedback:
 
