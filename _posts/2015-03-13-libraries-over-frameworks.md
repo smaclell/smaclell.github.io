@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Libraries over Frameworks"
-date:   2015-02-01 23:11:07
+date:   2015-03-13 00:19:07
 tags: development design daryl
 ---
 
@@ -104,7 +104,7 @@ recommendations. We tried to find out where Daryl first heard about this idea
 but did not find it. In the process of searching we did find this great [article][other]
 which also highlights why you want to favour libraries over frameworks*
 
-[ps]: TODO
+[ps]: {% post_url 2015-03-04-lessons-learnt-while-finding-the-root-cause %}
 [nancy]: http://nancyfx.org/
 [dapper]: https://github.com/StackExchange/dapper-dot-net
 [other]: http://tom.lokhorst.eu/2010/09/why-libraries-are-better-than-frameworks
