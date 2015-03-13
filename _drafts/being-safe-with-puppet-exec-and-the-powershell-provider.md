@@ -288,17 +288,67 @@ Follow The Script
 
 Ideally the PowerShell scripts being run by Puppet are small. The larger they
 are the harder it is to keep them idempotent and continue to maintain them.
-Like every other language keeping things small and readable is recommended.
+Like every other language keeping things small and readable is best.
 
 There have been some scripts that became much more complicated, but were still
 performing a single atomic operation. To deal with these larger scripts we
 would pull them out into their own file, copy them to the target machine using
-a ``file`` resource and then run them using ``exec``. Another fun twist on this
-pattern is to declare the files as a template and include them inline.
+a ``file`` resource and then run them using ``exec``.
+
+Another fun twist on this pattern is to declare the files as a template and
+include them inline. I have not tried it yet personally, but it seems like
+it could be promising. You can see a small example in the [puppetlabs/powershell][labs-ps]
+usage documentation.
 
 Define(-itely) Puppetifying It
 ===============================================================================
 
+As our Puppet modules became more complicated we began using more
+[define][define]'s throughout our modules. They are a great way to encapsulate
+common functionality without resorting the the complexity of
+[types and providers][types]. The [define tutorial][define-tutorial] is a good
+way to learn how you can use them today in your modules.
+
+To isolate our PowerShell within Puppet we began wrapping common commands with
+defines. Doing so made the switch between the languages easier and meant fewer
+manifests care about the PowerShell being used.
+
+In case that is not clear here is a small example of creating an SMB Share.
+
+{% highlight puppet %}
+
+define module::smb_share( $ensure, $share_path, $share_name = $title ) {
+
+  validate_absolute_path( $share_path )
+
+  $args = "
+    \$shareName = '${share_name}'
+    \$sharePath = '${share_path}'
+  "
+
+  $command = '
+    New-SmbShare `
+      -Name $shareName
+      -Path $sharePath
+  '
+
+  $unless = '
+    $shares = @( Get-SmbShare )
+    if ( $shares | ? { $_.Name -eq $shareName } ) {
+      exit 0
+    } else {
+      exit 1
+    }
+  '
+
+  exec { $title:
+    command  => "${args};${command}",
+    unless   => "${args};${unless}",
+    provider => powershell,
+  }
+
+}
+{% endhighlight %}
 
 Be Safe
 ===============================================================================
@@ -312,3 +362,7 @@ Puppet safely, especially when we use it mixed with PowerShell.
 [unless]:  https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-unless
 [psexit]:  http://blogs.msdn.com/b/powershell/archive/2006/10/14/windows-powershell-exit-codes.aspx
 [connect]: https://connect.microsoft.com/PowerShell/feedbackdetail/view/1121146/powershell-executable-syntax-error-exit-code-is-0
+[labs-ps]: https://forge.puppetlabs.com/puppetlabs/powershell#usage
+[define]: https://docs.puppetlabs.com/puppet/latest/reference/lang_defined_types.html
+[define-tutorial]: https://docs.puppetlabs.com/learning/definedtypes.html
+[types]: https://docs.puppetlabs.com/guides/custom_types.html
