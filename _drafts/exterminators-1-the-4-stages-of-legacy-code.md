@@ -59,54 +59,52 @@ Despair
 
 In the middle of the week I felt like giving up. The feeling of being
 overwhelmed by the challenge seemed like too much. I thought I knew what I was
-getting into, but apparently had underestimated it. Things that were normally
-easy in the code I was familiar with came much harder.
+getting into, but apparently I had underestimated it. Things that were normally
+easy in the other codebases I have worked on were now much harder.
 
-I always feel like an [imposter][imposter]. Looking at the code made me feel
-like I had no right to be here. Maybe I don't. I missed out on many of the
-"Basics" that my other co-workers take for granted because I did not take a
-standard computer science degree. This has caused me to work harder and try to
-learn more about the basics, but I always feel like I have gaps. The unknowns
-you cannot know because you don't know what you are missing.
+Unlike the other developers I don't have a normal Computer Science degree;
+this makes me feel like an [imposter][imposter]. I constantly doubt my ability
+as a developer. Looking at the code made me feel like I had no right to be here.
+Maybe I don't. I missed out on many of the "Basics" that my other co-workers
+take for granted. This has caused me to work harder and try to learn more about
+the basics, but I always feel like I there are gaps in what I know. The hardest
+part is not knowing what I don't know.
 
 Acceptance
 ===============================================================================
 
-I realized my feels were perfectly natural and part of understanding my
+Eventually, I realized my feelings were perfectly natural and part of understanding my
 limits. It is okay to not know all the answers. Learning takes time and I need
 to be willing to take the time it needs.
 
-It took most of the week to do and I was finally able to accept the legacy code
+It took most of the week to become comfortable and to be able to accept the legacy code
 for what it is. The code works as intended and is only missing a few tests to
-be much better. Only pockets of the code are like this and so knowing where
-they are can better help me deal with them.
+be much better. Only pockets of the code are missing tests; knowing where
+they are can help me deal with them.
 
 Things are the way they are, I can accept that. Getting over my mental blockers
-will take effort, but is the starting point for improving. Accepting reality
-for what it is provides will help me move on and understand what is possible.
+will take effort, but is the starting point for improving my ability to work
+on this code. Accepting reality for what it provides will help me get past my
+hangups and understand what is possible.
 
 Hope
 ===============================================================================
 
 As the week progressed I felt I was beginning to see things more clearly and
-understand how I could help. Knowing there is a path where I can help improve
-the current state and contribute to the team gave me hope.
+understand how I could help reduce the legacy code. Coming to the realization
+that I can help improve the current code and contribute to the team gave me hope.
 
 I spent all of Friday working on something new. The morning was slow at first,
-but as I got further my ideas took shape. If tests were the problem holding me
-back from being confident and I needed more of them to feel safe then the
-solution is to add more. Adding Unit Tests when I need them. Wrap areas I will
-affect in larger integration tests to feel safer before doing more changes.
+but as I got further into what I was doing my ideas took shape. If not enough
+tests is what's holding me back from being confident, then the solution is to
+add more tests. To add unit tests when I need them. To pin down existing
+functionality with integration tests in order to feel safer before making changes.
 
-With these tests in place I no longer was overwhelmed or feeling low. For the
+With these tests in place I no longer felt overwhelmed. For the
 first time this week I was filled with hope that I could make a difference. I
-will share more about what I learned and the new tests I added in later posts.
-For now it is enough to know that I am excited for these early wins on the path
+will share more about what I learned from the new tests I added in later posts.
+Suffice it to say, I am excited by these early successes on the path
 to shrinking our legacy code.
-
-If you are feeling lost or overwhelmed with a big challenge you aren't alone.
-Understanding this is the beginning and using small improvements can be the
-motivation you need to keep going and pursue a future filled with hope.
 
 [legacy]: http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
