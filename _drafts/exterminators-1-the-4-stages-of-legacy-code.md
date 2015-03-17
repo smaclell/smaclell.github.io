@@ -106,6 +106,13 @@ will share more about what I learned from the new tests I added in later posts.
 Suffice it to say, I am excited by these early successes on the path
 to shrinking our legacy code.
 
+<hr/>
+
+*I would like to thank the grammatical gal in my life, my lovely lady wife
+[Angela][ange], for helping review this post. She knows when to use a
+semicolon properly.
+
 [legacy]: http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [imposter]: http://www.hanselman.com/blog/ImAPhonyAreYou.aspx
+[ange]: http://macangela.tumblr.com
