@@ -11,14 +11,18 @@ me through many emotions, but after the first week I feel optimistic for what
 comes next.
 
 <div class="disclaimer">
+<p>
 This is my personal blog and does not represent the views and opinions of my
 employer. While I do talk about the code and general areas I am working on, the
 challenges discussed here are my perspective while dealing with a limited part
 of the whole system.
+</p>
 
+<p>
 The difficulties I found while learning about the system are my own and are
 part of the learning curve. After one week in I feel much better and encourage
 you to read more for the whole story.
+</p>
 </div>
 
 Years ago I read the book [Working Effectively with Legacy Code][legacy] and
@@ -110,7 +114,7 @@ to shrinking our legacy code.
 
 *I would like to thank the grammatical gal in my life, my lovely lady wife
 [Angela][ange], for helping review this post. She knows when to use a
-semicolon properly.
+semicolon properly.*
 
 [legacy]: http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
