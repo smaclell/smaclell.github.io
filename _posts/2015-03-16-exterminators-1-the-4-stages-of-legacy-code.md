@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Exterminators Week 1 - The 4 Stages of Legacy Code"
-date:   2015-02-28 23:11:07
+date:   2015-03-16 22:54:27
 tags: process improvement legacy exterminator feelings
 ---
 
