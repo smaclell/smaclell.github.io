@@ -2,7 +2,7 @@
 layout: post
 title:  "I Volunteer As Tribute"
 date:   2015-02-26 7:27:07
-tags: career meta
+tags: career meta exterminator
 image:
   feature: volunteer.jpg
   credit: www.Michie.ru CC BY 2.0 (resized)

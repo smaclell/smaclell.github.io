@@ -52,6 +52,13 @@
 	}
 }
 
+.disclaimer {
+	background-color: lighten($base-color, 75%);
+	color: $base-color;
+	text-shadow: none;
+	padding: 0.25em  1em;
+}
+
 // Global Transition
 // ---------------------------------------------------
 b, i, strong, em, blockquote, p, q, span, figure, img, h1, h2, header, input, a {
