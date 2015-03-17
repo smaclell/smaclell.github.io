@@ -49,7 +49,7 @@ Typically, I use the tests to get a basic understanding for how code
 works. Using that knowledge I can start the normal TDD cycle (Red, Green,
 Refactor) to make small changes until I was done. If there are no tests then
 I need to reverse engineer what the code should do. Code not designed to be
-testeable is harder to start the normal TDD cycle.
+testable is harder to start the normal TDD cycle.
 
 From the outside looking in it is easy to make assumptions about how easy
 something would be. The extra distance between you and the problem makes it easy
@@ -89,7 +89,7 @@ they are can help me deal with them.
 Things are the way they are, I can accept that. Getting over my mental blockers
 will take effort, but is the starting point for improving my ability to work
 on this code. Accepting reality for what it provides will help me get past my
-hangups and understand what is possible.
+hang-ups and understand what is possible.
 
 Hope
 ===============================================================================
