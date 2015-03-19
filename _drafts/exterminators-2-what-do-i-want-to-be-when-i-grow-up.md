@@ -16,7 +16,7 @@ project I decided to focus on habits I wanted to improve. While my usual goals
 are fun and challenging they don't go deep. Lasting habits are hard to form and
 easy to lose.
 
-The two areas I picked were **Focus** and **Quality**.
+The two areas I picked were **[Focus](#focus)** and **[Quality](#quality)**.
 
 Why
 ===============================================================================
@@ -29,40 +29,81 @@ Improving at you want to do can help you do more. If you are passionate about
 your cause then it makes perfect sense that you would want to be better at
 anything related to it.
 
-I don't think I am a particularly gifted programmer. In fact, I think I am just
-okay. However, I don't see this as a limitation instead as an area for
-continuously improving. Where I am good I can become better and I can work on
-filling the gaps ever where else.
+Improvement is a never ending journey. For every new thing you learn you can
+always learn more and continue to get better. You can even try to change
+habits and routines with enough effort. Instead of standing still I think
+it is critical to be constantly learning and pushing yourself.
 
-I like to think of self improvement as a never ending journey. You can always
-get better and change small pieces of yourself. With enough effort and
-willpower I think you can change anything. Every year I like to push myself
-with a new challenge or goal.
+Being a developer is exciting and an area where I always can get better. There
+are always new techniques, libraries and projects to learn from. I don't think
+I have some innate talent for being a developer or skills are something people
+are born with. I think if you want to be an amazing developer you can with
+enough effort and dedication.
 
-If you want to be an essential [lynchpin][Lynchpin] then I think it is critical
-you are always improving. To push the boundary on your potential I think it is
-very important to choose wisely what to try to improve on.
+I want to be an amazing developer so I can solve problems and help others.
+The internal motivation to be a better developer and deliver better products
+is what drives me to improve.
+
+Inspiration
+===============================================================================
+
+Last year I started reading [Dan Blumenthal's][dan] blog and have found it a
+treasure trove for career advice.
+
+Talk about the series. http://dandreamsofcoding.com/2013/05/23/mastery/
+
+
+People who are [smart and get things done][smart] or the even more elusive
+[done and gets things smart][done] do what they need to in order to get stuff
+done.
+
+I believe there are two types of people, doers and talkers. If I want to be a
+doer and that means I need to focus on getting things done.
 
 Focus
 ===============================================================================
+
+Work in progress is not done and only when we are completely done is what we
+are doing valuable for our clients. Building great software requires dedicated
+focus and attention which is impossible if you are juggling many different
+tasks or projects.
 
 Being able to block out the world and focus on one thing is a skill. Getting
 work done can be improved when it is the only activity vying for your time.
 When many people focus on the same goal together they can achieve much more
 than any single individual ever could.
 
-People who are [smart and get things done][smart] or the even more elusive
-[done and gets things smart][done] do what they need to in order to get stuff
-done. Most of the time I think I am productive compared the average person. The
-rest of the time I often find myself distracted or switching between various
-activities.
+Focus for me means working on a few tasks at a time that deliver value. Value
+is a loose definition encompassing helpings others, pushing to master a usable
+piece or sharing knowledge. The bigger the impact to customers the better.
+Doing fewer tasks a time means I can pour all of my attention into a small area
+to completely finish whatever needs to be done.
 
-Even though I am getting things done and often leaving them better than when I
-found them I think there is a higher plateau I could reach. If I could
-sustainably increase my focus on finish what I am working on sooner I would
-have higher productivity. Instead of juggling many half done things would
-ensure I am getting things to a completely finished state before taking on more
-work and/or moving onto the next activity.
+Another side effect of intense focus is I will be able to learn faster. I have
+tried to cultivate a wider range of skills normally peripheral to developing
+products. My opportunity with [Exterminators][tribute] allows me to hone my
+developer skills on an endless stream of small projects. Focusing on only one
+project at a time will let me learn as much as I can then move on to the next
+one.
+
+How am I going to get there?
+
+**By doing fewer things**
+
+* Understand and reduce my work in progress
+* Before July first read and apply the book [Getting Things Done][gtd]
+* Complete small tasks immediately not as an interruption
+* Break up larger tasks into small tasks that provide value
+* Do one project at a time
+
+**Eliminating distractions**
+
+* Less time performing status updates (email, task tracking, etc.)
+* Less checking email and no email alerts
+* Fewer meetings and more collaborative sessions
+* At least one Work From Home data weekly
+
+Do fewer things at a time. Do each thing amazingly. Learn. Repeat.
 
 Quality
 ===============================================================================
@@ -73,8 +114,29 @@ Number 3?
 There is no number three. I was asked whether I was going to include another
 goal several times and felt anything else would detract for the original two.
 
+These goals complement and balance each other well. If I try to focus solely on
+productivity my quality will suffer and if I am spending all my time on minute
+details I will not be getting enough done.
+
+Keep Me Accountable
+===============================================================================
+
+The trick with both my goals is to follow through. There is no secret formula
+and what happens now is I need to live them out. I want to be part of the
+minority who can achieve their goals, unlike [New Year's resolutions][stats].
+
+I need help to get there. You can help me by asking about how my goals are
+doing and telling me about your own. Talking about my goals reinforces why I am
+trying to do them. Thinking about them more often helps reinforce the habits
+and make sure they are hear to stay. I tend to be inspired by passionate people
+and if you are excited about what you are doing I would love to talk about it.
+
+Please, keep me accountable to sticking with my habits. What are your goals and
+aspirations?
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [lynchpin]: http://www.amazon.com/Linchpin-Are-Indispensable-Seth-Godin-ebook/dp/B00354Y9ZU/ref=tmm_kin_swatch_0?_encoding=UTF8&sr=&qid=
 [smart]: http://www.joelonsoftware.com/articles/GuerrillaInterviewing3.html
 [done]: http://steve-yegge.blogspot.ca/2008/06/done-and-gets-things-smart.html
+[gtd]: https://gettingthingsdone.com/store/product.php?productid=17035&cat=3&page
+[stats]: http://www.statisticbrain.com/new-years-resolution-statistics/
