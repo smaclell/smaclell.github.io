@@ -108,6 +108,44 @@ Do fewer things at a time. Do each thing amazingly. Learn. Repeat.
 Quality
 ===============================================================================
 
+Delivering software which exceeds client expectations and functions as designed
+is fundamental. Trust builds slowly with reliable and defect free releases. It
+is really hard to be delighted when software you use every day doesn't do what
+you expect.
+
+For a long time time I thought speed was one of the most important parts of
+releasing quality software. Using an extremely fast release cycle you can learn
+much faster thanks to having more releases in the same period of time. Small
+rapid increments to add or remove functionality as fast as possible.
+
+The flip side is that for every change there is a potential for defects to
+occur. This has caused me to revise my thinking around rapid releases. Fast
+releases are great, but you want to avoid fast trash. Without reliability
+the entire process can unravel quickly.
+
+Our track record for our previous projects has been very good and I think we
+can do even better. I am confident we can release frequently with confidence
+thanks to comprehensive testing and putting quality first.
+
+While on [Exterminators][tribute] I have been exposed to different code bases
+where I am less comfortable. Again I feel I need to be more mindful of what
+I am doing while ensuring that no defects occur both now and in the future.
+
+One exciting aspect of working on this team is we have dedicated testers. My
+previous team was an anomaly because we did not have any testers on the team.
+To compensate the team doubled down on automated testing and developers would
+perform any additional testing. Working with dedicated testers will help
+uncover more scenarios and help identify risks.
+
+How am I going to change my normal development?
+
+* Include high quality automated tests with all new development
+* Increase automated testing for existing solutions
+* More in-depth validation prior to pushing code
+* Favour quality and understanding over speed
+* More analysis of proposed work to identify how to ship smaller pieces
+* Better collaboration with Testers and Product Owners throughout development/testing
+
 Number 3?
 ===============================================================================
 
@@ -123,7 +161,7 @@ Keep Me Accountable
 
 The trick with both my goals is to follow through. There is no secret formula
 and what happens now is I need to live them out. I want to be part of the
-minority who can achieve their goals, unlike [New Year's resolutions][stats].
+minority who achieve their goals, unlike [New Year's resolutions][stats]. 
 
 I need help to get there. You can help me by asking about how my goals are
 doing and telling me about your own. Talking about my goals reinforces why I am
