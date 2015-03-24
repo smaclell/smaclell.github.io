@@ -134,26 +134,26 @@ Otherwise the issue would be left alone and we would continue onto more
 important work.
 
 Prior to starting this we had a backlog of defects. This surprised me because I
-thought we were going such a great job all along of having very few defects.
-We had very few show stopper defects throughout the project and were very quick
-to add more validation whenever issues were found.
+thought we were doing such a great job and our quality was excellent. Talking
+about the actual number of defects and problems encountered has made me realize
+I was wrong.
 
 Looking more closely we had many areas that were difficult for our clients or
-caused them more work. There were some issues that were much larger and had
-been put off for while. We were missing opportunities to work better with our
-clients and improve together.
+caused them more work. There were some issues we didn't think were a big deal
+that meant a lot to them. We were missing opportunities to work better with our
+clients and improve the entire system.
 
-If we worked together better and had fewer defects then we could iterate faster
-and pivot more easily. Less defects would mean spending less time now
-revisiting old solutions and focusing on new improvements. We had tried to move
-too quickly before and created defects as a result which ultimately has slowed
-us down with the extra maintenance.
+Fewer defects and the trust gained from working together more effectively would
+allow us to iterate faster and build the most optimal with less effort. Less
+defects would mean spending less time now revisiting old solutions and focusing
+on new improvements. We had tried to move too quickly before and created
+defects as a result which has ultimately slowed us down with the extra maintenance.
 
-Starting to burn down our defects has caused me to think about how we could
-prevent defects from being introduced and lower the risk of any change we make.
+Starting to burn down our defects has caused me to think about how I can
+prevent defects from being introduced and lower the risk of any change I make.
 I think we can have fewer defects and create safer systems. In order to achieve
-this I thought up the following shifts in how I work to help improve our
-quality in the long run:
+this I thought up the following practices I could do to improve the quality of
+the code I write:
 
 * Include high quality automated tests with all new development
 * Increase automated testing for existing solutions
