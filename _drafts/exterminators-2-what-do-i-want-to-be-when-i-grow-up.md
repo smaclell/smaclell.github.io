@@ -108,36 +108,52 @@ Do fewer things at a time. Do each thing amazingly. Learn. Repeat.
 Quality
 ===============================================================================
 
-Delivering software which exceeds client expectations and functions as designed
-is fundamental. Trust builds slowly with reliable and defect free releases. It
-is really hard to be delighted when software you use every day doesn't do what
-you expect.
+Do you like defects? I don't. I like it when programs I am using work every
+time.
 
-For a long time time I thought speed was one of the most important parts of
-releasing quality software. Using an extremely fast release cycle you can learn
-much faster thanks to having more releases in the same period of time. Small
-rapid increments to add or remove functionality as fast as possible.
+Customers deserve software that behaves as intended and is free of major
+defects. I want to build products users love and trust, are simple to support and
+can easily grow over time. Build the right products and build them right.
 
-The flip side is that for every change there is a potential for defects to
-occur. This has caused me to revise my thinking around rapid releases. Fast
-releases are great, but you want to avoid fast trash. Without reliability
-the entire process can unravel quickly.
+Shortcuts can add up and begin to bog down projects. Just like in life if you
+eat too much junk food you won't be very healthy. Code needs a good diet of
+tests tests, refactoring and maintenance. Even the smallest change can be risky
+and if a code base has been left to fend for itself the risks are even greater.
 
-Our track record for our previous projects has been very good and I think we
-can do even better. I am confident we can release frequently with confidence
-thanks to comprehensive testing and putting quality first.
+It can be impossible to know exactly what people need before trying to build a
+solution to solve their problem. I believe the best solutions are emergent and
+the product of iterating repeatedly with guidance from stakeholders.
 
-While on [Exterminators][tribute] I have been exposed to different code bases
-where I am less comfortable. Again I feel I need to be more mindful of what
-I am doing while ensuring that no defects occur both now and in the future.
+This is where my view of quality comes from. Balancing the pace of innovation
+with the risk of introducing regressions while aspiring to technical excellence.
 
-One exciting aspect of working on this team is we have dedicated testers. My
-previous team was an anomaly because we did not have any testers on the team.
-To compensate the team doubled down on automated testing and developers would
-perform any additional testing. Working with dedicated testers will help
-uncover more scenarios and help identify risks.
+With one of our recent projects we decided to have zero defects. We would
+decide whether a new issue coming in was to be fixed or not immediately. If we
+(us and our clients) thought it was important we would fix it right away.
+Otherwise the issue would be left alone and we would continue onto more
+important work.
 
-How am I going to change my normal development?
+Prior to starting this we had a backlog of defects. This surprised me because I
+thought we were going such a great job all along of having very few defects.
+We had very few show stopper defects throughout the project and were very quick
+to add more validation whenever issues were found.
+
+Looking more closely we had many areas that were difficult for our clients or
+caused them more work. There were some issues that were much larger and had
+been put off for while. We were missing opportunities to work better with our
+clients and improve together.
+
+If we worked together better and had fewer defects then we could iterate faster
+and pivot more easily. Less defects would mean spending less time now
+revisiting old solutions and focusing on new improvements. We had tried to move
+too quickly before and created defects as a result which ultimately has slowed
+us down with the extra maintenance.
+
+Starting to burn down our defects has caused me to think about how we could
+prevent defects from being introduced and lower the risk of any change we make.
+I think we can have fewer defects and create safer systems. In order to achieve
+this I thought up the following shifts in how I work to help improve our
+quality in the long run:
 
 * Include high quality automated tests with all new development
 * Increase automated testing for existing solutions
@@ -145,6 +161,75 @@ How am I going to change my normal development?
 * Favour quality and understanding over speed
 * More analysis of proposed work to identify how to ship smaller pieces
 * Better collaboration with Testers and Product Owners throughout development/testing
+
+Derp
+===============================================================================
+
+This year I want to be mindful of the risks introduced by my changes, cause
+fewer defects and improve my technical excellence.
+
+This includes reducing the amount of rework required and better
+meeting client expectations.
+
+
+
+
+
+
+You can mitigate those risks with testing and understanding the impact your changes might have.
+
+Better software quality means less rework, happier customers and trust.
+I want to improve the quality I want to improve the quality of the  I want to build software that works now. We want to be  Trust
+
+To delight customers, I want to build the right products in the right way.
+Any changes I make should improve the code I am working on without taking
+shortcuts to finish early. Beating expectations and functioning as expected should be a given for any
+product. Trust between teams and users builds slowly with reliable and defect
+free releases.
+
+Needless to say I think releasing quality products is important. Quality is a
+slipper subject with different definitions for different people. The definition
+I like best came from a former coworker of mine [Paul Carvalho][paul]:
+
+> Quality is value to some person.
+
+The question is who you want to provide value for first. End users are obvious
+candidates. Other developers in 6 months who have to maintain your code.
+Everyone attached to the product might have a say. Lately, I have been thinking
+about minimizing risk, preventing regressions, improving reliability and
+simplifying operations.
+
+In the past I thought
+the best way to do this was to understand the user requirements and iterate as
+fast as possible. Faster releases mean more feedback and uncovering exactly
+what the clients truly need from the initial requirements. Growing software
+incremental like this is great fun and can continue for as long as needed.
+
+The challenge with rapid releases is the potential for introducing defects
+along with the intended features. Releases need to also be safe to avoid
+creating fast trash.
+
+Our track record for our previous projects has been very good and I think we
+can do even better. I am confident we can release frequently with confidence
+thanks to comprehensive testing and putting quality first. This means
+prioritizing our client needs for stability and reducing the risks introduced
+by new features or bug fixes.
+
+While on [Exterminators][tribute] I have been exposed to different code bases
+where I am less comfortable. Again I feel I need to be more mindful of what
+I am doing while ensuring that no defects occur from my changes and in the
+future. Understanding the risks any changes introduce and mitigating them in a
+sustainable fashion.
+
+My new team has several dedicated testers and I am looking forward to working
+with them to ensure what I am building delivers the best value for our clients.
+In the past I have focused almost exclusively on automated testing with not
+nearly enough user testing. While this was great for test coverage it did not
+ensure what I was building was easy to use or the user interface worked as
+intended.
+
+In the past I feel like my "Speed Wins" style caused me to accidentally cause
+defects or resulted in products users felt were not ready yet.
 
 Number 3?
 ===============================================================================
@@ -176,5 +261,6 @@ aspirations?
 [lynchpin]: http://www.amazon.com/Linchpin-Are-Indispensable-Seth-Godin-ebook/dp/B00354Y9ZU/ref=tmm_kin_swatch_0?_encoding=UTF8&sr=&qid=
 [smart]: http://www.joelonsoftware.com/articles/GuerrillaInterviewing3.html
 [done]: http://steve-yegge.blogspot.ca/2008/06/done-and-gets-things-smart.html
+[paul]: https://twitter.com/can_test
 [gtd]: https://gettingthingsdone.com/store/product.php?productid=17035&cat=3&page
 [stats]: http://www.statisticbrain.com/new-years-resolution-statistics/
