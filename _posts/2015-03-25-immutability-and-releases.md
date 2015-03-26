@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Immutablity and Releases"
-date:   2014-09-22 23:11:07
+date:   2015-03-25 23:14:07
 tags: release process
 image:
   feature: immutability-and-releases-rocks.jpg
