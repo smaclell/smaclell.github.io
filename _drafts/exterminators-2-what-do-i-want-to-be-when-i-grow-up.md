@@ -1,17 +1,21 @@
 ---
 layout: post
-title:  "Exterminators Week 2 - What Do I Want To Be When I Grow Up"
+title:  "Exterminators Week 2 - Focus on Quality"
 date:   2015-02-28 23:11:07
 tags: goals improvement legacy exterminator
 ---
 
-A highlight of my second week as an [Extermintor][tribute] was writing down my
-goals for the year. This year felt different. As I worked on it, I tried to
-understand why I felt these goals were important and what
+TODO: You totally lost Angela right here. She had to fish to get through it.
+
+A highlight of my second week as an [Exterminator][tribute] was thinking about
+my career goals for this year. This is an annual activity and this time around
+I tried to approach it differently.
+
+This year I tried to focus on why I felt these goals were important and what
 fundamental aspects of me they could improve. The finished product felt great
 and to keep me honest I have decided to share them with you here.
 
-Unlike previous goals where I wanted to learn a new technology or tackle a new
+Unlike previous goals to learn a new technology or tackle a new
 project I decided to pick habits I wanted to improve. While my usual goals
 are fun and challenging they don't go deep. Lasting habits are hard to form and
 easy to lose. By intentionally trying to live our these new habits every day I
@@ -20,41 +24,48 @@ believe I can create a lasting change.
 The two habits I picked to improve were my ability to **[Focus](#focus)** and
 attention to **[Quality](#quality)**.
 
-Why
+Purpose
+Share my goals
+Explain why I think these goals are important
+Make Myself Accountable
+
+I have a lot of paragraphs that are just topic sentences.
+i.e. Broad vague sentences that introduce a new topic.
+
+Why Set Annual Goals?
 -------------------------------------------------------------------------------
 
-Do you aspire to be more than you are now? Put your heart and soul into everything
-you do? I hope so.
-
 I believe everyone has a unique talent or gift to share with the world.
-Developing your skills is a great way to increase what your are capable of
+Developing your skills is a great way to increase what you are capable of
 achieving. Whether it is cultivating an expertise or filling a gap there are
-always ways to get better.
+always ways to improve yourself.
 
-Improvement is a never ending journey. For every new thing you learn you can
+Improvement is a never-ending journey. For every new thing you learn you can
 always learn more and go deeper. You can even change
 habits and routines with enough effort. Instead of standing still I think
 it is critical to be constantly learning and pushing yourself.
 
-Being a developer is exciting thanks to never ending opportunities and an ever
+Being a developer right now is exciting with new opportunities and an ever
 shifting industry. There
 are always new techniques, libraries and projects to learn from. I don't think
-you need some innate talent to be a developer or that programming skills are something people
-are born with. I think if you want to be an amazing developer you can do it, with
+you need some innate talent to be a developer, or that programming skills are something you
+are born with. If you want to be an amazing developer, you can do it with
 enough effort and dedication.
 
 I want to be an amazing developer so I can solve bigger problems and help more people.
-This internal motivation drive me to be a better developer and deliver exceptional products.
-I don't think I have it all together and have much to learn, but I am excited to try.
+I don't have it all together and have much to learn, but I am excited to try.
 
-Inspiration
+Fluff -> You are not saying much of anything. No meet yet.
+Always be improving
+I want to be a better developer
+
+Inspiration Behind My Goals
 -------------------------------------------------------------------------------
 
-Last year I started reading [Dan Blumenthal's][dan] blog and have found it a
+Last year I started reading [Dan Blumenthal's][dan] blog and found it to be a
 treasure trove for career advice. Dan has a very insightful series on [mastery][mastery]
-which has inspired me to strive for more. Here are all of the links to the
-series in order so you can enjoy them too. Don't if you go read them now I will
-still be here when you get back.
+which has inspired me to become better at my job. Here are the links to the
+series. Go read it, I'll wait.
 
 * [How "Senior" Software Engineers are Different][different]
 * [Anti-Mastery][anti-mastery] (a.k.a guaranteed ways to not be awesome)
@@ -62,13 +73,23 @@ still be here when you get back.
 * [Intermediate Mastery][intermediate]
 * [Mastery][mastery]
 
+Welcome back!
+
+TODO: Summarize the Series. Necessary skills and Getting things done and doing them well are key ideas throughout
+the series.
+
+Previous
 Doing great work and focusing on what needs to be done are key ideas throughout
 the series. Beyond the basic skills gained over time, Focus and Quality are two
 fundamental areas I felt I need to improve. Right now I think I am okay in both
 these areas, but if I were to make them into habits I could be much better.
 
-Before reading the series the only benchmark I had was other developers and the
-classic by Joel Spolsky, people who are [smart and get things done][smart].
+Beyond continuing to build my skills and gain experience, Focus and Quality are two
+fundamental areas where I feel I need to improve.
+
+Before reading Dan's series the only benchmarks I had for my abilities were other
+developers and Joel Spolsky's classic blog post about only hiring people who are
+[smart and get things done][smart].
 Every thinks they are already there. They are already part of the crowd of
 people who are both smart and get things done. I hope I am, but I never really
 know. The series challenges you to go deeper and understand much more. In the
@@ -191,7 +212,7 @@ These goals complement and balance each other well. If I try to focus solely on
 productivity my quality will suffer and if I am spending all my time on minute
 details I will not be getting enough done.
 
-Keep Me Accountable
+Making Myself Accountable
 -------------------------------------------------------------------------------
 
 The trick with both my goals is to follow through. There is no secret formula
