@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Exterminators Week 2 - Focus on Quality"
+title:  "Exterminators Week 2 - Focus and Quality"
 date:   2015-02-28 23:11:07
 tags: goals improvement legacy exterminator
 ---
@@ -9,28 +9,25 @@ TODO: You totally lost Angela right here. She had to fish to get through it.
 
 A highlight of my second week as an [Exterminator][tribute] was thinking about
 my career goals for this year. This is an annual activity and this time around
-I tried to approach it differently.
-
-This year I tried to focus on why I felt these goals were important and what
-fundamental aspects of me they could improve. The finished product felt great
-and to keep me honest I have decided to share them with you here.
+I tried to approach it differently. Instead of thinking up a laundry list to
+learn or do I decided to work on habits that will help me become a better
+developer. The two habits I want to establish and felt would help me improve
+the most are the ability to **[Focus](#focus)** and attention to
+**[Quality](#quality)**. In order to keep me accountable I decided this is what
+I would share from this week on Exterminators (TODO* Insert an astrix as to why
+it was delayed).
 
 Unlike previous goals to learn a new technology or tackle a new
 project I decided to pick habits I wanted to improve. While my usual goals
-are fun and challenging they don't go deep. Lasting habits are hard to form and
-easy to lose. By intentionally trying to live our these new habits every day I
-believe I can create a lasting change.
+are fun and challenging they don't go deep. I want to create lasting habits are
+and keep them for the whole year. By intentionally trying to live out these new
+habits every day I believe I can create a lasting change to how I work.
 
-The two habits I picked to improve were my ability to **[Focus](#focus)** and
-attention to **[Quality](#quality)**.
+TODO Topic => Always be improving
+I think it is important to have goals. There is always something to improve and
+having a destination provides a focal point for your efforts.
 
-Purpose
-Share my goals
-Explain why I think these goals are important
-Make Myself Accountable
 
-I have a lot of paragraphs that are just topic sentences.
-i.e. Broad vague sentences that introduce a new topic.
 
 Why Set Annual Goals?
 -------------------------------------------------------------------------------
@@ -56,7 +53,6 @@ I want to be an amazing developer so I can solve bigger problems and help more p
 I don't have it all together and have much to learn, but I am excited to try.
 
 Fluff -> You are not saying much of anything. No meet yet.
-Always be improving
 I want to be a better developer
 
 Inspiration Behind My Goals
@@ -67,38 +63,32 @@ treasure trove for career advice. Dan has a very insightful series on [mastery][
 which has inspired me to become better at my job. Here are the links to the
 series. Go read it, I'll wait.
 
-* [How "Senior" Software Engineers are Different][different]
-* [Anti-Mastery][anti-mastery] (a.k.a guaranteed ways to not be awesome)
-* [Mastering the Basics][basics]
-* [Intermediate Mastery][intermediate]
-* [Mastery][mastery]
+1. [How "Senior" Software Engineers are Different][different]
+2. [Anti-Mastery][anti-mastery] (a.k.a guaranteed ways to not be awesome)
+3. [Mastering the Basics][basics]
+4. [Intermediate Mastery][intermediate]
+5. [Mastery][mastery]
 
 Welcome back!
 
-TODO: Summarize the Series. Necessary skills and Getting things done and doing them well are key ideas throughout
-the series.
+This series outlines many important fundamentals to being a developer. Many
+take a long amount of exposure and time to learn. Others are habits or how you
+go about your work. The final post shows insights into what might be required
+to become a truly epic developer.
 
-Previous
-Doing great work and focusing on what needs to be done are key ideas throughout
-the series. Beyond the basic skills gained over time, Focus and Quality are two
-fundamental areas I felt I need to improve. Right now I think I am okay in both
-these areas, but if I were to make them into habits I could be much better.
+The ability to Focus shows up on the [Mastery][mastery] list and aspects of
+Quality or lack thereof are on the [Anti-Mastery][anti-mastery] list. After
+watching other developers I respect I realized that they ooze both Focus and
+Quality every single day. I began to wonder what I would be like if I could
+Focus like they did, never created another bug again and was building the right
+solutions in the right way.
 
-Beyond continuing to build my skills and gain experience, Focus and Quality are two
-fundamental areas where I feel I need to improve.
-
-Before reading Dan's series the only benchmarks I had for my abilities were other
-developers and Joel Spolsky's classic blog post about only hiring people who are
-[smart and get things done][smart].
-Every thinks they are already there. They are already part of the crowd of
-people who are both smart and get things done. I hope I am, but I never really
-know. The series challenges you to go deeper and understand much more. In the
-final post he alludes to what might exist at the final level or who Steve Yegge
-calls those who are [done and gets things smart][done]. I don't know if I have
-what it takes, but I want to try to get to that final level.
-
-From this series, thinking about where I was struggling and talking as a team I
-then settled on the two habits I wanted to foster over the coming year.
+This series made me realize that I want to be like these amazing developers I
+admire. Reading the many skills and attributes embodied by these legendary
+individuals helped me understand where I fall short and need to improve. I
+don't know if I have what it takes to be at their level, but I want to try
+and get there. With my two goals this year, Focus and Quality, I believe I can
+dramatically improve and help close the gap.
 
 Focus
 ===============================================================================
