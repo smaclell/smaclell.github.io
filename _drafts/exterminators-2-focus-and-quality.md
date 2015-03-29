@@ -48,9 +48,6 @@ enough effort and dedication.
 I want to be an amazing developer so I can solve bigger problems and help more people.
 I don't have it all together and have much to learn, but I am excited to try.
 
-Fluff -> You are not saying much of anything. No meet yet.
-I want to be a better developer
-
 Inspiration Behind My Goals
 -------------------------------------------------------------------------------
 
