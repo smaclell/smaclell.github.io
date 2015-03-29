@@ -89,26 +89,35 @@ dramatically improve and help close the gap.
 Focus
 ===============================================================================
 
+Why improve my ability to focus? I believe if I worked with a higher degree of
+focus I would get more done, be more effective and learn faster. Two primary
+ways I want to build this habit is to focus on doing fewer activities at a
+time and eliminate distractions.
+
 Work in progress is not done and only when we are completely done are our
 results valuable for our clients. Building great software requires dedicated
 focus and attention which is impossible if you are juggling many different
-tasks or projects.
+tasks or projects. Delays between intermediate steps slow down work and
+result in getting less done. Conversely, eliminating delays and rework will
+increase what I am capable of accomplishing.
 
 Being able to block out the world and focus on one thing is a skill. Like a
 muscle, continuously focusing on small tasks which add up to bigger goals will
-becomes easier the more your try to do it. This is why I believe it is an
-essential habit for software developers to excel.
+becomes easier the more your try to do it. Since most development activities
+are the sum of many small parts being able to focus and complete each of them
+will result in working more effectively.
 
-I want to be able to focus on delivering value for our clients. My definition
+Improved focus will help me to deliver value to our clients. My definition
 for value includes helpings others, sharing knowledge, or merging new code
 ready to be shipped. The bigger the positive impact and lower the risk for our
-clients the better I am delivering value.
+clients the better I am delivering value. Understanding the value being created
+and concentrating on activities that maximize it will lead to better outcomes.
 
-Doing fewer tasks a time means I can pour all of my attention into a small area
-to completely finish whatever needs to be done. Getting more done will result
-in more improvements for our customers. The added concentration on the smaller
-details will help me to understand the risks of changes I am making and produce
-better results.
+Doing fewer tasks at a time means I can pour all of my attention into a small
+area to completely finish whatever needs to be done. Getting more work done
+will result in more improvements for our customers. The added concentration on
+the smaller details will help me to understand the risks of changes I am making
+and produce better results with fewer defects.
 
 There is another category of work competing my time and energy, distractions.
 It is the little things like checking email or attending meetings. Few of these
@@ -126,7 +135,7 @@ on to the next one.
 
 How am I going make the ability to focus a lasting habit?
 
-**By doing fewer things**
+**By doing fewer things at a time**
 
 * Understand and reduce my work in progress
 * Before July first read and apply the book [Getting Things Done][gtd]
@@ -146,35 +155,20 @@ Do fewer things at a time. Do each thing amazingly. Learn. Repeat.
 Quality
 ===============================================================================
 
-Do you like defects? I don't. I like it when programs I am using work every
-time.
+Why improve the quality of my work? Do you like defects? I don't. I like it when
+programs I am using work as designed. Every time programs behave badly I stop
+trusting them. I want to build products users love and trust, are simple to
+support and can easily grow over time.
 
-Customers deserve software that behaves as intended and is free of major
-defects. I want to build products users love and trust, are simple to support and
-can easily grow over time. Build the right products and build them right.
-
-Shortcuts can add up and begin to bog down projects. Just like in life if you
-eat too much junk food you won't be very healthy. Code needs a good diet of
-tests, refactoring and maintenance. Even the smallest change can be risky
-and if a code base has been left to fend for itself the risks are even greater.
-
-It can be impossible to know exactly what people need before trying to build a
-solution to solve their problem. I believe the best solutions are emergent and
-the product of iterating repeatedly with guidance from stakeholders.
-
-This is where my view of quality comes from. Balancing the pace of innovation
-with the risk of introducing regressions while aspiring to technical excellence.
-
-With one of our recent projects we decided to have zero defects. We would
-decide whether a new issue coming in was to be fixed or not immediately. If we
-(us and our clients) thought it was important we would fix it right away.
-Otherwise the issue would be left alone and we would continue onto more
-important work.
+Our team has decided to have zero defects. We will
+immediately decide whether a new issue will be fixed or not. If we
+(the team and our clients) think a fix is required then we will fix it right away.
+Otherwise the issue will be left as is and we can continue focusing on more
+valuable features.
 
 Prior to starting this we had a backlog of defects. This surprised me because I
-thought we were doing such a great job and our quality was excellent. Talking
-about the actual number of defects and problems encountered has made me realize
-I was wrong.
+thought we were doing a great job and had excellent quality. Talking about our
+defects and problems encountered has made me realize I was wrong.
 
 Looking more closely we had many areas that were difficult for our clients or
 caused them more work. There were some issues we didn't think were a big deal
@@ -182,16 +176,20 @@ that meant a lot to them. We were missing opportunities to work better with our
 clients and improve the entire system.
 
 Fewer defects and the trust gained from working together more effectively would
-allow us to iterate faster and build the most optimal with less effort. Less
+allow us to iterate faster and build the most optimal solution with less effort. Less
 defects would mean spending less time now revisiting old solutions and focusing
-on new improvements. We had tried to move too quickly before and created
-defects as a result which has ultimately slowed us down with the extra maintenance.
+on new improvements. We had tried to move too quickly before resulting in
+defects which has ultimately slowed us down with the extra maintenance.
 
-Starting to burn down our defects has caused me to think about how I can
-prevent defects from being introduced and lower the risk of any change I make.
-I think we can have fewer defects and create safer systems. In order to achieve
-this I thought up the following practices I could do to improve the quality of
-the code I write:
+I want to help our team goal by producing fewer defects. I was directly
+responsible for defects and need to be part of the solution. Not understanding
+the risks involved with changes I made or assuming our test suite would protect
+me has lead to defects. Every change presents a risk and making sure they are
+mitigated will help me build better products. Improving our test coverage
+and knowing more about the system will improve the quality of my work.
+
+To make quality an intrinsic part of how I work I have decided to use the
+following practices/guidelines:
 
 * Include high quality automated tests with all new development
 * Increase automated testing for existing solutions
@@ -199,6 +197,8 @@ the code I write:
 * Favour quality and understanding over speed
 * More analysis of proposed work to identify how to ship smaller pieces
 * Better collaboration with Testers and Product Owners throughout development/testing
+
+Fewer defects. Lower Risk. Better Products.
 
 Number 3?
 -------------------------------------------------------------------------------
