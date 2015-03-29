@@ -111,7 +111,8 @@ Improved focus will help me to deliver value to our clients. My definition
 for value includes helpings others, sharing knowledge, or merging new code
 ready to be shipped. The bigger the positive impact and lower the risk for our
 clients the better I am delivering value. Understanding the value being created
-and concentrating on activities that maximize it will lead to better outcomes.
+and concentrating on activities to maximize that value will lead to better
+outcomes.
 
 Doing fewer tasks at a time means I can pour all of my attention into a small
 area to completely finish whatever needs to be done. Getting more work done
@@ -170,9 +171,9 @@ Prior to starting this we had a backlog of defects. This surprised me because I
 thought we were doing a great job and had excellent quality. Talking about our
 defects and problems encountered has made me realize I was wrong.
 
-Looking more closely we had many areas that were difficult for our clients or
-caused them more work. There were some issues we didn't think were a big deal
-that meant a lot to them. We were missing opportunities to work better with our
+Looking more closely, we had many areas that were difficult for our clients or
+caused them more work. There were some issues we didn't think were a big deal,
+but meant a lot to them. We were missing opportunities to work better with our
 clients and improve the entire system.
 
 Fewer defects and the trust gained from working together more effectively would
@@ -200,31 +201,42 @@ following practices/guidelines:
 
 Fewer defects. Lower Risk. Better Products.
 
-Number 3?
+Number Three
 -------------------------------------------------------------------------------
 
 There is no number three. I was asked whether I was going to include another
 goal several times and felt anything else would detract for the original two.
+Anything else would ruin my focus and cause me to fail at my first goal.
 
 These goals complement and balance each other well. If I try to focus solely on
 productivity my quality will suffer and if I am spending all my time on minute
-details I will not be getting enough done.
+details I will not be getting enough done. On the other hand, improved focus
+will improve the quality of my work. What quality means to our clients and
+their risks can prioritize my work show what needs to be focused on.
 
 Making Myself Accountable
 -------------------------------------------------------------------------------
 
-The trick with both my goals is to follow through. There is no secret formula
-and what happens now is I need to live them out. I want to be part of the
-minority who achieve their goals, unlike [New Year's resolutions][stats].
+The trick with both my goals is following through. There is no secret formula.
+What happens now is I need to live out these new habits. I want to be part of
+the minority who achieve their goals, unlike [New Year's resolutions][stats].
 
-I need help to get there. You can help me by asking about how my goals are
-doing and telling me about your own. Talking about my goals reinforces why I am
-trying to do them. Thinking about them more often helps reinforce the habits
-and make sure they are here to stay. I tend to be inspired by passionate people
-and if you are excited about what you are doing I would love to talk about it.
+I need help to keep these habits. The entire reasons I decided to write them up
+and publicly share them was to keep me accountable. For as long as I keep these
+goals the fact I declared I what I want to achieve will help me maintain them.
+I don't want to let you or myself down and so the only thing I can do is keep
+up these habits.
 
-Please, keep me accountable to sticking with my habits. What are your goals and
-aspirations?
+There is another way you can help me with my goals, asking me how they are
+doing or telling me about your own goals. Talking about my goals reinforces why
+I am trying to do them. Anything that helps me think about my goals will help
+reinforce the habits and ensure they are here to stay. I tend to be inspired
+by passionate people and if you are excited about what you are doing I would
+love to talk about it.
+
+Please, keep me accountable to sticking with my habits. I hope you have goals
+of your own and are able to follow through. I challenge you to tell others your
+goals and use them to keep you accountable. Good luck.
 
 <hr/>
 
@@ -256,10 +268,6 @@ don't tell you anything at all. Just don't do it.*
 [anti-mastery]: http://dandreamsofcoding.com/2013/04/15/anti-mastery/
 [basics]: http://dandreamsofcoding.com/2013/04/27/mastering-the-basics/
 [intermediate]: http://dandreamsofcoding.com/2013/05/20/intermediate-mastery/
-[lynchpin]: http://www.amazon.com/Linchpin-Are-Indispensable-Seth-Godin-ebook/dp/B00354Y9ZU/ref=tmm_kin_swatch_0?_encoding=UTF8&sr=&qid=
-[smart]: http://www.joelonsoftware.com/articles/GuerrillaInterviewing3.html
-[done]: http://steve-yegge.blogspot.ca/2008/06/done-and-gets-things-smart.html
-[paul]: https://twitter.com/can_test
 [gtd]: https://gettingthingsdone.com/store/product.php?productid=17035&cat=3&page
 [stats]: http://www.statisticbrain.com/new-years-resolution-statistics/
 [ange]: http://macangela.tumblr.com
