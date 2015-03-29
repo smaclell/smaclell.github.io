@@ -5,17 +5,16 @@ date:   2015-02-28 23:11:07
 tags: goals improvement legacy exterminator
 ---
 
-TODO: You totally lost Angela right here. She had to fish to get through it.
-
 A highlight of my second week as an [Exterminator][tribute] was thinking about
-my career goals for this year. This is an annual activity and this time around
-I tried to approach it differently. Instead of thinking up a laundry list to
-learn or do I decided to work on habits that will help me become a better
-developer. The two habits I want to establish and felt would help me improve
-the most are the ability to **[Focus](#focus)** and attention to
-**[Quality](#quality)**. In order to keep me accountable I decided this is what
-I would share from this week on Exterminators (TODO* Insert an astrix as to why
-it was delayed).
+my career goals for this year. Instead of goals I decided on two habits I want
+to establish that would improve my abilities the most, the ability to
+**[Focus](#focus)** and attention to **[Quality](#quality)**.
+
+This is an annual activity and this time around I tried to approach it
+differently. Instead of thinking up a laundry list to learn or do I decided to
+work on habits that will help me become a better developer. Throughout the
+process I tried to concentrate on why I wanted to improve and why to improve
+these specific areas.
 
 Unlike previous goals to learn a new technology or tackle a new
 project I decided to pick habits I wanted to improve. While my usual goals
@@ -23,11 +22,8 @@ are fun and challenging they don't go deep. I want to create lasting habits are
 and keep them for the whole year. By intentionally trying to live out these new
 habits every day I believe I can create a lasting change to how I work.
 
-TODO Topic => Always be improving
-I think it is important to have goals. There is always something to improve and
-having a destination provides a focal point for your efforts.
-
-
+In order to keep me accountable I decided this is what I would share from this
+week as an Exterminator<sup id="ext2-note-1-reverse"><a href="#ext2-note-1">1</a></sup>.
 
 Why Set Annual Goals?
 -------------------------------------------------------------------------------
@@ -93,30 +89,42 @@ dramatically improve and help close the gap.
 Focus
 ===============================================================================
 
-Work in progress is not done and only when we are completely done is what we
-are doing valuable for our clients. Building great software requires dedicated
+Work in progress is not done and only when we are completely done are our
+results valuable for our clients. Building great software requires dedicated
 focus and attention which is impossible if you are juggling many different
 tasks or projects.
 
-Being able to block out the world and focus on one thing is a skill. Getting
-work done can be improved when it is the only activity vying for your time.
-When many people focus on the same goal together they can achieve much more
-than any single individual ever could.
+Being able to block out the world and focus on one thing is a skill. Like a
+muscle, continuously focusing on small tasks which add up to bigger goals will
+becomes easier the more your try to do it. This is why I believe it is an
+essential habit for software developers to excel.
 
-Focus for me means working on a few tasks at a time that deliver value. Value
-is a loose definition encompassing helpings others, pushing to master a usable
-piece or sharing knowledge. The bigger the impact to customers the better.
+I want to be able to focus on delivering value for our clients. My definition
+for value includes helpings others, sharing knowledge, or merging new code
+ready to be shipped. The bigger the positive impact and lower the risk for our
+clients the better I am delivering value.
+
 Doing fewer tasks a time means I can pour all of my attention into a small area
-to completely finish whatever needs to be done.
+to completely finish whatever needs to be done. Getting more done will result
+in more improvements for our customers. The added concentration on the smaller
+details will help me to understand the risks of changes I am making and produce
+better results.
+
+There is another category of work competing my time and energy, distractions.
+It is the little things like checking email or attending meetings. Few of these
+activities contribute to my work and rarely add value. While working in the
+office it can be great to rapidly collaborate with others, but can turn into a
+distraction if I am not careful. I believe reducing my distractions will make
+it easier to focus on my tasks and get more done.
 
 Another side effect of intense focus is I will be able to learn faster. I have
 tried to cultivate a wider range of skills normally peripheral to developing
 products. My opportunity with [Exterminators][tribute] allows me to hone my
-developer skills on an endless stream of small projects. Focusing on only one
-project at a time will let me learn as much as I can then move on to the next
-one.
+developer skills with an endless stream of small projects. Focusing on only one
+project at a time will let me learn as much as I can from each project then move
+on to the next one.
 
-How am I going to get there?
+How am I going make the ability to focus a lasting habit?
 
 **By doing fewer things**
 
@@ -131,7 +139,7 @@ How am I going to get there?
 * Less time performing status updates (email, task tracking, etc.)
 * Less checking email and no email alerts
 * Fewer meetings and more collaborative sessions
-* At least one Work From Home data weekly
+* At least one Work From Home day weekly
 
 Do fewer things at a time. Do each thing amazingly. Learn. Repeat.
 
@@ -218,6 +226,29 @@ and if you are excited about what you are doing I would love to talk about it.
 Please, keep me accountable to sticking with my habits. What are your goals and
 aspirations?
 
+<hr/>
+
+*I would like to thank my lovely wife [Angela][ange] for her help turning my
+collection of reflections into a cohesive blog post and helping me become a
+better writer. This week I learnt that paragraphs of [topic sentences][topic]
+don't tell you anything at all. Just don't do it.*
+
+<hr />
+
+<a id="ext2-note-1" href="#ext2-note-1-reverse">1.</a> I wanted my posts from
+  my time as an Exterminator to be a weekly series. I have fallen behind
+  writing and publishing them from the original schedule I wanted. Life happens.
+
+  In spending more time on this post I have been able to spend more time
+  reflecting on my goals, putting them into action and understanding what I am
+  learning. Being intentional about what I am learning while on Exterminators
+  and reflecting on it has been valuable for me. The blog posts are taking
+  longer than I would like, but I think are better as a result and I learn more
+  from the writing process.
+
+  Thank you for your patience as I continue working through this pseudo-series.
+  I hope you enjoy it as much as I do.
+
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [dan]: http://dandreamsofcoding.com/
 [mastery]: http://dandreamsofcoding.com/2013/05/23/mastery/
@@ -231,3 +262,5 @@ aspirations?
 [paul]: https://twitter.com/can_test
 [gtd]: https://gettingthingsdone.com/store/product.php?productid=17035&cat=3&page
 [stats]: http://www.statisticbrain.com/new-years-resolution-statistics/
+[ange]: http://macangela.tumblr.com
+[topic]: http://examples.yourdictionary.com/examples-of-topic-sentences.html
