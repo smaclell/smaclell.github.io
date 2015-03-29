@@ -99,8 +99,8 @@ result in getting less done. Conversely, eliminating delays and rework will
 increase what I am capable of accomplishing.
 
 Being able to block out the world and focus on one thing is a skill. Like a
-muscle, continuously focusing on small tasks which add up to bigger goals will
-becomes easier the more your try to do it. Since most development activities
+muscle, continuously focusing on small tasks which add up to bigger features will
+become easier the more your try to do it. Since most development activities
 are the sum of many small parts being able to focus and complete each of them
 will result in working more effectively.
 
@@ -174,15 +174,15 @@ but meant a lot to them. We were missing opportunities to work better with our
 clients and improve the entire system.
 
 Fewer defects and the trust gained from working together more effectively would
-allow us to iterate faster and build the most optimal solution with less effort. Less
-defects would mean spending less time now revisiting old solutions and focusing
+allow us to iterate faster and build the most optimal solution with less effort. Having less
+defects would mean spending less time revisiting old solutions and focusing
 on new improvements. We had tried to move too quickly before resulting in
 defects which has ultimately slowed us down with the extra maintenance.
 
 I want to help our team goal by producing fewer defects. I was directly
 responsible for defects and need to be part of the solution. Not understanding
 the risks involved with changes I made or assuming our test suite would protect
-me has lead to defects. Every change presents a risk and making sure they are
+me has led to defects. Every change presents a risk and making sure they are
 mitigated will help me build better products. Improving our test coverage
 and knowing more about the system will improve the quality of my work.
 
