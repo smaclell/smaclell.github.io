@@ -56,6 +56,14 @@ dramatically improve and help close the gap.
 Focus
 ===============================================================================
 
+<figure class="image-center">
+	<img
+		title="Focus."
+		alt="A telescope looking out onto a city."
+		width="480"
+		src="{{ site.url }}/images/sightseeing-telescope.jpg" />
+</figure>
+
 Why do I want to improve my ability to focus? I believe if I worked with a higher degree of
 focus I would get more done, be more effective and learn faster. Two primary
 ways I want to build this habit is to focus on doing fewer activities at a
@@ -121,6 +129,15 @@ Do fewer things at a time. Do each thing amazingly. Learn. Repeat.
 Quality
 ===============================================================================
 
+<figure class="image-center">
+	<a href="https://flic.kr/p/3AvBtV" style="display: inline" title="code bug by Guilherme Tavares used under Creative Commons BY 2.0 from Flickr">
+		<img src="https://farm3.staticflickr.com/2039/1703252007_24ce860838_z_d.jpg?zz=1" width="480" alt="A bug landed on a monitor showing code">
+	</a>
+	<figcaption>
+	 Photo by <a href="https://www.flickr.com/photos/guitavares/">Guilherme Tavares</a> used under <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">CC 2.0 BY</a>
+	</figcaption>
+</figure>
+
 Why do I want to improve the quality of my work? Do you like defects? I don't. I like it when
 programs I am using work as designed. Every time programs behave badly I stop
 trusting them. I want to build products that users love and trust, are simple to
@@ -180,6 +197,14 @@ will improve the quality of my work. I want to focus on what our clients value.
 Making Myself Accountable
 -------------------------------------------------------------------------------
 
+<figure class="image-center">
+	<img
+		title="Let's help one another."
+		alt="Several people in sepia. The focus point is a person reaching towards you and other people in the picture."
+		width="480"
+		src="{{ site.url }}/images/give-me-your-hand.jpg" />
+</figure>
+
 The trick with both my goals is following through. There is no secret formula.
 The next step is to live out these new habits. I want to be part of
 the minority who achieve their goals, unlike [New Year's resolutions][stats].
@@ -220,6 +245,12 @@ don't tell you anything at all. Just don't do it.*
 
   Thank you for your patience as I continue working through this pseudo-series.
   I hope you enjoy it as much as I do.
+
+<!--
+This is where I got the telescope and hand images from
+http://www.publicdomainpictures.net/view-image.php?image=24139&picture=sightseeing-telescope&large=1
+http://www.publicdomainpictures.net/view-image.php?image=95095&picture=give-me-your-hand&large=1
+-->
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [dan]: http://dandreamsofcoding.com/
