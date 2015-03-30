@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Exterminators Week 2 - Focus and Quality"
-date:   2015-02-28 23:11:07
-tags: goals improvement legacy exterminator
+date:   2015-03-30 00:09:07
+tags: goals improvement career focus quality exterminator
 ---
 
 A highlight of my second week as an [Exterminator][tribute]<sup id="ext2-note-1-reverse"><a href="#ext2-note-1">1</a></sup> was thinking about
