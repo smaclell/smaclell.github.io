@@ -134,7 +134,7 @@ Quality
 		<img src="https://farm3.staticflickr.com/2039/1703252007_24ce860838_z_d.jpg?zz=1" width="480" alt="A bug landed on a monitor showing code">
 	</a>
 	<figcaption>
-	 Photo by <a href="https://www.flickr.com/photos/guitavares/">Guilherme Tavares</a> used under <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">CC 2.0 BY</a>
+	"code bug" by <a href="https://www.flickr.com/photos/guitavares/">Guilherme Tavares</a> used under <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">CC 2.0 BY</a>
 	</figcaption>
 </figure>
 
