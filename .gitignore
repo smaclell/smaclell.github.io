@@ -1,6 +1,6 @@
 _site/
 .sass-cache/
-*.sublime-*
+*.sublime-workspace
 
 # Windows image file caches
 Thumbs.db
