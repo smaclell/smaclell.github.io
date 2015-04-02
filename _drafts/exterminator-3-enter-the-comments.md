@@ -51,8 +51,12 @@ So what makes a good comment?
    around complex logic. Jeff Atwood takes this even further and believes
    ["The value of a comment is directly proportional to the distance between the comment and the code."][good-comments].
 
-3. **Is straight to the point and used only as needed.** There can be too many
-   comments.
+3. **Is straight to the point and used only as needed.** Too many comments will
+   dilute your code. I prefer fewer comments and like to the let the code speak
+   for itself. You are not trying to write a great novel with comments, so keep
+   them short and as concise as possible. If there are many comments then maybe
+   there is actually a problem with the design. The more you need to explain
+   something clever that is happening the more likely you are being too clever.
 
 Conclusion
 -------------------------------------------------------------------------------
