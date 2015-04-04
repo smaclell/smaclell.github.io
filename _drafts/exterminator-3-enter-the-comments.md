@@ -7,9 +7,7 @@ tags: goals improvement career focus quality exterminator
 
 Comments can be a great way to learn new code and document unintuitive
 behaviour. Good comments succinctly explain why code was done a certain way and
-are kept up to date. Bad comments repeat exactly what is happening in the code.
-Sometimes comments can be abused and it would be better to update the code or
-write tests instead.
+are kept up to date.
 
 This week I have found myself adding more comments to code than ever before.
 I think this is partially due to the code I am in as I try to understand it and
@@ -32,55 +30,142 @@ change something from unintelligible to usable.
 
 So what makes a good comment?
 
-1. **Documents intent, not what is being done.** Without recreating the exact
-   moment and thinking from the original developer it can be impossible to know
-   why code has been written a specific way.
+**Documents intent, not what is being done.**
 
-   TODO: Avoiding multiple enumerations
+Without recreating the exact moment and thinking from the original developer it
+can be impossible to know why code has been written a specific way. Explain
+concepts and connections that are not obvious. What is not obvious my differ
+between developers so if you are not sure about some code you are reading ask
+what someone else thinks.
+
+This would be a bad comment
+
+{% highlight csharp %}
+// An immutable 2D Point
+public struct Point {
+    public int X { get; private set; }
+    public int Y { get; private set; }
+
+    public Point(int x, int y) {
+        X = x;
+        Y = y;
+    }
+}
+{% endhighlight %}
+
+{% highlight csharp %}
+// For simple computations with 2D Points not long lived objects that move over time
+// Points are expected to be short lived and are struct's so they can be GC'd early
+// This is also immutable to prevent long lived objects that would be updated
+public struct Point {
+    public int X { get; private set; }
+    public int Y { get; private set; }
+
+    public Point(int x, int y) {
+        X = x;
+        Y = y;
+    }
+}
+{% endhighlight %}
+
+// Immutable
+// Odd ordering
+// Wierd fields
+// Repitition
+
+{% highlight csharp %}
+public static IEnumerable<Items> UpdateItems(
+    IEnumerable<int> existing,
+    IEnumerable<int> added,
+    IEnumerable<int> removed
+) {
+    // Add all the removed items to a HashSet
+    HashSet<int> allRemoved = new HashSet<int>();
+    foreach( int x in removed ) {
+        allRemoved.Add( x );
+    }
+
+    // Removes items then adds the new items
+    return existing.Where( x => !allRemoved.Contains( x ) )
+            .Concat( added );
+}
+{% endhighlight %}
+
+Instead of saying what the code is doing, a good comment would say why.
+
+{% highlight csharp %}
+
+// Items are an immutable list to not affect existing lists
+public static IEnumerable<Items> UpdateItems(
+    IEnumerable<int> existing,
+    IEnumerable<int> added,
+    IEnumerable<int> removed
+) {
+    HashSet<int> allRemoved = new HashSet<int>();
+    foreach( int x in removed ) {
+        allRemoved.Add( x );
+    }
+
+    return existing.Where( x => !allRemoved.Contains( x ) )
+            .Concat( added );
+}
+{% endhighlight %}
 
 
+**Kept up to date with the code.**
 
-2. **Kept up to date with the code.** As soon as comments fall out of date they
-   are more dangerous than no comments at all. Out of date comments are
-   misleading and could result in other developers (or you in 6 months) doing
-   bad things with code. Think leaving a parameter ``null`` that will now throw
-   an exception.
+As soon as comments fall out of date they are more dangerous than no comments
+at all. Out of date comments are misleading and could result in other
+developers (or you in 6 months) doing bad things with code. Think leaving a
+parameter ``null`` that will now throw an exception.
 
-   The best way to keep comments up
-   to date is keeping them with the code. Put comments right on your methods or
-   around complex logic. Jeff Atwood takes this even further and believes
-   ["The value of a comment is directly proportional to the distance between the comment and the code."][good-comments].
+The best way to keep comments up to date is keeping them with the code. Put
+comments right on your methods or around complex logic. Jeff Atwood takes this
+even further and believes ["The value of a comment is directly proportional to the distance between the comment and the code."][good-comments].
 
-3. **Is straight to the point and used only as needed.** Too many comments will
-   dilute your code. I prefer fewer comments and like to the let the code speak
-   for itself. You are not trying to write a great novel with comments, so keep
-   them short and as concise as possible. If there are many comments then maybe
-   there is actually a problem with the design. The more you need to explain
-   something clever that is happening the more likely you are being too clever.
+**Are straight to the point and used only as needed.**
 
-Conclusion
--------------------------------------------------------------------------------
+Too many comments will dilute your code. I prefer fewer comments and like to
+the let the code speak for itself. Comments should not be a novel, keep them
+as short and concise as possible. Too many comments is a code smell and might
+be a sign you need to be less clever in your code. Updating the code itself to
+be clearer would be more useful.
 
-Good comments are a great way to explain code that is hard to follow. Use them
-when needed
+Recently we had some code that looks like this:
 
---- Thoughts ---
+{% highlight csharp %}
+class Result {
+    bool IsDraftPost { get; set; }
+}
+{% endhighlight %}
 
-The code being commented might be behaving oddly or difficult to follow. A well
-written comment the describes the intended behaviour is fantastic. 
+The code had the concept of drafts and posts, but not draft posts. After
+looking at it for a long time learned it was meant for drafts becoming posts
+so added a comment for the next person.
 
-Why, not what
+{% highlight csharp %}
+class Result {
+    /// Indicates a draft that is being posted.
+    bool IsDraftPost { get; set; }
+}
+{% endhighlight %}
 
-Good comments say why something behaves the way it does. What it is doing is less
-important and is ultimately a function of the code. Instead of documentation that
-will get out of date use tests or executable specifications.
+Instead of this fancy comment we could have updated the code to use a better
+name and been done with it. We could say more with less.
 
-Use comments to show connections that would not be obvious
+{% highlight csharp %}
+class Result {
+    bool IsDraftBecomingPost { get; set; }
+}
+{% endhighlight %}
 
-Abuse
+**Conclusion**
 
-Not a subsitute for good naming. Good names are better than comments can ever be.
-Should not be used to spackle over a bad design. Could you change the code so the comment was not required. Comments can be a smell so be on the lookout.
+Good comments are a great way to explain code that is hard to follow. Use
+comments when needed and help the next person who comes along. Keep them
+simple, keep them up-to-date and keep them saying why not what.
+
+Happy commenting!
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
