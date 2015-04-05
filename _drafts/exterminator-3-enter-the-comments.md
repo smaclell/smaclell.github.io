@@ -30,98 +30,79 @@ change something from unintelligible to usable.
 
 So what makes a good comment?
 
-**Documents intent, not what is being done.**
+**Documents why decisions were made and the not obvious code.**
 
-Without recreating the exact moment and thinking from the original developer it
-can be impossible to know why code has been written a specific way. Explain
-concepts and connections that are not obvious. What is not obvious my differ
-between developers so if you are not sure about some code you are reading ask
-what someone else thinks.
+Without recreating the thinking from the original developer it
+can be impossible to know why code has been written a specific way. This is why
+it is important for comments to explain concepts and connections that are not
+obvious.
 
-This would be a bad comment
+Take this wild code found in the Quake III source code:
 
-{% highlight csharp %}
-// An immutable 2D Point
-public struct Point {
-    public int X { get; private set; }
-    public int Y { get; private set; }
+<figure>
+{% highlight c %}
+float Q_rsqrt( float number )
+{
+    long i;
+    float x2, y;
+    const float threehalfs = 1.5F;
 
-    public Point(int x, int y) {
-        X = x;
-        Y = y;
-    }
+    x2 = number * 0.5F;
+    y  = number;
+    i  = * ( long * ) &y;                     // evil floating point bit hacking
+    i  = 0x5f3759df - ( i >> 1 );             // wtf?
+    y  = * ( float * ) &i;
+    y  = y * ( threehalfs - ( x2 * y * y ) ); // 1st iteration
+//  y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed
+
+    return y;
 }
 {% endhighlight %}
+<figcaption>The source code from <a href="http://en.wikipedia.org/wiki/Fast_inverse_square_root">wikipedia</a> (edited to be family friendly and line up more)</figcaption>
+</figure>
 
-{% highlight csharp %}
-// For simple computations with 2D Points not long lived objects that move over time
-// Points are expected to be short lived and are struct's so they can be GC'd early
-// This is also immutable to prevent long lived objects that would be updated
-public struct Point {
-    public int X { get; private set; }
-    public int Y { get; private set; }
+It computes the inverse square root using a Newton-Raphson approximation. Extra
+bit magic is used to perform the computation as an integer instead of floating
+point for pure speed. The resulting code was ~4 times faster using the hardware
+of the day (i.e. before dedicated SSE instructions). This speed boost would be
+critical for the high performance needed by the game engine. This codes has
+some [interesting][history-1] [history][history-2] tracing the potential
+authors and how it was implemented.
 
-    public Point(int x, int y) {
-        X = x;
-        Y = y;
-    }
+This code is not intuitive for mere mortals and the few comments it has might
+be moderately helpful. This is a comment from one of the developers, Gary
+Tarolli, who also had trouble understanding it why it worked.
+
+> it took a long time to figure out how and why this works, and I can't
+> remember the details anymore.
+
+Consider this updated copy of the code with more comments outlining why it
+works.
+
+<figure>
+{% highlight c %}
+// Computes an approximate value for 1 / sqrt( x ) using the Newton-Raphson method
+float InvSqrt(float x)
+{
+    float xhalf = 0.5f * x;
+
+    // gives initial guess y0
+    long i = * ( long * ) &x;
+    i = 0x5f375a86 - ( i >> 1 );
+    float y =  * ( float * ) &i;
+
+    // Newton-Raphson step, repeating increases accuracy
+    y = y * ( 1.5f - xhalf * y * y );
+    return y;
 }
 {% endhighlight %}
+<figcaption>Updated source code with simplified comments based on <a href="http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf">Chris Lomont's paper</a></figcaption>
+</figure>
 
-// Immutable
-// Odd ordering
-// Wierd fields
-// Repitition
-
-{% highlight csharp %}
-public static IEnumerable<Items> UpdateItems(
-    IEnumerable<int> existing,
-    IEnumerable<int> added,
-    IEnumerable<int> removed
-) {
-    // Add all the removed items to a HashSet
-    HashSet<int> allRemoved = new HashSet<int>();
-    foreach( int x in removed ) {
-        allRemoved.Add( x );
-    }
-
-    // Removes items then adds the new items
-    return existing.Where( x => !allRemoved.Contains( x ) )
-            .Concat( added );
-}
-{% endhighlight %}
-
-Instead of saying what the code is doing, a good comment would say why.
-
-{% highlight csharp %}
-
-// Items are an immutable list to not affect existing lists
-public static IEnumerable<Items> UpdateItems(
-    IEnumerable<int> existing,
-    IEnumerable<int> added,
-    IEnumerable<int> removed
-) {
-    HashSet<int> allRemoved = new HashSet<int>();
-    foreach( int x in removed ) {
-        allRemoved.Add( x );
-    }
-
-    return existing.Where( x => !allRemoved.Contains( x ) )
-            .Concat( added );
-}
-{% endhighlight %}
-
-
-**Kept up to date with the code.**
-
-As soon as comments fall out of date they are more dangerous than no comments
-at all. Out of date comments are misleading and could result in other
-developers (or you in 6 months) doing bad things with code. Think leaving a
-parameter ``null`` that will now throw an exception.
-
-The best way to keep comments up to date is keeping them with the code. Put
-comments right on your methods or around complex logic. Jeff Atwood takes this
-even further and believes ["The value of a comment is directly proportional to the distance between the comment and the code."][good-comments].
+If you found this new code it would be easier to understand thanks to the
+comments describing why it works and how it was derived. Better comments can
+help the next developer understand how your code works and save them the time
+it took to understand it.
 
 **Are straight to the point and used only as needed.**
 
@@ -159,6 +140,17 @@ class Result {
 }
 {% endhighlight %}
 
+**Kept up to date with the code.**
+
+As soon as comments fall out of date they are more dangerous than no comments
+at all. Out of date comments are misleading and could result in other
+developers (or you in 6 months) doing bad things with code. Think leaving a
+parameter ``null`` that will now throw an exception.
+
+The best way to keep comments up to date is keeping them with the code. Put
+comments right on your methods or around complex logic. Jeff Atwood takes this
+even further and believes ["The value of a comment is directly proportional to the distance between the comment and the code."][good-comments].
+
 **Conclusion**
 
 Good comments are a great way to explain code that is hard to follow. Use
@@ -169,4 +161,6 @@ Happy commenting!
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
+[history-1]: http://www.beyond3d.com/content/articles/8/
+[history-2]: http://www.beyond3d.com/content/articles/15/
 [good-comments]: http://blog.codinghorror.com/when-good-comments-go-bad/
