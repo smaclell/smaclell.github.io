@@ -83,9 +83,11 @@ works.
 {% highlight c %}
 // Computes an approximate value for 1 / sqrt( x )
 // using the Newton-Raphson method for speed
+// See http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf for derivation
 float InvSqrt(float x)
 {
-    // gives initial guess y0
+    // Gives initial guess y0
+    // The constant is derived mathemagically
     long i = * ( long * ) &x;
     i = 0x5f375a86 - ( i >> 1 );
     float y =  * ( float * ) &i;
