@@ -30,7 +30,7 @@ change something from unintelligible to usable.
 
 So what makes a good comment?
 
-**Documents why decisions were made and the not obvious code.**
+**Good comments document why decisions were made and the not obvious code.**
 
 Without recreating the thinking from the original developer it
 can be impossible to know why code has been written a specific way. This is why
@@ -81,17 +81,17 @@ works.
 
 <figure>
 {% highlight c %}
-// Computes an approximate value for 1 / sqrt( x ) using the Newton-Raphson method
+// Computes an approximate value for 1 / sqrt( x )
+// using the Newton-Raphson method for speed
 float InvSqrt(float x)
 {
-    float xhalf = 0.5f * x;
-
     // gives initial guess y0
     long i = * ( long * ) &x;
     i = 0x5f375a86 - ( i >> 1 );
     float y =  * ( float * ) &i;
 
     // Newton-Raphson step, repeating increases accuracy
+    float xhalf = 0.5f * x;
     y = y * ( 1.5f - xhalf * y * y );
     return y;
 }
@@ -99,12 +99,12 @@ float InvSqrt(float x)
 <figcaption>Updated source code with simplified comments based on <a href="http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf">Chris Lomont's paper</a></figcaption>
 </figure>
 
-If you found this new code it would be easier to understand thanks to the
-comments describing why it works and how it was derived. Better comments can
-help the next developer understand how your code works and save them the time
-it took to understand it.
+If I responsible for maintaining code like this I would hope it has comments
+to go with with it. These added comments help by describing why it works and
+how it was derived. Better comments can help the next developer understand your
+code faster and save them the time when trying to understand it.
 
-**Are straight to the point and used only as needed.**
+**Good comments are straight to the point and used only as needed.**
 
 Too many comments will dilute your code. I prefer fewer comments and like to
 the let the code speak for itself. Comments should not be a novel, keep them
@@ -140,16 +140,30 @@ class Result {
 }
 {% endhighlight %}
 
-**Kept up to date with the code.**
+**Good comments are kept up to date with the code.**
 
 As soon as comments fall out of date they are more dangerous than no comments
 at all. Out of date comments are misleading and could result in other
 developers (or you in 6 months) doing bad things with code. Think leaving a
 parameter ``null`` that will now throw an exception.
 
+TODO: Summarize and better relate to comments specifically
+
+Documentation that is no longer up to date makes the code they explain less
+trust worthy. When the comments are misleading it is reasonable to assume the
+code also has issues. The more arcane the code the more crippling bad code
+comments can be. Bad assumptions start to form from incorrect comments which
+can easily result in bugs or other problems.
+
 The best way to keep comments up to date is keeping them with the code. Put
 comments right on your methods or around complex logic. Jeff Atwood takes this
 even further and believes ["The value of a comment is directly proportional to the distance between the comment and the code."][good-comments].
+
+I definitely agree with this and try to keep any code related documentation
+with the code it describes and release new versions along side the code.
+For the past year, our team has been committing user/release documentation
+alongside our code and [shipping the docs][boring] with the application. This
+has helped consolidate our documentation and simplify managing it.
 
 **Conclusion**
 
@@ -163,4 +177,5 @@ Happy commenting!
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
 [history-1]: http://www.beyond3d.com/content/articles/8/
 [history-2]: http://www.beyond3d.com/content/articles/15/
+[boring]: {% post_url 2015-01-21-deploys-becoming-boring-part-2 %}#managing-the-change
 [good-comments]: http://blog.codinghorror.com/when-good-comments-go-bad/
