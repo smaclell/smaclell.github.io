@@ -5,39 +5,42 @@ date:   2015-03-30 00:09:07
 tags: goals improvement career focus quality exterminator
 ---
 
-Comments can be a great way to learn new code and document unintuitive
+Comments can be a great way to learn about new code and document unintuitive
 behaviour. Good comments succinctly explain why code was done a certain way and
 are kept up to date.
 
 This week I have found myself adding more comments to code than ever before.
-I think this is partially due to the code I am in as I try to understand it and
-also part of the culture on the [Exterminator][tribute] team. It is part of how
-the team works and leaving the documentation better than how you found it is a
-part of every code review.
+I think this is partially due to the code I am in and part of trying to understand it.
+Improving the comments is also part of the culture on the [Exterminator][tribute] team.
+As
+the team works and they try to leave the documentation better than they found it.
+Adding to the comments what you have learned is part of every code review.
 
-The team tries to add comments to any code they touch to document the behaviour
+The team tries to add comments to any code they touch to document the unusual behaviour
 they are seeing. For every weird bug we solve, we can save the next person who
 reads the code time understanding why it works the way it does. Together, we
 have been able to slowly grow the documentation and tests along with the
 changes we are making, leaving the updated code better than we found it.
 
 In the past I have tried to rely solely on unit tests or naming to describe the
-code. This works great for new code where it is easy to understand how
+my code. This works great for new code where it is easy to understand how
 different classes are connected. In [legacy code][legacy] code where there are
 no tests and the behaviour is unclear, relying only on naming and relationships
-is not enough. Good comments along side the code and meaningful names can
-change something from unintelligible to usable.
+is not enough. Good comments and meaningful names can make previously
+unintelligible code usable again.
 
-So what makes a good comment?
+With such emphasis on comments and documentation it has got me thinking:
+What makes a good comment?
 
-**Good comments document why decisions were made and the not obvious code.**
+The Unobvious/Why Behind The Code
+===============================================================================
 
-Without recreating the thinking from the original developer it
+Without recreating the thinking from the original developer, it
 can be impossible to know why code has been written a specific way. This is why
 it is important for comments to explain concepts and connections that are not
 obvious.
 
-Take this wild code found in the Quake III source code:
+Take this wild code found in the Quake III source code for example:
 
 <figure>
 {% highlight c %}
@@ -61,17 +64,17 @@ float Q_rsqrt( float number )
 <figcaption>The source code from <a href="http://en.wikipedia.org/wiki/Fast_inverse_square_root">wikipedia</a> (edited to be family friendly and line up more)</figcaption>
 </figure>
 
-It computes the inverse square root using a Newton-Raphson approximation. Extra
+It computes the inverse square root using a Newton-Raphson approximation. Crazy
 bit magic is used to perform the computation as an integer instead of floating
 point for pure speed. The resulting code was ~4 times faster using the hardware
 of the day (i.e. before dedicated SSE instructions). This speed boost would be
-critical for the high performance needed by the game engine. This codes has
-some [interesting][history-1] [history][history-2] tracing the potential
-authors and how it was implemented.
+critical for the high performance needed by the game engines it was used in. This codes has
+[interesting][history-1] [history][history-2] tracing the potential
+authors, how it was implemented and has been widely talked about.
 
-This code is not intuitive for mere mortals and the few comments it has might
-be moderately helpful. This is a comment from one of the developers, Gary
-Tarolli, who also had trouble understanding it why it worked.
+Despite the minor comments, this code is not intuitive for mere mortals. Gary
+Tarolli, one of the developers involved and 3D graphics pioneer, also had
+trouble understanding how and why it worked.
 
 > it took a long time to figure out how and why this works, and I can't
 > remember the details anymore.
@@ -81,8 +84,8 @@ works.
 
 <figure>
 {% highlight c %}
-// Computes an approximate value for 1 / sqrt( x )
-// using the Newton-Raphson method for speed
+// Computes an approximate value for 1 / sqrt( x ) using the Newton-Raphson
+// method instead of normal floating point math for better speed
 // See http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf for derivation
 float InvSqrt(float x)
 {
@@ -101,12 +104,13 @@ float InvSqrt(float x)
 <figcaption>Updated source code with simplified comments based on <a href="http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf">Chris Lomont's paper</a></figcaption>
 </figure>
 
-If I responsible for maintaining code like this I would hope it has comments
+If I needed to understand code like this on a daily basis I would hope it has comments
 to go with with it. These added comments help by describing why it works and
 how it was derived. Better comments can help the next developer understand your
-code faster and save them the time when trying to understand it.
+code more easily.
 
-**Good comments are straight to the point and used only as needed.**
+As Needed And Straight To The Point
+===============================================================================
 
 Too many comments will dilute your code. I prefer fewer comments and like to
 the let the code speak for itself. Comments should not be a novel, keep them
@@ -142,7 +146,8 @@ class Result {
 }
 {% endhighlight %}
 
-**Good comments are kept up to date with the code.**
+Kept Up To Date
+===============================================================================
 
 As soon as comments fall out of date they are more dangerous than no comments
 at all. Out of date comments are misleading and could result in other
@@ -164,7 +169,8 @@ user/release documentation alongside our code and [shipping the docs][boring]
 with the application. This has helped simplify and consolidate our
 documentation.
 
-**Conclusion**
+Conclusion
+===============================================================================
 
 Good comments are a great way to explain code that is hard to follow. Use
 comments when needed and help the next person who comes along. When dealing
