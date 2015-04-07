@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Exterminators Week 3 - Enter the Comments"
-date:   2015-03-30 00:09:07
-tags: goals improvement career focus quality exterminator
+title:  "Exterminators Week 3 - On Comments"
+date:   2015-04-07 00:11:07
+tags: code quality exterminator comments
 ---
 
 Comments can be a great way to learn about new code and document unintuitive
