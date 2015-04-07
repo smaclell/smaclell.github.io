@@ -22,9 +22,9 @@ reads the code time understanding why it works the way it does. Together, we
 have been able to slowly grow the documentation and tests along with the
 changes we are making, leaving the updated code better than we found it.
 
-In the past I have tried to rely solely on unit tests or naming to describe the
+In the past I have tried to rely solely on unit tests or naming to describe
 my code. This works great for new code where it is easy to understand how
-different classes are connected. In [legacy code][legacy] code where there are
+different classes are connected. In [legacy code][legacy] where there are
 no tests and the behaviour is unclear, relying only on naming and relationships
 is not enough. Good comments and meaningful names can make previously
 unintelligible code usable again.
@@ -61,14 +61,14 @@ float Q_rsqrt( float number )
     return y;
 }
 {% endhighlight %}
-<figcaption>The source code from <a href="http://en.wikipedia.org/wiki/Fast_inverse_square_root">wikipedia</a> (edited to be family friendly and line up more)</figcaption>
+<figcaption>The source code from <a href="http://en.wikipedia.org/wiki/Fast_inverse_square_root">Wikipedia</a> (edited to be family friendly and line up more)</figcaption>
 </figure>
 
 It computes the inverse square root using a Newton-Raphson approximation. Crazy
 bit magic is used to perform the computation as an integer instead of floating
 point for pure speed. The resulting code was ~4 times faster using the hardware
 of the day (i.e. before dedicated SSE instructions). This speed boost would be
-critical for the high performance needed by the game engines it was used in. This codes has
+critical for the high performance needed by the game engines it was used in. This code has
 [interesting][history-1] [history][history-2] tracing the potential
 authors, how it was implemented and has been widely talked about.
 
@@ -105,7 +105,7 @@ float InvSqrt(float x)
 </figure>
 
 If I needed to understand code like this on a daily basis I would hope it has comments
-to go with with it. These added comments help by describing why it works and
+to go with it. These added comments help by describing why it works and
 how it was derived. Better comments can help the next developer understand your
 code more easily.
 
@@ -175,7 +175,7 @@ Conclusion
 
 Good comments are a great way to explain code that is hard to follow. When dealing
 with legacy code, be kind to other developers and leave comments based on what
-your learn. Keep comments up-to-date, keep comments simple and keep comments
+you learn. Keep comments up-to-date, keep comments simple and keep comments
 explaining the why/unobvious behind the code.
 
 Happy commenting!
