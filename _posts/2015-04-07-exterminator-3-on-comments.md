@@ -184,5 +184,5 @@ Happy commenting!
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
 [history-1]: http://www.beyond3d.com/content/articles/8/
 [history-2]: http://www.beyond3d.com/content/articles/15/
-[boring]: {% post_url 2015-01-21-deploys-becoming-boring-part-2 %}#managing-the-change
+[boring]: {% post_url 2015-01-21-deploys-becoming-boring-part-2 %}#release-docs
 [good-comments]: http://blog.codinghorror.com/when-good-comments-go-bad/

@@ -159,6 +159,8 @@ highlight just differences between the new update and the previous release. More
 collaboration with our clients helped us focus the documentation on their
 concerns and use cases allowing it to be more effective and less verbose.
 
+<span id="release-docs" />
+
 Our biggest documentation breakthrough came when we moved the release differences into
 source control along with the rest of the code. While this might seem like a
 small thing it made a very big difference for our team. Developers could maintain their flow
