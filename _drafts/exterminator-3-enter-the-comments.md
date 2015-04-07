@@ -29,8 +29,8 @@ no tests and the behaviour is unclear, relying only on naming and relationships
 is not enough. Good comments and meaningful names can make previously
 unintelligible code usable again.
 
-With such emphasis on comments and documentation it has got me thinking:
-What makes a good comment?
+With such emphasis on comments and documentation it has got me thinking: <br/>
+**What makes a good comment?**
 
 The Unobvious/Why Behind The Code
 ===============================================================================
@@ -115,25 +115,26 @@ As Needed And Straight To The Point
 Too many comments will dilute your code. I prefer fewer comments and like to
 the let the code speak for itself. Comments should not be a novel, keep them
 as short and concise as possible. Too many comments is a code smell and might
-be a sign you need to be less clever in your code. Updating the code itself to
-be clearer would be more useful.
+be a sign you need to be less clever in your code. Updating the code to
+be clearer would be a better use of your time than explaining unnecessarily
+complex dependencies.
 
-Recently we had some code that looks like this:
+Recently we found code that looked like this:
 
 {% highlight csharp %}
-class Result {
-    bool IsDraftPost { get; set; }
+public class Result {
+    public bool IsDraftPost { get; set; }
 }
 {% endhighlight %}
 
 The code had the concept of drafts and posts, but not draft posts. After
-looking at it for a long time learned it was meant for drafts becoming posts
-so added a comment for the next person.
+looking at the surrounding code for a while, we learned this property indicated
+when a draft was being posted. We then added a comment for the next person.
 
 {% highlight csharp %}
-class Result {
-    /// Indicates a draft that is being posted.
-    bool IsDraftPost { get; set; }
+public class Result {
+    // Indicates a draft is being posted.
+    public bool IsDraftPost { get; set; }
 }
 {% endhighlight %}
 
@@ -141,42 +142,41 @@ Instead of this fancy comment we could have updated the code to use a better
 name and been done with it. We could say more with less.
 
 {% highlight csharp %}
-class Result {
-    bool IsDraftBecomingPost { get; set; }
+public class Result {
+    public bool IsDraftBeingPosted { get; set; }
 }
 {% endhighlight %}
 
 Kept Up To Date
 ===============================================================================
 
-As soon as comments fall out of date they are more dangerous than no comments
-at all. Out of date comments are misleading and could result in other
-developers (or you in 6 months) doing bad things with code. Think leaving a
-parameter ``null`` that will now throw an exception.
+As comments become out of date they become more dangerous than no comments
+at all. Out of date comments are misleading and can result in other
+developers (or you in 6 months) doing bad things. For example, leaving a
+parameter ``null`` based on the old comments, that will now throw an exception.
 
 Documentation/comments that are no longer up to date makes the code they explain less
 trust worthy. When the comments are misleading it is reasonable to assume the
-code also has issues. The more arcane the code, the more crippling bad comments
-can be and the effect of bad assumptions they cause.
+code has deeper issues. The more arcane the code, the more crippling outdated
+comments can be and the larger the impact caused by the resulting bad assumptions.
 
 The best way to keep comments up to date is keeping them with the code. Put
 comments right on your methods or around complex logic. Jeff Atwood takes this
 even further and believes ["The value of a comment is directly proportional to the distance between the comment and the code."][good-comments].
 
-I definitely agree with this and try to keep any code related documentation
+I definitely agree with this and try to keep any related documentation
 with the code. In addition to normal comments, our team has been committing
-user/release documentation alongside our code and [shipping the docs][boring]
+user/release documentation alongside our code and [shipping them][boring]
 with the application. This has helped simplify and consolidate our
 documentation.
 
 Conclusion
 ===============================================================================
 
-Good comments are a great way to explain code that is hard to follow. Use
-comments when needed and help the next person who comes along. When dealing
+Good comments are a great way to explain code that is hard to follow. When dealing
 with legacy code, be kind to other developers and leave comments based on what
 your learn. Keep comments up-to-date, keep comments simple and keep comments
-explaining the why behind the code or the not obvious.
+explaining the why/unobvious behind the code.
 
 Happy commenting!
 
