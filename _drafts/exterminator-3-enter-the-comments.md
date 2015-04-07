@@ -149,29 +149,28 @@ at all. Out of date comments are misleading and could result in other
 developers (or you in 6 months) doing bad things with code. Think leaving a
 parameter ``null`` that will now throw an exception.
 
-TODO: Summarize and better relate to comments specifically
-
-Documentation that is no longer up to date makes the code they explain less
+Documentation/comments that are no longer up to date makes the code they explain less
 trust worthy. When the comments are misleading it is reasonable to assume the
-code also has issues. The more arcane the code the more crippling bad code
-comments can be. Bad assumptions start to form from incorrect comments which
-can easily result in bugs or other problems.
+code also has issues. The more arcane the code, the more crippling bad comments
+can be and the effect of bad assumptions they cause.
 
 The best way to keep comments up to date is keeping them with the code. Put
 comments right on your methods or around complex logic. Jeff Atwood takes this
 even further and believes ["The value of a comment is directly proportional to the distance between the comment and the code."][good-comments].
 
 I definitely agree with this and try to keep any code related documentation
-with the code it describes and release new versions along side the code.
-For the past year, our team has been committing user/release documentation
-alongside our code and [shipping the docs][boring] with the application. This
-has helped consolidate our documentation and simplify managing it.
+with the code. In addition to normal comments, our team has been committing
+user/release documentation alongside our code and [shipping the docs][boring]
+with the application. This has helped simplify and consolidate our
+documentation.
 
 **Conclusion**
 
 Good comments are a great way to explain code that is hard to follow. Use
-comments when needed and help the next person who comes along. Keep them
-simple, keep them up-to-date and keep them saying why not what.
+comments when needed and help the next person who comes along. When dealing
+with legacy code, be kind to other developers and leave comments based on what
+your learn. Keep comments up-to-date, keep comments simple and keep comments
+explaining the why behind the code or the not obvious.
 
 Happy commenting!
 
