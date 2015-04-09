@@ -5,6 +5,11 @@ date:   2015-03-30 00:09:07
 tags: goals improvement career focus quality exterminator
 ---
 
+I have been running an experiment. Instead of having massive pull requests to
+completely finish large chunks of work what if I broke it up into many MANY
+little pieces. At the same time I have been trying to keep each piece shippable
+and add up to the eventual story I am working on.
+
 Shipping small slices. Want to increasely add value, but don't want to introduce risk.
 
 Minimize the impact to existing code.
