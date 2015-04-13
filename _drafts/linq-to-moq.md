@@ -1,43 +1,12 @@
 ---
 layout: post
-title:  "Moq Minute -  Linq to Moq"
+title:  "Moq Minute - Linq to Moq"
 date:   2015-03-30 00:09:07
 tags: moq moq-minute testing
 ---
 
 I love Moq, it is the essential mocking library for .NET. This week I learnt
-two new features for simplifying your mock setup: Recusive Mocks and Linq to
-Mocks.
-
-**Recursive Mocks**
-
-Needing to have mocks return mocks is a hassle. Prior to learning about this
-feature my mocks would looks something like this:
-
-{% highlight csharp %}
-using Moq;
-
-Mock<Bar> bar = new Mock<Bar>();
-bar.Setup( x => x.Run() ).Returns( "baz" );
-
-Mock<Foo> foo = new Mock<Foo>();
-foo.Setup( x => x.Bar ).Returns( bar );
-{% endhighlight %}
-
-It feels gross. I needed to setup a completely different mock so I could return
-it later. With recursive mocks you can setup mocked properties automatically.
-Here is the same code using recursive mocks:
-
-{% highlight csharp %}
-using Moq;
-
-Mock<Foo> foo = new Mock<Foo>();
-foo.Setup( x => x.Bar.Run() ).Returns( "baz" );
-{% endhighlight %}
-
-Much simpler. It can also be used for methods and I imagine other areas too.
-
-**Linq to Mocks**
+a new feature for simplifying your mock setup: Linq to Mocks.
 
 This feature lets you use a Linq like syntax to setup mocks. This is great for
 really simple mocks. I first started using them as an alternative way to create
@@ -46,7 +15,7 @@ mock, but with the new syntax can be much simpler:
 
 {% highlight csharp %}
 using Moq;
-using System.Data;
+using System;
 
 IProgress<int> original = new Mock<IProgress<int>>().Object;
 
@@ -68,11 +37,8 @@ IDbCommand command = Mock.Of<IDbCommand>(
 {% endhighlight %}
 
 This can take some getting used to and looks wonky at first, but for really
-simple situations I think this will simplify my test setup.
-
-**Summary**
-
-I hope you liked these Moq features for simplifying your test setup. Enjoy.
+simple situations I think this will simplify my test setup. I hope you like
+this Moq feature and try it out soon. Enjoy.
 
 <hr />
 
