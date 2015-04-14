@@ -94,126 +94,8 @@ Double Down
 With legacy code and duplication throughout code I think it is even more
 important to double down on making tests clear by using the AAA pattern. The
 easier it is to understand what is being tested despite the challenges
-presented by more complicated code. You should double down on making sure the
-different AAA sections of your tests can be easily understood.
-
-What are some things we can do about it?
-
-**1. Mute the unnecessary**
-
-Refactor or remove repeated setup not essential to the tests. An objects where
-any possible value would be valid for the test as long as it is consistent. If
-possible I try to move these objects out of the test completely or use factory
-methods to create them.
-
-TODO: Think of a better example - setting up a mock, date or some other case
-you don't care about.
-
-{% highlight csharp %}
-[TestFixture]
-public class PersonRepositoryTests {
-
-	private static Person Anyone = new Person {
-		FirstName = "Any",
-		LastName = "One"
-	};
-
-	[Test]
-	public void Save_AnyPerson_NowContainsPerson() {
-		PersonRespository repository = new PersonRepository();
-
-		repository.Save( anyone );
-
-		CollectionAssert.Contains( person, repository.FindPerson( anyone) );
-	}
-}
-{% endhighlight %}
-
-**2. Relax and Focus**
-
-**3. Reduce your mocks**
-
-In my journey to use fewer and fewer mocks throughout my tests I am finding my
-test setup is often much simpler. As I said in my [previous post][things] I am trying to
-do more [classical TDD][classical]. Where I would normally use a complicated mock
-object I am now favouring using the real thing or simple fakes.
-
-Recently I faked a series of small interfaces used throughout many tests. This
-allowed me to use the same fakes many places throughout the test suite and
-vastly simplified the setup. Before using the fakes I had a series of
-interrelated mocks that were had to follow and difficult to configure.
-
-Switching to the fakes allowed me to perform the same activities as the mocks
-without all the additional setup. Another benefit was that my fake
-implementation was much closer to the real implementation and a whole lot less
-artificial.
-
-Even better has been using concrete classes from the implementation. Although
-my tests have become more interrelated knowing the actual classes work together
-correctly is worth the it. This has allowed me to remove layering throughout
-my code only used to insert mocks testing.
-
-Try the real thing. If you can't do that, [Fake It Till You Make It][fake-it].
-
-**4. Data Driven Tests**
-
-Duplicate behaviour throughout a series of overlapping tests can be
-consolidated using data driven tests. I have been using this a lot lately and
-really enjoying it. If the setup can be extracted to common variables and the
-inputs map cleanly to expected output then using data driven tests works well.
-
-{% highlight csharp %}
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
-
-namespace Example {
-
-	[TestFixture]
-	internal class StringCalculatorTests {
-
-		private static IEnumerable<TestCaseData> AddCases() {
-			yield return new TestCaseData( null, 0 );
-			yield return new TestCaseData( "", 0 );
-			yield return new TestCaseData( "1", 1 );
-			yield return new TestCaseData( "1,2", 3 );
-			yield return new TestCaseData( "1,2,3", 6 );
-		}
-
-		[Test]
-		[TestCaseSource( "AddCases" )]
-		public void Add_WithValidInput_ReturnsExpectedOutput(
-			string input,
-			int expectedResult
-		) {
-			StringCalculator calculator = new StringCalculator();
-
-			int result = calculator.Add( input );
-
-			Assert.AreEqual( expectedResult, result );
-		}
-
-	}
-
-	internal class StringCalculator {
-		public int Add( string input ) {
-			return (input ?? "")
-				.Split( ',' )
-				.Where( s => !string.IsNullOrEmpty( s ) )
-				.Select( int.Parse )
-				.Sum();
-		}
-	}
-}
-{% endhighlight %}
-
-While this technique does help showcase the behaviour of the tests better, it
-can become harder to follow if there is more complicated setup. I will let you
-be the judge as to when this technique is no longer working. I have been using
-it alot lately to great effectiveness and have only had a few cases where it
-felt like overkill. In these cases I was trying to get too fancy with the setup
-and needed to simplify it.
+presented by more complicated code. You should focus on making sure the
+arrange, act and assert sections of your tests can be easily understood.
 
 Your Turn
 ===============================================================================
@@ -222,8 +104,9 @@ Unit testing can be great fun, prevent defects and grow your design. Using the
 AAA pattern effective will lead to better tests. Even though legacy code can
 make testing much harder I think it is well worth it.
 
-I challenge you to write all of you tests using the AAA pattern. I think you
-will how much easier to understand your tests become.
+I challenge you to write all of you tests using the AAA pattern. Stay DAMP and
+watch out when things get too DRY. I think you will like how much easier to
+understand your tests become.
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
