@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Moq Minute - Recursive Mocks"
-date:   2015-03-30 00:09:07
+date:   2015-04-13 23:43:27
 tags: moq moq-minute testing
 ---
 
@@ -21,8 +21,8 @@ Mock<Foo> foo = new Mock<Foo>();
 foo.Setup( x => x.Bar ).Returns( bar );
 {% endhighlight %}
 
-It feels gross. I needed to setup a completely different mock separately and
-then return it.
+This feels gross. I needed to setup multiple mocks separately which feels like
+extra work. It is.
 
 Recursive mocks allow you to setup mocked properties automatically. You can
 setup methods and properties on any property of a ``Mock<T>`` without
