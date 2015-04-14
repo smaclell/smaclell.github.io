@@ -18,7 +18,7 @@ Mock<Bar> bar = new Mock<Bar>();
 bar.Setup( x => x.Example() ).Returns( "baz" );
 
 Mock<Foo> foo = new Mock<Foo>();
-foo.Setup( x => x.Bar ).Returns( bar );
+foo.Setup( x => x.Bar ).Returns( bar.Object );
 {% endhighlight %}
 
 This feels gross. I needed to setup multiple mocks separately which feels like
