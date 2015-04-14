@@ -5,7 +5,7 @@ date:   2015-03-30 00:09:07
 tags: moq moq-minute testing
 ---
 
-I love Moq, it is the essential mocking library for .NET. This week I learnt
+I love Moq. I think it is the best .NET mocking library. This week I learnt
 a new feature for simplifying your mock setup: Linq to Mocks.
 
 This feature lets you use a Linq like syntax to setup mocks. This is great for
