@@ -6,9 +6,9 @@ tags: moq moq-minute testing
 ---
 
 I love Moq. I think it is the best .NET mocking library. This week I learnt
-a new feature for simplifying your mock setup: Linq to Mocks.
+a new feature for simplifying your mock setup: **Linq to Mocks**.
 
-This feature lets you use a Linq like syntax to setup mocks. This is great for
+This feature lets you use Linq like syntax to setup mocks. This is great for
 really simple mocks. I first started using them as an alternative way to create
 mocks where I did not care how they were used. Previously I declared a complete
 mock, but with the new syntax can be much simpler:
@@ -17,12 +17,12 @@ mock, but with the new syntax can be much simpler:
 using Moq;
 using System;
 
-IProgress<int> original = new Mock<IProgress<int>>().Object;
+IProgress<int> before = new Mock<IProgress<int>>().Object;
 
-IProgress<int> updated = Mock.Of<IProgress<int>>();
+IProgress<int> after = Mock.Of<IProgress<int>>();
 {% endhighlight %}
 
-Later a coworker showed me you could setup basic behaviours easily!
+Later, a coworker showed me you could setup basic behaviours easily!
 Using a lambda expression you can specify the method to be called, any
 constraints on parameters and the return value. In the sample below the method
 ``ExecuteScalar`` can be called to return ``"return value"``. Neat eh?
@@ -36,9 +36,10 @@ IDbCommand command = Mock.Of<IDbCommand>(
 );
 {% endhighlight %}
 
-This can take some getting used to and looks wonky at first, but for really
-simple situations I think this will simplify my test setup. I hope you like
-this Moq feature and try it out soon. Enjoy.
+The syntax can take some getting used to and looks wonky at first, but for really
+simple mocks helps simplify your test setup.
+
+I hope you like this Moq feature and try it out soon. Enjoy.
 
 <hr />
 
