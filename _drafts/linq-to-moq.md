@@ -37,7 +37,8 @@ IDbCommand command = Mock.Of<IDbCommand>(
 {% endhighlight %}
 
 The syntax can take some getting used to and looks wonky at first, but for really
-simple mocks helps simplify your test setup.
+simple mocks helps simplify your test setup. For more examples read the Moq
+[quickstart][moq].
 
 I hope you like this Moq feature and try it out soon. Enjoy.
 
@@ -46,4 +47,5 @@ I hope you like this Moq feature and try it out soon. Enjoy.
 I wanted to share this with my co-workers and decided sharing it here would be
 an even better way to [save keystrokes][keystrokes].
 
+[moq]: https://github.com/Moq/moq4/wiki/Quickstart#linq-to-mocks
 [keystrokes]: http://blog.jonudell.net/2007/04/10/too-busy-to-blog-count-your-keystrokes/
