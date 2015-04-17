@@ -11,11 +11,10 @@ writing unit tests. It is critical to clearly show what is being validated
 by each unit test. What is important to each test changes and techniques to
 reduce duplication can reduce clarity.
 
-I want to write easy to understand tests where each provides enough context for
-what is being tested. You shouldn't need to read the entire file or many
-surrounding functions to learn what is being tested. If a test fails, any other
-developer should be able to figure out what is being tested by reading the test
-name, the class name and test body.
+I want to write easy to understand tests. Each test should have enough context
+so you can learn what is is testing by reading little more than the test body.
+You shouldn't need to read the entire file or many surrounding functions to
+learn what is being tested.
 
 AAA Recap
 ===============================================================================
@@ -63,7 +62,7 @@ Trouble in Paradise
 ===============================================================================
 
 This starts to break down for troublesome classes that were [never design to be tested][legacy]
-and duplication throughout the tests.
+and growing duplication throughout the tests.
 
 Thinking of how to test the untestable is a fun challenge. You need to approach
 the problem different. It is not all spoils of war and glory. Sometimes it
@@ -71,8 +70,8 @@ downright nasty and feels worst than before. [Too often mock objects are needed]
 in order to pry apart classes and objects.
 
 Duplication throughout tests is hard to avoid. Groups of tests often have
-similar setup or assertions. This can be inevitable when exercising multiple
-cases which share a common logic. As tests grow it becomes important to reduce
+similar setup or assertions. This is inevitable when exercising multiple
+cases sharing common logic. As the tests grow it becomes important to reduce
 the complexity and duplication without sacrificing clarity.
 
 One extreme to maintain being able to glance at a test and know exactly what is
@@ -97,6 +96,67 @@ easier it is to understand what is being tested despite the challenges
 presented by more complicated code. You should focus on making sure the
 arrange, act and assert sections of your tests can be easily understood.
 
+<div style="margin: 1em" class="pull-right">
+<a href="http://stackoverflow.com/users/912685/chris-edwards">
+<img
+	src="http://stackoverflow.com/users/flair/912685.png"
+	width="208"
+	height="58"
+	alt="profile for Chris Edwards at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
+	title="profile for Chris Edwards at Stack Overflow, Q&amp;A for professional and enthusiast programmers" />
+</a>
+</div>
+
+While thinking about the trade off between reducing duplication and clean tests
+I found this phenomenal answer to ["What does “DAMP not DRY” mean when talking about unit tests?"][so]
+by [Chris Edwards](http://stackoverflow.com/users/912685/chris-edwards)
+(edited by [Ian Ringrose](http://stackoverflow.com/users/57159/ian-ringrose)) on Stack Overflow:
+
+> **It's a balance, not a contradiction**
+>
+> DAMP and DRY are not contradictory, rather they balance two different aspects
+> of a code's *maintainability*. Maintainable code (code that is easy to change)
+> is the ultimate goal here.
+>
+> **DAMP (Descriptive And Meaningful Phrases) promotes the readability of the code.**
+>
+> To maintain code, you first need to understand the code. To understand it,
+> you have to read it. Consider for a moment how much time you spend reading
+> code. It's a lot. *DAMP increases maintainability by reducing the time
+> necessary to read and understand the code.*
+>
+> **DRY (Don't repeat yourself) promotes the [orthogonality][orthogonality] of the code.**
+>
+> Removing duplication ensures that every concept in the system has a single
+> authoritative representation in the code. A change to a single business
+> concept results in a single change to the code. *DRY increases
+> maintainability by isolating change (risk) to only those parts of the system
+> that must change.*
+>
+> **So, why is duplication more acceptable in tests?**
+>
+> Tests often contain inherent duplication because they are testing the same
+> thing over and over again, only with slightly different input values or setup
+> code. However, unlike production code, this duplication is usually isolated
+> only to the scenarios within a single test fixture/file. Because of this, the
+> duplication is minimal and obvious, which means it poses less risk to the
+> project than other types of duplication.
+>
+> Furthermore, removing this kind of duplication reduces the readability of the
+> tests. The details that were previously duplicated in each test are now
+> hidden away in some new method or class. To get the full picture of the test,
+> you now have to mentally put all these pieces back together.
+>
+> Therefore, since test code duplication often carries less risk, and promotes
+> readability, its easy to see how it is considered acceptable.
+>
+> *As a principle, favor DRY in production code, favor DAMP in test code. While
+> both are equally important, with a little wisdom you can tip the balance in your favor.*
+
+The tests I was reading and writing were too DRY and the meaning was being lost
+due to the heavy refactoring. DAMPer tests and following the AAA pattern would
+have been easier to follow and maintain.
+
 Your Turn
 ===============================================================================
 
@@ -116,3 +176,5 @@ understand your tests become.
 [things]: {% post_url 2015-02-11-4-things-your-tests-are-telling-you %}#recovering-mockist
 [classical]: http://martinfowler.com/articles/mocksArentStubs.html
 [fake-it]: http://www.jeffdutradeveloper.com/2014/08/25/fake-it-till-you-make-it-and-try-not-to-mock-others/
+[so]: http://stackoverflow.com/questions/6453235/what-does-damp-not-dry-mean-when-talking-about-unit-tests
+[orthogonality]: http://www.artima.com/intv/dry.html
