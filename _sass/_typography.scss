@@ -38,6 +38,24 @@ a {
 	}
 }
 
+.entry-content a {
+	color: $entry-link-color; 
+	&:visited {
+		color: lighten($entry-link-color, 20);
+	}
+	&:hover {
+		color: darken($entry-link-color, 20);
+	}
+	&:focus {
+		outline: thin dotted; 
+		color: darken($entry-link-color, 20);
+	}
+	&:hover,
+	&:active {
+		outline: 0;
+	}
+}
+
 .link-arrow {
 	font-weight: 100;
 	text-decoration: underline;
@@ -69,7 +87,7 @@ figcaption {
 // --------------------------------------------------
 blockquote {
 	font-family: $alt-font;
-	font-style: italic;
+	background-color: lighten($base-color, 85%);
 	border-left: 8px solid $border-color;
 	padding-left: 20px;
 	@media #{$medium} {
