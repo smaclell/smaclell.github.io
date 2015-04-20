@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Exterminators Week 4 - Unfiltered AAA"
+title:  "Exterminators Week 4 - DAMP Unfiltered AAA"
 date:   2015-03-30 00:09:07
 tags: unit-testing testing exterminator
 ---
@@ -12,7 +12,7 @@ by each unit test. Some duplication can help improve the readability of your
 tests.
 
 I want to write easy to understand tests. Each test should have enough context
-so you can learn what is is testing by reading little more than the test body.
+so you can learn what is testing by reading little more than the test body.
 You shouldn't need to read the entire file or many surrounding functions to
 learn what is being tested.
 
@@ -33,7 +33,7 @@ don't belong. Trying to have all tests keep these three basic sections has the
 benefits of highlighting what is being tested by separating it from the setup
 and assertions.
 
-To make it all crystal clear here a simple test following the AAA pattern:
+To make it all crystal clear, here is a simple test following the AAA pattern:
 
 {% highlight csharp %}
 [TestFixture]
@@ -53,7 +53,7 @@ public class HashSetTests {
 If that is not enough of a recap I would encourage you to read
 "[The fundamentals of unit testing : Arrange, Act, Assert][fundamentals]" by
 Mark Simpson. I found it while writing this post and it provides a detailed
-review of the concept. It also inspired the example above, although I want to
+review of the concept. It also inspired the example above; although I want to
 point out ``HashSet<T>`` is cooler than ``Stack<T>``.
 
 Okay, now back to the post.
@@ -66,8 +66,8 @@ and growing duplication throughout the tests.
 
 Thinking of how to test the untestable is a fun challenge. You need to approach
 the problem different. It is not all spoils of war and glory. Sometimes it
-downright nasty and feels worst than before. [Too often mock objects are needed][mocks-smell]
-in order to pry apart classes and objects.
+downright nasty and feels worse than before. [Too often mock objects are needed][mocks-smell]
+in order to pry classes apart.
 
 Duplication throughout tests is hard to avoid. Groups of tests often have
 similar setup or assertions. This is inevitable when exercising multiple
@@ -76,7 +76,7 @@ the complexity and duplication without sacrificing clarity.
 
 One extreme to maintain being able to glance at a test and know exactly what is
 doing would be to put all of the setup and logic required in the test itself.
-Down this road is madness and a monstrous unmaintainable mess. Many tests would
+Down this road are madness and a monstrous unmaintainable mess. Many tests would
 be nearly identical and simple changes could easily break many tests as once.
 
 Another extreme would be to extract all the setup or assertions into separate
@@ -93,10 +93,11 @@ With legacy code  I think it is even more
 important to double down on making tests clear by using the AAA pattern. The
 easier it is to understand what is being tested despite the challenges
 presented by more complicated code. You should focus on making sure the
-arrange, act and assert sections of your tests can be easily understood.
+sections of your tests, i.e. arrange, act and assert, are easily understood.
 
 You can extract assertions or setup into methods, but it will ultimately make
-the tests just a little bit harder to follow.
+the tests just a little bit harder to follow. Using too many data driven tests
+will hide the setup from each test case.
 
 <div style="margin: 1em" class="pull-right">
 <a href="http://stackoverflow.com/users/912685/chris-edwards">
@@ -109,7 +110,7 @@ the tests just a little bit harder to follow.
 </a>
 </div>
 
-While thinking about the trade off between reducing duplication and clean tests
+While thinking about the tradeoffs between reducing duplication and clean tests
 I found this phenomenal answer to ["What does “DAMP not DRY” mean when talking about unit tests?"][so]
 by [Chris Edwards](http://stackoverflow.com/users/912685/chris-edwards)
 (edited by [Ian Ringrose](http://stackoverflow.com/users/57159/ian-ringrose)) on Stack Overflow:
@@ -158,7 +159,7 @@ by [Chris Edwards](http://stackoverflow.com/users/912685/chris-edwards)
 The tests I was reading and writing were too DRY and the meaning was being lost
 due to the heavy refactoring. DAMPer tests and following the AAA pattern would
 have been easier to follow and maintain. In this case tolerating more
-duplication so the tests make more sense on their own is justified. Just don't
+duplication so the tests make more sense is justified. Just don't
 let the duplication sneak into your production code.
 
 Your Turn
