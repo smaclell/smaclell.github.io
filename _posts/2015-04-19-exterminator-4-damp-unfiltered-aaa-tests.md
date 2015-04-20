@@ -188,6 +188,14 @@ I challenge you to write all of you tests using the AAA pattern. Stay DAMP and
 watch out when things get too DRY. I think you will like how much easier to
 understand your tests become.
 
+<hr />
+
+I do not believe this is a derivative work or adaptation from the Stack
+Overflow answer quoted within the post. For this reason I have decided against
+licensing this blog post under a [Share-A-Like license][license]. If you think
+I have done this incorrectly please let me know and I will update this post
+accordingly.
+
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [c2-aaa]: http://c2.com/cgi/wiki?ArrangeActAssert
 [fundamentals]: http://defragdev.com/blog/?p=783
@@ -195,3 +203,4 @@ understand your tests become.
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
 [so]: http://stackoverflow.com/questions/6453235/what-does-damp-not-dry-mean-when-talking-about-unit-tests
 [orthogonality]: http://www.artima.com/intv/dry.html
+[license]: http://creativecommons.org/licenses/by-sa/3.0/
