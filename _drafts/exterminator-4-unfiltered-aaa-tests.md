@@ -8,30 +8,29 @@ tags: unit-testing testing exterminator
 A standard unit testing pattern is Arrange, Act and Assert or AAA. As
 an [Exterminator][tribute], I have been spending lots of time reading and
 writing unit tests. It is critical to clearly show what is being validated
-by each unit test. Some duplication can help improve the readability of your
-tests.
+by each unit test. Duplication between tests is tolerable to improve
+readability.
 
 I want to write easy to understand tests. Each test should have enough context
-so you can learn what is testing by reading little more than the test body.
+so you can learn what it is testing by reading little more than the test body.
 You shouldn't need to read the entire file or many surrounding functions to
 learn what is being tested.
 
 AAA Recap
 ===============================================================================
 
-The ideal for me would be to have all of the tests follow the AAA pattern test
-setup. In case you don't know what AAA is here is a brief description from the
+The ideal for me would be to have all of the tests follow the AAA pattern.
+In case you don't know what AAA is here is a brief description from the
 [c2 wiki][c2-aaa]:
 
 > 1. **Arrange** all necessary preconditions and inputs.
 > 2. **Act** on the object or method under test.
 > 3. **Assert** that the expected results have occurred.
 
-Nothing to crazy here, but trying to stick to these simple sections clarifies
-your tests dramatically. Anything tests violating this pattern look like they
-don't belong. Trying to have all tests keep these three basic sections has the
-benefits of highlighting what is being tested by separating it from the setup
-and assertions.
+Nothing to crazy here. Sticking to these simple sections clarifies
+your tests dramatically. When tests violate this pattern they look like they
+don't belong. The AAA pattern has several benefits, including highlighting what
+is being tested by separating it from the setup and assertions.
 
 To make it all crystal clear, here is a simple test following the AAA pattern:
 
@@ -50,29 +49,33 @@ public class HashSetTests {
 }
 {% endhighlight %}
 
+It is pretty clear I am testing ``HashSet<T>.Add( T item )`` and the
+setup/assertions used to verify the correct behaviour.
+
 If that is not enough of a recap I would encourage you to read
 "[The fundamentals of unit testing : Arrange, Act, Assert][fundamentals]" by
-Mark Simpson. I found it while writing this post and it provides a detailed
-review of the concept. It also inspired the example above; although I want to
-point out ``HashSet<T>`` is cooler than ``Stack<T>``.
+Mark Simpson. I found it while writing this post and it provides a more detailed
+review of the concept. It also inspired the example above; although I think
+``HashSet<T>`` is cooler than ``Stack<T>``.
 
 Okay, now back to the post.
 
 Trouble in Paradise
 ===============================================================================
 
-This starts to break down for troublesome classes that were [never design to be tested][legacy]
-and growing duplication throughout the tests.
+Maintaining clean AAA tests starts to break down for troublesome classes
+[never design to be tested][legacy] and growing duplication throughout the
+tests.
 
 Thinking of how to test the untestable is a fun challenge. You need to approach
-the problem different. It is not all spoils of war and glory. Sometimes it
-downright nasty and feels worse than before. [Too often mock objects are needed][mocks-smell]
-in order to pry classes apart.
+the problem differently than most development. It is not all spoils of war and
+glory. Sometimes it downright nasty and feels worse than before.
+[Too often mock objects are needed][mocks-smell] in order to pry classes apart.
 
 Duplication throughout tests is hard to avoid. Groups of tests often have
 similar setup or assertions. This is inevitable when exercising multiple
 cases sharing common logic. As the tests grow it becomes important to reduce
-the complexity and duplication without sacrificing clarity.
+the complexity and duplication without obscuring what is being tested.
 
 One extreme to maintain being able to glance at a test and know exactly what is
 doing would be to put all of the setup and logic required in the test itself.
@@ -86,18 +89,19 @@ methods. I think there are approaches here that can work better and still
 reveal what the tests are validating. It is important to strike a balance so
 the tests have less duplication, but what is being tested is still apparent.
 
-Double Down
-===============================================================================
-
-With legacy code  I think it is even more
-important to double down on making tests clear by using the AAA pattern. The
-easier it is to understand what is being tested despite the challenges
-presented by more complicated code. You should focus on making sure the
-sections of your tests, i.e. arrange, act and assert, are easily understood.
-
 You can extract assertions or setup into methods, but it will ultimately make
 the tests just a little bit harder to follow. Using too many data driven tests
-will hide the setup from each test case.
+will hide the setup from each test case. Mocks will bloat your tests and
+complicate the setup process. You are stuck in a hard place.
+
+Double Down on AAA
+===============================================================================
+
+With legacy code I think it is even more important to double down on making
+what is being tested clear by using the AAA pattern. The code is probably
+hard enough to understand on its own. Simple tests with easy to understand
+setup, actions and assertions are a good first step at breaking down
+challenging legacy code.
 
 <div style="margin: 1em" class="pull-right">
 <a href="http://stackoverflow.com/users/912685/chris-edwards">
@@ -157,10 +161,21 @@ by [Chris Edwards](http://stackoverflow.com/users/912685/chris-edwards)
 > both are equally important, with a little wisdom you can tip the balance in your favor.*
 
 The tests I was reading and writing were too DRY and the meaning was being lost
-due to the heavy refactoring. DAMPer tests and following the AAA pattern would
-have been easier to follow and maintain. In this case tolerating more
-duplication so the tests make more sense is justified. Just don't
-let the duplication sneak into your production code.
+due to the heavy refactoring. DAMPer tests and strictly using the AAA pattern
+would have made the tests easier to follow and maintain. In this case
+tolerating more duplication so the tests make more sense is justified. Just
+don't let the duplication sneak into your production code.
+
+In several cases I went back with the original developer and worked with them
+to write more DAMP tests and really focus on keeping the AAA pattern. The
+tests were much easier to understand. Through the process we found a simpler
+way to implement the design and brought that back to the code. With the
+original tests I don't think we would have seen this opportunity.
+
+I tried looking at my own tests to make sure they showcased what was being
+tested. For some this mean better names or shifting how common setup was
+performed. In all cases I felt when tests aligned better with the AAA pattern
+they were easier to understand.
 
 Your Turn
 ===============================================================================
@@ -174,12 +189,9 @@ watch out when things get too DRY. I think you will like how much easier to
 understand your tests become.
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
-[legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
 [c2-aaa]: http://c2.com/cgi/wiki?ArrangeActAssert
 [fundamentals]: http://defragdev.com/blog/?p=783
 [mocks-smell]: http://devblog.avdi.org/2011/09/06/making-a-mockery-of-tdd/
-[things]: {% post_url 2015-02-11-4-things-your-tests-are-telling-you %}#recovering-mockist
-[classical]: http://martinfowler.com/articles/mocksArentStubs.html
-[fake-it]: http://www.jeffdutradeveloper.com/2014/08/25/fake-it-till-you-make-it-and-try-not-to-mock-others/
+[legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
 [so]: http://stackoverflow.com/questions/6453235/what-does-damp-not-dry-mean-when-talking-about-unit-tests
 [orthogonality]: http://www.artima.com/intv/dry.html
