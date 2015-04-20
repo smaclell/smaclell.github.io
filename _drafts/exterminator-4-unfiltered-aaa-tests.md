@@ -5,11 +5,11 @@ date:   2015-03-30 00:09:07
 tags: unit-testing testing exterminator
 ---
 
-The gold standard unit test layout is Arrange, Act and Assert or AAA. As
+A standard unit testing pattern is Arrange, Act and Assert or AAA. As
 an [Exterminator][tribute], I have been spending lots of time reading and
 writing unit tests. It is critical to clearly show what is being validated
-by each unit test. What is important to each test changes and techniques to
-reduce duplication can reduce clarity.
+by each unit test. Some duplication can help improve the readability of your
+tests.
 
 I want to write easy to understand tests. Each test should have enough context
 so you can learn what is is testing by reading little more than the test body.
@@ -84,17 +84,19 @@ methods. While this cuts down on the duplication it becomes harder to see what
 each test is doing. Exactly what is happening becomes hidden behind the helper
 methods. I think there are approaches here that can work better and still
 reveal what the tests are validating. It is important to strike a balance so
-the tests have less duplication, but what is being tested is still readily
-apparent.
+the tests have less duplication, but what is being tested is still apparent.
 
 Double Down
 ===============================================================================
 
-With legacy code and duplication throughout code I think it is even more
+With legacy code  I think it is even more
 important to double down on making tests clear by using the AAA pattern. The
 easier it is to understand what is being tested despite the challenges
 presented by more complicated code. You should focus on making sure the
 arrange, act and assert sections of your tests can be easily understood.
+
+You can extract assertions or setup into methods, but it will ultimately make
+the tests just a little bit harder to follow.
 
 <div style="margin: 1em" class="pull-right">
 <a href="http://stackoverflow.com/users/912685/chris-edwards">
@@ -155,7 +157,9 @@ by [Chris Edwards](http://stackoverflow.com/users/912685/chris-edwards)
 
 The tests I was reading and writing were too DRY and the meaning was being lost
 due to the heavy refactoring. DAMPer tests and following the AAA pattern would
-have been easier to follow and maintain.
+have been easier to follow and maintain. In this case tolerating more
+duplication so the tests make more sense on their own is justified. Just don't
+let the duplication sneak into your production code.
 
 Your Turn
 ===============================================================================
