@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Exterminators Week 5"
+title:  "Exterminators Week 5 - Thin Slices"
 date:   2015-04-27 00:09:07
 tags: pull-requests exterminator
 ---
@@ -67,7 +67,10 @@ introduced.
 
 My first place was method controlling the logic responsible for the defect.
 This was a gold mine. Everything I needed to do for the original fix could be
-done right here.
+done right here. I quickly prototyped up a solution to make sure my plan would
+work. The prototype was a confirmation I was on the right path and then I threw
+it away so I could start with a clean slate and drive my development with
+tests.
 
 I intentionally avoided other areas including the duplicate code I wanted to
 refactor. These were a distraction for fixing the original defect and could
@@ -109,42 +112,102 @@ of mixing my new updates with the existing classes I made new ones and tested
 them into submission.
 
 After a few more pull requests I was able to fix the defect and integrate my
-changes.
+changes. Some of additions tried to isolate the new functionality, whereas
+others we created to highlight when new components were being integrated.
+Another for renaming a common component. A review for deleting old code that was no
+longer needed.
+
+Changes were cruising along and reviews were going well. The other developers
+were really getting into it. The collaboration was stellar. Right in the middle
+of reviewing the work we hit a snag.
 
 Collision
 ===============================================================================
 
+Unknown to us another team was working in the exact same area. It is an easy
+mistake to have happen and neither of us had considered the possibility of
+this happening. With my small changes I had been impeding their work and for
+the first time they won the merge race. This was the first time they had merged
+before I was able to merge one of my pull requests.
+
+At first I was stunned. We had been going full speed only to skip off the
+tracks. It was disheartening, but we I knew were we close so I dug in and
+kept going.
+
+However, the more I looked at the other changes the better I felt. They had
+carefully and meticulously been doing many of the same things I had been
+trying to do, increase test coverage and improve the code. In fact there was
+one file where another developer and myself both had tried to improve the same
+monster method in roughly the same way.
+
+We regrouped and adjusted the remaining reviews based on their new changes.
+Thanks to our small changes we were able to isolate the area to be updated.
+
+We merged our final fixes and took a breather so the changes could be tested.
+The testing went relatively smoothly and soon the many pull requests were ready
+to be sent to our clients.
+
 Dedupe
 ===============================================================================
+
+We didn't stop there. We could have. It would have been easier. Instead I
+wanted to finish the work we started and eliminate even more of the duplication
+throughout the code. With the fix now complete we could return the duplication
+that would have distracted us from fixing the original defect.
+
+This time we tried to reduce how isolated the new changes were from the old
+code. Instead we tried to break up the work into small functional units which
+would eliminate all duplication in one area. Reviews would include more context
+and showed new classes being used in the same pull request they were
+introduced. This was still broken into several reviews which built on each
+other to streamline the process.
+
+We tried to preserve isolating refactoring and deletions. There were some of
+the easiest reviews since they came near the end of the process and had a
+single responsibility.
+
+After these reviews were complete, I did one last review of everything together
+and made a few more modifications. Some classes could be moved around, renamed
+or have reduced visibility. The many incremental steps made seeing the overall
+picture much harder. The final wrap up let us tie everything together and
+review our finished product.
 
 What Did I Learn?
 ===============================================================================
 
-TODO: Talk about how this was several weeks
+I feel like I learnt alot throughout the process and had fun doing it. Using
+thin slices and many code reviews like this was not easy, but I think it was
+worth extra effort. The analysis, development, reviews and testing took weeks
+to do. Each step of the way I would have felt comfortable shipping what we had
+merged. Even now, weeks after the changes were wrapped up we are still learning
+from the process and results.
 
-Instead of having massive pull requests for
-large chunks of work I have been trying to ma what if I broke it up into many MANY
-little pieces. At the same time I have been trying to keep each piece shippable
-and add up to the eventual story I am working on.
+I hard started with the goal:
 
-Shipping small slices. Want to increasely add value, but don't want to introduce risk.
+1. Work in small shippable slices
+2. Add customer value
+3. Minimize risk
 
-Minimize the impact to existing code.
-Reduce the risk. Safe changes.
-Don't do very much.
-Repeat.
+Over time the goal for individual changes morphed into:
 
-Sketch up what you want to do. Cut it up. Do it.
+* Minimize the impact to existing code.
+* Reduce the risk. Safe changes.
+* Don't do very much at a time.
+* Repeat.
 
-Legacy code? Add your tests first!
-Prototype it. Then throw it away.
-Do your code beside the old code. Cut Over.
-Test the snot out of what you are doing.
-Separate refactoring.
-Separate any setup steps.
-Separate any clean up.
-More testing when you cut in pieces.
-The more the merrier!
+It was surprising how as we kept going the momentum we gained. We have
+continued trying this approach with other changes and it feels like we cannot
+go fast enough.
+
+* Legacy code? Start with tests!
+* Prototype. Then throw it away.
+* New code beside the old code then cut over.
+* Automated testing covering your changes.
+* Test throughout.
+* Separate refactoring.
+* Separate setup steps.
+* Separate clean up.
+* The more pull requests the merrier!
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [goals]: {% post_url 2015-03-30-exterminators-2-focus-and-quality %}
