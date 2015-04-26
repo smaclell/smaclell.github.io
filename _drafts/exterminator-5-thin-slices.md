@@ -25,7 +25,8 @@ reviews were easier and could often be done quickly by anyone on the team.
 
 While the Exterminators could not ship new features in a day, I thought I could
 use the same approaches to break down larger features into smaller changes
-which could be shipped independently or in sequence. My new habits of
+which could be shipped independently or in sequence. Individual changes could be
+broken down into small pull requests<sup id="reverse-ext-5-note-1"><a href="#ext-5-note-1">1</a></sup>. My new habits of
 [focus and quality][goals] would be readily applicable. I could focus intensely
 on each small change and make sure I took small steps to larger changes in
 order to reduce the risk introduced by each change.
@@ -47,19 +48,33 @@ I had found a candidate for using small pull requests to solve a larger
 problem. Each pull request would be easier to understand and bit by bit lead
 to the overall solution.
 
-Finding the Seams
+I started out with the following principles to guide each and every pull
+request I made:
+
+1. Work in small shippable slices
+2. Add customer value
+3. Minimize risk
+
+Finding the Boundaries
 ===============================================================================
 
-My first order of business was to find seams in the application to begin making
-the refactoring and address the defect. I wanted points in the existing
+My first order of business was to find boundaries in the application to begin
+making the refactoring and address the defect. I wanted points in the existing
 architecture to make the change with minimal impact. This often involves where
-to sections of code join together, like a welded seam TODO picture.
+to sections of code join together, like a welded seam.
 
-TODO insert a proper definition for seam http://www.informit.com/articles/article.aspx?p=359417&seqNum=2
+TODO replace the references to seams and update all of this.
+TODO picture.
+TODO: Review the book.
+This is different than traditionally seams:
 
-TODO insert seam examples.
+> “Seam”: A place where you can alter behavior in your program without editing
+> in that place. (p. 31 and again on p. 36)
 
-There are many potential seams 
+Not performing any edits to the existing code would be to restrictive. I would
+try to leverage types, parameters and other natural seams throughout the
+software, but would then take it one step further and adjust localized
+behaviour around the defect.
 
 I read thousands upon thousands of lines of code. Over time a picture emerged
 with areas affected by the defect and surrounding areas where changes could be
@@ -182,12 +197,6 @@ to do. Each step of the way I would have felt comfortable shipping what we had
 merged. Even now, weeks after the changes were wrapped up we are still learning
 from the process and results.
 
-I had started with the goals:
-
-1. Work in small shippable slices
-2. Add customer value
-3. Minimize risk
-
 Over time the goal for individual changes morphed into:
 
 * Minimize the impact to existing code.
@@ -211,6 +220,27 @@ go fast enough.
 * Separate clean up.
 * The more pull requests the merrier!
 
+<br />
+
+### Footnotes
+
+<a id="ext-5-note-1" href="#reverse-ext-5-note-1">1.</a> I use the term
+  *pull request* quite a bit throughout this post. *Pull requests* are a common
+  process that looks a little like this:
+
+  1. Have an idea
+  2. Branch the code
+  3. Do your work on the Branch
+  4. Get the branch code reviewed (address any issues/recommendations)
+  5. Merge the Branch
+  6. Repeat
+
+  For nice simple tutorial show the entire pull request process using plain git
+  see [Effective pull requests][pr]. The article shows all the major mechanics
+  for doing pull requests using branches and even a few advanced techniques and
+  tools.
+
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [goals]: {% post_url 2015-03-30-exterminators-2-focus-and-quality %}
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
+[pr]: http://codeinthehole.com/writing/pull-requests-and-other-good-practices-for-teams-using-github/
