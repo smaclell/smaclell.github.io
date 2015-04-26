@@ -18,7 +18,7 @@ requests becoming quite large and complicated. The code reviews I was doing for
 others were taking a long time and were included many changes. The reviews
 helped improve the code, but feel like a bottleneck in the team's process.
 
-Continuous Delivery is addictive and I have drank the Koolaid. With my previous
+Continuous Delivery is addictive and I have drunk the Kool-Aid. With my previous
 team we had been able to add a new feature and ship it into production later
 the same day. All of the changes were small and built upon each other. Code
 reviews were easier and could often be done quickly by anyone on the team.
@@ -43,7 +43,7 @@ Biting the bullet I decided I would refactor the code to have only one way to
 perform the specific operation and fix the problem. At the same time I could
 improve our test coverage and put a dent in our [legacy code][legacy].
 
-I had found a candidate for using small pull requests to solve the a larger
+I had found a candidate for using small pull requests to solve a larger
 problem. Each pull request would be easier to understand and bit by bit lead
 to the overall solution.
 
@@ -87,15 +87,15 @@ break anything and better understand the code. I refactored a particularly
 confusing method into smaller pieces. I setup a few helper methods to access
 data I would need.
 
-Each of the changes were done in complete isolation. I tried to minimize their
+The changes were each done in complete isolation. I tried to minimize their
 impact on the existing code to reduce the risk they introduced. Very little of
 the existing code was affected. Even for the refactoring I did I tried to keep
 the majority of code intact, relying heavily on automated tools and small steps
 to avoid breaking the existing code.
 
 Things were going great and then our release date approached. The actual fix was
-not ready. Not a problem. I wrapped up the changes I was making, we tested them
-more thoroughly and shipped the first few parts.
+not ready. Not a problem. I wrapped up the changes I was making, tested them as
+a team and then shipped the first few pull requests.
 
 Had I done the same changes all at once this would have been a much riskier
 proposition. There would have been more affected areas and would have required
@@ -114,8 +114,8 @@ them into submission.
 After a few more pull requests I was able to fix the defect and integrate my
 changes. Some of additions tried to isolate the new functionality, whereas
 others we created to highlight when new components were being integrated.
-Another for renaming a common component. A review for deleting old code that was no
-longer needed.
+Another pull request was used to rename a common component. A pull request for
+deleting old code that was no longer needed.
 
 Changes were cruising along and reviews were going well. The other developers
 were really getting into it. The collaboration was stellar. Right in the middle
@@ -137,7 +137,7 @@ kept going.
 However, the more I looked at the other changes the better I felt. They had
 carefully and meticulously been doing many of the same things I had been
 trying to do, increase test coverage and improve the code. In fact there was
-one file where another developer and myself both had tried to improve the same
+one file where another developer and I both had tried to improve the same
 monster method in roughly the same way.
 
 We regrouped and adjusted the remaining reviews based on their new changes.
@@ -175,14 +175,14 @@ review our finished product.
 What Did I Learn?
 ===============================================================================
 
-I feel like I learnt alot throughout the process and had fun doing it. Using
+I feel like I learnt a lot throughout the process and had fun doing it. Using
 thin slices and many code reviews like this was not easy, but I think it was
 worth extra effort. The analysis, development, reviews and testing took weeks
 to do. Each step of the way I would have felt comfortable shipping what we had
 merged. Even now, weeks after the changes were wrapped up we are still learning
 from the process and results.
 
-I hard started with the goal:
+I had started with the goals:
 
 1. Work in small shippable slices
 2. Add customer value
@@ -194,6 +194,8 @@ Over time the goal for individual changes morphed into:
 * Reduce the risk. Safe changes.
 * Don't do very much at a time.
 * Repeat.
+
+TODO: Move this earlier as initial thoughts
 
 It was surprising how as we kept going the momentum we gained. We have
 continued trying this approach with other changes and it feels like we cannot
