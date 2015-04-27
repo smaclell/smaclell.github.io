@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Thin Slice Ideas"
-date:   2014-19-01 00:09:07
+date:   2014-09-01 00:09:07
 tags: pull-requests exterminator
 ---
 
