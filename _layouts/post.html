@@ -23,7 +23,7 @@
 
 <div id="main" role="main">
   <article class="hentry">
-    <header class="header-title">
+    <header class="header-title {% if page.image.no-overlap %}no-overlap{% endif %}">
       <div class="header-title-wrap">
         {% if page.link %}
           <h1 class="entry-title"><i class="fa fa-bookmark permalink"></i> <a href="{{ page.link }}">{{ page.title }}</a></h1>

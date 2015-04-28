@@ -59,6 +59,14 @@
 	padding: 0.25em  1em;
 }
 
+#post #main .no-overlap {
+	margin-top: 3em;
+	position: inherit;
+	top: auto;
+	height: auto;
+	background-color: rgba($base-color,0.3);
+}
+
 // Global Transition
 // ---------------------------------------------------
 b, i, strong, em, blockquote, p, q, span, figure, img, h1, h2, header, input, a {
