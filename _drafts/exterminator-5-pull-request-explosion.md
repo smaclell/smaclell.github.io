@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Exterminators Week 5 - Thin Slices"
+title:  "Exterminators Week 5 - Pull Request Explosion"
 date:   2015-04-27 00:09:07
-tags: pull-requests exterminator shipping
+tags: pull-requests code-reviews exterminator shipping
 ---
 
 I have been running an experiment taking bigger changes and separating them
@@ -162,52 +162,70 @@ we were ready to send the fixes to our clients.
 Dedupe
 ===============================================================================
 
-We didn't stop there. We could have. It would have been easy. Instead I
-wanted to finish the work we started and eliminate even more of the duplication
-throughout the code. With the fix now complete we could return the duplication
-that would have distracted us from fixing the original defect.
+We didn't stop there. We could have. It would have been easy. I wanted to
+finish the work we started and eliminate the duplication I had seen earlier
+throughout the code. With the fix now complete we could change focus back to
+the duplication that would have distracted us from fixing the original defect.
 
 This time we tried to reduce how isolated the new changes were from the old
-code. Instead we tried to break up the work into small functional units which
-would eliminate all duplication in one area. Reviews would include more context
-and showed new classes being used in the same pull request they were
-introduced. This was still broken into several reviews which built on each
-other to streamline the process.
+code. Alternatively, we tried to break up the work into small functional units
+to eliminate all duplication one area at a time. Reviews would include more context
+and show new classes being used in the same pull request they were introduced.
+From the earlier pull requests we had a few occasions where it was hard to
+follow the flow across the many pull requests. The added context of these newer
+reviews would help this problem by clearly showing how new code was to be used.
 
-We tried to preserve isolating refactoring and deletions. There were some of
-the easiest reviews since they came near the end of the process and had a
-single responsibility.
+We tried to keep some refactoring and deletions in their own pull request separate
+from cleaning up the duplication. These were some of the easiest reviews since
+they focus on simpler changes with one clear intent.
 
-After these reviews were complete, I did one last review of everything together
-and made a few more modifications. Some classes could be moved around, renamed
-or have reduced visibility. The many incremental steps made seeing the overall
-picture much harder. The final wrap up let us tie everything together and
-review our finished product.
+After these code reviews were complete, I did one last scan of everything
+together then did one final pull request to clean up some loose ends. Some
+classes could be moved around, renamed or have reduced visibility. The many
+incremental steps made seeing the overall picture much harder. The final clean
+up let us tie everything together and review the finished product.
 
 What Did I Learn?
 ===============================================================================
 
-I feel like I learnt a lot throughout the process and had fun doing it. Using
-thin slices and many code reviews like this was not easy, but I think it was
-worth extra effort. The analysis, development, reviews and testing took weeks
-to do. Each step of the way I would have felt comfortable shipping what we had
-merged. Even now, weeks after the changes were wrapped up we are still learning
-from the process and results.
+I feel like I learnt a lot throughout the process and had fun doing it.
 
-Over time the goal for individual changes morphed into:
+Over time I started to develop some general guidelines when creating each pull
+request. These came from going through the process and helped provide direction
+for the individual changes.
 
-* Minimize the impact to existing code.
-* Reduce the risk. Make safe changes.
+* Balance impact to existing code and establishing a context.
+* Reduce the risk and make safe changes.
 * Don't do very much at a time.
-* Repeat.
+* Solve one part of the problem. Repeat.
+
+Using small pull requests and many code reviews helped focus our development.
+We gained momentum as we kept going and were able to streamline the changes.
+Despite working in small increments, we managed to perform a moderate
+refactoring and fix defects safely.
+
+Each step of the way I would have felt comfortable shipping what we had merged.
+Even when we were reset in the middle of our work we were able to adjust our
+changes and continue. In fact having our pull requests interrupted by another
+merge has made me believe doing small frequent pull requests makes dealing
+with inevitable merge conflicts easier.
+
+Even now, weeks after the changes were wrapped up we are still learning from
+the process and ensuing discussions. I would definitely do it all over again
+and have several times in the subsequent weeks. Others on the team have tried
+variations on the same idea. Our reviews have been a very vibrant retrospective
+topic and I am sure we will continue to explore the ideas we first tried here.
+
+Would you try the same approach for your work? Would using more small pull
+requests help you ship better? Give it a shot! I hope you like it.
 
 <br />
 
 ### Footnotes
 
 <a id="ext-5-note-1" href="#reverse-ext-5-note-1">1.</a> I use the term
-  *pull request* quite a bit throughout this post. *Pull requests* are a common
-  process that looks a little like this:
+  *pull request* quite a bit throughout this post interchangeably with code
+  review. *Pull requests* are a common process that looks a little like this:
 
   1. Have an idea
   2. Branch the code
