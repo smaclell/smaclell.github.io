@@ -34,7 +34,7 @@ could be shipped independently or as a sequence. Individual changes could be
 broken down into small pull requests<sup id="reverse-ext-5-note-1"><a href="#ext-5-note-1">1</a></sup>.
 
 For those following along, this fits in great with my
-[focus and quality habits][goals]. I could focus intensely on one change at a time
+[focus and quality habits](/posts/exterminators-2-focus-and-quality/). I could focus intensely on one change at a time
 building toward larger larger improvements. As shown with my previous team,
 smaller reviews can be done more quickly. The individual changes could be
 tested and reviewed separately helping to reduce the risk of each change. Less
@@ -240,6 +240,5 @@ requests help you ship better? Give it a shot! I hope you like it.
   tools.
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
-[goals]: {% post_url 2015-03-30-exterminators-2-focus-and-quality %}
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
 [pr]: http://codeinthehole.com/writing/pull-requests-and-other-good-practices-for-teams-using-github/
