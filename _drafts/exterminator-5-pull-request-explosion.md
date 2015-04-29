@@ -13,7 +13,7 @@ image:
 I have been running an experiment taking bigger changes and separating them
 into many MANY small pull requests. I am hoping to see the individual pull
 requests become easier and code to flow naturally. Larger changes should still
-be possible and be composed of several pull request.
+be possible and be composed of several pull requests.
 
 During
 the first few weeks with the [Exterminators][tribute] I noticed many of my pull
@@ -23,7 +23,7 @@ it was hard to evaluate the different parts affected. The reviews help improve
 the code and lead to a better product, but feel like a bottleneck in the team's
 process.
 
-I am addicted to every thing Continuous Delivery and have drunk the Kool-Aid.
+I am addicted to everything Continuous Delivery and have drunk the Kool-Aid.
 With my previous team we had been able to add a new feature and ship them into
 production later the same day. We kept all our changes small and in small
 shippable sets which built upon each other. Code reviews were easier and could
@@ -81,8 +81,8 @@ solution. The prototype worked and helped confirm my plan. Since I had taken
 many shortcuts for the prototype I then threw it out. I would then start again
 with my small pull requests accompanied by more automated tests.
 
-Although my plan would address both the defect and duplication, this starting
-point avoided modifying areas not affected by the defect. I wanted to focus
+Although my plan would address the defect and duplication, the starting
+point I chose would avoided areas not affected by the defect. I wanted to focus
 on fixing the defect without distractions. This starting point would let me fix
 the defect directly. I could return later to the other areas and improve the
 duplication.
@@ -108,10 +108,10 @@ tried to minimize their impact on the existing code to reduce risk. Even for
 the refactoring I did to break up the confusing method I tried to keep the
 majority of code intact, relying heavily on automated tools and small steps.
 
-Things were going great, then our release date happened. The actual fix was
+Things were going great, and then our release date happened. The actual fix was
 not ready. No problem. I wrapped up the changes I was making, tested them with
 the team and then shipped the first few pull requests. Rather than rushing out
-the fix were were able to slow down and make sure what we had already done was
+the fix we were able to slow down and make sure what we had already done was
 fully ready.
 
 Had I done the same changes all at once in one massive pull request this would
@@ -170,7 +170,7 @@ Dedupe
 We didn't stop there. We could have. It would have been easy. I wanted to
 finish the work we started and eliminate the duplication I had seen earlier
 throughout the code. With the fix now complete we could change focus back to
-the duplication that would have distracted us from fixing the original defect.
+the duplication which would have distracted us from fixing the original defect.
 
 This time we tried to reduce how isolated the new changes were from the old
 code. Alternatively, we tried to break up the work into small functional units
@@ -181,8 +181,8 @@ follow the flow across the many pull requests. The added context of these newer
 reviews would help this problem by clearly showing how new code was to be used.
 
 We tried to keep some refactoring and deletions in their own pull request separate
-from cleaning up the duplication. These were some of the easiest reviews since
-they focus on simpler changes with one clear intent.
+from cleaning up the duplication. These were some of the easiest reviews; they
+focused on a single change each and as a result were simpler than the others.
 
 After these code reviews were complete, I did one last scan of everything
 together then did one final pull request to clean up some loose ends. Some
