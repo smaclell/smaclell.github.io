@@ -1,13 +1,12 @@
 ---
 layout: post
-title:  "Exterminators Week 5 - Pull Request Explosion"
+title:  "Exterminators Week 5 - Pull Requests"
 date:   2015-04-28 23:49:07
 tags: pull-requests code-reviews exterminator shipping
 image:
   feature: block-party.jpg
   credit: brett jordan CC BY 2.0 (cropped)
   creditlink: https://flic.kr/p/7tQx9e
-  no-overlap: true
 ---
 
 I have been running an experiment taking bigger changes and separating them
