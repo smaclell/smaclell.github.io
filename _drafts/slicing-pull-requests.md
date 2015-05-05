@@ -12,7 +12,7 @@ have decided to share them with you. Enjoy.
 
 I have been having too much fun creating a flurry of pull requests. It has been
 a great way to break down my thoughts into small shippable pieces. I am still
-trying to find <em title="just right">"goldilocks"</em> number and size for
+trying to find the <em title="just right">"goldilocks"</em> number and size for
 my pull requests.
 
 If you are stuck thinking about ways to break down a large feature so you can
@@ -52,15 +52,16 @@ further or get more complicated.
 <strong><span id="slice-highlight">4.</span> Highlighting the Difference</strong>
 
 Particularly confusing, complicated or dangerous changes could benefit from
-their own pull request. Reviewing delicate changes on their own helps
-reviewers dig deeper into the code. The most extreme version of this would be
+their own pull request. Reviewing delicate changes independently will help
+reviewer focus on the changes being made and go deeper into the code than
+if it was mixed into other pull requests. The most extreme version of this would be
 to create a pull request for a particularly interesting single commit.
 
 <strong><span id="slice-single-responsibility">5.</span> Single Responsibility</strong>
 
-Any time you are are making a targeted updated with a single purpose it is a
-good opportunity for a standalone pull request. Focusing on one thing makes
-reviewing such pull requests easier and generally makes them smaller.
+Any update with a single purpose is a good candidate for a standalone pull
+request. Focusing on one thing makes reviewing such pull requests easier and
+generally makes them smaller.
 
 A special case of this would be a standalone pull request for deleting code.
 Deleting code can be safer and is much easier to review than when code is
@@ -79,8 +80,8 @@ ship it and repeat.
 
 <strong><span id="slice-alone">7.</span> Refactoring Alone</strong>
 
-Do any refactoring as a separate pull request. Some refactorings can get messy
-and touch alot more code than you planned to affect, i.e. any renaming for
+Do any refactoring as a separate pull request. Some refactoring can get messy
+and touch more code than you planned to affect, i.e. any renaming for
 popular types. If these are mixed in with other updates they can hide what is
 really important about the other changes.
 
@@ -94,7 +95,7 @@ a series of pull requests.
 
 <strong><span id="slice-iceberg">9.</span> The Iceberg (a.k.a Keystoning)</strong>
 
-Like the [cutting over](#slice-new-old-cutover) and  and [Setup](#slice-setup), you begin by making pull
+Like the [New Code, Old Code, Cut Over](#slice-new-old-cutover) and [Setting Up](#slice-setup), you can begin by making pull
 requests for parts of the code not visible to users. Build up the functionality
 in small pull requests and when you are finally ready add the UI to hold
 everything together (like the [keystone][keystone] on a bridge). This works
@@ -106,13 +107,14 @@ into the wild and then only turn it on for specific users. This is a great way
 to separate the release and deployment of new features while ensuring they are
 only available once you are fully confident.
 
-<strong><span id="slice-top-to-bottom">10.</span> Top To Bottom</strong>
+<strong><span id="slice-top-to-bottom">10.</span> Top to Bottom</strong>
 
 Take a full slice from top to bottom for a simple change. This pull request
-will help your reviewers by showing them all the layers affected. Even better
-if the change adjust one small part of the functionality on the way to the
-overall feature. You can also continue adding more and more of the feature
-around the initial wedge.
+will help your reviewers by showing them all the layers affected. Doing a top
+to bottom change can be hard without getting too big. It will work better if
+you can keep it a small wedge within the code that you gradually expand. If you
+can make the first pull request smaller or only affect part of the
+functionality it may be easier to get started and/or review the code.
 
 <strong><span id="slice-different">11.</span> Different Repos, Different Reviews</strong>
 
