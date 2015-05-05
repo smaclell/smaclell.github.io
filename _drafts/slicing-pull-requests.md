@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Slicing Up Pull Requests"
-date:   2014-09-01 00:09:07
-tags: pull-requests exterminator
+date:   2015-05-05 00:09:07
+tags: brain-storming pull-requests exterminator
 ---
 
 When writing the previous post,
@@ -20,7 +20,7 @@ ship it more easily try some of the items from this list. These helped me
 shrink what would otherwise be massive pull request down to size.
 
 **WARNING:** There is such thing as *TOO MANY* pull requests. If you follow all
-of these ideas you might spontaneously find your things immersed in Jello.
+of these ideas you might spontaneously find your belongings immersed in Jello.
 
 
 <span id="slice-tests">1.</span> Start with Tests
