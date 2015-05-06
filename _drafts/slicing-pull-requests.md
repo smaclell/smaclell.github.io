@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Slicing Up Pull Requests"
-date:   2015-05-05 00:09:07
+date:   2015-05-05 23:30:07
 tags: brain-storming pull-requests exterminator
 ---
 
@@ -24,6 +24,13 @@ requests down to more manageable sizes.
 of these ideas you might find your belongings immersed in Jello or suddenly
 missing.
 
+<figure class="image-center">
+	<img src="/images/cucumber-slices.jpg" alt="A cutting board with sliced cucumbers on it.">
+	<figcaption>
+	Breaking down a feature into pull requests is like cutting a cucumber into slices. Delicious.
+	</figcaption>
+</figure>
+<!-- from http://www.publicdomainpictures.net/view-image.php?image=32801&picture=cucumber-slices&large=1 -->
 
 <strong><span id="slice-tests">1.</span> Start with Tests</strong>
 
