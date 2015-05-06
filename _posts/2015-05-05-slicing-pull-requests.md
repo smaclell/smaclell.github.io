@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Slicing Up Pull Requests"
-date:   2015-05-05 23:30:07
+date:   2015-05-05 23:38:07
 tags: brain-storming pull-requests exterminator
 ---
 
