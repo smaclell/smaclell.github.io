@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Testing at the API Boundary"
-date:   2015-02-28 23:11:07
+date:   2015-05-15 01:05:07
 tags: testing services api
 image:
   feature: wall-edge.jpg
