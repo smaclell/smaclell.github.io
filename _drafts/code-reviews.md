@@ -48,14 +48,29 @@ reviewers we have been able to work more effectively as a team. With the
 learner and expert reviewers it was often not long before the learners could
 contribute as effectively as the experts.
 
-Reviews effectively communicate how the code base is changing.
+Reviews effectively communicate how the code base is changing. We recently
+worked on a new approach for some existing code. We shared the changes with the
+team through code reviews. Each team member was able to provide valuable
+feedback and influence the design. By the end of the reviews the whole team
+understood the new changes.
 
-Code reviews are a great way to share new ideas. Lately, I have been really
-enjoying NUnit's options for data driven tests. By using these features
-throughout code reviews I have created, I have been able to share them with our team.
+On the team there are many great developers, but not all have extensive
+experience with the platform or tools we are using. I have been using code
+reviews to share knowledge of our platform and tools. This should only be a
+minor part of any code review and can help to further the goal of learning and
+sharing. Lately, I have been using NUnit's data driven tests and sharing these
+new tools with the team. For others reviews I have been sharing more about the
+LINQ syntax and operators for those new to .NET.
 
-Logic
+Logicically, Why
 ===============================================================================
+
+Some code review styles are to interrogate the code/developer as a detailed
+validation. Code reviews can be a great way to improve the code quality and
+consistency. I don't think code reviews as a strict quality gate is a good use
+of time and resources. Such validation is better left to manual testing or
+other automated tools/validation. Instead, I try to use code reviews to delve
+into the logic behind the code.
 
 Code reviews are one of the few times you can evaluate code for logical issues.
 Fundamental flaws with how algorithms fit together or are used. Humans make
@@ -63,8 +78,8 @@ horrible compilers and computers cannot truly understand how code is related.
 
 What are logical issues? A problem with the decisions behind the code. Maybe
 something simple like using the wrong value for a constant. Another example
-would be two classes using one another in a confusing way. Or misleading
-comments or parameters.
+would be two classes using one another in a confusing way. Misleading
+comments or parameters. Logical issues center around why choices were made.
 
 Stopping logical issues is important. Your code could compile and pass all the
 unit tests, but with logical errors it is still broken. Logical errors can
