@@ -1,58 +1,56 @@
 ---
 layout: post
 title:  "Code Reviews"
-date:   2015-05-04 00:09:07
+date:   2015-05-25 00:09:07
 tags: code-reviews exterminator
 ---
 
-This week I helped perform several code reviews. I think code reviews are a
-fantastic way to share best practices, check for logical errors and help
-improve our code.
+This week I helped perform many code reviews. I think code reviews are at
+their core a chance to the team to communicate. This is the best time to ask
+deep questions about the code and share information throughout the team.
 
-Code reviews have become a standard practice for many teams. While on
-the [Exterminators][tribute] I have the privilege to work with others who have
+Code reviews have become a standard practice for many teams. While on the
+[Exterminators][tribute] I have the privilege to work with others who have
 different code review style than my own.
 
-As with programming there can be many styles of code reviews. No one style is
-better than another. Different approaches have different advantages and
-disadvantages.
+For me code reviews are a conversation about the code being reviewed and
+the surrounding system. Common code review themes include:
 
-This has caused me to reflect on what I think are the most important aspects of
-code reviews and what to look for when doing them.
+* Learning and sharing ideas
+* Understanding the logic affected by the changes
 
-Conversation about Code
+Learning
 ===============================================================================
 
-TODO - People talking
+I think a review has been successful if at least one person has learnt
+something new.
 
-For me code reviews have been a conversation about the code being reviewed and
-the surrounding system. Together with the author and other reviewers we can:
-
-* Share ideas, opportunities or challenges with/about the code
-* Learn more about what is being done
-* Communicate changes amongst the team
-
-Everyone on the review is enriched by the process and hopefully comes away
-having learnt something they did not know before.
-
-My usual team would include two people on every review, an expert and a
+One team I was on would include two people on every review, an expert and a
 learner. The expert would be intimately familiar with the system being changed
-and the surrounding project. The learner could be anyone else and typically
-someone who is less confident in their knowledge of the project. This helped our team
-share knowledge about the changes being made and validate assumptions made
-by people deeply immersed in the problem with a fresh pair of eyes.
+and the surrounding project. The learner could be anyone else. Typically the
+learner would be someone newer to the codebase. The expert could user their
+knowledge to guide changes and avoid issues. The learner would help by being a
+fresh pair of eyes.
 
-Learning from reviews has helped ease the team into developer work outside
-their area of expertise. Having seen enough changes and being supported by
-reviewers we have been able to work more effectively as a team. With the
-learner and expert reviewers it was often not long before the learners could
-contribute as effectively as the experts.
+Learning from reviews has helped developers work outside their area of
+expertise. Over time the learners will better understand the code and can
+start contributing. It was often not long before the learners could
+contribute alongside the experts.
 
-Reviews effectively communicate how the code base is changing.
+Code reviews can be used to align on architectural direction. On a recent
+project we shared a refactoring we were working on with the team using code
+reviews. The early reviews had more team members to build consensus for the
+direction we were headed. As the changes progressed every member of the team
+was able to see the new changes applied. Knowing what was happening helped the
+team work together more effectively.
 
-Code reviews are a great way to share new ideas. Lately, I have been really
-enjoying NUnit's options for data driven tests. By using these features
-throughout code reviews I have created, I have been able to share them with our team.
+Reviews can be a great place to learn a new coding technique or library. I
+learnt some [nifty][m1] [ways][m2] you can use [Moq][moq] lately from a code
+review and since been sharing them with the rest of the team. The team has also
+been great at letting me know when I get carried away using a new technique.
+I have been using NUnit's features for data driven tests heavily which for some
+team members is harder to read. This was valuable feedback, I was able to work
+with the reviewers to update the code so it was easier to understand.
 
 Logic
 ===============================================================================
@@ -77,44 +75,25 @@ to step back and look at the code to find logical issues. Going through the
 code one line at a time and looking for connections is a great way to find
 relationships which do not make sense.
 
-TODO - Spock picture - Ange or you doing a spock pose OR one of the guys at the office
+Behind the logic for the code is a whole series of the decisions the other
+developer has made. Talking about those decisions can help validate them or
+expose other assumptions. The less I understand the code the more important it
+is for me to be able to follow the developer's reasoning.
 
-Understand Why
+A Conversation
 ===============================================================================
 
-TODO: This why you have currently written about is more of a what. The original why was the core reason why the change was made at all.
+There are many different styles of code review, but my favourite is to treat
+them like a conversation.
 
-Why was this done. Connects to what was done to accomplish the why.
+Code reviews are a two way street. Both the author and reviewers should
+actively participate and ask questions. Together the author and reviewers can
+learn from one another and better understand the code being changed.
 
-I like to take the time to truly understand what I am reading and why it was
-done the way it is. At the heart of any changes is a reason why they were made.
+What was the last thing you learnt from a code review? Did you understand how
+the bugfix you reviewed fixed the problem it was intended to solve?
 
-Understand why a certain change was implemented the way it has been can be a
-challenge. Sometimes the code is not intuitive or the change was made in one
-area to affect a completely different place. With some of the code reviews I
-have done lately this can be quite a challenge.
-
-Yet the developer chose to make the changes they did and in the area they
-changed. Getting some insight into this choice helps me to better understand
-their thought process. Reversing the through process then helps unravel
-assumptions used to make decisions.
-
-
-Wrapping Up
-===============================================================================
-
-
-
-TODO - Question mark
-
-- Not QA
-- Not enough
-- How thorough?
-- How big?
-- Substance not style
-- Learning
-- Sharing
-- Testing
-- Communicating
-- Not an interrogation
-- Not the grammar police
+[tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
+[m1]: {% post_url 2015-04-14-recursive-mocks %}
+[m2]: {% post_url 2015-04-16-linq-to-moq %}
+[moq]: https://github.com/Moq/moq4#readme

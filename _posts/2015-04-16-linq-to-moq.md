@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Moq Minute - Linq to Moq"
-date:   2015-04-16 00:27:57
+date:   2015-04-16 00:27:57 -4:00
 tags: moq moq-minute testing
 ---
 
