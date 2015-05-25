@@ -93,6 +93,6 @@ What was the last thing you learnt from a code review? Did you understand how
 the bugfix you reviewed fixed the problem it was intended to solve?
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
-[m1]: {% post_url 2015-04-14-recursive-mocks %}
+[m1]: /posts/recursive-mocks/
 [m2]: {% post_url 2015-04-16-linq-to-moq %}
 [moq]: https://github.com/Moq/moq4#readme
