@@ -5,44 +5,43 @@ date:   2015-05-25 00:09:07
 tags: learning code-reviews exterminator
 ---
 
-This week I helped perform many code reviews. I think code reviews are at
-their core a chance to the team to communicate. This is the best time to ask
+This week I helped perform many code reviews. I think code reviews are a great
+way for teams to communicate. This is the best time to ask
 deep questions about the code and share information throughout the team.
 
-Code reviews have become a standard practice for many teams. While on the
-[Exterminators][tribute] I have the privilege to work with others who have
+Code reviews have become a standard practice for many teams I work with. While on the
+[Exterminators][tribute] I have had the privilege to work with others who have
 different code review style than my own.
 
-For me code reviews are a conversation about the code being reviewed and
+For me code reviews are a conversation about the code being changed and
 the surrounding system. Common code review themes include:
 
 * Learning and sharing ideas
-* Understanding the logic affected by the changes
+* Understanding the affected logic
 
 Learning
 ===============================================================================
 
-I think a review has been successful if at least one person has learnt
-something new.
+I think a review has been successful if you have learnt something new.
 
-One team I was on would include two people on every review, an expert and a
+One team I was on included two people on every review, an expert and a
 learner. The expert would be intimately familiar with the system being changed
-and the surrounding project. The learner could be anyone else. Typically the
+and the surrounding code. The learner could be anyone else and typically the
 learner would be someone new to the codebase. The expert could user their
-knowledge to guide changes and avoid issues. The learner would help by being a
-fresh pair of eyes.
+knowledge to guide the changes and avoid issues. The learner would help by
+being a fresh pair of eyes with a different perspective.
 
 Learning from reviews has helped developers work outside their area of
 expertise. Over time the learners will better understand the code and can
-start contributing. It was often not long before the learners could
-contribute alongside the experts.
+start contributing. It was not long before the learners could contribute
+alongside the experts for any given project.
 
-Code reviews can be used to align on architectural direction. On a recent
-project we shared a refactoring we were working on with the team using code
+Code reviews can be used to align architectural decisions. On a recent
+project we shared a refactoring with the team using code
 reviews. The early reviews had more team members to build consensus for the
 direction we were headed. As the changes progressed every member of the team
 was able to see the new changes applied. Knowing what was happening helped the
-team work together more effectively.
+team work together toward the common goal.
 
 Reviews can be a great place to learn a new coding technique or library. I
 learnt some [nifty][m1] [ways][m2] you can use [Moq][moq] lately from a code
@@ -56,20 +55,19 @@ Logic
 ===============================================================================
 
 Code reviews are one of the few times you can evaluate code for logical issues.
-Fundamental flaws with how algorithms fit together or are used. Humans make
-horrible compilers and computers cannot truly understand how code is related.
+Humans make horrible compilers and computers cannot truly understand how code interacts.
 
 Logical issues are problems with the decisions behind the code.
 
+* Algorithmic flaws.
 * Using the wrong constant value.
-* Two classes interacting with one another in a confusing way.
+* Confusing classes.
 * Misleading comments or parameters.
 
-Stopping logical issues is important. Your code could compile and pass all the
-unit tests, but with logical errors it is still broken. Logical errors can
-lead to other defects and issues for your users. The longer logical errors
+Stopping logical issues is important. Your code can compile and pass all the
+unit tests, but with logical errors it is still broken. The longer logical errors
 survive in a codebase the more likely they are to mislead other developers
-who then cause defects as a result.
+who then accidentally cause defects.
 
 Unlike other development activities, code reviews provide a great opportunity
 to step back and look at the code to find logical issues. Going through the
@@ -84,8 +82,8 @@ is for me to be able to follow the developer's reasoning.
 A Conversation
 ===============================================================================
 
-There are many different styles of code review, but my favourite is to treat
-them like a conversation.
+There are many different code review styles, but my favourite is to treat
+code reviews like a conversation.
 
 Code reviews are a two way street. Both the author and reviewers should
 actively participate and ask questions. Together the author and reviewers can
