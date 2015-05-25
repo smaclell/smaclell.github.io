@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Exterminators Week 6 - Code Reviews"
-date:   2015-05-25 00:09:07
+date:   2015-05-25 00:18:07
 tags: learning code-reviews exterminator
 ---
 
