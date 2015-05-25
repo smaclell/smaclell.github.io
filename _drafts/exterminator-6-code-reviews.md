@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Code Reviews"
+title:  "Exterminators Week 6 - Code Reviews"
 date:   2015-05-25 00:09:07
-tags: code-reviews exterminator
+tags: learning code-reviews exterminator
 ---
 
 This week I helped perform many code reviews. I think code reviews are at
@@ -28,7 +28,7 @@ something new.
 One team I was on would include two people on every review, an expert and a
 learner. The expert would be intimately familiar with the system being changed
 and the surrounding project. The learner could be anyone else. Typically the
-learner would be someone newer to the codebase. The expert could user their
+learner would be someone new to the codebase. The expert could user their
 knowledge to guide changes and avoid issues. The learner would help by being a
 fresh pair of eyes.
 
@@ -49,7 +49,7 @@ learnt some [nifty][m1] [ways][m2] you can use [Moq][moq] lately from a code
 review and since been sharing them with the rest of the team. The team has also
 been great at letting me know when I get carried away using a new technique.
 I have been using NUnit's features for data driven tests heavily which for some
-team members is harder to read. This was valuable feedback, I was able to work
+team members is hard to read. This was valuable feedback; I was able to work
 with the reviewers to update the code so it was easier to understand.
 
 Logic
@@ -59,15 +59,16 @@ Code reviews are one of the few times you can evaluate code for logical issues.
 Fundamental flaws with how algorithms fit together or are used. Humans make
 horrible compilers and computers cannot truly understand how code is related.
 
-What are logical issues? A problem with the decisions behind the code. Maybe
-something simple like using the wrong value for a constant. Another example
-would be two classes using one another in a confusing way. Or misleading
-comments or parameters.
+Logical issues are problems with the decisions behind the code.
+
+* Using the wrong constant value.
+* Two classes interacting with one another in a confusing way.
+* Misleading comments or parameters.
 
 Stopping logical issues is important. Your code could compile and pass all the
 unit tests, but with logical errors it is still broken. Logical errors can
 lead to other defects and issues for your users. The longer logical errors
-survive in the codebase the more likely they are to mislead other developers
+survive in a codebase the more likely they are to mislead other developers
 who then cause defects as a result.
 
 Unlike other development activities, code reviews provide a great opportunity
