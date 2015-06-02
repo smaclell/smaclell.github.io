@@ -12,7 +12,7 @@ the team needs to choose action items to address their biggest hurdles and
 follow through with them.
 
 Team retrospectives are a very common agile practice. Over time they can lose
-focus and start to drift into yet another meeting. People show up. Talk. Leave.
+focus and start to become yet another boring meeting. People show up. Talk. Leave.
 
 I believe great retrospectives are important for making teams more effective.
 Unlike just another meeting retrospectives are a chance to take a look at the
@@ -41,7 +41,7 @@ In this retrospective I felt we were missing two key ingredients to go from
 being okay to being AWESOME. We needed to have a healthy discussion about our
 challenges and decide on clear action items to address them.
 
-TODO: Rainbow unicorn!
+RAINBOW
 
 Healthy Discussion
 ===============================================================================
@@ -105,40 +105,53 @@ Action Items
 ===============================================================================
 
 The conversation in the retrospective is not enough to change the team. You
-need to do work or make some alterations. I would be very surprised if after a
-great retrospective you didn't come away energized with actions you want do to
-improve the team immediately.
+need some concrete action the team will do to make things better. Treat your
+actions like goals (or [SMART][smart] goals) the team is committing to
+accomplish.
 
-Before I get carried away what do I mean by an "action"? This could be anything
-you actively want to do, experiment with, build or alter a behaviour. Try using
-a new tool. Experiment with pair programming. Treat code reviews as more urgent
-than any other work.
+An *"action"* could be almost anything! It could be anything you actively want
+to do, experiment with, build or alter a behaviour. Try using a new tool.
+Experiment with pair programming. Treat code reviews as more urgent than
+any other work. What you choose will be up to the team and guided by your
+retrospective.
 
-Ideas:
+Whatever you choose make the next step is clear. Who is in charge of making
+sure the next action gets done? Will the action be an experiment to create new
+options or evaluate a choice? With behaviour changes knowing the next step can
+be less clear. Instead focus on articulating what the new behaviour is and
+consistently and reinforcing this changed behaviour to help it stick. If you
+are in doubt whether your actions are clear enough, ask the team members
+individually and make sure they have roughly the same answer.
 
-Team retrospectives are one of my favourite meetings. They are a fantastic time
-to discuss how team is feeling and how to be more awesome. During the retro
-the entire team can take a step back, away from the hussle and bussle of day to
-day work they can turn their focus inward. I think it is important to come away
-with specific actions or changes the team wants to do and focus on them. What
-is chosen by the team does not matter, the important part is the team chooses
-together what they feel is the most important area to improve.
+Since creating goals is much easier than following through on them it is
+important to make sure the actions are completed. Most teams I have been on try
+to start any action before the next retrospective. This normally gives the team
+a few weeks to do what then intended.
 
-I think learning and improving is crucial. Improving as a team is harder, but
-worth it in the long run. .
-yourself is very important.
+Ensuring someone is responsible for following through on the action or keeping
+the team accountable can ensure the action is completed or applied. Obvious
+individuals are managers or scrum masters, but any enthusiastic teammate will
+do.
 
+To help the action or change stick the team can also make it visible. You could
+write your goal REALLY REALLY big and post it all over the team area. Talking
+about the action during the daily standup will serve as a consistent reminder
+to the team. Get creative with how you make your actions visible.
 
-What are you trying to say here? It was a long time ago now.
+Conclusions
+===============================================================================
 
-Talked in circles.
-Rapid branches was the discussion.
+Improving as a team can be hard. Retrospectives can help your team get better.
+They can provide a much needed opportunity to step back from the excitement of
+normal work and focus inward.
 
+Teams can discuss their challenges and strengths. Together your team can
+decide what they want to do next to improve.
 
+I hope your next retrospective leads to action.
 
-Retros are important.
-Balanced Discussion - Voices are heard and people contribute
-Actions - not venting and not just discussion
+I would be very surprised if after a great retrospective you didn't come away
+energized with actions you want do to improve the team immediately.
 
 [losing]: http://haacked.com/archive/2013/10/21/argue-well-by-losing.aspx/
 [fun]: http://www.funretrospectives.com/category/retrospective/
