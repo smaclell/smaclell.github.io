@@ -5,10 +5,10 @@ date:   2015-05-25 00:18:07
 tags: agile retrospectives exterminator
 ---
 
-Retrospectives are a great tool to come up with actions the team use to improve.
-Team discussions exploring the biggest challenges faced by the team are healthy
-and can help teams overcome their obstacles. For improvement to stick I believe
-the team needs to choose action items to address their biggest hurdles and
+Retrospectives are a great tool to come up with actions to improve any team.
+Team discussions exploring their biggest challenges are healthy
+and can help overcome their obstacles. For improvement to stick I believe
+teams need to choose action items to address their biggest hurdles and
 follow through with them.
 
 Team retrospectives are a very common agile practice. Over time they can lose
@@ -17,7 +17,7 @@ focus and start to become yet another boring meeting. People show up. Talk. Leav
 I believe great retrospectives are important for making teams more effective.
 Unlike just another meeting retrospectives are a chance to take a look at the
 past while and reflect on how things are going. From this perfect vantage point
-activities, events, actions or interactions that helped our hurt the team are
+activities, events, actions and/or interactions that helped or hurt the team are
 easier to see.
 
 Mixing together the perspectives of all of the team members hopefully some
@@ -26,10 +26,10 @@ great ideas for taking the team to the next level can be suggested. From there
 the team can pick a few things they will try to do or change until the next
 retrospective. Boom, retrospected.
 
-Lacklustre retrospectives have lacklustre outcomes. Sometimes teams try to take
+Lackluster retrospectives have lackluster outcomes. Sometimes teams try to take
 on everything they could possibly change all at once. The discussion becomes the
-entire meeting and no action items are chosen. Maybe the team is not comfortable
-which cause the discussion and action items to be superficial.
+entire meeting and no action items are chosen. Maybe the team is not comfortable,
+which causes the discussion and action items to be superficial.
 
 This week we had a retrospective that did not sit well with me. We talked in
 circles, but did not come to a final resolution or action for the team. Sadly,
@@ -55,12 +55,12 @@ So what are we talking about here? Oh right, healthy group discussions. In a
 retrospective if you goal is to walk away with action items to address the most
 burning need your team a few pointers to keep in mind.
 
-You want a well rounded conversation engaging the entire team. Not blaming each
+You want a well-rounded conversation engaging the entire team. Not blaming each
 other for problems. No egos crowding the room. Understanding the problems and
-opportunities the team has available. Reflecting on the past work to create
+opportunities the team has available. Reflecting on past work to create
 better results in the future.
 
-The failure or success blame games do not belong in healthy retros. They erode
+The failure or success blame games do not belong in healthy retrospectives. They erode
 teams and only lead to hurting one another. Venting about problems might make
 you feel better momentarily but will not solve them.
 
@@ -81,7 +81,7 @@ from being about the team to being about them.
 
 It is important to hear opinions from the entire team to avoid any one person
 monopolizing the conversation. The facilitator, meeting format and participants
-can prevent this from happening. Together you can make retros a safe place
+can prevent this from happening. Together you can make retrospectives a safe place
 where everyone can be heard and work toward the best interested of the team.
 
 Retrospectives tend to diverge then converge. There can be lots to cover and
@@ -89,10 +89,10 @@ exploring ideas and what the team is interested in often involves brainstorming
 or [activities][fun]. Coming to a large consensus about what actions to take
 can use more activities, clustering or discussion.
 
-Depending on the approach used for either activities there can be varying
+Depending on the approach used for either activity there can be varying
 degrees of success for different teams. Typical retrospective games can
-completely turn off some teams. Others which not feel comfortable voting and
-discussing their challenges. Find something that works for your team and
+completely turn off some teams. Other teams may not feel comfortable having
+frank team discussions. Find something that works for your team and
 periodically mix it up. Try to tailor the activity to the personalities and
 strengths of the team.
 
@@ -110,7 +110,7 @@ actions like goals (or [SMART][smart] goals) the team is committing to
 accomplish.
 
 An *"action"* could be almost anything! It could be anything you actively want
-to do, experiment with, build or alter a behaviour. Try using a new tool.
+to do, experiment with, build or alter team behaviour. Try using a new tool.
 Experiment with pair programming. Treat code reviews as more urgent than
 any other work. What you choose will be up to the team and guided by your
 retrospective.
@@ -135,7 +135,7 @@ do.
 
 To help the action or change stick the team can also make it visible. You could
 write your goal REALLY REALLY big and post it all over the team area. Talking
-about the action during the daily standup will serve as a consistent reminder
+about the action during the daily stand-up will serve as a consistent reminder
 to the team. Get creative with how you make your actions visible.
 
 Conclusions
@@ -155,3 +155,4 @@ energized with actions you want do to improve the team immediately.
 
 [losing]: http://haacked.com/archive/2013/10/21/argue-well-by-losing.aspx/
 [fun]: http://www.funretrospectives.com/category/retrospective/
+[smart]: http://www.projectsmart.co.uk/smart-goals.php
