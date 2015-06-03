@@ -41,7 +41,15 @@ In this retrospective I felt we were missing two key ingredients to go from
 being meh to being AWESOME. We needed to have a healthy discussion about the
 team challenges/opportunities and decide on clear action items to address them.
 
-RAINBOW
+<figure>
+	<a href="https://www.flickr.com/photos/stevensnodgrass/6807424348" style="display: inline" title="Rainbows by Steve Snodgrass used under Creative Commons 2.0 BY Flickr">
+		<img src="https://c4.staticflickr.com/8/7191/6807424348_d6916a33f3_z.jpg" width="640" height="426" alt="A rainbow little chips in a mosaic like pattern">
+	</a>
+	<figcaption>
+	 Rainbows by <a href="https://www.flickr.com/photos/stevensnodgrass/6807424348">Steve Snodgrass
+</a> used under <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">Creative Commons 2.0 BY</a>, because that is AWESOME.
+	</figcaption>
+</figure>
 
 Healthy Discussion
 ===============================================================================
