@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Exterminators Week 7 - Discuss into Action"
-date:   2015-05-25 00:18:07
+date:   2015-06-02 23:52:07
 tags: agile retrospectives exterminator
 ---
 
