@@ -64,7 +64,7 @@ retrospective if you goal is to walk away with action items to address the most
 burning need your team there are a few pointers to keep in mind.
 
 1. Don't play the Blame Game
-2. [Embrace the Prime Directive][#prime-directive]
+2. Embrace the [Prime Directive](#prime-directive)
 3. Leave egos and agendas at the door
 4. Engage the whole team
 5. Diverge then converge
