@@ -6,7 +6,7 @@ tags: agile retrospectives exterminator
 ---
 
 Retrospectives are a great tool to come up with actions to improve any team.
-Team discussing their biggest challenges can lead to change and
+Teams discussing their biggest challenges can lead to change and
 help overcome their obstacles. For improvement to stick I believe
 teams need to choose action items and follow through with them.
 

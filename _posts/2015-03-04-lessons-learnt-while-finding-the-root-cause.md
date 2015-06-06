@@ -216,7 +216,7 @@ The Solution
 At this point we knew exactly where the issue was and came up with three ways
 to fix it.
 
-1. **Change all the code to not return values using this pattern.**
+1. **Change all the code to not return values from functions.**
    At this point there was enough code spread out far enough that it would have
    taken a large amount of time to update everything. Instead of fixing our code,
    it would have been easier to pull the release and redo the development. It
@@ -244,6 +244,39 @@ with the cases we reproduced and would be easy to implement. After weeks of
 tracking down this defect a developer implemented the fix in one day. Once it
 was everywhere and we confirmed there were no more missing
 log messages there were high-fives all around.
+
+Our code for correctly serializing this data looked a little like this pseudocode:
+
+{% highlight powershell %}
+
+function Undo-PSObject( $Item ) {
+
+  foreach primative type
+    $Value = cast $Item to type
+    return $Value
+
+  if $Item is Array
+    foreach $Value in $Item
+      Undo-PSObject $Value
+
+  # Check for other complex collections
+
+  if $Item is PSCustomObject
+    foreach $Property in $Item
+      Undo-PSObject $Property.Value
+
+  # If you got this far something is odd.
+}
+
+{% endhighlight %}
+
+<div class="disclaimer">
+<strong>Update:</strong> I didn't feel comfortable sharing the actual code when
+this was first posted. One of my co-workers was trying to troubleshoot a similar
+issue and was sad this post did not show any code for the solution! I decided
+to update the post to include the pseudocode above as a compromise. I hope
+you enjoy.
+</div>
 
 We did strongly consider moving to PowerShell 4.0 to fix the issue, but the risk
 was too great. Our solution can be easily replaced when we finally do and even
