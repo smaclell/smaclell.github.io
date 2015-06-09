@@ -12,10 +12,15 @@ changes and I think that was the right choice.
 We were fixing a bug. The problem affects multiple areas. You can use roughly
 the same fix in each spot. What do you do?
 
-1. Consolidate logic for the fix in one place, then call the updated logic as needed.
-2. Repeat the fix as needed in each area.
+1. Consolidate logic for the fix in one place, then call the updated logic as needed. (Left)
+2. Repeat the fix as needed in each area. (Right)
 
-TODO contrast picture, 1 big center with little dots outside or larger dots with no center
+<figure class="image-center">
+	<img
+		title="Consolidate the logic or repeat the fix everywhere?"
+		alt="On the left a circle encircled ny eight smaller circles. On the right there is a circle of eight circles larger than those on the left."
+		src="{{ site.url }}/images/Consolidated.png" />
+</figure>
 
 Normally, I would try to always pick option 1. I can test the change in one
 place. Code reviews can be a little cleaner since you can consolidate the logic
@@ -37,7 +42,18 @@ There were some opportunities for consolidating the fix and reduce duplication.
 Within a short while I had a pull request ready and was ready to be reviewed.
 My new changes were ready with the deadline fast approaching.
 
-TODO image of someone beating a finishline.
+<figure class="image-center">
+	<a href="https://www.flickr.com/photos/129941959@N06/16261322056" title="42-15529695 by meridican, on Flickr">
+		<img src="https://c4.staticflickr.com/8/7516/16261322056_c24a6be31a_z.jpg"
+			width="640"
+			height="426"
+			alt="A man happily crossing a finish line in a full suit with a briefcase">
+	</a>
+	<figcaption>
+		42-15529695 by <a href="https://www.flickr.com/photos/129941959@N06/">meridican</a>, used under </a>,
+		used under <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">Creative Commons 2.0 BY</a>
+	</figcaption>
+</figure>
 
 The code review looked okay on the surface, but was more complicated than the
 previous fix we had already been testing. There were unit tests covering the
