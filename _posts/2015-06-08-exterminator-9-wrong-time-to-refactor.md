@@ -84,3 +84,11 @@ From this experience, I learnt there are wrong times to refactor based on
 release timing and the business needs. Next time your reach the end of the
 release and have an amazing idea for how to clean up the code, please wait
 until the next release.
+
+<hr />
+
+I would like to thank my fellow [exterminator][tribute], Vlad, for the original
+fix, reviewing with my attempted refactoring and patiently consolidating the
+code in the next release.
+
+[tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
