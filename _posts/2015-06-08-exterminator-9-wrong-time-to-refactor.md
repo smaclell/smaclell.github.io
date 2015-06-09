@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Exterminators Week 9 - The Wrong Time To Refactor"
-date:   2015-06-04 23:52:07
+date:   2015-06-08 23:26:07
 tags: refactoring releases exterminator
 ---
 
