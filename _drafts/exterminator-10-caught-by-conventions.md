@@ -22,7 +22,14 @@ working through some [legacy code][legacy]? That was also SpecFlow. Now weeks
 later I was really excited to get back to these changes and implement more
 tests using this amazing tool.
 
-TODO: Specflow snippet
+{% highlight gherkin %}
+Scenario: Using SpecFlow
+  Given the need for more testing
+    And the desire to collaborate with testers
+   When you write scenarios using "SpecFlow"
+   Then the tests can be shared them with your team
+    And the team can have fun writing tests together
+{% endhighlight %}
 
 I am excited! I want to code! I am getting things done and this is awesome.
 I work for a few days and get things working okay. Some hiccups around wierd
