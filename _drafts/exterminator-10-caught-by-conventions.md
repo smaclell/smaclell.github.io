@@ -185,20 +185,24 @@ more explicit conventions allows them to be followed more easily, i.e. you must
 not perform assertions in
 PageObjects<a href="#ext-10-note-2"><sup id="ext-10-note-2-reverse">1</sup></a>.
 
-
 Takeaway
 ===============================================================================
 
-Conventions are important.
-New to a code base? Learn the conventions first.
+This turned out to be an interesting week and a great learning opportunity. I
+learnt the importance learning the conventions of a codebase before I get too
+far developing something new.
 
-To make your easier:
+Although my first review did not go smoothly the reviews since then have been
+much better. I am very happy the maintainers have been receptive to my
+suggestions for streamlining things for new contributors. Together we have
+applied some of my thoughts for making the conventions easier:
 
-* **Minimize Conventions** - Lower bar, Make learning easy
-* **Automate Coding Standards** - Don't make me think
-* **Build It Into Your Design** - Make the right thing to do the easiest thing to do
+* **Build It Into Your Design** - Make the right thing to do, the easiest thing.
+* **Automate Coding Standards** - Don't make me think.
+* **Minimize Conventions** - Shorten the learning curve.
 
-
+I would encourage you to review your own conventions. How could you make them
+simpler or easier for a new contributor?
 
 <hr />
 
