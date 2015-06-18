@@ -5,22 +5,22 @@ date:   2015-06-08 23:26:07
 tags: conventions exterminator
 ---
 
-This week I had the most thorough code review I have ever encountered. By then
+This week I had my most thorough code review ever. By the
 end of the review there were over 100 comments. The reviewers diligently went
 over every line of code and more often than not had something to say. At first
 I was stunned by the feedback I was receiving, but once I realized why I was
-receiving so much feedback did it all made sense.
+receiving so much feedback did it all make sense.
 
 Excitement
 ===============================================================================
 
-The changes I had made were to a codebase I never contributed to before and
-using some tools I had only started using. The changes were for doing more
-comprehensive testing of our system with a tool called [SpecFlow][specflow].
-Remember when I first started on the team and was all optimistic after
-working through some [legacy code][legacy]? That was also SpecFlow. Now weeks
-later I was really excited to get back to these changes and implement more
-tests using this amazing tool.
+This story starts with my trying to contribute to a codebase I had not
+contributed to before which used tools I was not familiar with. This code
+uses the tool [SpecFlow][specflow] for integration testing.
+Remember when I had first started on the team and was all optimistic after
+working through some [legacy code][legacy]? The reason I was optimistic was
+because I had tried using SpecFlow and loved it. Now weeks later, I was really
+excited to use SpecFlow more and write more tests.
 
 {% highlight gherkin %}
 Scenario: Using SpecFlow
@@ -31,81 +31,86 @@ Scenario: Using SpecFlow
     And the team can have fun writing tests together
 {% endhighlight %}
 
-I am excited! I want to code! I am getting things done and this is awesome.
-I work for a few days and get things working okay. Some hiccups around wierd
-areas of our system, but overall I like what I have built. The final code was
-larger than I wanted. We were validating a moderately complicated scenario and
-I wanted to make sure we had our bases covered.
+I was pumped! I was coding! I got things done and it was awesome.
+I worked for a few days until I had enough to cover the scenarios we wanted.
+The tests did what there were asked, but were not pretty. There were some
+hiccups around wierd areas of our system. Overall I was happy with what I built.
+We could now validate a moderately complicated scenario with some fun permutations.
 
-Since this is a new codebase for me I start asking around to find out who the
-experts are so I can have them review my code. After some searching I learnt
+Since I was new to the codebase, I started asking around to find out who the
+experts were so I could have them review my code. After some searching I learnt
 there are two different groups who are the primary contributors to this
-library. Great! Double review.
+repository. Great! Double review.
 
-Prior to sending the review to the other teams, I have a few people from our
+Prior to sending the review to the other teams, I had a few people from our
 team review my changes. There are a few minor things I incorporate based on
-their feedback. Then I send it out to the primary contributors.
+their feedback. We thought my changes were good enough and were ready to merge
+them. Then I sent out the code review to the primary contributors.
 
 Epic Code Review
 ===============================================================================
 
 The first team started to respond with a smattering of recommendations. Little
-things I would not have understood on my own. They pointed out standard ways of
-using the tools they added to the underlying frameworks. I was made the changes
-they requested quickly.
+things I would not have understood on my own. They pointed out standard ways to
+use the framework they had built which I had not done originally. I quickly
+implemented their changes and was ready to move on.
 
 Then the second team showed up in a big way. They went over every line of code
 with a fine tooth comb. We work in different offices and due to the time
 difference I did not see their feedback until I came into the office the next
 day.
 
-The comments fell roughly into these categories:
+Their comments fell roughly into these categories:
 
-* Grammar, spelling, whitespace and punctuation for Comments (Simple Present Tense)
+* Grammar, spelling, whitespace and punctuation for Comments
 * Patterns in the codebase
 * Layering
 * Framework usage
 * Standard methods
-* Casing and Naming conventions
-* Code Formatting and Style
+* Casing and naming conventions
+* Code formatting and style
 
 This was incredibly frustrating. I spent days going back and forth on this pull
 request.
 
 What made it worst was very few of the comments seems to be about the logic
-behind the code and for me were mostly on what I thought were superficial
-aspects. The [code review style][cr-style] was so different from my own it was
+behind the code and were on things I felt were superficial. The
+[code review style][cr-style] was so different from my own it was
 painful to adjust.
 
 I struggled to understand **Why** the recommended changes were important.
-How would the recommendations lead to better product for our clients?
+How would their recommendations lead to a better product for our clients?
 
 Eventually, I addressed the recommendations and merged the pull request.
 
 What Happened?!
 ===============================================================================
 
-This was not about my code. The review was about how my code fit into the
-codebase. It didn't and the reason this went so poorly was my fault. I did
-not know the conventions and happened to violate most of them. Thankfully,
-my reviewers patiently went through all of my code and showed me.
+This review was not about my code. The review was about how my code fit into
+the codebase. It didn't fit in, which is why the pull request went so poorly.
+The bad code review was my fault. I did not know the existing conventions and
+violated most of them with my changes. Thankfully, my reviewers patiently went
+through everything I had done and helped me correct the code.
 
-I had been used to working on different code bases with more relaxed
+I had been accustomed to working on different code bases with more relaxed
 conventions. When you have a small service with great tests then conventions
-are not as important. If you have a large codebase maintained by multiple teams
+are less as important. If you have a large codebase maintained by multiple teams
 ensuring everyone is on the same page becomes a big deal. This project had
+grown substantially and had several different groups of active contributors.
+Keeping the developers aligned was important to the maintainers.
 
 Conventions and consistently help make code more readable. As the code grows
-and more people contribute these standards become harder to enforce. If left
-unchecked conflicting standards can make it difficult to understand the code.
+and more people contribute standards become harder to enforce. If left
+unchecked conflicting patterns or lack of standards can make code very
+inconsistent and difficult to understand.
 
-For this reason it was important to my reviewers that we maintain the
-conventions. By having strong conventions we would be able to delivering value
-for our clients without slowing down. This was their reason **Why**
+For this reason it was important to my reviewers that I follow the
+conventions. By having strong conventions we would be able to continue delivering value
+to our clients without slowing down as the codebase grows. This was their reason **Why**
 conventions were so important.
 
 As a new contributor it was important for me to learn and apply the standards
-set out by maintainers. This is just [Open Source Contribution Etiquette][etiquette]:
+set out by the maintainers. This is good [Open Source Contribution Etiquette][etiquette]:
 
 > When you contribute fixes or new features to an open source project you should use
 > the existing coding style, the existing coding patterns and stick by the active
@@ -123,22 +128,22 @@ Making Lemonade from Lemons
 ===============================================================================
 
 I didn't know the conventions when I started coding. Instead I had a problem I
-wanted to solve. The problem I was trying to solve, creating high level tests,
-is a common problem. The specifications you create from SpecFlow are fantastic
-and have changed how I work with our testers.
+wanted to solve and ignored everything else. The problem I was trying to solve,
+creating high level tests, is a common problem. Every team wants to do more
+testing and be more effective at doing it. Aside from this initial code review
+the tests we wrote were great and we want to keep doing it.
 
-After I understood where I had went wrong by not following the conventions I
+After I understood where I had went wrong, not following the conventions, I
 realized I would not be alone. Since the tests were so compelling I would hope
-more teams would try to use the tools and see if they address their needs.
+more teams would try using the same tools.
 However, if others went through the experience I did they might be completely
-turned off and never want to do it again. This was the case for one of the
-developers on our team who watched as the review unfolded.
+turned off and never want to do it again. This was the case for another
+developer on our team who participated in my first review.
 
-To prevent the new set of people from having the same experience I decided I
-would work with the maintainers to help improve the on boarding experience.
+To prevent the next set of people from having the same experience, I decided I
+would work with the maintainers to help improve the learning experience.
 The discussions centered around baking the conventions into the framework,
-minimizing the number of conventions and making the simple conventions
-automatic.
+automating some of the conventions and minimizing/simplifying the conventions.
 
 **Baked consistency into the design.** There were a number of standard practices
 done by developers which could be built right into the testing frameworks.
@@ -153,7 +158,7 @@ expected behaviour.
 **Make conventions automatic.** There are naming, formatting and styling conventions I
 could care less about and yet foster such intense debate. [Death to the space infidels][space]!
 Like Jeff Atwood, I believe consistent formatting is worth fighting for, but
-I am not investing what formatting is chosen.
+I am not invested what formatting is chosen. Pick one and move on.
 
 Thankfully, the maintainers know exactly what they want the format to be. Even
 better the majority formatting and style can be automatically enforced by
@@ -162,21 +167,22 @@ tools everyone already uses.
 For the missing comments you can enable a compiler setting to make them
 mandatory<a href="#ext-10-note-1"><sup id="ext-10-note-1-reverse">1</sup></a>.
 We updated the [Resharper][resharper] settings in the solution so all new code
-going forward would have the <em title="In C#: tabs, always tabs">correct</em>
-formatting. Even better put the special rules for formatting the code directly
-into the solution.
+going forward would have the <em title="C#: tabs, always tabs">correct</em>
+formatting. Having the formatting rules live with the code meant any special
+rules used only by this project would not affect anything else. Updating them
+would also be very easy.
 
 With basic coding standards dealt with by the tools, code reviews can move onto
-bigger and better things. You can move past indentation, spacing and brackets
-to does this deliver what we wanted for our users.
+solving problems for our users.
 
-**Minimize your conventions.** Having many conventions makes them harder to
-enforce and can be overwhelming for new contributors. The fewer conventions
-your contributors need to remember and apply will help them be more productive.
+**Minimize your conventions.** Having many conventions makes enforcing them
+harder and can be overwhelming for new contributors. The fewer conventions
+your contributors need to remember and apply the more they focus on their
+code and not the conventions.
 
-Since my initial review I have been discussing relaxing the conventions with
+Since my initial review I have been discussing ways to relax the conventions with
 the maintainers. Separating the absolutely mandatory standards from recommended
-practices has helped reduce what is required for new contributors. Further
+practices has helped clarify the standards for new contributors. Further
 discussing the existing conventions helped me to understand why they were being
 recommended.
 
@@ -184,18 +190,20 @@ Simplifying the conventions can make them easier to follow. In some cases using
 more explicit conventions allows them to be followed more easily, i.e. you must
 not perform assertions in
 PageObjects<a href="#ext-10-note-2"><sup id="ext-10-note-2-reverse">1</sup></a>.
+Conventions which are open to interpretation are sure to be a point of contention
+and complicate code reviews.
 
 Takeaway
 ===============================================================================
 
-This turned out to be an interesting week and a great learning opportunity. I
-learnt the importance learning the conventions of a codebase before I get too
-far developing something new.
+This turned out to be an interesting week and a great learning opportunity. My
+big takeaway was the importance of learning a codebase's conventions before
+trying to contribute.
 
 Although my first review did not go smoothly the reviews since then have been
 much better. I am very happy the maintainers have been receptive to my
-suggestions for streamlining things for new contributors. Together we have
-applied some of my thoughts for making the conventions easier:
+suggestions. Together we have applied some of my thoughts for making the conventions easier
+for new contributors:
 
 * **Build It Into Your Design** - Make the right thing to do, the easiest thing.
 * **Automate Coding Standards** - Don't make me think.
@@ -212,8 +220,8 @@ simpler or easier for a new contributor?
 
 One of my favourite exchanges from the pull request was when both the reviewer
 and I sent each other Martin Fowler links explaining the intent behind the
-code. I was trying to have my code [Tell, not Ask][tell-dont-ask] and responded
-with for the [PageObjects][po] pattern.
+code. I was trying to have my code [Tell, not Ask][tell-dont-ask] and they responded
+with for the rational behind the [PageObjects][po] pattern.
 
 I learnt how the standard thinking was reversed based on the problems being
 solved and how the objects are reused. I had put assertions right into a
