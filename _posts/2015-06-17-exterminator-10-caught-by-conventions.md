@@ -2,7 +2,7 @@
 layout: post
 title:  "Exterminators Week 10 - Caught By Conventions"
 date:   2015-06-17 23:53:07
-tags: conventions exterminator
+tags: learning code-reviews conventions exterminator
 ---
 
 This week I had my most thorough code review ever. By the
