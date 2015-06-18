@@ -229,7 +229,7 @@ PageObject which is apparently not cool. Neato.
 
 [specflow]: http://www.specflow.org/
 [legacy]: {% post_url 2015-03-16-exterminators-1-the-4-stages-of-legacy-code %}
-[cr-style]: {% post_url 2015-05-25-exterminator-6-code-reviews %}
+[cr-style]: /posts/exterminator-6-code-reviews/
 [etiquette]: http://tirania.org/blog/archive/2010/Dec-31.html
 [miguel]: https://twitter.com/migueldeicaza
 [moq]: https://github.com/Moq/moq4/wiki/Quickstart
