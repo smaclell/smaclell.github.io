@@ -14,12 +14,12 @@ receiving so much feedback did it all make sense.
 Excitement
 ===============================================================================
 
-This story starts with my trying to contribute to a codebase I had not
+This story starts with trying to contribute to a codebase I had not
 contributed to before which used tools I was not familiar with. This code
-uses the tool [SpecFlow][specflow] for integration testing.
+used the tool [SpecFlow][specflow] for integration testing.
 Remember when I had first started on the team and was all optimistic after
 working through some [legacy code][legacy]? The reason I was optimistic was
-because I had tried using SpecFlow and loved it. Now weeks later, I was really
+because I had tried using SpecFlow and loved it. Weeks later, I was really
 excited to use SpecFlow more and write more tests.
 
 {% highlight gherkin %}
@@ -34,7 +34,7 @@ Scenario: Using SpecFlow
 I was pumped! I was coding! I got things done and it was awesome.
 I worked for a few days until I had enough to cover the scenarios we wanted.
 The tests did what there were asked, but were not pretty. There were some
-hiccups around wierd areas of our system. Overall I was happy with what I built.
+hiccups around weird areas of our system. Overall I was happy with what I built.
 We could now validate a moderately complicated scenario with some fun permutations.
 
 Since I was new to the codebase, I started asking around to find out who the
@@ -73,7 +73,7 @@ Their comments fell roughly into these categories:
 This was incredibly frustrating. I spent days going back and forth on this pull
 request.
 
-What made it worst was very few of the comments seems to be about the logic
+What made it worst was very few of the comments seemed to be about the logic
 behind the code and were on things I felt were superficial. The
 [code review style][cr-style] was so different from my own it was
 painful to adjust.
@@ -133,7 +133,7 @@ creating high level tests, is a common problem. Every team wants to do more
 testing and be more effective at doing it. Aside from this initial code review
 the tests we wrote were great and we want to keep doing it.
 
-After I understood where I had went wrong, not following the conventions, I
+After I understood where I had gone wrong, not following the conventions, I
 realized I would not be alone. Since the tests were so compelling I would hope
 more teams would try using the same tools.
 However, if others went through the experience I did they might be completely
@@ -142,10 +142,10 @@ developer on our team who participated in my first review.
 
 To prevent the next set of people from having the same experience, I decided I
 would work with the maintainers to help improve the learning experience.
-The discussions centered around baking the conventions into the framework,
+The discussions centered on baking the conventions into the framework,
 automating some of the conventions and minimizing/simplifying the conventions.
 
-**Baked consistency into the design.** There were a number of standard practices
+**Bake consistency into the design.** There were a number of standard practices
 done by developers which could be built right into the testing frameworks.
 Using the framework to creates consistency throughout the codebase allows the
 running program and complier to guide developers into doing the right thing. I
@@ -189,7 +189,7 @@ recommended.
 Simplifying the conventions can make them easier to follow. In some cases using
 more explicit conventions allows them to be followed more easily, i.e. you must
 not perform assertions in
-PageObjects<a href="#ext-10-note-2"><sup id="ext-10-note-2-reverse">1</sup></a>.
+PageObjects<a href="#ext-10-note-2"><sup id="ext-10-note-2-reverse">2</sup></a>.
 Conventions which are open to interpretation are sure to be a point of contention
 and complicate code reviews.
 
@@ -221,7 +221,7 @@ simpler or easier for a new contributor?
 One of my favourite exchanges from the pull request was when both the reviewer
 and I sent each other Martin Fowler links explaining the intent behind the
 code. I was trying to have my code [Tell, not Ask][tell-dont-ask] and they responded
-with for the rational behind the [PageObjects][po] pattern.
+with for the rationale behind the [PageObjects][po] pattern.
 
 I learnt how the standard thinking was reversed based on the problems being
 solved and how the objects are reused. I had put assertions right into a
