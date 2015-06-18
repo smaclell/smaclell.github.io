@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Exterminators Week 10 - Caught By Conventions"
-date:   2015-06-08 23:26:07
+date:   2015-06-17 23:53:07
 tags: conventions exterminator
 ---
 
