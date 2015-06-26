@@ -38,23 +38,71 @@ new work to be done, deal with anything you can finish in 2 minutes
 *immediately*! This will help clear out small things so you can get back to the
 more important tasks.
 
-Application
+What I am Trying
 ===============================================================================
 
-Inspired by these recommendations, I have been trying to turn off email except
+Inspired by these recommendations, I have been trying to find ways to reduce my
+email addiction and focus on getting my work done. For the past few weeks I
+am trying to deal with my email differently. The early results are positive
+and so I thought I would share what I have done here.
+
+**Check email less by closing my email client.** Rather than leaving my email
+client open all the time, I have been trying to keep it closed most days. This
+has not been easy and I often find myself going to check email when I don't
+want to be.
+
+**Use the 2 minute rule to quickly dispatch most email.** If you ready [GTD][done]
+and get nothing other than the 2 minute rule, it is worth it! I have been able to
+clear out many emails and keep going thanks to this simple rule.
+
+**Prune the distributions lists you are on.** While on loan to
+[Exterminators][tribute] I stopped subscribing to several email lists and
+rerouted others groups to folders I could check less frequently. Less email
+means I can spend less time dealing with email. This has also resulted in
+fewer meetings and other distractions.
+
+**Turn off email alerts.** If your email is open, you don't want to be
+distracted by notifications. Turn them off and love your life.
+
+**Stop using email for urgent activities.** Urgent and important requests, like
+code reviews, all come via email. We have started using instant messaging for
+requests like this which allows us to receive these important notifications
+faster.
+
+Next Steps
+===============================================================================
+
+Cutting down on my email interruptions has been going well, but I think there
+is still more I could do.
+
+I have dabbled with not checking email in the morning with little success.
+Working with different timezones has meant responding to messages early helps
+unblock the other teams. As an alternative, I am trying to start checking my
+email once a day during a scheduled window. Checking email only once takes
+discipline and I think with enough effort I can get there. So far I am have
+been able to do it a few days a week and hope I can get into the habit.
+
+After adjusting the email lists I am a part of I have started thinking about
+other things I can cut out. Did I need to be on those lists in the first place?
+How did I start participating in them? What am I missing by not subscribing?
+What else should I stop doing?
+
+
+
+This has been great so far and I am sure I can do better.
+
+turn off email except
 for a few minutes after lunch. Outlook can remain closed while I get work one.
 For the most part this works out great; most email is not urgent and can wait.
 It has been weeks of getting my inbox completely empty. The 2 minute rule is
 golden.
 
-**Schedule when to check email, otherwise turn it off.** With email out of
-sight I check it less often and can focus more on my work. I am not there yet,
-but I would like to only check my email once a day. Closing my email for most
-of the day has been fantastic.
+ The next step for checking email less is only checking email once a
+day during a short scheduled window. When I have been able to check email only
+once a day I feel like I am able to stay focused and get more done.
 
-**Use the 2 minute rule to quickly dispatch most email.** If you ready [GTD][done]
-and get nothing other than the 2 minute rule, it is worth it! I have been able to
-clear out many emails and keep going thanks to this simple rule.
+Adjusting these lists has helped me understand the normal messages I receive,
+but do not need to act on.
 
 **Fewer meetings.** There are many meetings you could go to, but very few you
 should go to. I have been trying to remove as many meetings as possible. This
@@ -62,16 +110,6 @@ has been a tradeoff and you may find you are missing out. So far it has freed
 up my calendar and helped me to remain focused. As a bonus, not going to
 meetings frees you up from any planning and follow up activities. If a meeting
 really needs you, they will let you know.
-
-**Prune the distributions lists you are on.**
-
-**Turn off email alerts/pop ups.** If your email is open, you don't want to be
-distracted by notifications. Turn them off and love life.
-
-**Get urgent communication differently.** Urgent and important requests, like
-code reviews, come in all the time via email. I have been trying to work with
-others on my team to use a team chat or other way to get this information
-faster.
 
 As a developer I want to spend as much time as I can heads down. I have been
 trying to cut out meeting and remove other distractions. My scheduled time
