@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Exterminator 11 - Email, My Nemesis"
-date:   2015-06-21 23:53:07
-tags: focus
+title:  "Exterminator 11 - My Nemesis, Email"
+date:   2015-06-28 3:42:07
+tags: improvement focus distractions exterminator
 ---
 
 This week I was confounded by my nemesis, email. Too often email and
