@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Getting Into The Zone"
-date:   2015-07-05 23:00:07
+date:   2015-07-05 23:25:07
 tags: focus
 image:
   feature: sioux-lookout.jpg
