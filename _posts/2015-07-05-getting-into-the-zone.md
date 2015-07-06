@@ -31,7 +31,7 @@ Tomorrow I am looking forward to getting into the zone, diving in and coding
 something awesome. I hope you have a great day and get into the zone.
 
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
-[email]: {% post_url 2015-06-28-exterminator-11-my-nemesis-email %}
+[email]: /posts/exterminator-11-my-nemesis-email
 [songza-park]: http://songza.com/listen/in-a-quiet-park-songzasounds/
 [songza-neo]: http://songza.com/listen/neo-80s-electro-adawar/
 [songza-hero]: http://songza.com/listen/superhero-soundtracks-songza/
