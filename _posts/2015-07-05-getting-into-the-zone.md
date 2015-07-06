@@ -17,7 +17,7 @@ I am now relaxed and ready to get back to work.
 One of the things I am looking forward to is the focus and isolation of being
 in the zone. Completely blocking out the world and getting things done.
 
-While thinking about trying to cut down on my [email time][email],
+While thinking about cutting down on my [email time][email],
 it made me realize I follow the same sequence every day to
 get into the zone:
 
