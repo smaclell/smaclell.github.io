@@ -4,7 +4,7 @@ title:  "Getting Into The Zone"
 date:   2015-07-05 23:25:07
 tags: focus
 image:
-  feature: sioux-lookout.jpg
+  feature: relaxing-in-sioux-lookout.jpg
 ---
 
 My [Exterminator rotation][tribute] is now over and it is time to return to my
