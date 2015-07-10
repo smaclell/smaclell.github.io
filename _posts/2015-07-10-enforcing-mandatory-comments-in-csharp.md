@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Enforcing Mandatory Comments in C#"
-date:   2015-06-21 23:53:07
-tags: vs-studio project
+date:   2015-07-10 00:47:07
+tags: vs-studio project comments conventions
 ---
 
 Making C# documentation mandatory for all public members is easy. Builds will
