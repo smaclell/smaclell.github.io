@@ -63,6 +63,8 @@ This was lots of fun and helped improve our product. I was surprised at just
 how easy it was to get started. We now had an even better product which was
 stable as before, but now faster.
 
+TODO: Talk about how we found the #1 place to improve the processing HtmlParsing!
+
 Go forth and speed up your code. Find the bottleneck. Fix it. Repeat as needed.
 
 <hr />
