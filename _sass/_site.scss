@@ -53,10 +53,33 @@
 }
 
 .disclaimer {
-	background-color: lighten($base-color, 75%);
+	background-color: lighten($base-color, 80%);
 	color: $base-color;
 	text-shadow: none;
 	padding: 0.25em  1em;
+}
+
+.table {
+	border-color: $border-color;
+
+	caption { text-transform: uppercase }
+	th { text-transform: uppercase }
+
+	tr:nth-child(odd) {
+		background-color: lighten( $base-color, 80% );
+	}
+
+	.text-right { text-align: right }
+	.text-left { text-align: left }
+	.text-center { text-align: center }
+
+	.barchart {
+		float: right;
+		background-color: #003973;
+		height: 100%;
+		padding: 0px;
+		margin: 0px;
+	}
 }
 
 // Global Transition
