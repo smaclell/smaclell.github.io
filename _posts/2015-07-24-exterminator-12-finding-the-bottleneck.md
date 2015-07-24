@@ -269,8 +269,8 @@ Now it is your turn. What is your performance like? Where are your bottlenecks?
 See the whole picture. <br/>
 Find the bottleneck. Fix it. Repeat as needed.
 
-[comments]: {% post_url 2015-04-07-exterminator-3-on-comments %}
-[root]: {% post_url 2015-03-04-lessons-learnt-while-finding-the-root-cause %}
+[comments]: /posts/exterminator-3-on-comments/
+[root]: /posts/lessons-learnt-while-finding-the-root-cause/
 [compile]: https://msdn.microsoft.com/en-us/library/8zbs0h2f(v=vs.110).aspx
 [rico]: http://blogs.msdn.com/b/ricom/
 [know-regex]: http://blogs.msdn.com/b/ricom/archive/2015/07/20/what-you-really-need-to-know-about-regular-expressions-before-using-them.aspx
