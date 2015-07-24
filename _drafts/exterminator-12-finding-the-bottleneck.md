@@ -6,20 +6,20 @@ tags: focus
 ---
 
 This week we continued wrapping up our release with some performance tuning.
-Everything else was ready and we wanted to see if we could make it faster. It
-was really easy to get started. I want to share how we did it and the lessons
-I have since learnt.
+Everything else was ready and we wanted to see if we could make it faster.
+Reviewing our basic performance metrics was really easy to get started. I want
+to share how we did it and the lessons I have since learnt.
 
-The change we were making would parse and analyze a collection of smallish text
+The change we were making would parse and analyze a collection of small text
 snippets. There might be 1000's of snippets and each would be under one megabyte.
 The text could be fairly complicated. A complete parser was used to evaluate the
-snippets, then the parsing results would be filtered using standard regexes and
-once the filtering was completed additional work would be performed.
+snippets, then the parsing results would be filtered using regexes and after that
+the filtered results would be processed one at a time.
 
 We were ready to release our new changes. All of our tests were passing. We had
 been doing exhaustive testing with sample datasets. Most datasets finished
 quickly, but some were much slower. We thought we could do better and had a few
-days to implement the changes.
+days to implement the speed up the processing.
 
 Disclaimer
 ===============================================================================
@@ -29,7 +29,7 @@ picture. Based on the packages we tested and the performance looked better.
 However, I believe our laser focus might have caused us to miss bigger problems
 right in front of us. [Hindsight is 20/20](#ext-12-hindsight).
 
-I am not a performance expert, but wanted to finish this post so you can learn
+I am not a performance expert. I wanted to share this post so you can learn
 from our story. Hopefully you can go deeper and do even more than we did.
 
 Investigating and Iterating
@@ -37,14 +37,14 @@ Investigating and Iterating
 
 **1. Find the bottleneck**
 
-Since the elapsed time for the parsing and analysis was our primary concern we
+Since the elapsed time for the overall process was our primary concern we
 decided to focus on where the code was spending the most time. Our reasoning
-was if we could find and shrink the most active parts of the code we would
+was if we could find and shrink the most active methods we would
 make the whole process faster.
 
-With the slower packages, we started by attaching the built in profiler in
-Visual Studio to find the bottleneck. This uses a simple sampling mechanism
-to see where the code is spending the most time.
+We started by attaching Visual Studio's profiler and running the slow
+packages. The profiler used a simple sampling mechanism to see where the code
+is spending the most time.
 
 <figure id="ext-12-easy" class="image-center">
 	<img src="/images/ProfilerAttaching.png" />
@@ -53,14 +53,14 @@ to see where the code is spending the most time.
 	</figcaption>
 </figure>
 
-We expected the code deep within the parsing/analysis to be called frequently. With
-the performance data in hand we found the exact functions being called. We
+We expected the code deep within the parsing/filtering to be called frequently. With
+the performance data in hand we found the exact methods being called. We
 found a few classes deep within our libraries which were very active.
 
-The two primary hot areas were the children of the functions A and B.
-These functions barely took up any time at all. This is why the inclusive
-samples (time spent in the function and children) are much larger than
-the exclusive samples (only time spent in the function).
+The two primary hot areas were the children of the methods A and B.
+These methods barely took up any time at all. This is why the inclusive
+samples (time spent in the method and children) are much larger than
+the exclusive samples (only time spent in the method).
 
 <div class="table-responsive image-center">
 	<table class="table table-striped" style="margin: 0px auto; width: 75%">
@@ -70,7 +70,7 @@ the exclusive samples (only time spent in the function).
 		<col class="text-right" style="width: 20%;" />
 
 		<tr>
-			<th>Function Name</th>
+			<th>Method Name</th>
 			<th>Inclusive Samples %</th>
 			<th>Exclusive Samples %</th>
 		</tr>
@@ -86,18 +86,18 @@ the exclusive samples (only time spent in the function).
 	</table>
 </div>
 
-Next up we looked at the functions doing the most work. Clearly we are using
+Next up we looked at the methods doing the most work. Clearly we are using
 regexes lots!
 
 <div class="table-responsive image-center">
 	<table class="table table-striped" style="margin: 0px auto; width: 75%">
-		<caption>Functions Doing the Most Work</caption>
+		<caption>Methods Doing the Most Work</caption>
 		<col class="text-left" />
 		<col class="text-right" style="width: 28%;" />
 		<col class="text-right" style="width: 12%;" />
 
 		<tr>
-			<th>Function</th>
+			<th>Method</th>
 			<th colspan="2">Exclusive Samples %</th>
 		</tr>
 
@@ -123,19 +123,20 @@ regexes lots!
 **2. Fix It**
 
 Based on how the regexes were used by the child methods of A we tried optimizing
-our regexes and string manipulation. Instead of using regexes, we iterated over
-the string once while checking for the unwanted cases and combined several
-checks. The newer code was more complicated and would be more difficult to
-understand than our previous regexes. We added [comments][comments] explaining
-why the code had been updated.
+our regexes and string manipulation. Instead of using regexes, we iterate over
+the string once one character at a time checking for characters/patterns we
+care about. This let us combine several checks and fail fast for strings which
+string which should not be processed. The newer code was slightly more
+complicated and was larger than our previous regexes. We added
+[comments][comments] explaining why the code had been updated.
 
 After our first change we then retested the performance. We were confident
 we had not caused a regression in the functionality thanks to our automated
 tests, but needed to know for sure if the performance was actually better.
 
-Comparing the amount of time spent in functions called by A we were able to
+Comparing the amount of time spent in methods called by A we were able to
 increase the percentage of time spent in methods doing real work! As shown
-by the inclusive percent for functions called by A, you can see we now spend
+by the inclusive percent for methods called by A, you can see we now spend
 much less time in ``AddRange`` and proportionally more time in ``TryParse``.
 Parsing is the first step of our algorithm and so spending more time in
 ``TryParse`` is good!
@@ -148,7 +149,7 @@ Parsing is the first step of our algorithm and so spending more time in
 
 **3. Repeat as needed**
 
-With our new changes in place the bottleneck moved! The function B and its
+With our new changes in place the bottleneck moved! The method B and its
 children were now the worst performers.
 
 <div class="table-responsive image-center">
@@ -159,7 +160,7 @@ children were now the worst performers.
 		<col class="text-right" style="width: 20%;" />
 
 		<tr>
-			<th>Function Name</th>
+			<th>Method Name</th>
 			<th>Inclusive Samples %</th>
 			<th>Exclusive Samples %</th>
 		</tr>
@@ -180,8 +181,8 @@ After a while we started to have more and more trouble finding good places to
 optimize and felt we had done enough.
 
 The next set of optimizations would have been rewriting our parser and the
-``TryParse`` method. Digging into our parser would have been a large undertaking.
-Instead we wrapped up our changes and shipped.
+``TryParse`` method. This was larger than we could have take on and so
+instead we wrapped up our changes and shipped.
 
 <span id="ext-12-hindsight"></span>
 
@@ -189,8 +190,7 @@ Hindsight is 20/20
 ===============================================================================
 
 Sounds great right? Well ... not entirely. Our total improvement when all was
-said and done was about 5%. Not a very confident 5% either. I don't completely
-trust our data due to how it was captured.
+said and done was about 5%.
 
 I am not performance expert. I feel like we learnt just enough to be dangerous.
 With our rough understanding of the metrics we had, we began making changes. It is
@@ -199,8 +199,8 @@ is actually happening.
 
 **Micro Optimizations Led to Micro Improvements**
 
-The changes we made were pretty low level. There were not sweeping architectural
-changes to drastically improve our processing. Instead we made micro changes to
+The changes we made were pretty low level. There were no sweeping architectural
+changes to drastically improve our processing. Instead we made small changes to
 existing classes. Only a few classes were touched. Our micro-optimizations only
 made micro performance improvements.
 
@@ -212,11 +212,11 @@ We spent less time overall in regexes and less in method A, but more time in
 method B. Did we make B worst when we improved A?
 
 Instead of only getting a few numbers we could have ran many MANY MANY test
-runs and averaged the results. We did several to see if the results were
-consistent. Had we run more I would have been more confident our performance
-was consistently better.
+runs and averaged the results. We did several tests with only the slow packages
+to see if the results were consistent. Had we run all of the packages again
+several times I would have been confident our performance was better in all cases.
 
-When we chose to sample the numbers could again have shifted their results.
+When we chose to capture our performance data could have shifted the results.
 Remember the ``Regex..ctor(string)`` from our most active methods? That is the
 constructor to the ``Regex`` class. We are [compiling][compile] our regexes
 once then using them many times per snippet. Compilation would occur on startup and your
@@ -226,11 +226,11 @@ cache is full or not will again significantly shift your numbers.
 **What about ...**
 
 We were focusing solely on the amount of time spent within methods. Inclusive
-and Exclusive time spend in each method. What about everything else?
+and Exclusive time for methods in the hot path. What about everything else?
 
 In your average program there are many things happening at once. What
-is the CPU? Memory? Disk IO? Network? OS Overhead? Intrinsics of your framework
-like garbage collectors can be a big deal. Our focus on a very limited set of
+is the CPU? Memory? IO? Network? OS Overhead? Intrinsics of your language
+like garbage collectors can be a big deal. Focusing on a very limited set of
 numbers can cause you to miss the big picture.
 
 **Going Deeper**
@@ -242,25 +242,27 @@ like and read from time to time.
 reviews of performance problems and optimizations. I had been a long time
 reader and enjoyed many of his posts. For example, he has a cool post about
 different [regular expression implementations][know-regex] and what you need
-to know about how to use them (.NET uses Approach #1 with its
-[Nondeterministic Finite Automaton][NFA] engine).
+to know about how to use them. FYI, .NET uses Approach #1 with its
+[Nondeterministic Finite Automaton][NFA] engine.
 
 I have also enjoyed [Joe Duffy's][joe] blog over the years. He is a super smart
 guy and was part of the team responsible for [Parallel Extensions to .NET][plinq].
 In preparing this post I read some of his older articles and found
 [The "premature optimization is evil" myth][myth]. Go read it. You will enjoy it.
 
-Want more? Perhaps my favourite website for learning about highly performant
+Want more? My favourite website for learning about highly performant
 and scalable architectures is hands down [highscalability.com][scale]. You can
-find great write ups of popular sites, how they are built and their scaling
-war stories.
+find great write ups of how popular sites are built and scaling war stories.
+There is also a Weekly round up of articles showing what is new and
+interesting.
 
 Your Turn
 ===============================================================================
 
 Trying to tune our performance was fun. I was surprised at just how easy it was
-to get started. The net result is faster! If I was to do it again I would dig
-deeper into our numbers and try to better understand what is happening.
+to get started. It felt good to make the application faster! If I was to do it
+again I would dig deeper into our numbers and try to better understand what is
+happening.
 
 Now it is your turn. What is your performance like? Where are your bottlenecks?
 
