@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Exterminator 12 - Finding the Bottleneck"
-date:   2015-06-21 23:53:07
-tags: focus
+date:   2015-07-24 01:19:07
+tags: performance exterminator learning
 ---
 
 This week we continued wrapping up our release with some performance tuning.
