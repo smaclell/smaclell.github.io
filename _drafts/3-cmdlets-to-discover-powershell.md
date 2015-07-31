@@ -124,6 +124,14 @@ the links from these other blog posts:
 
 Enjoy and happy discovering PowerShell.
 
+<hr/>
+
+*I would like to thank my lovely wife [Angela][ange] for helping review this
+post. She was gracious enough to take time out of her vacation to find where
+the apostrophes and dashes should go. Thanks dear, I love you.*
+
+*I would also like to thank my son, Jude, for not smashing the keyboard.*
+
 [tldr]: https://technet.microsoft.com/en-us/library/dd315275.aspx
 [get-command]: https://technet.microsoft.com/en-us/library/ee176842.aspx
 [get-help]: https://technet.microsoft.com/en-us/library/ee176848.aspx
@@ -131,3 +139,4 @@ Enjoy and happy discovering PowerShell.
 [powershell]: http://powershell.org/wp/
 [learn]: http://blogs.technet.com/b/heyscriptingguy/archive/2015/01/04/weekend-scripter-the-best-ways-to-learn-powershell.aspx
 [resources]: https://borntolearn.mslearn.net/b/weblog/archive/2015/04/07/powershell-top-4-resources-for-learning-and-experts-to-watch
+[ange]: http://macangela.tumblr.com
