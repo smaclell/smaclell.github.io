@@ -5,9 +5,9 @@ date:   2015-07-30 23:42:07
 tags: powershell basics
 ---
 
-Learning PowerShell can be really easy! With a few handy commands you can teach
+Learning PowerShell can be really easy! With a few handy cmdlets you can teach
 yourself enough PowerShell to get started. In this post I will teach you 3
-essential commands for learning PowerShell and discovering more.
+essential cmdlets for learning PowerShell and discovering more.
 
 I often find myself doing simple operations with services. Getting lists of
 services, starting them, stopping them, etc. For my examples I will show off
@@ -30,12 +30,20 @@ Lets find all the commands:
 Get-Command 
 {% endhighlight %}
 
+<figure class="image-center">
+	<img src="/images/posts/LearnPowerShell/GetCommand.PNG" alt="Output from 'Get-Command'" />
+</figure>
+
 Okay. That was too many. Let's use wildcards to narrow it down to just commands
 for services:
 
 {% highlight powershell %}
 Get-Command *Service
 {% endhighlight %}
+
+<figure class="image-center">
+	<img src="/images/posts/LearnPowerShell/GetCommandService.PNG" alt="Output from 'Get-Command *Service'" />
+</figure>
 
 Now we are getting somewhere! You can see the ``Get-Service``, ``Start-Service``
 and ``Stop-Service`` cmdlets. Umm, how do we use them?
@@ -52,26 +60,39 @@ Using ``Get-Help`` we can see how to learn how to use ``Get-Service``.
 Get-Help Get-Service
 {% endhighlight %}
 
+<figure class="image-center">
+	<img src="/images/posts/LearnPowerShell/GetServiceHelp.PNG" alt="Output from 'Get-Help Get-Service'" />
+</figure>
+
 What about a simple example of stopping a service?
 
 {% highlight powershell %}
 Get-Help Stop-Service -Examples
 {% endhighlight %}
 
+<figure class="image-center">
+	<img src="/images/posts/LearnPowerShell/StopServiceExample.PNG" alt="Output from 'Get-Help Stop-Service -Examples'" />
+</figure>
+
 The PowerShell help also has meta topics like ``about_operators``. This can be
-a great way to learn more a intricate details about PowerShell or skip a simple
-google search. In this example you can learn all about the many keywords in the
-language with snippets showing how they are used.
+a great way to learn intricate details about PowerShell without ever leaving
+your prompt. In this example I show how you can review the built in keywords
+using ``Get-Help``.
 
 {% highlight powershell %}
 Get-Help about_Language_Keywords
 {% endhighlight %}
 
+<figure class="image-center">
+	<img src="/images/posts/LearnPowerShell/GetHelpAbout.PNG" alt="Output from 'Get-Help about_Language_Keywords'" />
+</figure>
+
 Get-Member - What can an object do?
 ===============================================================================
 
 Many commands, like ``Get-Service`` return objects you can interact with.
-``Get-Member`` ([TechNet][get-member])tells you exactly what each objects can do and all of their properties.
+``Get-Member`` ([TechNet][get-member]) tells you exactly what methods and
+properties any object has available.
 
 In this example I show members returned on the objects from ``Get-Service``:
 
@@ -80,25 +101,28 @@ $service = Get-Service PlugPlay
 $service | Get-Member
 {% endhighlight %}
 
+<figure class="image-center">
+	<img src="/images/posts/LearnPowerShell/GetMember.PNG" alt="Output equivalent to the output of 'Get-Service | Get-Member'" />
+</figure>
+
 Based on these methods I can also call ``$service.Stop()`` or ``$service.Start()``
-instead of ``Stop-Service`` and ``Start-Service`` to start/stop services. Cool.
+instead of ``Stop-Service`` and ``Start-Service`` to stop/start services. Cool.
 
 
 Get-PowerShell - Go Have Fun!
 ===============================================================================
 
-I hope these basic commands are helpful for you. I use them all the time to
-find my way around and learn new commands/objects. These commands were invaluable
+I hope these basic cmdlets are helpful for you. I use them all the time to
+find my way around and learn new commands/objects. These cmdlets were invaluable
 to me when I first learnt PowerShell.
 
-Want more articles for learning PowerShell? Try the links from these other blog
-posts:
+Want more articles for learning PowerShell? Try [PowerShell.org][powershell] or
+the links from these other blog posts:
 
-* [PowerShell.org][powershell]
 * [The Best Ways to Learn PowerShell][learn]
 * [Top 4 Resources for Learning and Experts to Watch][resources]
 
-Try finding a new command and learning about it. Enjoy.
+Enjoy and happy discovering PowerShell.
 
 [tldr]: https://technet.microsoft.com/en-us/library/dd315275.aspx
 [get-command]: https://technet.microsoft.com/en-us/library/ee176842.aspx
