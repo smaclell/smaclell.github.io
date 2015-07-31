@@ -20,11 +20,11 @@ TechNet by Microsoft.
 Get-Command - Find Commands!
 ===============================================================================
 
-There are thousands of different built in commands for PowerShell. Finding what
+There are thousands of different built-in commands for PowerShell. Finding what
 you need is easy with ``Get-Command`` ([TechNet][get-command]). You can search for
 commands by name, verb, noun or parameter to find the exact cmdlet you need.
 
-Lets find all the commands:
+Let's find all the commands:
 
 {% highlight powershell %}
 Get-Command 
@@ -46,15 +46,15 @@ Get-Command *Service
 </figure>
 
 Now we are getting somewhere! You can see the ``Get-Service``, ``Start-Service``
-and ``Stop-Service`` cmdlets. Umm, how do we use them?
+and ``Stop-Service`` cmdlets. Ok, now how do we use them?
 
 Get-Help - How do I use a command?
 ===============================================================================
 
-Learning how to use any command is easy with ``Get-Help`` ([TechNet][get-help]). The built in
+Learning how to use any command is easy with ``Get-Help`` ([TechNet][get-help]). The built-in
 documentation shows all the parameters, examples and any additional notes.
 
-Using ``Get-Help`` we can see how to learn how to use ``Get-Service``.
+Using ``Get-Help`` we can learn how to use ``Get-Service``:
 
 {% highlight powershell %}
 Get-Help Get-Service
@@ -76,7 +76,7 @@ Get-Help Stop-Service -Examples
 
 The PowerShell help also has meta topics like ``about_operators``. This can be
 a great way to learn intricate details about PowerShell without ever leaving
-your prompt. In this example I show how you can review the built in keywords
+your prompt. In this example I show how to review the built-in keywords
 using ``Get-Help``.
 
 {% highlight powershell %}
@@ -112,9 +112,9 @@ instead of ``Stop-Service`` and ``Start-Service`` to stop/start services. Cool.
 Get-PowerShell - Go Have Fun!
 ===============================================================================
 
-I hope these basic cmdlets are helpful for you. I use them all the time to
+I hope these basic cmdlets are helpful to you. I use them all the time to
 find my way around and learn new commands/objects. These cmdlets were invaluable
-to me when I first learnt PowerShell.
+to me when I first learned PowerShell.
 
 Want more articles for learning PowerShell? Try [PowerShell.org][powershell] or
 the links from these other blog posts:
