@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "3 Cmdlets to Discover PowerShell"
-date:   2015-07-30 23:42:07
+date:   2015-07-31 10:10:07
 tags: powershell basics
 ---
 
