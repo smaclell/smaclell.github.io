@@ -20,10 +20,10 @@ The settings data looks includes a ``Key`` and ``Value`` and looks like this:
 
 {% highlight csharp %}
 class Settings {
-	string Key { get; set; }
-	string Value { get; set; }
-	string Version { get; set; }
-	string Type { get; set; }
+    string Key { get; set; }
+    string Value { get; set; }
+    string Version { get; set; }
+    string Type { get; set; }
 }
 {% endhighlight %}
 
@@ -31,9 +31,7 @@ The inner layer's interface provides access to all settings:
 
 {% highlight csharp %}
 interface ISettingsProvider {
-
-	IEnumerable<Settings> GetAllSettings();
-
+    IEnumerable<Settings> GetAllSettings();
 }
 {% endhighlight %}
 
@@ -42,12 +40,10 @@ Whereas the the outer layer's interface supports a key value lookup on the
 
 {% highlight csharp %}
 interface ISettingsValueProvider {
-
-	bool TryGetSetting(
-		string key,
-		out string settingsValue
-	);
-
+    bool TryGetSetting(
+        string key,
+        out string settingsValue
+    );
 }
 {% endhighlight %}
 
@@ -100,33 +96,32 @@ I noticed both implementations were very similar and decided to combine them:
 
 {% highlight csharp %}
 class KeyValueProvider : ISettingsProvider, ISettingsValueProvider {
+    const string Prefix = "SettingsPrefix";
 
-	const string Prefix = "SettingsPrefix";
+    bool TryGetSetting(
+        string key,
+        out string settingsValue
+    ) {
+        settingsValue = Get( key );
+        return settingsValue != null;
+    }
 
-	bool TryGetSetting(
-		string key,
-		out string settingsValue
-	) {
-		settingsValue = Get( key );
-		return settingsValue != null;
-	}
+    IEnumerable<Settings> GetAllSettings() {
+        foreach( string key in GetAllKeys() ) {
+            if( !key.StartsWith( Prefix ) ) {
+                continue;
+            }
 
-	IEnumerable<Settings> GetAllSettings() {
-		foreach( string key in GetAllKeys() ) {
-			if( !key.StartsWith( Prefix ) ) {
-				continue;
-			}
+            yield return new Settings {
+                Key = key,
+                Value = Get( key ),
+                Version = GetVersion( key ),
+                Type = GetType( key )
+            }
+        }
+    }
 
-			yield return new Settings {
-				Key = key,
-				Value = Get( key ),
-				Version = GetVersion( key ),
-				Type = GetType( key )
-			}
-		}
-	}
-
-	// All the Get* implemented separately
+    // All the Get* implemented separately
 }
 {% endhighlight %}
 
@@ -138,14 +133,12 @@ were one interface:
 
 {% highlight csharp %}
 interface ISettingsProvider {
+    IEnumerable<Settings> GetAllSettings();
 
-	IEnumerable<Settings> GetAllSettings();
-
-	bool TryGetSetting(
-		string key,
-		out string settingsValue
-	);
-
+    bool TryGetSetting(
+        string key,
+        out string settingsValue
+    );
 }
 {% endhighlight %}
 
@@ -170,14 +163,39 @@ De-layering for Simplicity
 I think the combined layers are easier to understand. There are fewer classes
 and moving parts to the system. With the extremely small interfaces you would
 need to bounce around a lot more to understand the code. Given my short
-attention span it can be really hard to trace all of the pieces.
+attention span it can be really hard to trace all of the pieces. The code is
+loosely coupled, but not cohesive.
 
 Generally, I like having fewer layers. The best line of code is the one you
-don't write. For really small classes I often don't see the value they provide.
-What change at they allowing which was not possible or harder before?
+don't write. Every additional layer is more code you need to maintain. For
+really small classes I often don't see the value they provide. What change does
+an extra class/interface allow which was not possible or harder without them?
+
+I think this is a balancing act between large classes which do everything and
+tiny classes. I spent the last 4 months dealing with large classes who do way
+too much. Thousands of lines and too many responsibilities to count. These
+classes need to be broken up. Beside them were always smaller classes with
+one narrow purpose.
+
+I prefer chunkier cohesive classes. This means their one reason to change
+will be a little bigger. In the example from this post, a single
+``ISettingsProvider`` would change based on how it's underlying data source is
+accessed.
+
+Originally, each layer abstracted a single method. Since the two layers were
+intimately connected it made sense to combine them. It took trying it and
+looking closer at how they interacted. We thought it was a good idea to combine
+them.
+
+How do you know you have hit the sweet spot for your layering? You don't.
+Deciding when to combine/split classes is arbitrary! Considering the impact of
+future changes or potential defects, liberal use of [YAGNI][yagni], code
+reviews and talking to others can help you check whether you are close to the
+sweet spot.
 
 If you are making a change across several layers think about which layer is the
 best place to make your change. Think about whether you need all those layers
 or if they would be better together.
 
 [srp]: http://blog.codinghorror.com/curlys-law-do-one-thing/
+[yagni]: http://martinfowler.com/bliki/Yagni.html
