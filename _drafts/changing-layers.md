@@ -3,6 +3,10 @@ layout: post
 title:  "Changing Layers"
 date:   2015-07-24 01:19:07
 tags: development design daryl
+image:
+  feature: lasagna.jpg
+  credit: Jameson Fink CC BY 2.0 (resized)
+  creditlink: https://www.flickr.com/photos/jamesonfink/11735294004/
 ---
 
 This is a story about making a change and how layering played in. The code
