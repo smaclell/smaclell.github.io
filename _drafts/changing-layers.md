@@ -180,31 +180,4 @@ If you are making a change across several layers think about which layer is the
 best place to make your change. Think about whether you need all those layers
 or if they would be better together.
 
-Notes:
-
-Show approximately the interfaces we were dealing with.
-Setup the situation with and how the change came about.
-* ConfigFile vs Key Value Lookup
-
-Why the outer layer only is backwards.
-* Other classes use the inner layer directly
-* I liked how clean the outer layer was.
-* Okay to show an idea, not good enough to ship.
-
-Why just the inner layer would be okay.
-* Changing it here might not need the outer layer to change
-
-Doing both!
-
-* The outer layer for the KV implementation is more direct
-* Still need the inner layer for the callers, do both!
-
-I tried combining them and liked what I saw. There was so little class and it pulled together
-the single responsibility of how the lookup worked really well.
-
-Why the combined layering is better.
-
-* When I
-* Simplicity!
-
 [srp]: http://blog.codinghorror.com/curlys-law-do-one-thing/
