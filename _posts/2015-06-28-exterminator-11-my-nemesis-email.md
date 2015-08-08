@@ -100,8 +100,8 @@ helped me stay in the zone longer.
 
 What is your biggest distraction? What could you do to get rid of it?
 
-[focus]: {% post_url 2015-03-29-exterminators-2-focus-and-quality %}
-[reviews]: {% post_url 2015-05-24-exterminator-6-code-reviews %}
+[focus]: /posts/exterminators-2-focus-and-quality/
+[reviews]: /posts/exterminator-6-code-reviews/
 [tips]: http://www.hanselman.com/blog/ScottHanselmansCompleteListOfProductivityTips.aspx
 [done]: http://amzn.com/B00KWG9M2E
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
