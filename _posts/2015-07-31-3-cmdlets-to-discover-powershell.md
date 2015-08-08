@@ -122,6 +122,11 @@ the links from these other blog posts:
 * [The Best Ways to Learn PowerShell][learn]
 * [Top 4 Resources for Learning and Experts to Watch][resources]
 
+**UPDATE:** I have been listening to the [PowerScripting Podcast][podcast]
+learning neat things coming up in Windows/PowerShell. In almost every podcast
+they recommend [PowerShell in a Month of Lunches][lunches] by Don Jone's. I
+have not watched any of these videos yet, but from the titles they look good.
+
 Enjoy and happy discovering PowerShell.
 
 <hr/>
@@ -139,4 +144,6 @@ the apostrophes and dashes should go. Thanks dear, I love you.*
 [powershell]: http://powershell.org/wp/
 [learn]: http://blogs.technet.com/b/heyscriptingguy/archive/2015/01/04/weekend-scripter-the-best-ways-to-learn-powershell.aspx
 [resources]: https://borntolearn.mslearn.net/b/weblog/archive/2015/04/07/powershell-top-4-resources-for-learning-and-experts-to-watch
+[podcast]: http://powershell.org/wp/powerscripting-podcast/
+[lunches]: https://www.youtube.com/playlist?list=PL6D474E721138865A
 [ange]: http://macangela.tumblr.com
