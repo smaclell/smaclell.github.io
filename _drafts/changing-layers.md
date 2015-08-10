@@ -161,14 +161,28 @@ this was split between the layers. There is now one place to find the
 implementation of ``ISettingsProvider`` for each data source, the configuration
 file or the key/value store.
 
-De-layering for Simplicity
-===============================================================================
+I have drank the SOLID koolaid. For years I have tried to think hard about when
+to apply each of the rules. While writing this post I found the article
+"[I don't love the single responsibility principle][love]". Like the
+[hacker news][hn] comments I don't agree with all the ideas here, especially
+about the future being irrelevant. However, I completely agree with his
+alternate class sizing principle:
 
-I think the combined layers are easier to understand. There are fewer classes
-and moving parts to the system. With the extremely small interfaces you would
-need to bounce around a lot more to understand the code. Given my short
-attention span it can be really hard to trace all of the pieces. The code is
-loosely coupled, but not cohesive.
+> The purpose of classes is to organize code as to minimize complexity. Therefore, classes should be:
+> 
+> 1. small enough to lower coupling, but
+> 2. large enough to maximize cohesion.
+>
+> By default, choose to group by functionality.
+>
+> <cite> -- [Marco Cecconi][marco] </cite>
+
+It makes perfect sense. This advice got me thinking about the delicate
+balancing act between massive classes doing too much and tiny classes with one
+narrow reason to change.
+
+The Balancing Act
+===============================================================================
 
 Generally, I like having fewer layers. The best line of code is the one you
 don't write. Every additional layer is more code you need to maintain. For
@@ -178,28 +192,54 @@ an extra class/interface allow which was not possible or harder without them?
 I think this is a balancing act between large classes which do everything and
 tiny classes. I spent the last 4 months dealing with large classes who do way
 too much. Thousands of lines and too many responsibilities to count. These
-classes need to be broken up. Beside them were always smaller classes with
-one narrow purpose.
+classes need to be broken up. Beside these monsters were always smaller classes with
+one narrow purpose. In may cases there was very low coupling with not enough
+cohesion to tie the system together.
 
-I prefer chunkier cohesive classes. This means their one reason to change
-will be a little bigger. In the example from this post, a single
-``ISettingsProvider`` would change based on how it's underlying data source is
-accessed.
+I prefer chunkier cohesive classes. This means a class' one reason to change
+will be a little bigger if it means a cleaner module. In the example from this
+post, the primary reason for a ``ISettingsProvider`` to change based is when
+accessing the underlying data source changes. Otherwise, the individual methods
+should be very stable since what they do is limited.
 
 Originally, each layer abstracted a single method. Since the two layers were
-intimately connected it made sense to combine them. It took trying it and
-looking closer at how they interacted. We thought it was a good idea to combine
-them.
+intimately connected it made sense to combine them. We found this by looking
+closer at how they interacted and experimenting. We thought it was a good
+idea to combine them.
 
 How do you know you have hit the sweet spot for your layering? You don't.
-Deciding when to combine/split classes is arbitrary! Considering the impact of
-future changes or potential defects, liberal use of [YAGNI][yagni], code
-reviews and talking to others can help you check whether you are close to the
-sweet spot.
+Deciding when to combine/split layers is arbitrary! Need help thinking
+reviewing your layers? Try these options to see if you are close to the sweet
+spot:
+
+* Consider the impact of future changes or potential defects
+* Liberally apply [YAGNI][yagni]
+* Code reviews
+* Talking to others
+
+De-layering for Simplicity
+===============================================================================
+
+I think the combined layers are easier to understand. There are fewer classes
+and moving parts to the system. With the extremely small interfaces you would
+need to bounce around a lot more to understand the code. Given my short
+attention span it can be really hard to trace all of the pieces.
+
+The code was loosely coupled, but not cohesive. We tilted the balance toward
+combining responsibilities and classes and in this case I like the result.
 
 If you are making a change across several layers think about which layer is the
 best place to make your change. Think about whether you need all those layers
 or if they would be better together.
 
-[srp]: http://blog.codinghorror.com/curlys-law-do-one-thing/
+<hr />
+
+Thanks again Daryl for working through this change with me. I felt like I
+learnt from our discussions and always enjoy when you are on my code
+reviews.
+
+[srp]: http://c2.com/cgi/wiki?SingleResponsibilityPrinciple
 [yagni]: http://martinfowler.com/bliki/Yagni.html
+[love]: http://www.sklivvz.com/posts/i-dont-love-the-single-responsibility-principle
+[hn]: https://news.ycombinator.com/item?id=7707189
+[marco]: https://twitter.com/sklivvz
