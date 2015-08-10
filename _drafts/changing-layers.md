@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Changing Layers"
-date:   2015-07-24 01:19:07
-tags: development design daryl
+date:   2015-08-11 08:00:07
+tags: development design daryl ershad
 image:
   feature: lasagna.jpg
   credit: Jameson Fink CC BY 2.0 (resized)
@@ -17,8 +17,8 @@ in the code review we realized we could combine the two layers and clean up
 the application.
 
 The both layers were responsible for accessing a collection of setting values
-and the meta data. The application will only have a handful of these settings,
-which are heavily read and readonly.
+and their metadata. There will only have a handful of these settings,
+they are heavily read and do not change after the application has started.
 
 The settings data looks includes a ``Key`` and ``Value`` and looks like this:
 
@@ -39,7 +39,7 @@ interface ISettingsProvider {
 }
 {% endhighlight %}
 
-Whereas the the outer layer's interface supports a key value lookup on the
+Whereas the outer layer's interface supports a key value lookup on the
 ``Settings.Value`` based on the ``Settings.Key``:
 
 {% highlight csharp %}
@@ -59,12 +59,11 @@ so heavily read this works great. Very few parts of the application call the
 inner layer, but many code paths indirectly use the values provided by the
 outer layer.
 
-We wanted to allow a the settings to be looked up from a key/value source.
+We wanted to allow the settings to be looked up from a key/value source.
 Using a single configuration file would not work for some of the more dynamic
-workloads we want to support. We could optionally enable the key/value source
-and use it to switch which settings would be available when a process was
-launched. This would again provide readonly values, but makes changing the
-settings between different workloads much easier.
+workloads we want to support. Instead we wanted to enable the key/value source
+with static values when the application launched. Switching values would then
+be as easy as relaunching the application.
 
 Backwards
 ===============================================================================
@@ -75,13 +74,13 @@ new implementation of the outer layer's interface. I then updated the factory
 responsible for creating getting the implementation to create my new class when
 the key/value source was enabled.
 
-I liked this alot. I was extremely clean and did exactly what I wanted. The new
+I liked this implementation alot; it was extremely clean and did exactly what I wanted. The new
 implementation perfectly fit the interface for the outer layer.
 ``TryGetSetting`` is a key/value lookup so what better interface for reading
 from the key/value store.
 
 While this was good for a prototype it was not enough to ship. Daryl, an
-awesome coworker, did not like how I skipped the inner layer. After all the
+awesome coworker, did not like how I skipped the inner layer. After all, the
 outer layer calls the inner layer to get all the settings. My work was half
 done and if I picked the other interface it would have implemented everything.
 
@@ -100,7 +99,6 @@ I noticed both implementations were very similar and decided to combine them:
 
 {% highlight csharp %}
 class KeyValueProvider : ISettingsProvider, ISettingsValueProvider {
-    const string Prefix = "SettingsPrefix";
 
     bool TryGetSetting(
         string key,
@@ -112,7 +110,7 @@ class KeyValueProvider : ISettingsProvider, ISettingsValueProvider {
 
     IEnumerable<Settings> GetAllSettings() {
         foreach( string key in GetAllKeys() ) {
-            if( !key.StartsWith( Prefix ) ) {
+            if( !key.StartsWith( "SettingsPrefix" ) ) {
                 continue;
             }
 
@@ -125,7 +123,7 @@ class KeyValueProvider : ISettingsProvider, ISettingsValueProvider {
         }
     }
 
-    // All the Get* implemented separately
+    ...
 }
 {% endhighlight %}
 
@@ -152,16 +150,17 @@ Violating the Single Responsibility Principle?
 Does this violate the [Single Responsibility Principle][srp]? Maybe.
 
 The previous responsibilities for each class/interface were extremely narrow,
-get a setting or get all settings. We combined the classes which meant there is
-now a method for each of the original responsibilities.
+get a setting or get all settings. Combining the interfaces means the two
+responsibilities are merged into a single class. Together in one class, the
+methods are a more cohesive package.
 
-Each methods has one responsibility and together they form a cohesive package.
-We now encapsulate how a single data source was used. In the previous version
-this was split between the layers. There is now one place to find the
-implementation of ``ISettingsProvider`` for each data source, the configuration
-file or the key/value store.
+The new design encapsulates how a single data source is used in one class. In
+the previous version this was split between the layers. Now details for using a
+configuration file or the key/value store are isolated in our
+``ISettingsProvider`` implementations. Although this is a larger responsibility
+than before, I think it is a reasonable way to break up the code.
 
-I have drank the SOLID koolaid. For years I have tried to think hard about when
+I have drunk the SOLID Kool-Aid. For years I have tried to think hard about when
 to apply each of the rules. While writing this post I found the article
 "[I don't love the single responsibility principle][love]". Like the
 [hacker news][hn] comments I don't agree with all the ideas here, especially
@@ -177,48 +176,49 @@ alternate class sizing principle:
 >
 > <cite> -- [Marco Cecconi][marco] </cite>
 
-It makes perfect sense. This advice got me thinking about the delicate
-balancing act between massive classes doing too much and tiny classes with one
-narrow reason to change.
+This explanation makes perfect sense. Looking at the problem in terms of
+cohesion and coupling got me thinking. There is a delicate balancing act
+between massive classes doing too much and tiny classes with one narrow
+reason to change.
 
 The Balancing Act
 ===============================================================================
 
-Generally, I like having fewer layers. The best line of code is the one you
-don't write. Every additional layer is more code you need to maintain. For
-really small classes I often don't see the value they provide. What change does
-an extra class/interface allow which was not possible or harder without them?
+I spent the last 4 months as an [Exterminator][tribute] dealing with large classes which do way too much.
+Thousands of lines and too many responsibilities to count. These classes need
+to be broken up. The classes were heavily coupled and less cohesive due to
+the many things they did.
 
-I think this is a balancing act between large classes which do everything and
-tiny classes. I spent the last 4 months dealing with large classes who do way
-too much. Thousands of lines and too many responsibilities to count. These
-classes need to be broken up. Beside these monsters were always smaller classes with
-one narrow purpose. In may cases there was very low coupling with not enough
-cohesion to tie the system together.
+An alternative to the monsters classes, were always smaller classes which
+delegate most of their work to other classes. Their one reason to change has
+never happened. For really small classes like these I often don't see the value
+they provide. The coupling between these micro classes was very low, but they are
+not cohesive enough to tie the system together.
 
 I prefer chunkier cohesive classes. This means a class' one reason to change
-will be a little bigger if it means a cleaner module. In the example from this
-post, the primary reason for a ``ISettingsProvider`` to change based is when
+will be a little bigger so I can have cleaner modules. In the example from this
+post, the primary reason for a ``ISettingsProvider`` to change is when
 accessing the underlying data source changes. Otherwise, the individual methods
-should be very stable since what they do is limited.
+should be very stable.
 
 Originally, each layer abstracted a single method. Since the two layers were
 intimately connected it made sense to combine them. We found this by looking
 closer at how they interacted and experimenting. We thought it was a good
 idea to combine them.
 
-How do you know you have hit the sweet spot for your layering? You don't.
-Deciding when to combine/split layers is arbitrary! Need help thinking
-reviewing your layers? Try these options to see if you are close to the sweet
-spot:
-
-* Consider the impact of future changes or potential defects
-* Liberally apply [YAGNI][yagni]
-* Code reviews
-* Talking to others
-
 De-layering for Simplicity
 ===============================================================================
+
+How do you know you have hit the sweet spot for your layering? You don't.
+Deciding when to combine/split layers is arbitrary! Need help thinking through
+or reviewing your layers? Try these methods:
+
+* Code reviews
+* Talking to others
+* Prototype a change
+* Consider the impact/effort for potential change
+* Where are defects most likely or costly
+* Liberally apply [YAGNI][yagni] to remove layers
 
 I think the combined layers are easier to understand. There are fewer classes
 and moving parts to the system. With the extremely small interfaces you would
@@ -238,8 +238,12 @@ Thanks again Daryl for working through this change with me. I felt like I
 learnt from our discussions and always enjoy when you are on my code
 reviews.
 
+Thank you also to Ershad who brought up the potential Single Responsibility
+violation. I hope you liked my answer ;).
+
 [srp]: http://c2.com/cgi/wiki?SingleResponsibilityPrinciple
-[yagni]: http://martinfowler.com/bliki/Yagni.html
+[tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
 [love]: http://www.sklivvz.com/posts/i-dont-love-the-single-responsibility-principle
 [hn]: https://news.ycombinator.com/item?id=7707189
 [marco]: https://twitter.com/sklivvz
+[yagni]: http://martinfowler.com/bliki/Yagni.html
