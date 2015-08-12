@@ -11,10 +11,12 @@ image:
 
 This is a story about making a change and how layering played in. The code
 started with an outer layer which depended on an inner layer. It started
-with a prototype only changing the outer layer which did not sit well with
-my coworker, Daryl, who wanted me changing only the inner layer. Later, we
-in the code review we realized we could combine the two layers and clean up
-the application.
+with a prototype that changed only the outer layer. This did not sit well with
+my coworker, Daryl, who wanted me changing only the inner layer. During the
+code review, we realized we could combine the two layers and clean up the
+application.
+
+TODO: Reword this paragraph.
 
 The both layers were responsible for accessing a collection of setting values
 and their metadata. There will only have a handful of these settings,
@@ -52,7 +54,7 @@ interface ISettingsValueProvider {
 {% endhighlight %}
 
 In the original version the inner layer's implementation would parse
-configuration files and then result all of the settings. The outer layer would
+configuration files and then return all of the settings. The outer layer would
 call the inner layer to get all the settings and then cache the results for the
 key/value lookup. Since there would only be a handful of settings and they are
 so heavily read this works great. Very few parts of the application call the
@@ -74,19 +76,19 @@ new implementation of the outer layer's interface. I then updated the factory
 responsible for creating getting the implementation to create my new class when
 the key/value source was enabled.
 
-I liked this implementation alot; it was extremely clean and did exactly what I wanted. The new
+I liked this implementation a lot; it was extremely clean and did exactly what I wanted. The new
 implementation perfectly fit the interface for the outer layer.
-``TryGetSetting`` is a key/value lookup so what better interface for reading
-from the key/value store.
+Since ``TryGetSetting`` is a key/value lookup it cleanly exposed to the underlying
+key/value store.
 
-While this was good for a prototype it was not enough to ship. Daryl, an
-awesome coworker, did not like how I skipped the inner layer. After all, the
+While this was good for a prototype it was not enough to ship. Daryl,
+did not like how I skipped the inner layer. After all, the
 outer layer calls the inner layer to get all the settings. My work was half
 done and if I picked the other interface it would have implemented everything.
 
-After talking, I realized Daryl was right. In addition to being half done my
-implementation was changing the wrong layer. However, I still like how clean my
-solution. We threw out the prototype and started the real solution.
+After we talked, I realized Daryl was right. Though I liked how clean my
+solution was, it was not complete and it was changing the wrong layer. We threw
+out the prototype and started the real solution.
 
 Combining
 ===============================================================================
@@ -149,7 +151,7 @@ Violating the Single Responsibility Principle?
 
 Does this violate the [Single Responsibility Principle][srp]? Maybe.
 
-The previous responsibilities for each class/interface were extremely narrow,
+The previous responsibilities for each class/interface were extremely narrow:
 get a setting or get all settings. Combining the interfaces means the two
 responsibilities are merged into a single class. Together in one class, the
 methods are a more cohesive package.
@@ -189,8 +191,8 @@ Thousands of lines and too many responsibilities to count. These classes need
 to be broken up. The classes were heavily coupled and less cohesive due to
 the many things they did.
 
-An alternative to the monsters classes, were always smaller classes which
-delegate most of their work to other classes. Their one reason to change has
+Another common pattern is small classes which delegate most of their work to
+other classes. They always have one tiny responsibility and their one reason to change has
 never happened. For really small classes like these I often don't see the value
 they provide. The coupling between these micro classes was very low, but they are
 not cohesive enough to tie the system together.
