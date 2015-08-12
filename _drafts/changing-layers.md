@@ -16,13 +16,13 @@ my coworker, Daryl, who wanted me changing only the inner layer. During the
 code review, we realized we could combine the two layers and clean up the
 application.
 
-TODO: Reword this paragraph.
+The both out and inner layers were responsible for accessing specialized
+settings. These settings are special because of how heavily they are read and
+are readonly while the application is running. The settings are often treated
+like a key/value and there will only every be a handful of them for any
+application.
 
-The both layers were responsible for accessing a collection of setting values
-and their metadata. There will only have a handful of these settings,
-they are heavily read and do not change after the application has started.
-
-The settings data looks includes a ``Key`` and ``Value`` and looks like this:
+The settings data includes a ``Key`` and ``Value`` and looks like this:
 
 {% highlight csharp %}
 class Settings {
