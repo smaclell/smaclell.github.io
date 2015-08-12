@@ -10,17 +10,17 @@ image:
 ---
 
 This is a story about making a change and how layering played in. The code
-started with an outer layer which depended on an inner layer. It started
-with a prototype that changed only the outer layer. This did not sit well with
-my coworker, Daryl, who wanted me changing only the inner layer. During the
+started with an outer layer which depended on an inner layer. Our change started
+with a prototype that only modified the outer layer. This did not sit well with
+my coworker, Daryl, who wanted me to change only the inner layer. During the
 code review, we realized we could combine the two layers and clean up the
 application.
 
-The both out and inner layers were responsible for accessing specialized
+The both out and inner layers are responsible for accessing specialized
 settings. These settings are special because of how heavily they are read and
 are readonly while the application is running. The settings are often treated
 like a key/value and there will only every be a handful of them for any
-application.
+instance of the application.
 
 The settings data includes a ``Key`` and ``Value`` and looks like this:
 
@@ -61,30 +61,30 @@ so heavily read this works great. Very few parts of the application call the
 inner layer, but many code paths indirectly use the values provided by the
 outer layer.
 
-We wanted to allow the settings to be looked up from a key/value source.
+We wanted to allow the settings to be looked up from a environment variables.
 Using a single configuration file would not work for some of the more dynamic
-workloads we want to support. Instead we wanted to enable the key/value source
-with static values when the application launched. Switching values would then
-be as easy as relaunching the application.
+workloads we want to support. Instead we wanted to set the environment variables
+with specific values when the application is launched. With this feature we
+could easily switch values by relaunching the application.
 
 Backwards
 ===============================================================================
 
-Before committing to using this new source I made a small prototype
-demonstrating the key/value source working with our application. I included a
-new implementation of the outer layer's interface. I then updated the factory
-responsible for creating getting the implementation to create my new class when
-the key/value source was enabled.
+To investigate using environment variables instead of the configuration file
+I made a small prototype demonstrating how they would be used by the application. I included a
+new implementation of the outer layer's interface which read the values from environment variables. I then updated the factory
+responsible for creating the outer layer's implementation to create my new class when
+using environment variables was enabled.
 
 I liked this implementation a lot; it was extremely clean and did exactly what I wanted. The new
 implementation perfectly fit the interface for the outer layer.
-Since ``TryGetSetting`` is a key/value lookup it cleanly exposed to the underlying
-key/value store.
+Since ``TryGetSetting`` is a key/value lookup it cleanly maps to the name/value
+pairs of environment variables.
 
-While this was good for a prototype it was not enough to ship. Daryl,
+While this was good for a prototype, it was not enough to ship. Daryl,
 did not like how I skipped the inner layer. After all, the
 outer layer calls the inner layer to get all the settings. My work was half
-done and if I picked the other interface it would have implemented everything.
+done and if I changed the inner layer instead I would not have needed to change anything else.
 
 After we talked, I realized Daryl was right. Though I liked how clean my
 solution was, it was not complete and it was changing the wrong layer. We threw
@@ -94,13 +94,13 @@ Combining
 ===============================================================================
 
 With the final pull request I started by implementing both interfaces
-separately. The direct key/value lookup was great and it was easy to implement
-the inner layer to get all values.
+separately. The direct key/value lookup with the outer layer was great and it was easy to implement
+the inner layer to get all possible values.
 
 I noticed both implementations were very similar and decided to combine them:
 
 {% highlight csharp %}
-class KeyValueProvider : ISettingsProvider, ISettingsValueProvider {
+class EnvironmentVariableSettingsProvider : ISettingsProvider, ISettingsValueProvider {
 
     bool TryGetSetting(
         string key,
@@ -129,10 +129,10 @@ class KeyValueProvider : ISettingsProvider, ISettingsValueProvider {
 }
 {% endhighlight %}
 
-Daryl liked this. The original interfaces were very fine grained, but dealt
+Daryl liked this. The original interfaces were very fine grained and dealt
 with the exact same data. The responsibility for looking up a single setting or
 all settings was split. The separate interfaces made sense when it was first
-implemented. Seeing them combined made us realize it would be simpler if they
+implemented. Seeing them combined helped us realize it would be simpler if they
 were one interface:
 
 {% highlight csharp %}
@@ -158,7 +158,7 @@ methods are a more cohesive package.
 
 The new design encapsulates how a single data source is used in one class. In
 the previous version this was split between the layers. Now details for using a
-configuration file or the key/value store are isolated in our
+configuration file or environment variables are isolated in our
 ``ISettingsProvider`` implementations. Although this is a larger responsibility
 than before, I think it is a reasonable way to break up the code.
 
@@ -213,7 +213,7 @@ De-layering for Simplicity
 
 How do you know you have hit the sweet spot for your layering? You don't.
 Deciding when to combine/split layers is arbitrary! Need help thinking through
-or reviewing your layers? Try these methods:
+or reviewing your layers? Try these approaches/questions:
 
 * Code reviews
 * Talking to others
