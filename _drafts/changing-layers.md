@@ -236,12 +236,16 @@ or if they would be better together.
 
 <hr />
 
-Thanks again Daryl for working through this change with me. I felt like I
+*Thanks again Daryl for working through this change with me. I felt like I
 learnt from our discussions and always enjoy when you are on my code
-reviews.
+reviews.*
 
-Thank you also to Ershad who brought up the potential Single Responsibility
-violation. I hope you liked my answer ;).
+*Thank you also to Ershad who brought up the potential Single Responsibility
+violation. I hope you liked my answer ;).*
+
+*I would like to thank Josh Groen for helping review this post. He is really
+good at it and also rocks a mean standing desk. Don't worry it, it
+happened in the past.*
 
 [srp]: http://c2.com/cgi/wiki?SingleResponsibilityPrinciple
 [tribute]: {% post_url 2015-02-26-i-volunteer-as-tribute %}
