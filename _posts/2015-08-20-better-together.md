@@ -23,7 +23,7 @@ Unlike Stephen, I don't have access to production. I am okay at looking at data
 using excel, but that is about it. While I have access to some rudimentary
 telemetry data, I am only starting to learn how to dig deeper into it.
 
-Stephen is not a developer. I love develop software and fixing problems. We each
+Stephen is not a developer. I love developing software and fixing problems. We each
 have a perspective and knowledge the other lacks. Where Stephen has data, I have
 code. Together we can find and solve problems better and faster.
 
