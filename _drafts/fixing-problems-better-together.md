@@ -27,29 +27,49 @@ Stephen is not a developer. I cannot spend enough time developing. We each have
 a perspective and knowledge the other lacks. Where Stephen has data, I can
 creatively change our product.
 
-TODO: Thoughts
-We are working together. Both of us contributed to the solution. Metrics together. Solution right away. Connecting the right people.
-
 Finding Something Interesting
 ===============================================================================
 
 Together we were looking at logs for web requests. We want to better understand
 the system and find areas for improvement. There are may different ways to look
-at the data and we decided to use TODO:X. We quickly found an outlier which was much
-more active than we expected.
+at the data and we decided to review aggregates of our normalized requests. I
+say normalized requests because we removed any identifiers from the urls so we
+have fewer unique requests. We then determine the total number of requests each
+url received and the number of unique users who viewed each url.
 
-This one request is used on many pages and would TODO:Y to get updated values. For
-any given user session this would be a very popular page.
+We quickly found an outlier which was much more active than we expected. This
+one request had lots of total requests and unique requests by users. The ratio
+between the two also showed us users often performed the request and many users
+would perform the request.
+
+We then dug a little deeper to understand exactly how this request occurred.
+The sample request is used on many pages and would poll the servers to get updated
+values. For any given user session this this request could be issued many times
+resulting in it being a very popular page.
 
 Taking Action
 ===============================================================================
 
 Armed with the new data from Stephen we knew we needed to improve this request.
+The number of times it was called was too high.
 
-The request is only valuable to users viewing the page. If they navigate away
-or switch tabs we can stop making the request. Enter TODO:Z API. Within an
-afternoon I was able to make an update which should dramatically reduce the
-number of requests.
+The request is only valuable to users viewing the page. We realized if the user
+left the page or switched tabs we can stop polling the server for updates.
+Continuing to check for updates is unnecessary if the user will never see them.
+Once the user comes back to the page we can then run the request immediately
+to update their UI.
+
+Enter the [Page Visibility API][pv]. Almost all browsers now support a native
+API which allows us to do exactly what we wanted. We can stop polling based on
+the ``visibilitychange`` event and start again when the user returns.
+
+Within an afternoon I was able to make an update using the Page Visibility API
+which would stop polling when the user could not see the page.
+
+I had also considered allowing the browser to cache the result of the request.
+Another option was to poll less frequently. We decided against both options for
+now to preserve the existing user experience. With the current change users
+should not even notice the difference in behaviour.
 
 Watching the Change
 ===============================================================================
@@ -58,13 +78,16 @@ It will be a little while before my fix is in production. When it is released
 into the wild, Stephen and I will be able to track how effective the change is
 at reducing the number of requests.
 
-It is not guaranteed to make the results better. Based on the change using TODO:T
-the improvements depend heavily on user behaviour. We have estimated the maximum
-possible savings and even at very low savings this change can still have a big
-impact.
+It is not guaranteed to make the results better.  Depending on how our system
+is used the savings might be higher or lower. Is it often opened in a
+background tab? Do users minimize it if they are not using it? We know roughly
+what the best possible savings could be and if we are even a fraction of that
+number our effort would still be worthwhile.
 
 I hope by closely watching how the change does we can iterate more or use this
-as motivation to explore other changes.
+as motivation to explore other changes. If the results are not where we would
+like them to be then maybe extra caching or less frequent polling will be
+necessary.
 
 Better Together
 ===============================================================================
@@ -92,3 +115,5 @@ cloud.
 Instead, I try to focus on the behaviours from DevOps I think are game
 changers. Lets work together on this. If would had more data we could make
 better decisions. What is hard for you? We could automate that together!
+
+[pv]: https://developer.mozilla.org/en-US/docs/Web/Guide/User_experience/Using_the_Page_Visibility_API
