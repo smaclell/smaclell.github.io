@@ -1,17 +1,13 @@
 ---
 layout: post
-title:  "Fixing Problems Better Together"
+title:  "Fixing Problems Is Better Together"
 date:   2015-08-19 00:27:57 -4:00
 tags: devops collaboration stephen
+image:
+  feature: two-guys.jpg
+  credit: Gibson Street, Bowden by Gary Sauer-Thompson CC BY NC 2.0 (resized and compressed)
+  creditlink: https://www.flickr.com/photos/sauer-thompson/8299729886/
 ---
-
-TODO: Pick the title image.
-
-from: https://www.flickr.com/search/?text=holding%20hands&license=2%2C3%2C4%2C5%2C6%2C9&advanced=1&styles=blackandwhite
-https://www.flickr.com/photos/josephb/5384547004/
-https://www.flickr.com/photos/wtlphotos/509997194/
-https://www.flickr.com/photos/sauer-thompson/8299729886/
-https://www.flickr.com/photos/zionfiction/6463343127/
 
 Last week, a co-worker and I made a very interesting discovery. We found a very
 easy performance improvement I was able to make right away. It took less than a
