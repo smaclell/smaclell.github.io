@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Fixing Problems Is Better Together"
-date:   2015-08-19 00:27:57 -4:00
+date:   2015-08-20 00:02:07 -4:00
 tags: devops collaboration stephen
 image:
   feature: two-guys.jpg
