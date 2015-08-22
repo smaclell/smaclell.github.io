@@ -27,11 +27,3 @@ problem it was better worth our time elsewhere.
 Is this too points? 
 Getting started with refactoring vs When to refactor.
 
-Need help getting started? Take a small step. Add a property. New parameter.
-Want to go deeper? Talk about the refactoring book. http://www.refactoring.com/catalog/
-
-http://www.refactoring.com/catalog/replaceTypeCodeWithStateStrategy.html
-http://www.refactoring.com/catalog/replaceTypeCodeWithPolymorphism.html
-http://martinfowler.com/faq.html (you can use pictures, attribute them)
-
-Favourites? Extracting methods, hiding fields/functionality, changing interfaces
