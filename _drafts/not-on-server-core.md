@@ -273,8 +273,30 @@ New-PSDrive -Name 'Q' -Root '\\network\share' -Credentials (Get-PSCredential)
 
 Making local requests is harder. Much harder. There is no browser.
 
+You can however request different urls and direct them to a local file. Using
+the response you can then review the output of the server.
+
+{% highlight powershell %}
+Invoke-WebRequest -Uri 'http://localhost/'' -OutFile 'c:\response.txt'
+{% endhighlight %}
+
 Instead we will use PowerShell to configure the a host file entry, request the
 page you want and then remove the host file entry.
+
+{% highlight powershell %}
+$hostFile = 'C:\Windows\System32\drivers\etc\hosts'
+
+# Add the host file you want to hit
+$hostEntry = '127.0.0.1 testhost.com'
+$hostEntry | Out-File $hostFile -Append -Encoding 'ASCII'
+
+# Get the response like before, now with more host header!
+Invoke-WebRequest -Uri 'http://testhost.com/'' -OutFile 'c:\response.txt'
+
+# Remove the host file you just added
+$hostContents = Get-Content $hostFile
+$hostContents | ? { $_ -notmatch 'testhost\.com' } | Out-File $hostFile -Encoding 'ASCII'
+{% endhighlight %}
 
 This is not a great way to debug, but you wanted a way to do this. This only works
 for really simple requests and is probably useless if what you need to do is more
