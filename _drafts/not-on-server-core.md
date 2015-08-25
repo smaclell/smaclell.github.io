@@ -291,7 +291,7 @@ $hostEntry = '127.0.0.1 testhost.com'
 $hostEntry | Out-File $hostFile -Append -Encoding 'ASCII'
 
 # Get the response like before, now with more host header!
-Invoke-WebRequest -Uri 'http://testhost.com/'' -OutFile 'c:\response.txt'
+Invoke-WebRequest -Uri 'http://testhost.com/' -OutFile 'c:\response.txt'
 
 # Remove the host file you just added
 $hostContents = Get-Content $hostFile
