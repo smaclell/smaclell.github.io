@@ -188,18 +188,22 @@ These commands are extremely powerful and I recommend you review what is
 available from the ``WebAdministartion`` module.
 
 Another powerful tool for administering IIS is ``appcmd``. I have to admit I
-don't often use it and find it is pretty complicated. Where I do prefer
+don't often use it because I find it is pretty complicated. Where I do prefer
 ``appcmd`` is when reviewing/modifying settings of a website/application pool.
-Using the tool can take a bit getting of learning. Most of the commands can
-take parameters which act like queries on the configuration to perform the
-change or read the settings you want. You might want to read the
+Using the tool can take a bit getting of learning. You might want to read the
 [introduction][intro] for ``appcmd`` to see exactly what I mean.
 
+I find it really helps me understand the tool by thinking of the underlying
+configuration files. The primary files are the ``applicationHost.config`` for
+the server level and ``web.config`` for individual applications. They are
+standard XML and many of the commands act like filters or modifiers on the
+elements in either of these documents. The syntax for these expressions feels
+like XPath.
 
 Probably my favourite part about managing IIS is how well the configuration is
-documented. You can find information on every setting, what version they were 
-added to and exactly how they work from the IIS website. The settings typically
-work with either the xml configuration files (i.e. ``web.config``) or using
+documented. On the IIS website, [www.iis.net][iis.net], you can find information
+on every setting, what version they were added to and exactly how they work. The settings typically
+work with either the xml configuration files directly (i.e. ``web.config``) or using
 ``appcmd``. For example here is the documentation for [application pools][pools]
 and how to configure their [recycling][recycling] based on
 [requests or memory limits][periodicRestart]. Wonderful! 
@@ -239,7 +243,31 @@ correctly.
 Files on the server pose another challenge. Without being able to run explorer
 how do you find your way around? How do you copy files over? How do you read files?
 
-The simplest way to read files on the server is by creating a share.
+The simplest way to read/write files on the target server is by creating a
+network share. Here are some examples of creating and deleting shares with
+different access:
+
+{% highlight powershell %}
+# Creating and deleting a readonly share for Administrators
+New-SmbShare -Name 'readonly' -Path 'C:\inetpub' -ReadAccess 'Administrators'
+Remove-SmbShare -Name 'readonly'
+
+# Creating and deleting a share with full access for Administrators
+New-SmbShare -Name 'fullaccess' -Path 'C:\inetpub' -FullAccess 'Administrators'
+Remove-SmbShare -Name 'fullaccess'
+{% endhighlight %}
+
+For more examples review this [basics of SMB PowerShell][smb] blog post.
+
+What if you want to read files from another server? This is also fairly easy
+using ``New-PSDrive`` or ``net use``. With this example I am creating the drive
+Q to another network share.
+
+TODO: This fails miserably from a remote session.
+
+{% highlight powershell %}
+New-PSDrive -Name 'Q' -Root '\\network\share' -Credentials (Get-PSCredential)
+{% endhighlight %}
 
 ### Local Requests
 
@@ -273,9 +301,11 @@ If you think you need one I would strongly encourage you to go learn more about 
 [jump-security]: http://www.infoworld.com/article/2612700/security/-jump-boxes--improve-security--if-you-set-them-up-right.html?page=1
 [learn-ps]: {% post_url 2015-07-31-3-cmdlets-to-discover-powershell %}
 [technet]: https://technet.microsoft.com/en-us/magazine/dn198619.aspx
-[iis]: http://www.iis.net/learn/install/installing-iis-85/installing-iis-85-on-windows-server-2012-r2
-[intro]: http://www.iis.net/learn/get-started/getting-started-with-iis/getting-started-with-appcmdexe
+[iis]: https://www.iis.net/learn/install/installing-iis-85/installing-iis-85-on-windows-server-2012-r2
+[iis.net]: https://www.iis.net
+[intro]: https://www.iis.net/learn/get-started/getting-started-with-iis/getting-started-with-appcmdexe
 [pools]: https://www.iis.net/configreference/system.applicationhost/applicationpools
 [recycling]: https://www.iis.net/configreference/system.applicationhost/applicationpools/add/recycling
 [periodicRestart]: https://www.iis.net/configreference/system.applicationhost/applicationpools/add/recycling/periodicrestart
+[smb]: http://blogs.technet.com/b/josebda/archive/2012/06/27/the-basics-of-smb-powershell-a-feature-of-windows-server-2012-and-smb-3-0.aspx
 [bastion-host]: https://en.wikipedia.org/wiki/Bastion_host
