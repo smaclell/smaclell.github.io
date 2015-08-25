@@ -277,7 +277,7 @@ You can however request different urls and direct them to a local file. Using
 the response you can then review the output of the server.
 
 {% highlight powershell %}
-Invoke-WebRequest -Uri 'http://localhost/'' -OutFile 'c:\response.txt'
+Invoke-WebRequest -Uri 'http://localhost/' -OutFile 'c:\response.txt'
 {% endhighlight %}
 
 Instead we will use PowerShell to configure the a host file entry, request the
