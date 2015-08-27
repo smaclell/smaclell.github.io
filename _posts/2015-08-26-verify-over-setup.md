@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Moq Minute - Verify over Setup"
-date:   2015-08-19 00:27:57 -4:00
+date:   2015-08-26 10:46:07 -4:00
 tags: moq moq-minute testing jeff
 ---
 
