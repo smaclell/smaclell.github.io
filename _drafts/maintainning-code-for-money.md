@@ -1,39 +1,55 @@
 ---
 layout: post
-title:  "Refactoring For Money"
+title:  "Maintaining Code For Money"
 date:   2015-04-16 00:27:57 -4:00
 tags: refactoring priorities
 ---
 
 Refactoring is fun. Taking code and transforming how it fits together without
 breaking it can be art. Getting carried away with tweaking your code and
-continuously refactoring can be a problem. Before you refactor it is really
-important to know whether it will be worth it.
+continuously refactoring can be a problem. Trying to clean up existing code or
+add more tests is time consuming. Before you try to maintain existing code it is
+really important to know whether your effort will be worth it. This post
+examines different stages in the code life cycle and how they shift how much
+you should invest in cleaning up the code.
 
 I like having a job. Everyday when I go to work I am happy they let me in and
 code up a storm. The important difference between my job and a really kick ass
-hobby is that I get paid. We are a business and staying in business is pretty
+hobby is that I get paid. We are a business and staying in business is
 important for our customers, myself and my family.
 
-Going deep on a technical problem or change you are making is great. The deeper
+Going deep on an improvement you are making is great. The deeper
 you get the more important it is to understand why you are making the change.
-How will it help your users.
+What will the impact be? How will the change help your users?
 
-When it comes to refactoring I think this especially tricky. The more entrenched
+When it comes to refactoring and maintaining code I think this especially tricky. The more entangled
 the code is the more I want to "fix" it. Beautiful code is something to be
 admired and even pursued, but only as a means to an end. At the end of the day
-you still have to ship.
+you still have to ship and support your product.
 
 I think it is important to think about when you should refactor, how much to
-change and what the long term benefit will be of what you are doing. You are
-after all paid to think and solve problems.
-
-TODO: Definition of Refactoring?
+change, when to update code and what the long term benefit will be of what you are doing. Balancing
+your desire to do the right thing and where to focus your efforts will result
+in a better product with less effort.
 
 A New Dawn
 ===============================================================================
 
-https://www.flickr.com/photos/michaelmattiphotography/9448609846/in/photolist-foWAwj-9f4PBx-7ZYE8w-p7JC6g-5RkeYm-dm9cxv-7ZYfa5-gm1Pi3-9PEzFv-s3cVSB-5vMRPX-eWCLWD-oBqYQJ-7byt5o-ip5SgA-8NfZFP-8NpdNn-2T1Q4F-qqKQUY-9yGeXN-fo3rhX-7xxS1c-2zZxG-dYyHCX-6Btgbp-odWyyz-pWwUZt-dwQ1Go-9SS7m4-unraMJ-82938p-D5dJV-e5n6Ur-vjP464-obq3C9-s7Pybk-gYGMp6-gBEWPZ-8DDLvX-p7FYy7-mkeRCx-nUFrAm-sa4JKN-i4jx2p-kJxeJ1-pv6i4t-orbM86-bBYMhg-6r2rVb-jhjiiW
+<figure class="image-center">
+	<a data-flickr-embed="true"
+		href="https://www.flickr.com/photos/michaelmattiphotography/9448609846/"
+		title="Evergreen Mountain Lookout Sunset by Michael Matti">
+		<img
+			src="https://farm8.staticflickr.com/7415/9448609846_c47a62b97a_z.jpg"
+			width="640" height="426"
+			alt="Evergreen Mountain Lookout Sunset by Michael Matti">
+	</a>
+	<figcaption>
+		Evergreen Mountain Lookout Sunset by <a href="https://www.flickr.com/photos/michaelmattiphotography/">Michael Matti</a>,
+		used under <a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons 2.0 BY-NC</a>
+	</figcaption>
+</figure>
+
 
 Two types of code worth investing in are critical sections of your application
 and where you plan on doing work in the future. If there is a high probability
@@ -69,7 +85,20 @@ thing again you should consider consolidating the code.
 Unsure?
 ===============================================================================
 
-https://www.flickr.com/photos/66176388@N00/5669437281/in/photolist-9CZmbD-6sfMys-RBpVC-7VVp4v-qBLxSB-8scZX-HKBX-rGFPdD-da62Wk-9x9N1Z-e948z7-6LyMTm-6HfekA-nSHuEN-oFCCHn-qeqqbC-fpA3SM-sHMA98-eChFaT-m8bJ5n-nXV6dX-5ztuut-dU9BXB-7oZNTy-efWye-so1ges-dB2G4N-aXP24T-42P5mv-dZKcut-mZ6cA6-mZ7XYo-mZ67v8-mZ7UmJ-mnoisk-51nHtJ-8SQJQ4-rWRj6W-biqGBe-qv6MgY-dU9C5k-4JDAZG-4HNgsN-5Dh2x-4buknu-4buk1o-nFPq7M-bYERKs-kTKKUJ-6fWqvX
+<figure class="image-center">
+	<a data-flickr-embed="true"
+		href="https://www.flickr.com/photos/66176388@N00/5669437281/"
+		title="New Leaves And Old by Mark Robinson">
+		<img
+			src="https://farm6.staticflickr.com/5187/5669437281_84e78ff2c0_z.jpg"
+			width="640" height="427"
+			alt="New Leaves And Old by Mark Robinson">
+	</a>
+	<figcaption>
+		New Leaves And Old by <a href="https://www.flickr.com/photos/66176388@N00/">Mark Robinson</a>,
+		used under <a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons 2.0 BY-NC</a>
+	</figcaption>
+</figure>
 
 Not sure? Do something small. Can you do something while you do your task? What about adding good tests or making the code testable?
 More tests?
@@ -79,7 +108,20 @@ TODO: Eliminate Duplication and Testability
 Long Frozen Over
 ===============================================================================
 
-https://www.flickr.com/photos/chadcooperphotos/11874715865/in/photolist-j6k2jr-pdJjwJ-rFtC5Z-dANGQr-dw36ez-jovb59-7ofMcb-7tiTP8-7tiTDn-97aKiP-5NSGgR-dUMLJJ-9QtbKN-q4fmTc-i6hRoY-3Vtzwv-kDc8gR-4d5QmE-e2FH9t-rtfteq-93qNLE-8Y1ms6-hUMQWn-dqAaj1-83caBd-49eeGq-7unpkE-dAN3sx-jycTSJ-q5QxQA-777FW7-q9JXDZ-jDd5zM-jbunYA-oTqi2i-bVMbR8-bsFWwZ-5RRLdC-4fy4YC-5ZdfLW-7u5iVk-zUmTE-4mnCcD-8394Fi-pk6uCY-dTyjBc-aUocrV-83962x-dPaGz9-9f8fgD
+<figure class="image-center">
+	<a data-flickr-embed="true"
+		href="https://www.flickr.com/photos/chadcooperphotos/11874715865/"
+		title="Frozen Trees by Chad Cooper">
+		<img
+			src="https://farm3.staticflickr.com/2879/11874715865_8a2712f956_z.jpg"
+			width="640" height="427"
+			alt="Frozen Trees by Chad Cooper">
+	</a>
+	<figcaption>
+		Frozen Trees by <a href="https://www.flickr.com/photos/chadcooperphotos/">Chad Cooper</a>,
+		used under <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons 2.0 BY</a>
+	</figcaption>
+</figure>
 
 Left for Dead.
 Do not shuffle the deckchairs.

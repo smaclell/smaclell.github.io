@@ -30,7 +30,7 @@ directly on servers:
 10. Adjusting the Application Pools
 
 <div class="disclaimer">
-<p>This my 3<sup>rd</sup> week using Server Core and my 2<sup>nd</sup> week was a vacation.
+<p>It was only my 3<sup>rd</sup> week using Server Core when I started writing this and my 2<sup>nd</sup> week was a vacation.
 I am <em>not</em> an expert. I am however very enthusiastic and hoping to learn more.</p>
 <p>If anything I have written here does not work, please add a comment.</p>
 </div>
@@ -43,13 +43,13 @@ The first step is to perform the steps remotely that you would have done
 locally. I typically use the following three methods to do remoting:
 
 * Using another Computer
-* Connect to another computer with MMC
+* Connect to remotely with MMC
 * PowerShell Remoting
 
 ### Using another Computer
 
-It is starts with being on a different computer than the one you are
-troubleshooting. From this second computer you can then connect to the server
+All of the troubleshooting starts with using a different computer.
+From this second computer you can then connect to the server
 you are troubleshooting using MMC, PowerShell Remoting, or other remote tools.
 
 This second computer could be anything from your desktop, another server in the
@@ -57,6 +57,11 @@ data center/cloud or a locked down "Jump Box"<sup id="notes-1-not-on-server-core
 the other computer you are going to use can remotely connect to the machine you
 want to investigate. This means jumping through whatever networking and
 authentication hoops you need.
+
+If you connected directly to the computer you want to troubleshoot you won't be
+able to do much. Not having a UI will make it harder unless you want to only
+use the commandline tools. I would still recommend against it since using remote
+PowerShell is very good and simpler than potentially using nested RDP sessions.
 
 ### Connecting via MMC
 
@@ -76,6 +81,13 @@ Here is the process for Event Viewer, Performance Counters and probably many mor
 	<img src="/images/EventViewer.PNG" alt="Openning the connect to another computer dialog in Event Viewer" />
 	<figcaption>Connecting to another computer using Event Viewer's MMC snapin</figcaption>
 </figure>
+
+
+TODO: Review this list of tools.
+
+I have tried this exact same process the following tools which
+for the other tools Stephen mentioned ( perfmon, scheduled tasks, services, task manager) and the
+process is exactly the same.
 
 ### PowerShell Remoting
 
@@ -318,6 +330,10 @@ It is a [Bastion Host][bastion-host] which is a server which has been highly loc
 They sound neat and talking to a few security guys both scared me. Security is important and so don't mess around.
 If you think you need one I would strongly encourage you to go learn more about them.
 
+<a id="notes-1-not-on-server-core-reverse" href="#notes-1-not-on-server-core">2.</a>
+Perfmon had a wierd problem for me when I first tried to connect from my Windows 7 Desktop.
+I needed to run [extra commands][perfmon-issue] to rebuild my perfmon settings.
+
 <!-- http://serverfault.com/questions/468934/connecting-to-remote-server-using-performance-monitor-does-not-work -->
 [jump]: https://en.wikipedia.org/wiki/Jump_server
 [jump-security]: http://www.infoworld.com/article/2612700/security/-jump-boxes--improve-security--if-you-set-them-up-right.html?page=1
@@ -331,3 +347,4 @@ If you think you need one I would strongly encourage you to go learn more about 
 [periodicRestart]: https://www.iis.net/configreference/system.applicationhost/applicationpools/add/recycling/periodicrestart
 [smb]: http://blogs.technet.com/b/josebda/archive/2012/06/27/the-basics-of-smb-powershell-a-feature-of-windows-server-2012-and-smb-3-0.aspx
 [bastion-host]: https://en.wikipedia.org/wiki/Bastion_host
+[perfmon-issue]: http://serverfault.com/questions/468934/connecting-to-remote-server-using-performance-monitor-does-not-work
