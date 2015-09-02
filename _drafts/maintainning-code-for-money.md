@@ -56,11 +56,15 @@ and where you plan on doing work in the future. If there is a high probability
 you will be working on or troubleshooting code in the future do a favour for
 future you and simplify it.
 
-TODO: Critical Code
+Every project has one part which is the most important. Typically it is the one
+killer feature why you did the project in the first place. The fundamental
+business logic only this project performs or the one page every user loves.
+Caring for core sections of any project is worth while.
 
-Every project has critical code. Maybe it is a high performance calculation or
-the one page every user loves. Maintaining the most important parts of your
-system is valuable.
+Important feature need to work every time. A regression in a critical tool is
+awful for the user experience. Having great test coverage and simplifying the
+code around your core features will help keep the code easy to maintain and
+updates as requirements change.
 
 Special case: Defect Magnet!
 
