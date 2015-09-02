@@ -1,9 +1,13 @@
 ---
 layout: post
 title:  "Don't Copy and Paste Garbage"
-date:   2015-04-16 00:27:57 -4:00
+date:   2015-09-01 11:31:07 -4:00
 tags: refactoring learning
+image:
+  feature: garbage.jpg
 ---
+
+<!-- image source https://pixabay.com/en/m%C3%BClltonnen-garbage-disposal-594412/ -->
 
 I was recently confronted by a coworker about some changes I had made. While
 refactoring some more I took a confusing pattern and repeated it many times.
