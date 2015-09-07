@@ -63,6 +63,11 @@ able to do much. Not having a UI will make it harder unless you want to only
 use the commandline tools. I would still recommend against it since using remote
 PowerShell is very good and simpler than potentially using nested RDP sessions.
 
+<span id="sln-1"></span>
+<span id="sln-2"></span>
+<span id="sln-3"></span>
+<span id="sln-4"></span>
+
 ### Connecting via MMC
 
 The Microsoft Management Console (MMC) has been around for a long time. You can
@@ -152,7 +157,10 @@ Get-EventLog Application -Newest 5 -EntryType Error `
 The Other Stuff
 ===============================================================================
 
-Not everything is puppy dogs and rainbows, some troubleshooting requires additional setup or different techniques.
+Not everything is puppy dogs and rainbows. Some troubleshooting steps require
+additional setup or different techniques. In this section I will show you
+commands which can be run using ``Invoke-Command`` or ``Enter-PSSession`` to
+manage iis, interact with files or perform local web requests.
 
 ### Managing IIS
 
@@ -173,7 +181,9 @@ Then lets do a really simple example, reviewing a single binding on a the 'CoolS
 Get-WebBinding -Name 'CoolSite'
 {% endhighlight %}
 
-Managing Application Pools is easy:
+<span id="sln-9"></span>
+
+Reviewing and restarting Application Pools is easy:
 
 {% highlight powershell %}
 # For looking up the list of application pools.
@@ -191,37 +201,36 @@ dir 'IIS:\AppPools\DefaultAppPool\WorkerProcesses\' | % {
 Restart-WebAppPool 'DefaultAppPool'
 {% endhighlight %}
 
-These commands are extremely powerful. I recommend you review what is
-available from the ``WebAdministartion`` module:
+The entire ``WebAdministartion`` module is very useful for managing IIS. I
+recommend you review the rest of the module commands:
 
 {% highlight powershell %}
 Get-Command -Module WebAdministration
 {% endhighlight %}
 
-Another powerful tool for administering IIS is ``appcmd``. I have to admit I
-don't often use it because I find it is pretty complicated. Where I do prefer
-``appcmd`` is when reviewing/modifying settings of a website/application pool.
-Using the tool can take a bit getting of learning. Read the
-[appcmd introduction][intro] to see exactly what I mean.
+To configure and review IIS settings I often use the ``appcmd`` tool. It is
+complicated which is why I prefer using the PowerShell module.
+Using ``appcmd`` takes getting used to. If you want to see what I mean read the
+[appcmd introduction][intro] for an overview.
 
-I find it really helps me understand the tool by thinking of the underlying
-configuration files. The primary files are the ``applicationHost.config`` for
-the server level and ``web.config`` for individual applications. They are
-standard XML and many of the commands act like filters or modifiers on the
-elements in either of these documents. The syntax for these expressions feels
-like XPath.
+I had an AHA moment when I started understanding the configuration files used
+by IIS. The primary files are the ``applicationHost.config`` for
+server settings and ``web.config`` for individual applications. They are
+XML documents and many of the commands act like filters or modifiers on the
+elements. The syntax for these expressions is similar to other XML tools like XPath.
 
-Probably my favourite part about managing IIS is how well the configuration is
+My favourite part about managing IIS is how well the configuration is
 documented. On the IIS website, [www.iis.net][iis.net], you can find information
-on every setting, what version they were added to and exactly how they work. The settings typically
-work with either the xml configuration files directly (i.e. ``web.config``) or using
+on every setting, what version they were added to and exactly how they work. The settings can be
+configured using the xml configuration files directly (i.e. ``web.config``) or using
 ``appcmd``. For example here is the documentation for [application pools][pools]
 and how to configure their [recycling][recycling] based on
-[requests or memory limits][periodicRestart]. Wonderful! 
+[requests or memory limits][periodicRestart]. Wonderful!
 
-Here is a more in-depth example using ``appcmd`` to configure the
-'DefaultAppPool' to recycle at the virtual memory limit of 100MB and the
-private memory limit of 200MB:
+<span id="sln-10"></span>
+
+To demonstrate using ``appcmd`` this example configures the 'DefaultAppPool' to
+recycle at a virtual memory limit of 100MB and a private memory limit of 200MB:
 
 {% highlight batch linenos %}
 C:\Windows\system32\inetsrv\appcmd.exe set config `
@@ -235,19 +244,16 @@ C:\Windows\system32\inetsrv\appcmd.exe set config `
 	/commit:apphost
 {% endhighlight %}
 
-That was a mouthful so let me break it down.
+Since that looks very complicated I will break it down.
 
-1. By default ``appcmd`` is not in the path, which is why I am using the fully
+* By default ``appcmd`` is not in the path, which is why I am using the fully
 qualified ``c:\Windows\system32\inetsrv\appcmd.exe`` to call the application.
-2. The specific command is indicated by ``set config``, because we want to set config. Duh.
-3. The ``section`` is used to say exactly where in the configuration to apply the
-new settings.
-4. We then use line 3 and 8 to change the appropriate setting to the right
-value. The odd ``[name='DefaultAppPool']`` is used to select the application
-pool to change.
-5. Finally because application pools are a server wide setting
-they belong in the ``apphost`` and need ``/commit:apphost`` to be configured
-correctly.
+* The specific command is indicated by ``set config``, because we want to set config. Duh.
+* The ``-section:`` is used to declare where in the configuration to modify.
+* We then use line 3 and 8 to change the appropriate setting to the right
+value. The ``[name='DefaultAppPool']`` selects the application pool to change.
+* Since application pools are configured for the entire server ``/commit:apphost``
+is used to change the ``applicationHost.config`` which is for all server wide settings.
 
 <span id="iis-remote"></span>
 
@@ -262,20 +268,24 @@ Install-WindowsFeature @( 'Web-Server', 'Web-Mgmt-Service' )
 
 # Enable the remote management
 Set-ItemProperty `
-	-Path HKLM:\SOFTWARE\Microsoft\WebManagement\Server `
-	-Name EnableRemoteManagement `
+	-Path 'HKLM:\SOFTWARE\Microsoft\WebManagement\Server' `
+	-Name 'EnableRemoteManagement' `
 	-Value 1
 
 # Restart the management service so the setting can take effect
-Restart-Service WMSVC
+Restart-Service 'WMSVC'
 
 # Profit.
 {% endhighlight %}
 
 ### Files on the Server
 
-Files on the server pose another challenge. Without being able to run explorer
+Files on the server pose another challenge. Without being able to use explorer
 how do you find your way around? How do you copy files over? How do you read files?
+
+<span id="sln-6"></span>
+<span id="sln-7"></span>
+<span id="sln-8"></span>
 
 The simplest way to read/write files on the target server is by creating a
 network share. Here are some examples of creating and deleting shares with
@@ -284,10 +294,12 @@ different access:
 {% highlight powershell %}
 # Creating and deleting a readonly share for Administrators
 New-SmbShare -Name 'readonly' -Path 'C:\inetpub' -ReadAccess 'Administrators'
-Remove-SmbShare -Name 'readonly'
 
 # Creating and deleting a share with full access for Administrators
 New-SmbShare -Name 'fullaccess' -Path 'C:\inetpub' -FullAccess 'Administrators'
+
+# Removing both of the shares
+Remove-SmbShare -Name 'readonly'
 Remove-SmbShare -Name 'fullaccess'
 {% endhighlight %}
 
@@ -305,17 +317,20 @@ New-PSDrive -Name 'Q' -Root '\\network\share' -Credentials (Get-PSCredential)
 
 ### Local Requests
 
-Making local requests is harder. Much harder. There is no browser.
+<span id="sln-5"></span>
 
-You can however request different urls and direct them to a local file. Using
-the response you can then review the output of the server.
+Making local requests is harder. Much harder. Without a built in browser and
+doing everything remotely pose a challenge.
+
+You can however request different pages and direct them to local files to
+review later:
 
 {% highlight powershell %}
 Invoke-WebRequest -Uri 'http://localhost/' -OutFile 'c:\response.txt'
 {% endhighlight %}
 
-Instead we will use PowerShell to configure the a host file entry, request the
-page you want and then remove the host file entry.
+If your website has specific bindings, you can add a local hostfile entry, make
+the request and then remove the hostfile entry:
 
 {% highlight powershell %}
 $hostFile = 'C:\Windows\System32\drivers\etc\hosts'
@@ -332,13 +347,26 @@ $hostContents = Get-Content $hostFile
 $hostContents | ? { $_ -notmatch 'testhost\.com' } | Out-File $hostFile -Encoding 'ASCII'
 {% endhighlight %}
 
-This is not a great way to debug, but you wanted a way to do this. This only works
-for really simple requests and is probably useless if what you need to do is more
-complicated, like logging in to the site and navigating around.
+A better option would be to use failed request tracing and use your extra
+computer to make the request. This allows you to navigate the site normally
+while still capturing the errors you are trying to troubleshoot.
 
-When I was configuring my first Server Core machine I ran into a configuration
-problem and needed to do something like this. Instead, I cheated and ran the
-test on a machine with a full UI. My problem turned out to be a bad web.config.
+Conclusion
+===============================================================================
+
+Troubleshooting Windows Server Core is different. You will need to use
+different techniques, but can still get your job done. Good luck!
+
+1. Check the Windows Event Log => [Use Event Viewer Remotely](#sln-1)
+2. Checking the status of service/process => [Use Task Manager Remotely](#sln-2)
+3. Watching performance counters => [Use PerfMon Remotely](#sln-3)
+4. Managing Scheduled Tasks => [Use Scheduled Task Viewer Remotely](#sln-4)
+5. Testing a server is isolation => [Make the request locally or use Failed Request Tracing](#sln-5)
+6. Review files on the server => [Use network shares or PowerShell](#sln-6)
+7. Configuring files on the server => [Use network shares](#sln-7)
+8. Deploying new files => [Use network shares](#sln-8)
+9. Recycle an Application Pool => [Use WebAdministration ](#sln-9)
+10. Adjusting the Application Pools => [Use AppCmd](#sln-10)
 
 <hr />
 
