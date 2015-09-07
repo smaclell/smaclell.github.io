@@ -86,17 +86,18 @@ Here is the process for Event Viewer, Performance Counters and probably many mor
 TODO: Review this list of tools.
 
 I have tried this exact same process the following tools which
-for the other tools Stephen mentioned ( perfmon, scheduled tasks, services, task manager) and the
+for the other tools Stephen mentioned (perfmon, scheduled tasks, services, task manager) and the
 process is exactly the same.
 
 ### PowerShell Remoting
 
-Using more PowerShell Remoting has changed how I manage computers. Instead of
-connecting directly to the box using Remote Desktop I will now try to do everything using PowerShell remotely.
-Using these techniques you can run any command. If you have never used PowerShell
+Using PowerShell Remoting has changed how I manage other computers. Instead of
+connecting using Remote Desktop I try to do everything using PowerShell remotely.
+In this section I am going to show you some techniques for running any command remotely.
+If you have never used PowerShell
 before I strongly encourage you to learn [Get-Command, Get-Help and Get-Member][learn-ps].
 
-Lets start with this simple command:
+Lets start with a simple command:
 
 {% highlight powershell %}
 Enter-PSSession -ComputerName Target
@@ -121,27 +122,25 @@ PowerShell at your fingers!
 </figure>
 <!-- https://www.flickr.com/photos/elaws/3775252224 -->
 
-If you want to run a single command remotely you can also use
-``Invoke-Command``. Unlike ``Enter-PSSession``, this will run the commands you
-provide then immediately stop. All the results will be sent back to your
-current prompt. Here is an example of restarting IIS on the remote server "Target":
+You can run batches or single commands using
+``Invoke-Command`` without the interactive shell like ``Enter-PSSession``. ``Invoke-Command`` will run the commands you
+provide and return the results back to your current prompt. This is great for one line commands like restarting IIS on the remote server "Target":
 
 {% highlight powershell %}
 Invoke-Command -ComputerName Target -ScriptBlock { iisreset }
 {% endhighlight %}
 
-The remote commands are allowed by default on Windows Server 2012 and beyond.
-On only operating systems you will need to do some configuration prior to
-being able to run these commands. The easiest thing to do is run
-``Enabled-PSRemoting -Force`` from an Administrator PowerShell prompt. You can
-then test the connection by running ``Invoke-Command -ComputerName Target -ScriptBlock { echo hello }``.
+Remote commands are allowed by default on Windows Server 2012 and beyond.
+On older operating systems you can run ``Enabled-PSRemoting -Force`` from
+an Administrator PowerShell prompt on the target machine to enable remoting. You can
+then test the connection by running ``Invoke-Command -ComputerName Target -ScriptBlock { echo hello }`` from another computer.
 
 There are many other commands which natively support remote operations.
 These commands will often have a ``ComputerName`` parameter
 (you can see a whole list using ``Get-Command -ParameterName ComputerName``).
 
 Among my favourites is ``Get-EventLog``. It is a great way to look at messages
-for a remote server without ever leaving the terminal. This example
+from a remote server without ever leaving the terminal. This example
 retrieves, formats and displays the last 5 error messages:
 
 {% highlight powershell %}
@@ -153,32 +152,28 @@ Get-EventLog Application -Newest 5 -EntryType Error `
 The Other Stuff
 ===============================================================================
 
-Some of the troubleshooting is harder or requires additional setup or techniques.
+Not everything is puppy dogs and rainbows, some troubleshooting requires additional setup or different techniques.
 
 ### Managing IIS
 
-The GUI Tools require additional setup to configure. I cannot remember setting
-this up before. There are [technet][technet] and [iis][iis] articles describing
-how this is done.
+I am going to show you how to use PowerShell commands to perform common operations.
+Using the GUI tools requires additional configuration to be enabled which is not
+required when you have such fantastic command line tools. If you still really want
+to use a GUI I will show how to enable remote management at the [end of this section](#iis-remote).
 
-Instead of using the GUI Tools I am going to show you how to use PowerShell
-commands to perform common operations.
+First import the ``WebAdministration`` module installed with IIS.
 
 {% highlight powershell %}
 Import-Module WebAdministration
-
-# For a list of commands run:
-# Get-Command -Module WebAdministration
 {% endhighlight %}
 
-Lets start with a really simple example, reviewing a single binding on a fake site:
+Then lets do a really simple example, reviewing a single binding on a the 'CoolSite' web site:
 
 {% highlight powershell %}
-Get-WebBinding -Name 'WebSiteName'
+Get-WebBinding -Name 'CoolSite'
 {% endhighlight %}
 
-Since my coworkers were very interested in Application Pools here are some
-examples:
+Managing Application Pools is easy:
 
 {% highlight powershell %}
 # For looking up the list of application pools.
@@ -187,7 +182,7 @@ dir 'IIS:\AppPools\'
 # Reviewing the active worker processes for the 'DefaultAppPool'
 dir 'IIS:\AppPools\DefaultAppPool\WorkerProcesses\'
 
-# Taking it further and looking at the running worker processes more closely
+# Taking it further and looking at memory and CPU for the running worker processes
 dir 'IIS:\AppPools\DefaultAppPool\WorkerProcesses\' | % {
 	Get-Process -PID $_.processId
 }
@@ -196,14 +191,18 @@ dir 'IIS:\AppPools\DefaultAppPool\WorkerProcesses\' | % {
 Restart-WebAppPool 'DefaultAppPool'
 {% endhighlight %}
 
-These commands are extremely powerful and I recommend you review what is
-available from the ``WebAdministartion`` module.
+These commands are extremely powerful. I recommend you review what is
+available from the ``WebAdministartion`` module:
+
+{% highlight powershell %}
+Get-Command -Module WebAdministration
+{% endhighlight %}
 
 Another powerful tool for administering IIS is ``appcmd``. I have to admit I
 don't often use it because I find it is pretty complicated. Where I do prefer
 ``appcmd`` is when reviewing/modifying settings of a website/application pool.
-Using the tool can take a bit getting of learning. You might want to read the
-[introduction][intro] for ``appcmd`` to see exactly what I mean.
+Using the tool can take a bit getting of learning. Read the
+[appcmd introduction][intro] to see exactly what I mean.
 
 I find it really helps me understand the tool by thinking of the underlying
 configuration files. The primary files are the ``applicationHost.config`` for
@@ -249,6 +248,29 @@ pool to change.
 5. Finally because application pools are a server wide setting
 they belong in the ``apphost`` and need ``/commit:apphost`` to be configured
 correctly.
+
+<span id="iis-remote"></span>
+
+If you still want the GUI tools there is some additional configuration required.
+There are [technet][technet] and [iis][iis] articles describing how this is done.
+Alternatively, you can run this script (adapted from this
+[orcsweb tutorial][orcsweb]) on the target server to enable remote configuration:
+
+{% highlight powershell %}
+# Installing the basic IIS and the management service
+Install-WindowsFeature @( 'Web-Server', 'Web-Mgmt-Service' )
+
+# Enable the remote management
+Set-ItemProperty `
+	-Path HKLM:\SOFTWARE\Microsoft\WebManagement\Server `
+	-Name EnableRemoteManagement `
+	-Value 1
+
+# Restart the management service so the setting can take effect
+Restart-Service WMSVC
+
+# Profit.
+{% endhighlight %}
 
 ### Files on the Server
 
@@ -345,6 +367,7 @@ I needed to run [extra commands][perfmon-issue] to rebuild my perfmon settings.
 [pools]: https://www.iis.net/configreference/system.applicationhost/applicationpools
 [recycling]: https://www.iis.net/configreference/system.applicationhost/applicationpools/add/recycling
 [periodicRestart]: https://www.iis.net/configreference/system.applicationhost/applicationpools/add/recycling/periodicrestart
+[orcsweb]: http://www.orcsweb.com/blog/jamie-furr/manage-and-install-iis8-on-windows-2012-server-core/
 [smb]: http://blogs.technet.com/b/josebda/archive/2012/06/27/the-basics-of-smb-powershell-a-feature-of-windows-server-2012-and-smb-3-0.aspx
 [bastion-host]: https://en.wikipedia.org/wiki/Bastion_host
 [perfmon-issue]: http://serverfault.com/questions/468934/connecting-to-remote-server-using-performance-monitor-does-not-work
