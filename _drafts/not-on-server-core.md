@@ -89,6 +89,11 @@ Here is the process for Event Viewer, Performance Counters and probably many mor
 
 
 TODO: Review this list of tools.
+* PerfMon, needs counters added per machine
+* Scheduled Tasks seems to be failing due to wierd .NET exceptions. Try with a full GUI 2012
+* Event Viewer is fine
+* Services is fine
+* Cannot do Task Manager or Resource Monitor
 
 I have tried this exact same process the following tools which
 for the other tools Stephen mentioned (perfmon, scheduled tasks, services, task manager) and the
@@ -305,11 +310,11 @@ Remove-SmbShare -Name 'fullaccess'
 
 For more examples review this [basics of SMB PowerShell][smb] blog post.
 
+TODO: This fails miserably from a remote session.
+
 What if you want to read files from another server? This is also fairly easy
 using ``New-PSDrive`` or ``net use``. With this example I am creating the drive
 Q to another network share.
-
-TODO: This fails miserably from a remote session.
 
 {% highlight powershell %}
 New-PSDrive -Name 'Q' -Root '\\network\share' -Credentials (Get-PSCredential)
@@ -347,6 +352,8 @@ $hostContents = Get-Content $hostFile
 $hostContents | ? { $_ -notmatch 'testhost\.com' } | Out-File $hostFile -Encoding 'ASCII'
 {% endhighlight %}
 
+TODO: Complete this example.
+
 A better option would be to use failed request tracing and use your extra
 computer to make the request. This allows you to navigate the site normally
 while still capturing the errors you are trying to troubleshoot.
@@ -365,7 +372,7 @@ different techniques, but can still get your job done. Good luck!
 6. Review files on the server => [Use network shares or PowerShell](#sln-6)
 7. Configuring files on the server => [Use network shares](#sln-7)
 8. Deploying new files => [Use network shares](#sln-8)
-9. Recycle an Application Pool => [Use WebAdministration ](#sln-9)
+9. Recycle an Application Pool => [Use WebAdministration](#sln-9)
 10. Adjusting the Application Pools => [Use AppCmd](#sln-10)
 
 <hr />
