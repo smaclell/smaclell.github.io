@@ -2,7 +2,7 @@
 layout: post
 title:  "Maintaining Code For Money"
 date:   2015-04-16 00:27:57 -4:00
-tags: refactoring priorities
+tags: refactoring maintenance priorities
 ---
 
 Refactoring is fun. Taking code and transforming how it fits together without
@@ -66,25 +66,16 @@ awful for the user experience. Having great test coverage and simplifying the
 code around your core features will help keep the code easy to maintain and
 updates as requirements change.
 
-Special case: Defect Magnet!
+Infamous code riddled with bugs is another good place to invest time in.
+Provided you want to keep the functionality around, stabilizing an section with
+higher than normal defects could help uncover even more you do not know about
+yet. [Defects tend to cluster together][defect-cluster].
 
-TODO: Future investment
-TODO: Changing purpose.
-
-The best time to refactor is when you want to make an investment. You plan on
-extending and revisiting the code many times in the future. If you can think
-of another story in the same area it is probably worth doing some work to make
-things easier.
-
-The most obvious changes would make extensions in expected directions easier.
-For example, you have a website which can convert from one format to another.
-Being able to support new formats could be an upcoming feature. It would be
-a good idea to make the code able to support adding new formats. This doesn't
-mean doing the work to import or export another format, instead setting up the
-code so it will be easier to do so later.
-
-Alternatively, if you see duplicate code and know you are about to do the same
-thing again you should consider consolidating the code.
+Adding functionality and plan to add more in the future? The amount of time you
+plan on spending in an area or integrating with it is a good way to decide how
+much refactoring/cleanup you want to do. Setting up for new changes is a great
+reason to refactor. After you have implemented new functionality you could
+consolidate the existing classes.
 
 Unsure?
 ===============================================================================
@@ -104,10 +95,27 @@ Unsure?
 	</figcaption>
 </figure>
 
-Not sure? Do something small. Can you do something while you do your task? What about adding good tests or making the code testable?
-More tests?
+Not sure what the future holds? If the area you working in is not important or
+will have only minor changes in the future it is not worth your time. It still
+may be worth some effort to keep the cobwebs out.
 
-TODO: Eliminate Duplication and Testability
+The best thing to do if you are not sure is to play it safe and only do small
+improvements. Any extensive effort may not end up being worth it. Spending a
+few hours might still make sense, but days or weeks would not.
+
+I would focus on the essential improvements: eliminating duplication and
+improving the testability.
+
+If there is some minor duplication reducing it will shrink the amount of
+code you need to maintain. Start with a simple refactorings like ["Extracting a Method"][extract-method].
+I recently extracted a method to provide some common logic which would
+otherwise have been copied repeatedly throughout the code. Instead we had a
+simple method we could reuse.
+
+Find part of the code confusing? Not enough testing in an area? Wrapping
+existing code in tests can help explain what is happening and make other
+changes safer. Tests provide a safety net for future changes and can often be
+added fairly easily.
 
 Long Frozen Over
 ===============================================================================
@@ -127,21 +135,38 @@ Long Frozen Over
 	</figcaption>
 </figure>
 
-Left for Dead.
-Do not shuffle the deckchairs.
+Long forgotten code that has been left for dead should be left with minimal
+changes. This code may be considered "done" and has not been touched for a long
+time and you don't expect to come back. Any effort is probably wasted and it
+often would be a better decision to just walk away.
 
-Today we walked away from a refactoring. We found some tests which did not work
-as expected. Instead of spending time refactoring the code and dealing with the
-problem it was better worth our time elsewhere.
+No client will benefit from the work you do to this unloved code. No matter how
+much you might want to restructure the classes to the perfect hierarchy it is
+not worth it.
+
+We recently declared one of our projects as dead. When we first started we wrote
+a large number of tests through the UI. While great when we first started these
+tests eventually feel into disrepair as we were moved to different projects. We
+decided it was not worth dedicating the effort to fix all the tests right now
+and instead would add new tests to eventually replace the existing code.
+
+If you must make changes to such long done projects try to get in, make your
+changes and then leave. Don't make the project worst than it is, but don't
+stick around either.
+
+Updating dead code is like shuffling deck-chairs on the Titanic. Don't you have better things to do?
 
 Summary
 ===============================================================================
 
-What refactoring will pay off the most? I don't know. It depends on you code.
+What improvements or refactoring will pay off the most? I don't know. It depends on you code.
 Too many defects? Refactoring for testablity and adding more tests could help prevent regressions or
 future defects. Do you have to repeat the same changes in
 multiple areas? Reducing the duplication could help you. Try browsing the
 [refactoring catalog][catalog] for more ideas.
+
+In summary, scale your effort based on how important the code is and what you
+plan on doing in the area.
 
 Refactor
 
@@ -155,6 +180,8 @@ Minor Improvements
 Stop
 
 * Left for dead? Leave it be.
-* Do not shuffle the deckchairs on the Titanic.
+* Do not shuffle the deck-chairs on the Titanic.
 
+[defect-cluster]: http://www.testingexcellence.com/defect-clustering-in-software-testing/
+[extract-method]: http://refactoring.com/catalog/extractMethod.html
 [catalog]: http://refactoring.com/catalog/
