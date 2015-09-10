@@ -13,10 +13,10 @@ really important to know whether your effort will be worth it. This post
 examines different stages in the code life cycle and how they shift how much
 you should invest in cleaning up the code.
 
-I like having a job. Everyday when I go to work I am happy they let me in and
+I like having a job. Every day when I go to work I am happy they let me in and
 code up a storm. The important difference between my job and a really kick ass
 hobby is that I get paid. We are a business and staying in business is
-important for our customers, myself and my family.
+important for our customers, me and my family.
 
 Going deep on an improvement you are making is great. The deeper
 you get the more important it is to understand why you are making the change.
@@ -59,7 +59,7 @@ future you and simplify it.
 Every project has one part which is the most important. Typically it is the one
 killer feature why you did the project in the first place. The fundamental
 business logic only this project performs or the one page every user loves.
-Caring for core sections of any project is worth while.
+Caring for core sections of any project is worthwhile.
 
 Important feature need to work every time. A regression in a critical tool is
 awful for the user experience. Having great test coverage and simplifying the
@@ -67,7 +67,7 @@ code around your core features will help keep the code easy to maintain and
 updates as requirements change.
 
 Infamous code riddled with bugs is another good place to invest time in.
-Provided you want to keep the functionality around, stabilizing an section with
+Provided you want to keep the functionality around, stabilizing a section with
 higher than normal defects could help uncover even more you do not know about
 yet. [Defects tend to cluster together][defect-cluster].
 
@@ -107,7 +107,7 @@ I would focus on the essential improvements: eliminating duplication and
 improving the testability.
 
 If there is some minor duplication reducing it will shrink the amount of
-code you need to maintain. Start with a simple refactorings like ["Extracting a Method"][extract-method].
+code you need to maintain. Start with a simple refactoring like ["Extracting a Method"][extract-method].
 I recently extracted a method to provide some common logic which would
 otherwise have been copied repeatedly throughout the code. Instead we had a
 simple method we could reuse.
@@ -151,7 +151,7 @@ decided it was not worth dedicating the effort to fix all the tests right now
 and instead would add new tests to eventually replace the existing code.
 
 If you must make changes to such long done projects try to get in, make your
-changes and then leave. Don't make the project worst than it is, but don't
+changes and then leave. Don't make the project worse than it is, but don't
 stick around either.
 
 Updating dead code is like shuffling deck-chairs on the Titanic. Don't you have better things to do?
@@ -160,7 +160,7 @@ Summary
 ===============================================================================
 
 What improvements or refactoring will pay off the most? I don't know. It depends on you code.
-Too many defects? Refactoring for testablity and adding more tests could help prevent regressions or
+Too many defects? Refactoring for testability and adding more tests could help prevent regressions or
 future defects. Do you have to repeat the same changes in
 multiple areas? Reducing the duplication could help you. Try browsing the
 [refactoring catalog][catalog] for more ideas.
