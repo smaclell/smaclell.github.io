@@ -5,21 +5,19 @@ date:   2015-04-16 00:27:57 -4:00
 tags: refactoring maintenance priorities
 ---
 
-Refactoring is fun. Taking code and transforming how it fits together without
-breaking it can be art. Getting carried away with tweaking your code and
-continuously refactoring can be a problem. Trying to clean up existing code or
-add more tests is time consuming. Before you try to maintain existing code it is
-really important to know whether your effort will be worth it. This post
-examines different stages in the code life cycle and how they shift how much
-you should invest in cleaning up the code.
+Taking code and transforming how it fits together without breaking it is an
+art. It is also great fun! However, before you start I think you should
+understand whether your efforts will be worthwhile. This post examines
+different stages in the code life cycle and how they affect how much
+you should invest in cleaning up code.
 
-I like having a job. Every day when I go to work I am happy they let me in and
+I like having a job. Every day when I go to work I am happy they let me in so I can
 code up a storm. The important difference between my job and a really kick ass
-hobby is that I get paid. We are a business and staying in business is
-important for our customers, me and my family.
+hobby is getting paid. We are a business and staying in business is
+important for me and our customers.
 
-Going deep on an improvement you are making is great. The deeper
-you get the more important it is to understand why you are making the change.
+Taking the time to make deep changes is a good thing. The larger the impact of
+the change the more important it is to understand why it will be valuable in the long term.
 What will the impact be? How will the change help your users?
 
 When it comes to refactoring and maintaining code I think this especially tricky. The more entangled
@@ -27,8 +25,8 @@ the code is the more I want to "fix" it. Beautiful code is something to be
 admired and even pursued, but only as a means to an end. At the end of the day
 you still have to ship and support your product.
 
-I think it is important to think about when you should refactor, how much to
-change, when to update code and what the long term benefit will be of what you are doing. Balancing
+I think it is important to think about when to update code, how much to
+change and what the long term benefit will be of what you are doing. Balancing
 your desire to do the right thing and where to focus your efforts will result
 in a better product with less effort.
 
@@ -51,14 +49,16 @@ A New Dawn
 </figure>
 
 
-Two types of code worth investing in are critical sections of your application
-and where you plan on doing work in the future. If there is a high probability
-you will be working on or troubleshooting code in the future do a favour for
-future you and simplify it.
+Three categories of code are worth investing: your application's critical sections,
+defect filled areas
+and where you plan on doing work in the future. These categories often overlap and
+cause the code to be more important. There is a higher probability
+you will be working on or troubleshooting these areas in the future. Do a favour for
+future you and leave the code better than you found it.
 
-Every project has one part which is the most important. Typically it is the one
-killer feature why you did the project in the first place. The fundamental
-business logic only this project performs or the one page every user loves.
+Every project has features which are more important. Often this will be the
+reason why the project was started in the first place. The fundamental
+business process only this project performs or the one page every user loves.
 Caring for core sections of any project is worthwhile.
 
 Important feature need to work every time. A regression in a critical tool is
@@ -66,10 +66,18 @@ awful for the user experience. Having great test coverage and simplifying the
 code around your core features will help keep the code easy to maintain and
 updates as requirements change.
 
+Larger refactoring exercises are reasonable since improvements will have a bigger
+impact for your users. Organic growth and tacked on features can lead to areas
+which do not fully make sense. Restructuring classes to better align and
+simplify how they interact is justified. In the critical section it is more
+important to prevent causing issues with your changes. Be careful.
+
 Infamous code riddled with bugs is another good place to invest time in.
-Provided you want to keep the functionality around, stabilizing a section with
-higher than normal defects could help uncover even more you do not know about
-yet. [Defects tend to cluster together][defect-cluster].
+This is another critical section for all the wrong reasons. The attention it
+gets is bad and your users will start to notice repeat issues.
+[Defects tend to cluster together][defect-cluster] and cleaning up the whole area can be a good approach. Reducing complexity
+which leads to more defects is even better. However, if you don't plan on
+supporting the functionality despite the defects this is dead code in disguise and you should move on.
 
 Adding functionality and plan to add more in the future? The amount of time you
 plan on spending in an area or integrating with it is a good way to decide how
@@ -96,26 +104,26 @@ Unsure?
 </figure>
 
 Not sure what the future holds? If the area you working in is not important or
-will have only minor changes in the future it is not worth your time. It still
-may be worth some effort to keep the cobwebs out.
+only needs minor changes then spending lots of time cleaning it up is not as
+useful. Spending a few hours might still make sense, but days or weeks would not.
+The key is balancing how much time and effort you spend doing it.
 
-The best thing to do if you are not sure is to play it safe and only do small
-improvements. Any extensive effort may not end up being worth it. Spending a
-few hours might still make sense, but days or weeks would not.
-
+What is the best thing to do if you are not sure about how much or what
+maintenance would be good? Play it safe and focus on smaller improvements.
 I would focus on the essential improvements: eliminating duplication and
 improving the testability.
 
-If there is some minor duplication reducing it will shrink the amount of
-code you need to maintain. Start with a simple refactoring like ["Extracting a Method"][extract-method].
-I recently extracted a method to provide some common logic which would
-otherwise have been copied repeatedly throughout the code. Instead we had a
-simple method we could reuse.
+Reducing duplication shrinks the amount of code you need to maintain. Starting
+with a simple refactoring like ["Extracting a Method"][extract-method] is a
+good start. I recently extracted a method to encapsulate logic which
+had been copied repeatedly. Now there is one place to fix
+maintain instead of the many copies.
 
-Find part of the code confusing? Not enough testing in an area? Wrapping
+Find part of the code confusing? Afraid to make changes in an area? Wrapping
 existing code in tests can help explain what is happening and make other
 changes safer. Tests provide a safety net for future changes and can often be
-added fairly easily.
+added fairly easily. Refactoring to make code testable will help loosen heavily
+coupled classes.
 
 Long Frozen Over
 ===============================================================================
@@ -135,49 +143,55 @@ Long Frozen Over
 	</figcaption>
 </figure>
 
-Long forgotten code that has been left for dead should be left with minimal
-changes. This code may be considered "done" and has not been touched for a long
-time and you don't expect to come back. Any effort is probably wasted and it
-often would be a better decision to just walk away.
+Long forgotten code that has been left for dead should be avoided. It is okay for code to be "done" and not
+expect to change in the future. Any effort is probably wasted or much harder
+than it needs to be. Often it would be a better decision to walk away.
 
-No client will benefit from the work you do to this unloved code. No matter how
-much you might want to restructure the classes to the perfect hierarchy it is
+Clients will see little benefit from the work you do to this unloved code. No matter how
+much you might want to restructure the classes to perfectly separate concerns it is
 not worth it.
 
 We recently declared one of our projects as dead. When we first started we wrote
-a large number of tests through the UI. While great when we first started these
-tests eventually feel into disrepair as we were moved to different projects. We
+a large number of tests through the UI. The tests were great when we first created them,
+but eventually fell into disrepair as we moved onto other projects. We
 decided it was not worth dedicating the effort to fix all the tests right now
-and instead would add new tests to eventually replace the existing code.
+and instead we would add new tests to eventually replace the existing code.
+For us it would be better to rewrite or remove the tests than maintain them.
 
-If you must make changes to such long done projects try to get in, make your
-changes and then leave. Don't make the project worse than it is, but don't
-stick around either.
-
-Updating dead code is like shuffling deck-chairs on the Titanic. Don't you have better things to do?
+If you must update one of these forgotten relics; get in and get out.
+Don't make the project worse than it is, but don't stick around either.
+Updating dead code is like shuffling deck-chairs on the Titanic.
+Don't you have better things to do with your time?
 
 Summary
 ===============================================================================
 
-What improvements or refactoring will pay off the most? I don't know. It depends on you code.
-Too many defects? Refactoring for testability and adding more tests could help prevent regressions or
-future defects. Do you have to repeat the same changes in
-multiple areas? Reducing the duplication could help you. Try browsing the
-[refactoring catalog][catalog] for more ideas.
+Before you dive in think about what areas or projects would benefit the most
+from your improvements. What changes will pay off of the most?
 
-In summary, scale your effort based on how important the code is and what you
+Too many defects? Refactoring for testability and adding more tests could
+help prevent future defects. Are you repeating the same
+changes in multiple areas? Reducing duplication could help you. Try
+browsing the [refactoring catalog][catalog] for more ideas.
+
+The answer will depend on your projects and time-lines. I hope this gave you
+some new ways to think about when to invest and when to back off.
+
+In summary, I recommend scaling your efforts based on how important the code is and what you
 plan on doing in the area.
 
-Refactor
+**Refactor**
 
+* Critical Code? Keep it clean!
+* Bugs abound? Squash them down.
 * Plan on sticking around? Make an investment.
-* Critical Code? Keep it clean! Be careful.
 
-Minor Improvements
+**Minor Improvements**
 
 * Not sure what to do? Stay small.
+* Focus on the essentials: Reduce duplication and better tests.
 
-Stop
+**Stop**
 
 * Left for dead? Leave it be.
 * Do not shuffle the deck-chairs on the Titanic.
