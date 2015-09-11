@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Maintaining Code For Money"
-date:   2015-04-16 00:27:57 -4:00
+title:  "Investing in your Code"
+date:   2015-09-10 23:39:07 -4:00
 tags: refactoring maintenance priorities
 ---
 
@@ -180,7 +180,7 @@ some new ways to think about when to invest and when to back off.
 In summary, I recommend scaling your efforts based on how important the code is and what you
 plan on doing in the area.
 
-**Refactor**
+**Invest**
 
 * Critical Code? Keep it clean!
 * Bugs abound? Squash them down.
