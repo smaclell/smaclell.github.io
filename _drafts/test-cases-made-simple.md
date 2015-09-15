@@ -61,9 +61,12 @@ provide data for each case we care about.
 
 ### TestCase Method Attribute
 
+TODO: Clarify the mapping.
+
 The [TestCase][TestCase] attribute is applied directly to a single test to provide the
 parameterized values. There is a clear one to one mapping for each case and
-the attributes provided. More options can be configured using named parameters
+the values for each of the parameters. It is equivalent to calling the test method
+with the exact same parameters as each ``TestCase`` attribute. More options can be configured using named parameters
 on the attribute, such as the test name or expected exceptions.
 
 The main drawback of this approach is only simple compile time constants can be
@@ -99,11 +102,18 @@ flexible and can be used to provide more complicated parameter types. Within
 the source you can reuse objects/data for multiple tests. Unlike ``TestCase``
 multiple tests can use the same ``TestCaseSource``.
 
+TODO: this is alot of extra information. Find a better way to pull it together
+and refer to the example.
+
 In this example, data for each test case is provided using the ``TestCaseData``
 type. This type has a fluent interface and properties to configure additional
 settings, like the ``TestCase`` attribute. For simple parameters arrays of the
 appropriate type or ``object[]`` can be returned instead. Review the
 [TestCaseSource][TestCaseSource] documentation for the additional rules.
+
+To use ``TestCaseSource`` you provide a ``sourceName`` and/or ``sourceType``.
+In this example we provide a ``sourceName`` referring to the ``"AddCases"``
+method within the same test fixture.
 
 {% highlight csharp %}
 using System.Collections.Generic;
@@ -152,13 +162,116 @@ combined to form test cases:
 Clear as mud? That is okay! I have a few examples to help clarify using these
 attributes.
 
+This simple example shows using the ``Values`` attribute inline with a single
+parameter. The values from the attribute each create a single test case to be
+executed. This behaves like ``TestCase`` for a single parameter.
+
+{% highlight csharp %}
+using NUnit.Framework;
+
+[TestFixture]
+public class ValuesAttributeStringCalculatorTests {
+
+    [Test]
+    public void Add_NullOrBlank_ReturnsZero(
+        [Values( null, "", " ", "\t", "\n" )] string input
+    ) {
+        StringCalculator calculator = new StringCalculator();
+
+        int total = calculator.Add( input );
+
+        Assert.AreEqual( 0, total );
+    }
+}
+{% endhighlight %}
+
+The ``ValueSource`` provides values from a method, or field or type. Just how
+``Values`` behaves like ``TestCase``, ``ValueSource`` behaves like
+``TestCaseSource``.
+
+{% highlight csharp %}
+using NUnit.Framework;
+
+[TestFixture]
+public class ValuesAttributeStringCalculatorTests {
+
+    private static string[] NullOrBlankCases = new string[] {
+        null,
+        "",
+        " ",
+        "\t",
+        "\n"
+    };
+
+    [Test]
+    public void Add_NullOrBlank_ReturnsZero(
+        [ValueSource( "NullOrBlankCases" )] string input
+    ) {
+        StringCalculator calculator = new StringCalculator();
+
+        int total = calculator.Add( input );
+
+        Assert.AreEqual( 0, total );
+    }
+}
+{% endhighlight %}
+
+``Range`` and ``Random`` are two special cases for specifying numbers.
+
+``Range`` generates test cases between a starting point, an end point and
+optionally the step size between each test case. In the example below, I use
+``Range`` starting at 2 and going to 10 in steps of 2 to produce cases using
+2, 4, 6, 8, 10.
+
+``Random`` generates a number of test cases using random numbers, optionally
+between between two values. The example below generates a random number between
+0 and 10 for 5 test cases.
+
+{% highlight csharp %}
+using NUnit.Framework;
+
+[TestFixture]
+public class ValuesAttributeStringCalculatorTests {
+
+    [Test]
+    public void Add_EvenNumbersBetweenTwoAndTen_ReturnsTheNumber(
+        [Range( 2, 10, 2 )] int number
+    ) {
+        StringCalculator calculator = new StringCalculator();
+
+        string numbers = number.ToString();
+        int total = calculator.Add( numbers );
+
+        Assert.AreEqual( number, total );
+    }
+
+    [Test]
+    public void Add_RandomNumberBetweenZeroAndTen_ReturnsTheNumber(
+        [Random( 0, 10, 5 )] int number
+    ) {
+        StringCalculator calculator = new StringCalculator();
+
+        string numbers = number.ToString();
+        int total = calculator.Add( numbers );
+
+        Assert.AreEqual( number, total );
+    }
+}
+{% endhighlight %}
+
+TODO: Describe the other attributes
+
 ## When to use each option
+
+TODO: Flesh this out
 
 * TestCase for simple tests where you will not want to reuse the cases
 * TestCaseSource when there is overlap between cases or you have multiple more complicated parameters
 * Parameter Attribute when you want to cover all cases for a value or want to exercise a wider combination of values.
 
 ## Conclusions
+
+TODO: Link to your repository for the post.
 
 I hope you enjoyed this overview of the how to create data driven test cases
 with NUnit. If you find your tests all look the same, try using test cases to
@@ -168,7 +281,6 @@ clean them up.
 [kata]: http://osherove.com/tdd-kata-1/
 [TestCase]: http://www.nunit.org/index.php?p=testCase&r=2.6.4
 [TestCaseSource]: http://www.nunit.org/index.php?p=testCaseSource&r=2.6.4
-
 [Values]: http://www.nunit.org/index.php?p=values&r=2.6.4
 [ValueSource]: http://www.nunit.org/index.php?p=valueSource&r=2.6.4
 [Random]: http://www.nunit.org/index.php?p=random&r=2.6.4
