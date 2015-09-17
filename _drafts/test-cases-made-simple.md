@@ -145,15 +145,15 @@ Another option is to apply attributes to the test parameters. They can behave
 like ``TestCase`` and ``TestCaseSource`` for a single parameter or form more
 complicated test cases.
 
-The following attributes control the values for a parameter:
+The following attributes are placed on a parameter and control the parameter's values:
 
 * [Values][Values]
 * [ValueSource][ValueSource]
 * [Random][Random]
 * [Range][Range]
 
-Whereas the following attributes define how values for multiple parameters are
-combined to form test cases:
+Whereas the following attributes are applied to the method and define how values
+for multiple parameters are combined to form test cases:
 
 * [Combinatorial][Combinatorial]
 * [Sequential][Sequential]
@@ -259,7 +259,66 @@ public class ValuesAttributeStringCalculatorTests {
 }
 {% endhighlight %}
 
-TODO: Describe the other attributes
+Cool! Dealing with a single parameter is really easy. How does it work with
+multiple parameters? This is where the other attributes are used to control the
+behaviour for combining values for all the parameters. They are placed on the
+method and are mutually exclusive.
+
+The default behaviour is to evaluate possible cases caused by the parameters.
+You can specify this behaviour explicitly using the ``Combinatorial`` attribute
+on the method.
+
+Another option is to treat the input to each parameter as a sequence. Imagine
+lining up each parameter value then treating the result as a test case. This is
+how the ``Sequential`` attribute works. It can be a little awkward to mentally
+determine what the cases will be. I try to use this option sparingly. The
+example below uses the attribute to create three test cases:
+
+* "", 0
+* "1", 1
+* "1,2", 3
+
+{% highlight csharp %}
+using NUnit.Framework;
+
+[TestFixture]
+public class ParameterAttributeStringCalculatorTests {
+
+    private static string[] TestNumbers() {
+        return new string[] {
+            "",
+            "1",
+            "1,2"
+        };
+    }
+
+    private static int[] TestTotals() {
+        return new int[] {
+            0,
+            1,
+            3
+        };
+    }
+
+    [Test, Sequential]
+    public void Add_SimpleInputs_AddsNumbers(
+        [ValueSource( "TestNumbers" )] string numbers,
+        [ValueSource( "TestTotals" )] int expectedTotal
+    ) {
+        StringCalculator calculator = new StringCalculator();
+
+        int total = calculator.Add( numbers );
+
+        Assert.AreEqual( expectedTotal, total );
+    }
+}
+{% endhighlight %}
+
+The last attribute to modify how that parameters are combined is ``Pairwise``.
+It uses a heuristic to create cases covering every possible pair of parameters.
+This is intended to generate fewer cases than ``Combinatorial`` while still
+providing a good mix of cases. I have not used it on a project before. If you
+have too many tests caused by combinatorial cases you may want to try using this.
 
 ## When to use each option
 
