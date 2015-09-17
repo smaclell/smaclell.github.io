@@ -180,7 +180,7 @@ First import the ``WebAdministration`` module installed with IIS.
 Import-Module WebAdministration
 {% endhighlight %}
 
-Then lets do a really simple example, reviewing a single binding on a the 'CoolSite' web site:
+Then lets do a really simple example, reviewing a single binding on the 'CoolSite' web site:
 
 {% highlight powershell %}
 Get-WebBinding -Name 'CoolSite'
