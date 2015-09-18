@@ -57,11 +57,11 @@ public class SimpleStringCalculatorTests {
 {% endhighlight %}
 
 We can do better. Thankfully NUnit allows you to create
-[parameterized tests][parameterized] using a special attributes.
+[parameterized tests][parameterized] using special attributes.
 Using these attributes, we can dramatically reduce the duplicate code in the
 tests.
 
-In order to use these steps you need to do the following:
+In order to use these attributes you need to do the following steps:
 
 1. Promote constant values you want to parametize into parameters on the test method
 2. Apply the attributes to define the cases you want to cover
