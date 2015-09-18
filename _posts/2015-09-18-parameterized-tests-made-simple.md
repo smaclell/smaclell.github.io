@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Data Driven Tests Made Simple"
-date:   2015-09-16 01:19:07
-tags: testing code
+title:  "Parameterized Tests Made Simple"
+date:   2015-09-18 00:00:07
+tags: testing code nunit
 ---
 
 I often find my tests look very similar. The behaviour of the tests are
