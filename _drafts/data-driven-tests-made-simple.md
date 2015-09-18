@@ -1,25 +1,25 @@
 ---
 layout: post
-title:  "Test Cases Made Simple"
+title:  "Data Driven Tests Made Simple"
 date:   2015-09-16 01:19:07
 tags: testing code
 ---
 
-I often find my test look very similar. The behaviour of the tests are
-exactly the same with different input and output data. Test cases in [NUnit][nunit]
-are a great way to combine tests with different test values and the same behaviour.
+I often find my tests look very similar. The behaviour of the tests are
+exactly the same with different input and output data. Data driven or parameterized tests in [NUnit][nunit]
+are a great way to combine tests with different values and the same behaviour.
+In this post I will show you how to use NUnit's features to create parameterized tests.
 
-In order to demo test cases I will be using a simple ``StringCalculator`` based
+In order to demo parameterized test I will be using a simple ``StringCalculator`` based
 on the [String Calculator kata][kata]. The class, ``StringCalculator`` has one
 method ``Add`` which takes in a string containing delimited numbers as input
 and returns the sum of the numbers.
 
-Each test case would call ``Add`` with input then verify the total. Using test
-cases we can easily add new cases and show how the input and totals are related.
+Written normally each test would call ``Add`` with different input and then verify the total. Using parameterized test
+cases we can easily add new cases which clearly show how the input and the total are related.
 
-If I was to write these tests without using test cases I would need to repeat
-nearly identical code for each test. You can see this with two simple tests
-shown below:
+If I was to write these tests without using parameters I would need to repeat
+nearly identical code for each test. The code for the tests would look like this:
 
 {% highlight csharp %}
 using NUnit.Framework;
@@ -57,12 +57,18 @@ public class SimpleStringCalculatorTests {
 {% endhighlight %}
 
 We can do better. Thankfully NUnit allows you to create
-[parameterized][parameterized] tests using a number of test case attributes.
-Using the attributes we can dramatically reduce the duplicate code in the
-tests. You can do so by refactoring your test and introducing parameters. Then
-using the attributes we can provide the test with whatever data we need for our
-test cases. Our newly refactored method might look something like this before
-we add any of the test case attributes.
+[parameterized tests][parameterized] using a special attributes.
+Using these attributes, we can dramatically reduce the duplicate code in the
+tests.
+
+In order to use these steps you need to do the following:
+
+1. Promote constant values you want to parametize into parameters on the test method
+2. Apply the attributes to define the cases you want to cover
+3. ...
+4. Profit
+
+Refactoring the tests above my I am left with a single test method:
 
 {% highlight csharp %}
 using NUnit.Framework;
@@ -83,25 +89,36 @@ public class RefactoredStringCalculatorTests {
 }
 {% endhighlight %}
 
-### TestCase Method Attribute
+Now we are ready to explore what the different attributes do.
 
-The [TestCase][TestCase] attribute is applied directly to a single test to
-provide the parameterized values. The values in the parameter result provide a
-single test case. If you want multiple cases add more attributes! The values
-provided to the TestCase attribute line up with their matching parameter. More
+## Complete Cases
+
+The first set of attributes, ``TestCase`` and ``TestCaseSource``, define entire
+test cases and the values for all parameters. You can think of them like rows
+in a table containing values for each parameter. The method will call the test
+method one case at a time with the values provided.
+
+Both attributes apply to the test method itself. ``TestCase`` directly contains
+values for its test case(s) whereas ``TestSource`` refers to another method/type which
+will supply values. I will explain the difference more below.
+
+### TestCase Attribute
+
+The [TestCase][TestCase] attribute is applied directly to a single test and
+provide values for one test case. If you want multiple cases add more copies of
+the attributes! The values provided to the TestCase attribute line up with their matching parameter. More
 options can be configured using named parameters on the attribute, such as the
 test name or expected exceptions.
 
 The main drawback of this approach is only simple compile time constants can be
-used as parameters. This simplicity is not all bad. It helps keep the cases
-focused and avoids having more complicated logic sneak into your test case
-setup.
+used as parameters. This simplicity is not all bad. It helps keep the tests
+focused and avoids having more complicated logic sneak into your test setup.
 
 {% highlight csharp %}
 using NUnit.Framework;
 
 [TestFixture]
-public class CaseAttributeStringCalculatorTests {
+public class TestCaseStringCalculatorTests {
 
     [TestCase( "", 0 )]
     [TestCase( "1", 1 )]
@@ -116,34 +133,33 @@ public class CaseAttributeStringCalculatorTests {
 }
 {% endhighlight %}
 
-### TestCaseSource Method Attribute
+### TestCaseSource Attribute
 
 The [TestCaseSource][TestCaseSource] attribute is applied to the test method
 like the ``TestCase`` attribute. This method delegates creating parameter values
 to other methods, fields or types. Using the ``TestCaseSource`` is more
 flexible and can be used to provide more complicated parameter types. Within
-the source you can reuse objects/data for multiple tests so multiple cases can
-use a mixture of the same values. Another benefit is multiple tests case use
-the same how ``TestCaseSource`` unlike ``TestCase`` which is only applied to
-one test at at time.
+the source method you can reuse objects/data for multiple tests. The same
+source method can also be reused for multiple tests.
 
-The type of data provided to the test is very flexible.  For simple parameters
-arrays of the appropriate type or ``object[]`` with nested arrays can be
-returned from the method. I prefer using ``IEnumerable<TestCaseData>`` which
-has extra attributes like ``TestCase`` for configuring the test. ``TestCaseData`` Review the
-[TestCaseSource][TestCaseSource] documentation for the additional rules.
-
-To use ``TestCaseSource`` you provide a ``sourceName`` and/or ``sourceType``.
+To use ``TestCaseSource`` you must provide a ``sourceName`` and/or ``sourceType``.
 If only ``sourceName`` is used the field/method is assumed to be in the same
-test fixture as the test. In this example we provide a ``sourceName`` referring to the ``"AddCases"``
-method which returns ``IEnumerable<TestCaseData>``.
+class as the test.
+
+The type of data provided by the source is very flexible.  For simple parameters
+normal arrays or ``object[]`` can be returned from the source.
+I prefer using ``IEnumerable<TestCaseData>`` which has extra options like ``TestCase`` for configuring the test such as test name. Review the
+[TestCaseSource][TestCaseSource] documentation for the additional rules for source types.
+
+In this example we will use ``"AddCases"`` as our source
+method which returns ``IEnumerable<TestCaseData>``:
 
 {% highlight csharp %}
 using System.Collections.Generic;
 using NUnit.Framework;
 
 [TestFixture]
-public class SourceAttributeStringCalculatorTests {
+public class TestCaseSourceStringCalculatorTests {
 
     private static IEnumerable<TestCaseData> AddCases() {
         yield return new TestCaseData( "", 0 );
@@ -162,13 +178,14 @@ public class SourceAttributeStringCalculatorTests {
 }
 {% endhighlight %}
 
-### Parameter Attributes
+## Single Parameters
 
 Another option is to apply attributes to the test parameters. They can behave
-like ``TestCase`` and ``TestCaseSource`` for a single parameter or form more
-complicated test cases.
+like ``TestCase`` and ``TestCaseSource`` for a single parameter. For tests with
+multiple parameters the behaviour is more complicated and can be used to create
+many test cases.
 
-The following attributes are placed on a parameter and control the parameter's values:
+The following attributes are placed on a parameter and control a single parameter's values:
 
 * [Values][Values]
 * [ValueSource][ValueSource]
@@ -176,14 +193,16 @@ The following attributes are placed on a parameter and control the parameter's v
 * [Range][Range]
 
 Whereas the following attributes are applied to the method and define how values
-for multiple parameters are combined to form test cases:
+from multiple parameters are combined to create complete test cases:
 
 * [Combinatorial][Combinatorial]
 * [Sequential][Sequential]
 * [Pairwise][Pairwise]
 
-Clear as mud? That is okay! I have a few examples to help clarify using these
+Clear as mud? That is okay! I have a few examples to clarify how to use these
 attributes.
+
+### Values Attribute
 
 This simple example shows using the ``Values`` attribute inline with a single
 parameter. The values from the attribute each create a single test case to be
@@ -193,7 +212,7 @@ executed. This behaves like ``TestCase`` for a single parameter.
 using NUnit.Framework;
 
 [TestFixture]
-public class ValuesAttributeStringCalculatorTests {
+public class ValuesStringCalculatorTests {
 
     [Test]
     public void Add_NullOrBlank_ReturnsZero(
@@ -208,15 +227,18 @@ public class ValuesAttributeStringCalculatorTests {
 }
 {% endhighlight %}
 
+### ValueSource Attribute
+
 The ``ValueSource`` provides values from a method, or field or type. Just how
 ``Values`` behaves like ``TestCase``, ``ValueSource`` behaves like
-``TestCaseSource``.
+``TestCaseSource``. In this example I am using the ``NullOrBlankCases`` array
+to determine the values for each test case.
 
 {% highlight csharp %}
 using NUnit.Framework;
 
 [TestFixture]
-public class ValuesAttributeStringCalculatorTests {
+public class ValueSourceStringCalculatorTests {
 
     private static string[] NullOrBlankCases = new string[] {
         null,
@@ -239,22 +261,20 @@ public class ValuesAttributeStringCalculatorTests {
 }
 {% endhighlight %}
 
+### Range and Random Attributes
+
 ``Range`` and ``Random`` are two special cases for specifying numbers.
 
 ``Range`` generates test cases between a starting point, an end point and
 optionally the step size between each test case. In the example below, I use
-``Range`` starting at 2 and going to 10 in steps of 2 to produce cases using
+``Range`` starting at 2 and going to 10 in steps of 2 to produce the cases
 2, 4, 6, 8, 10.
-
-``Random`` generates a number of test cases using random numbers, optionally
-between between two values. The example below generates a random number between
-0 and 10 for 5 test cases.
 
 {% highlight csharp %}
 using NUnit.Framework;
 
 [TestFixture]
-public class ValuesAttributeStringCalculatorTests {
+public class RangeStringCalculatorTests {
 
     [Test]
     public void Add_EvenNumbersBetweenTwoAndTen_ReturnsTheNumber(
@@ -267,6 +287,19 @@ public class ValuesAttributeStringCalculatorTests {
 
         Assert.AreEqual( number, total );
     }
+}
+{% endhighlight %}
+
+``Random`` uses random numbers to create multiple test cases. The values can
+optionally be constrained between two values. Be careful. The random numbers
+might be very large or very small which can cause your tests to randomly fail.
+The example below creates 5 tests cases for random numbers between 0 and 10.
+
+{% highlight csharp %}
+using NUnit.Framework;
+
+[TestFixture]
+public class RandomStringCalculatorTests {
 
     [Test]
     public void Add_RandomNumberBetweenZeroAndTen_ReturnsTheNumber(
@@ -282,20 +315,24 @@ public class ValuesAttributeStringCalculatorTests {
 }
 {% endhighlight %}
 
+### Combining Multiple Parameters
+
 Cool! Dealing with a single parameter is really easy. How does it work with
 multiple parameters? This is where the other attributes are used to control the
-behaviour for combining values for all the parameters. They are placed on the
+behaviour for combining the values from all the parameters. They are placed on the
 method and are mutually exclusive.
 
-The default behaviour is to evaluate possible cases caused by the parameters.
+The default behaviour is to evaluate all combinations of the parameters.
 You can specify this behaviour explicitly using the ``Combinatorial`` attribute
-on the method.
+on the method. Be careful, this can generate many tests if you have lots of values
+or parameters.
 
-Another option is to treat the input to each parameter as a sequence. Imagine
-lining up each parameter value then treating the result as a test case. This is
-how the ``Sequential`` attribute works. It can be a little awkward to mentally
-determine what the cases will be. I try to use this option sparingly. The
-example below uses the attribute to create three test cases:
+Another option is to treat the input to each parameter as a sequence.
+This is like treating each parameter as a column in a table. Each row is then a
+test case case. This is how the ``Sequential`` attribute works. Since it can be
+a awkward to determine what the cases will be when the parameters do no line up
+well I try to use this option sparingly. The example below will have the
+following cases executed by the attribute:
 
 * "", 0
 * "1", 1
@@ -305,7 +342,7 @@ example below uses the attribute to create three test cases:
 using NUnit.Framework;
 
 [TestFixture]
-public class ParameterAttributeStringCalculatorTests {
+public class ParameterStringCalculatorTests {
 
     private static string[] TestNumbers() {
         return new string[] {
@@ -337,20 +374,22 @@ public class ParameterAttributeStringCalculatorTests {
 }
 {% endhighlight %}
 
-The last attribute to modify how that parameters are combined is ``Pairwise``.
+The last attribute which modifies how the parameters are combined is ``Pairwise``.
 It uses a heuristic to create cases covering every possible pair of parameters.
-This is intended to generate fewer cases than ``Combinatorial`` while still
-providing a good mix of cases. I have not used it on a project before. If you
-have too many tests caused by combinatorial cases you may want to try using this.
+The intend is to generate fewer cases than ``Combinatorial`` while still
+providing good coverage. I have not used it on a project before. If you
+have too many tests caused by using ``Combinatorial`` you may want to try using
+this attribute.
 
 ## Go Test, With Cases!
 
 I hope you enjoyed this overview of the how to create test cases with NUnit. To
-make it easy to worth through the examples I have uploaded a [repository][repo] to
-github with each of the examples. I even included a few bonus examples I made
-along the way. Enjoy.
+make it easy to work through the examples I have uploaded a [repository][repo] to
+github with sample code for each of the cases. I even included a few bonus
+examples I made along the way. Enjoy.
 
-If you find your tests all look the same, try using test cases to clean them up.
+Test cases are great fun and can help cut down on duplication in your tests.
+If you think all your tests all look the same, try using test cases to clean them up.
 
 [nunit]: http://www.nunit.org
 [kata]: http://osherove.com/tdd-kata-1/
