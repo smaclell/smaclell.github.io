@@ -327,12 +327,12 @@ You can specify this behaviour explicitly using the ``Combinatorial`` attribute
 on the method. Be careful, this can generate many tests if you have lots of values
 or parameters.
 
-Another option is to treat the input to each parameter as a sequence.
-This is like treating each parameter as a column in a table. Each row is then a
-test case case. This is how the ``Sequential`` attribute works. Since it can be
-a awkward to determine what the cases will be when the parameters do no line up
-well I try to use this option sparingly. The example below will have the
-following cases executed by the attribute:
+You can combine values from the parameters in the order they are declared using the ``Sequential`` attribute.
+This is like treating the values for each parameter as a column in a table.
+Each row is then forms a single test case. I try to use this option sparingly.
+Often the parameter values do not line up visually and it can be hard to
+determine what the cases will be. The example below will have the following
+cases executed by the attribute:
 
 * "", 0
 * "1", 1
@@ -345,19 +345,11 @@ using NUnit.Framework;
 public class ParameterStringCalculatorTests {
 
     private static string[] TestNumbers() {
-        return new string[] {
-            "",
-            "1",
-            "1,2"
-        };
+        return new string[] { "", "1", "1,2" };
     }
 
     private static int[] TestTotals() {
-        return new int[] {
-            0,
-            1,
-            3
-        };
+        return new int[] { 0, 1, 3 };
     }
 
     [Test, Sequential]
