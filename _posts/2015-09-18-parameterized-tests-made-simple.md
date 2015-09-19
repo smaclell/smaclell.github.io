@@ -61,10 +61,10 @@ We can do better. Thankfully NUnit allows you to create
 Using these attributes, we can dramatically reduce the duplicate code in the
 tests.
 
-In order to use these attributes you need to do the following steps:
+In order to use these attributes you will need to do the following steps:
 
-1. Promote constant values you want to parametize into parameters on the test method
-2. Apply the attributes to define the cases you want to cover
+1. Promote the constant values you want to parametize into parameters on the test method
+2. Apply the attributes to define the cases you want to test
 3. ...
 4. Profit
 
@@ -77,7 +77,7 @@ using NUnit.Framework;
 public class RefactoredStringCalculatorTests {
 
     // Warning: This will not run in its current state.
-    //          You need to add the attributes first!
+    //          We need to add the attributes first!
     [Test]
     public void Add_SimpleInputs_AddsNumbers( string numbers, int expectedTotal ) {
         StringCalculator calculator = new StringCalculator();
@@ -93,14 +93,14 @@ Now we are ready to explore what the different attributes do.
 
 ## Complete Cases
 
-The first set of attributes, ``TestCase`` and ``TestCaseSource``, define entire
-test cases and the values for all parameters. You can think of them like rows
-in a table containing values for each parameter. The method will call the test
-method one case at a time with the values provided.
+The first set of attributes, ``TestCase`` and ``TestCaseSource``, define complete test cases.
+You can think of them like rows
+in a table containing values for each of the test's parameters. The test framework will call the test
+method one test case at a time with all the test case's parameter values.
 
 Both attributes apply to the test method itself. ``TestCase`` directly contains
 values for its test case(s) whereas ``TestSource`` refers to another method/type which
-will supply values. I will explain the difference more below.
+will supply the values. I will explain the difference more below.
 
 ### TestCase Attribute
 
