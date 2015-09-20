@@ -99,18 +99,18 @@ in a table containing values for each of the test's parameters. The test framewo
 method one test case at a time with all the test case's parameter values.
 
 Both attributes apply to the test method itself. ``TestCase`` directly contains
-values for its test case(s) whereas ``TestSource`` refers to another method/type which
+values for its test case(s) whereas ``TestCaseSource`` refers to another method/type which
 will supply the values. I will explain the difference more below.
 
 ### TestCase Attribute
 
 The [TestCase][TestCase] attribute is applied directly to a single test and
 provide values for one test case. If you want multiple cases add more copies of
-the attributes! The values provided to the TestCase attribute line up with their matching parameter. More
+the attribute! The values provided to the TestCase attribute line up with their matching parameter. More
 options can be configured using named parameters on the attribute, such as the
 test name or expected exceptions.
 
-The main drawback of this approach is only simple compile time constants can be
+The main drawback to this approach is only simple compile time constants can be
 used as parameters. This simplicity is not all bad. It helps keep the tests
 focused and avoids having more complicated logic sneak into your test setup.
 
