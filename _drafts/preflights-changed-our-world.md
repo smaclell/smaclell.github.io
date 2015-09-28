@@ -21,7 +21,7 @@ have been trying to apply the same techniques to our smaller projects.
 
 Our preflights are similar to our complete CI process in that they build, test,
 package and deploy our projects. Where they differ is how comprehensive they
-are while testing. To speed up the process we may run the most critical
+are while testing. To speed up the process we run only the most critical
 portions of the CI process.
 
 How did we get here?
@@ -31,10 +31,10 @@ Last year a small team of solid developers added preflights to a critical
 project. They made the entire process incredibly simple which I think is why it
 took off the way it did. The process goes like this:
 
-1. When you created a new pull request a build would automatically start.
-2. The pull request would be updated as the build/tests progressed.
-3. The build finishing or failing would update the pull request and email the creator
-4. Additional builds can be triggered as needed or if more changes are added
+1. Creating a build automatically starts a preflight build
+2. As the preflight progresses the pull request is updated
+3. When the preflight finishes or fails an email is sent
+4. More preflights can be triggered as needed
 
 We had a CI pipeline, but it would often break due to the number of developers
 committing to it. It also took a hours to run which mean if it broke it would
@@ -44,7 +44,7 @@ were committed on top of the broken code.
 Many developers would instead try to be extremely careful with their changes.
 They would do a great deal more testing and investigation up front. This was
 hard to do and could not often cover all the possible changes developers
-could make.
+could make. It still left room from human error and other merge problems.
 
 Preflights allowed us to raise the bar for code before it was merged into
 master. As soon as preflights were added people started using them. They were
@@ -58,15 +58,16 @@ results. Over time they were systematically identified and fixed.
 
 Now several months later the improvement to the builds is dramatic. We can
 easily iterate on the code and build breaks are much rarer. The large number
-of developers have their changes better validated before merging.
+of developers have their changes validated better before merging.
 
 The Next Project
 ===============================================================================
 
-Daryl, who had been on the original project wanted to bring Preflights for our
-team. We were about to restart a project and expected many changes to happen.
+Daryl, who had been on the original project wanted to bring Preflights to our
+team. We were about to restart a project and planned a to change the
+architecture while keeping the overall behaviour intact.
 He advocated setting up preflights early in the project and thought they would
-help keep our code more stable.
+help keep our code stable.
 
 At first the differences to how we behaved were not pronounced. Our normal
 workflow barely changed.
@@ -81,7 +82,7 @@ workflow barely changed.
 	</figcaption>
 </figure>
 
-With preflights the work flow only slightly changed to become:
+Preflights slightly shifted the workflow to become:
 
 <figure class="image-center">
 	<img
@@ -111,78 +112,122 @@ time was my changes had introduced defects which broken master. It has been
 weeks of using the preflights and this was the first time I could remember
 having broken our master.
 
-Why not Gated Builds?
+Although we rarely broke master, preflights made it very clear when changes
+might cause problems. Instead of relying on humans being careful, we can now
+let machines protect us from ourselves.
+
+By the Numbers
 ===============================================================================
 
-We had several discussions about whether or not prevent commits to master which
-had not passed a preflight build. While this would ensure a higher level of
-quality this turns out to be unnecessary. You could commit without waiting for
-preflights to pass. The key idea that is that you are responsible for your
-actions. If what you commits breaks the build and you did not wait for the
-preflights then you have done something bad.
+I feel like this post is less cool without qualifying the exact improvements
+and numbers. Sadly we have been using preflights long enough and aggressively
+purge old build history. I was able to look at the stats on the pull requests
+from part of September.
 
-We do want to merge some changes faster. There are some changes, like updating
-documentation, which do not need the additional testing/validation from the
-preflights. Another issue which can arise are issues with the pipeline which
-can only be fixed by merging other cases. I do not believe this has happened,
-but allowing developers to use their best judgement has been working.
+We had 43 pull requests with hundreds of commits which triggered over a
+hundred builds. 98% of pull requests with a passing build with my accidental
+merge being the one pull request without a passing build. We found 42% of our
+pull request failed one or more builds and needed more work. In other words,
+18/43 pull requests were prevented from breaking our codebase.
+
+Our failing preflights looks quite high without context. I do feel a little bad
+about these numbers, but given the circumstances and type of project may be
+reasonable. We essentially rewrote the internals of project while preserving
+the overall behaviour. We were very active with hundreds of commits across
+several developers.
+
+I view preflights for our project as a success. Each of
+those failures could have broken master and delayed the entire team. Instead
+failures were stopped before they were merged.
 
 Tradeoffs and Limitations
 ===============================================================================
 
-This sounds like rainbows and unicorns. Like everything there are tradeoffs and
-limitations.
+This might sounds like rainbows and unicorns. Like everything there are tradeoffs and
+limitations. We learnt several lessons from the process and have more areas to
+improve.
 
-*Our end to end process is slower.* The preflights essentially double the
-amount of time required for a change to go from initial commit to deployed to
-production. We have mitigated this by overlapping the preflights with reviews.
-This is great because our average reviews are longer than the preflight, but
-for simple changes this can be annoying. We have been able to reduce this
-impact by running more of the process in parallel, but this increases our
-complexity and leads to other challenges.
+**Our end to end process is slower**
 
-*Limited coverage leaves gaps.*  We have extended tests which require more
-hardware or special tools. Right now we could not used them for every
+The preflights essentially double the
+amount of time required to go from initial commit to deployed to
+production. Overlapping preflights with code reviews helps mitigate this.
+It is great for complex reviews which are longer than the preflight, but
+for simple changes the extra waiting is annoying.
+
+We have been able to speed up the feedback by running more of the process in
+parallel. Running in parallel has increased our complexity and led to other
+challenges.
+
+**Limited coverage leaves gaps**
+
+We have extended tests which require more
+hardware or special tools. We cannot used these special assets for every
 preflight. We also chose to run more important tests in the preflight and
-leave more comprehensive validation for the normal CI pipeline. This has
-meant there are gaps in our coverage where issues can sneak in. We have
-iteratively improved this process by filling in larger gaps we find. Another
-core improvement has been to use more tests running in parallel to increase
-the amount we can validate in the same amount of time.
+leave more comprehensive validation for the existing CI pipeline. This has
+meant there are gaps in our coverage where issues can sneak in.
 
-*Dependencies add complexity*. For the both the initial project and our example
+We have iteratively improved this process by filling in larger gaps we find or
+moving tests into the preflight. Running more in parallel has allowed us to
+increase the amount we can validate in the same amount of time.
+
+**Harder Recovery**
+
+If an error does sneak through the preflight or is merged
+too soon it is harder to get back out. When errors occurred before having
+preflights too often developers would try to fix the change. Since the new fix
+also goes through the preflight system getting back to green by fixing the
+problem is harder.
+
+To counteract this we try to revert the change immediately by passing the
+preflights then fix the issue in a separate pull request. Reverting problematic
+commits is a common practice for CI and is even more important when using
+preflights.
+
+**Dependencies add complexity**
+
+For the both the initial project and our example
 additional dependencies make the process more complicated. The ideal would be
 if all changes could be validated by the preflight. This harder when
-incorporating third party services or managing external configuration. Our
-typical approaches have been to reduce the extra dependencies, keep the
-contracts relatively stable or version the other components.
+incorporating third party services or managing external configuration.
 
-*Stability is paramount.* Most improvements to the preflight system are made
-incrementally using pull requests which are validated by the preflights. As we
-continue to iterate on the process we have tried to address any components
-which are unstable. A common offender which were sensitive integration tests.
-Slowly we fixed many o these tests and ensured the pass/fail would be a clear
-indication whether your code should be merged or not.
+Our typical approaches have been to reduce the extra dependencies, keep the
+contracts relatively stable or version the other components. This is a big area
+for improvement and challenge for our projects.
 
-Iterating
+**Stability is paramount**
+
+Intermittent failures make the preflights less
+effective. The entire system, services and scripts need to be consistent.
+We want the pass/fail from the preflights to be a clear indication of whether
+your code should be merged or not. When the preflights randomly fail it is hard
+to trust their results.
+
+As we continue to iterate on the process we have tried to stabilize any
+problematic components. A common offender were sensitive integration tests
+which we have slowly fixed.
+
+As many improvements to the preflight system as possible are made using the
+preflight system. This forces us to keep our changes safe and small. Any change
+which cannot be validated by the preflights should be the exception and should
+be tested thoroughly before being merged.
+
+Summary
 ===============================================================================
 
-It is safe to say we have learnt some lessons
+Using preflight builds has dramatically made our builds more stable. We have
+noticed big improvements with our first project. We have learnt alot from using
+them extensively.
 
-* Remove Instability
-* Complicated by external configuration
+I think adding preflights early will be important to our new projects. They have
+changed how we work.
 
-Thoughts:
+If you have troubles with stability or want a rock solid master branch? Try using preflights.
 
-Do I get numbers?
+<hr />
 
-Master is more stable.
-Committing without CI is taking matters into your own hands. You do not have to wait, but if you break the build you are responsible.
-Overall we are a little slower, but we are much smoother. Everyone waits for their builds to finish.
+*Thanks to the original team who put together the other preflights. They have
+definitely saved my bacon and I appreciate you effort to get it introduced.*
 
-Oddly local builds are less important. You can push then wait for the results. My workflow is more async.
-
-Code reviews and builds are fully integrated. Some devs don't even want to look at it until they have passed.
-
-
-Fixing breaks in master are longer. Reverting instead of rushing out more is recommended.
+*Thanks Daryl for promoting preflight builds with the team. It has made our
+lives better and kept the code stable.*
