@@ -9,11 +9,11 @@ image:
   creditlink: https://www.flickr.com/photos/msdonnalee/6331912582/
 ---
 
-Preflights changed our world. They have made master more stable and are an
+Preflight builds changed our world. They have made master more stable and are an
 essential part of every pull request. A preflight build or preflight is a build
 which runs a portion of your CI on a branch being developed. We have introduced
 them into several projects and I can the results are dramatic. I don't want to
-merge my changes without one first passing the preflights.
+merge my changes without one first passing the preflight build.
 
 It has been a while since we started using preflights on a few of our projects.
 Daryl and a few others first introduced it to our bigger projects and lately we
@@ -57,8 +57,8 @@ tests. Flaky tests became more problematic because they would throw off test
 results. Over time they were systematically identified and fixed.
 
 Now several months later the improvement to the builds is dramatic. We can
-easily iterate on the code and build breaks are much rarer. The large number
-of developers have their changes validated better before merging.
+easily iterate on the code and build breaks are much rarer. All developers can
+benefit from having their changes validated better before merging.
 
 The Next Project
 ===============================================================================
@@ -103,13 +103,13 @@ As I continued to use this system I started to experiment. If I was confident
 in my changes sometimes I would kick off a preflight to see whether it was
 valid. The tests were more comprehensive than my local build and I could get
 better feedback early. This allowed me to work more asynchronously without
-baby sitting builds. The notifications would let me know whether my changes
+babysitting builds. The notifications would let me know whether my changes
 were good or bad.
 
 It all clicked for me when I accidentally merged too soon. I had made some
 changes and merged prior to the preflight passing. What I did not know at the
 time was my changes had introduced defects which broken master. It has been
-weeks of using the preflights and this was the first time I could remember
+weeks of using the preflight builds and this was the first time I could remember
 having broken our master.
 
 Although we rarely broke master, preflights made it very clear when changes
@@ -162,7 +162,7 @@ challenges.
 **Limited coverage leaves gaps**
 
 We have extended tests which require more
-hardware or special tools. We cannot used these special assets for every
+hardware or special tools. We cannot use these special assets for every
 preflight. We also chose to run more important tests in the preflight and
 leave more comprehensive validation for the existing CI pipeline. This has
 meant there are gaps in our coverage where issues can sneak in.
@@ -204,7 +204,7 @@ your code should be merged or not. When the preflights randomly fail it is hard
 to trust their results.
 
 As we continue to iterate on the process we have tried to stabilize any
-problematic components. A common offender were sensitive integration tests
+problematic components. A common offender was sensitive integration tests
 which we have slowly fixed.
 
 As many improvements to the preflight system as possible are made using the
@@ -215,12 +215,13 @@ be tested thoroughly before being merged.
 Summary
 ===============================================================================
 
-Using preflight builds has dramatically made our builds more stable. We have
-noticed big improvements with our first project. We have learnt alot from using
-them extensively.
+Using preflight builds has dramatically made our projects more stable. We have
+noticed big improvements with our first few projects. We have continued to
+refine how preflights interact with our processes. They have changed how we work.
 
-I think adding preflights early will be important to our new projects. They have
-changed how we work.
+I think adding preflights early will be important to our new projects. We know
+CI is essential for all our projects. Preflight builds take this to the next
+level and find problems before they reach master.
 
 If you have troubles with stability or want a rock solid master branch? Try using preflights.
 
