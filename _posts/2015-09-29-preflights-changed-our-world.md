@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How Preflights Changed Our World"
-date:   2015-09-22 01:19:07
+date:   2015-09-29 22:37:07
 tags: preflights builds ci daryl quality
 image:
   feature: buck-stops-here.jpg
