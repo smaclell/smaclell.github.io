@@ -3,6 +3,10 @@ layout: post
 title:  "Drawing Ideas Out"
 date:   2015-10-06 22:37:07
 tags: discusssions daryl fto
+image:
+  feature: https://farm1.staticflickr.com/415/20289439705_d80bc00387_b.jpg
+  credit: Meeting by Matthias Ripp CC BY 2.0
+  creditlink: https://www.flickr.com/photos/56218409@N03/20289439705/
 ---
 
 Listening is important. If you spend all your time talking you will miss good
