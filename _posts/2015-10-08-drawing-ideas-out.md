@@ -64,6 +64,6 @@ The great ideas are waiting. Together we can draw them out.
 <hr />
 
 *Thanks FTO for being patient with us and the continuing discussions. I cannot
-wait until V1 ships. Thanks Daryl for being awesome and letting me drink from
-the fountain of your wisdom. Thank you Travis for gently reminding me I don't
-have a monopoly on good ideas.*
+wait until V1 ships. Thanks Daryl for being awesome and letting me learn from
+you. Thank you Travis for gently reminding me I don't
+have a monopoly on good ideas and coming up with the phrase.*
