@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Drawing Ideas Out"
-date:   2015-10-06 22:37:07
-tags: discusssions daryl fto
+date:   2015-10-08 23:42:07
+tags: learning collaboration daryl fto
 image:
   feature: https://farm1.staticflickr.com/415/20289439705_d80bc00387_b.jpg
   credit: Meeting by Matthias Ripp CC BY 2.0
