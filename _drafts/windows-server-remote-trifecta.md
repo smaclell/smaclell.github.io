@@ -2,7 +2,7 @@
 layout: post
 title:  "The Windows Server Remote Trifecta"
 date:   2015-07-24 01:19:07
-tags: windows remoting
+tags: windows server-core remoting
 image:
   feature: https://farm8.staticflickr.com/7496/16031914875_0e7bd8fb4a_b.jpg
   credit: "Marine Bay Sands from the Gardens by the Bay, Singapore by John Sonderman - CC BY NC 2.0"
@@ -10,11 +10,14 @@ image:
 ---
 
 Troubleshooting boxes using only remote tools is a challenge. Troubleshooting a
-Windows server without any GUI makes it event more fun. I have settled on three
-primary ways I like to start my troubleshooting.
+Windows server without any GUI makes it event more fun. I have been debugging
+new Windows Server 2012 servers which are running Server Core. The normal point
+and click adventure of debugging Windows is not possible. This blog post is to
+share three ways I have been trying to remotely troubleshoot our servers
+without using an RDP session.
 
-I think there are the major techniques you can use to do most troubleshooting.
-The first step is to perform the steps remotely that you would have done
+I think there are three major techniques you can use to start most remote
+troubleshooting. The first step is to perform the steps remotely that you would have done
 locally. I typically use the following three methods to do remoting:
 
 * Using another Computer
@@ -34,7 +37,7 @@ the other computer you are going to use can remotely connect to the machine you
 want to investigate. This means jumping through whatever networking and
 authentication hoops you need.
 
-If you connected directly to the computer you want to troubleshoot you won't be
+If you connected directly to a Server Core computer you want to troubleshoot you won't be
 able to do much. Not having a UI will make it harder unless you want to only
 use the commandline tools. I would still recommend against it since using remote
 PowerShell is very good and simpler than potentially using nested RDP sessions.
