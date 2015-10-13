@@ -21,14 +21,15 @@ locally. I typically use the following three methods to do remoting:
 * Connect to remotely with MMC
 * PowerShell Remoting
 
-### Using another Computer
+Using another Computer
+===============================================================================
 
 All of the troubleshooting starts with using a different computer.
 From this second computer you can then connect to the server
 you are troubleshooting using MMC, PowerShell Remoting, or other remote tools.
 
 This second computer could be anything from your desktop, another server in the
-data center/cloud or a locked down "Jump Box"<sup id="notes-1-not-on-server-core-reverse"><a href="#notes-1-not-on-server-core">1</a></sup>. The key is ensuring
+data center/cloud or a locked down "Jump Box"<sup id="notes-1-remote trifecta-reverse"><a href="#notes-1-remote-trifecta">1</a></sup>. The key is ensuring
 the other computer you are going to use can remotely connect to the machine you
 want to investigate. This means jumping through whatever networking and
 authentication hoops you need.
@@ -38,12 +39,8 @@ able to do much. Not having a UI will make it harder unless you want to only
 use the commandline tools. I would still recommend against it since using remote
 PowerShell is very good and simpler than potentially using nested RDP sessions.
 
-<span id="sln-1"></span>
-<span id="sln-2"></span>
-<span id="sln-3"></span>
-<span id="sln-4"></span>
-
-### Connecting via MMC
+Connecting via MMC
+===============================================================================
 
 The Microsoft Management Console (MMC) has been around for a long time. You can
 use this versatile tool to administer other computers. Around half of the items
@@ -74,7 +71,8 @@ I have tried this exact same process the following tools which
 for the other tools Stephen mentioned (perfmon, scheduled tasks, services, task manager) and the
 process is exactly the same.
 
-### PowerShell Remoting
+PowerShell Remoting
+===============================================================================
 
 Using PowerShell Remoting has changed how I manage other computers. Instead of
 connecting using Remote Desktop I try to do everything using PowerShell remotely.
@@ -133,3 +131,10 @@ Get-EventLog Application -Newest 5 -EntryType Error `
 	| Format-List TimeWritten, Message `
 	| more
 {% endhighlight %}
+
+<hr />
+
+<a id="notes-1-remote-trifecta" href="#notes-1-remote-trifecta-reverse">1.</a> In writing this post I learnt that a "[Jump Box][jump]" is a special concept.
+It is a [Bastion Host][bastion-host] which is a server which has been highly locked (via access, networking) and hardened to withstand attacks.
+They sound neat and talking to a few security guys both scared me. Security is important and so don't mess around.
+If you think you need one, you probably do and I would strongly encourage you to go learn more about them.

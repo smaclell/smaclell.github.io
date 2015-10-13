@@ -258,11 +258,6 @@ of reasons to login to a server.*
 
 <hr />
 
-<a id="notes-1-not-on-server-core-reverse" href="#notes-1-not-on-server-core">1.</a> In writing this post I learnt that a "[Jump Box][jump]" is a special concept.
-It is a [Bastion Host][bastion-host] which is a server which has been highly locked (via access, networking) and hardened to withstand attacks.
-They sound neat and talking to a few security guys both scared me. Security is important and so don't mess around.
-If you think you need one I would strongly encourage you to go learn more about them.
-
 <a id="notes-1-not-on-server-core-reverse" href="#notes-1-not-on-server-core">2.</a>
 Perfmon had a wierd problem for me when I first tried to connect from my Windows 7 Desktop.
 I needed to run [extra commands][perfmon-issue] to rebuild my perfmon settings.
