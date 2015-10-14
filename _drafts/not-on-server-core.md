@@ -53,7 +53,7 @@ The easiest way to review the Event Log remotely is using MMC. Do the following:
 5. Profit
 
 <figure class="image-center">
-	<img src="/images/EventViewer.PNG" alt="Openning the connect to another computer dialog in Event Viewer" />
+	<img src="/images/EventViewer.PNG" alt="Opening the connect to another computer dialog in Event Viewer" />
 	<figcaption>Connecting to another computer using Event Viewer's MMC snapin</figcaption>
 </figure>
 
@@ -86,7 +86,7 @@ The easiest way to review/manage Services on a remote computer is using MMC.
 5. Profit
 
 <figure class="image-center">
-	<img src="/images/Services.PNG" alt="Openning the connect to another computer dialog in Services" />
+	<img src="/images/Services.PNG" alt="Opening the connect to another computer dialog in Services" />
 	<figcaption>Connecting to another computer using Services' MMC snapin</figcaption>
 </figure>
 
@@ -215,6 +215,8 @@ Failed Request Tracing.
 <span id="core-sln-10"></span>
 
 ## 10. Adjusting the Application Pools
+
+<span id="core-bonus"></span>
 
 Bonus Managing IIS
 ===============================================================================
@@ -379,7 +381,7 @@ using ``New-PSDrive`` or ``net use``. With this example I am creating the drive
 Q to another network share.
 
 {% highlight powershell %}
-New-PSDrive -Name 'Q' -Root '\\network\share' -Credentials (Get-PSCredential)
+New-PSDrive -Name 'Q' -Root '\\network\share' -Credential (Get-Credential)
 {% endhighlight %}
 
 ### Local Requests
