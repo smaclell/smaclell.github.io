@@ -40,10 +40,9 @@ I am <em>not</em> an expert. I am however very enthusiastic and hoping to learn 
 <p>If anything I have written here does not work, please add a comment.</p>
 </div>
 
-1. Check the Windows Event Log
-===============================================================================
-
 <span id="core-sln-01"></span>
+
+## 1. Check the Windows Event Log
 
 The easiest way to review the Event Log remotely is using MMC. Do the following:
 
@@ -74,10 +73,9 @@ Get-EventLog -ComputerName BadServer -LogName Application -Newest 10
 For more in-depth documentation from Microsoft review [Get-EventLog][get-eventlog-docs] or their
 [examples][get-eventlog-examples].
 
-2. Checking the status of service/process
-===============================================================================
-
 <span id="core-sln-02"></span>
+
+## 2. Checking the status of service/process
 
 The easiest way to review/manage Services on a remote computer is using MMC.
 
@@ -117,6 +115,7 @@ sc.exe \\BadServer start WMSVC
 sc.exe \\BadServer config W3SVC start= auto
 {% endhighlight %}
 
+I prefer using the build in ``*-Service`` PowerShell commands.
  which can natively do remote operations.
 
 However, this does not work for processes! I tried looking and could not find a
