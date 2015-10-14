@@ -200,6 +200,32 @@ Failed Request Tracing.
 
 ## 6. Review files on the server
 
+The simplest way to review the files is to read all thier content using
+``Get-Content`` on the server. This works great with small files. In the
+following example we print out everything in the hosts file:
+
+{% highlight powershell %}
+Invoke-Command -ComputerName BadServer -ScriptBlock {
+	$hostFile = 'C:\Windows\System32\drivers\etc\hosts'
+	Get-Content $hostFile
+}
+{% endhighlight %}
+
+You can get fancier using ``more`` and ``Select-String`` (aka the Powershell
+Grep).
+
+{% highlight powershell %}
+Invoke-Command -ComputerName BadServer -ScriptBlock {
+	$hostFile = 'C:\Windows\System32\drivers\etc\hosts'
+	Get-Content $hostFile
+}
+{% endhighlight %}
+
+
+ would be to read thier content using
+remote PowerShell
+If you are okay reviewing files on the server.
+
 <span id="core-sln-07"></span>
 
 ## 7. Configuring files on the server
@@ -315,7 +341,7 @@ Using ``appcmd`` takes getting used to. If you want to see what I mean read the
 [appcmd introduction][intro] for an overview.
 
 I had an AHA moment when I started understanding the configuration files used
-by IIS. The primary files are the ``applicationHost.config`` for
+by IIS. The primary files are ``applicationHost.config`` for
 server settings and ``web.config`` for individual applications. They are
 XML documents and many of the commands act like filters or modifiers on the
 elements. The syntax for these expressions is similar to other XML tools like XPath.
