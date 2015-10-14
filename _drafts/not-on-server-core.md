@@ -407,17 +407,6 @@ Conclusion
 Troubleshooting Windows Server Core is different. You will need to use
 different techniques, but can still get your job done. Good luck!
 
-1. Check the Windows Event Log => [Use Event Viewer Remotely](#sln-1)
-2. Checking the status of service/process => [Use Task Manager Remotely](#sln-2)
-3. Watching performance counters => [Use PerfMon Remotely](#sln-3)
-4. Managing Scheduled Tasks => [Use Scheduled Task Viewer Remotely](#sln-4)
-5. Testing a server is isolation => [Make the request locally or use Failed Request Tracing](#sln-5)
-6. Review files on the server => [Use network shares or PowerShell](#sln-6)
-7. Configuring files on the server => [Use network shares](#sln-7)
-8. Deploying new files => [Use network shares](#sln-8)
-9. Recycle an Application Pool => [Use WebAdministration](#sln-9)
-10. Adjusting the Application Pools => [Use AppCmd](#sln-10)
-
 <hr />
 
 *I would like to thank Stephen for the idea behind this post and the handy list
