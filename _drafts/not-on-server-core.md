@@ -18,22 +18,60 @@ In this post I will show you how to do some common tasks to help you get started
 My coworker, Stephen, sent me a list of common troubleshooting people do
 directly on servers:
 
-1. Check the Windows Event Log
-2. Checking the status of service/process
-3. Watching performance counters
-4. Managing Scheduled Tasks
-5. Testing a server is isolation
-6. Review files on the server
-7. Configuring files on the server
-8. Deploying new files
-9. Recycle an Application Pool
-10. Adjusting the Application Pools
+1. [Check the Windows Event Log](#core-sln-01)
+2. [Checking the status of service/process](#core-sln-02)
+3. [Watching performance counters](#core-sln-03)
+4. [Managing Scheduled Tasks](#core-sln-04)
+5. [Testing a server is isolation](#core-sln-05)
+6. [Review files on the server](#core-sln-06)
+7. [Configuring files on the server](#core-sln-07)
+8. [Deploying new files](#core-sln-08)
+9. [Recycle an Application Pool](#core-sln-09)
+10. [Adjusting the Application Pools](#core-sln-10)
+
+For the rest of the post I will break down how I would do each troubleshooting.
+
+TODO: You might want to review powershell basics or my remoting trifecta
 
 <div class="disclaimer">
 <p>It was only my 3<sup>rd</sup> week using Server Core when I started writing this and my 2<sup>nd</sup> week was a vacation.
 I am <em>not</em> an expert. I am however very enthusiastic and hoping to learn more.</p>
 <p>If anything I have written here does not work, please add a comment.</p>
 </div>
+
+1. Check the Windows Event Log
+===============================================================================
+
+<span id="core-sln-01"></span>
+
+The easiest way to review the Event Log remotely is using MMC. Do the following:
+
+1. On an extra computer open the Event Viewer
+2. Right click on "Event Viewer (Local)"
+3. Select "Connect to Another Computer"
+4. Enter the computer name and credentials as needed
+5. Profit
+
+<figure class="image-center">
+	<img src="/images/EventViewer.PNG" alt="Openning the connect to another computer dialog in Event Viewer" />
+	<figcaption>Connecting to another computer using Event Viewer's MMC snapin</figcaption>
+</figure>
+
+Alternatively, you can use the PowerShell cmdlet ``Get-EventLog`` to view/filter messages.
+This command can directly connect to remote servers and retrieve log messages.
+There are additional parameters for further filtering such as ``Newest`` or ``Source``
+which can show a limited number of new messages or only messages from a specific source,
+respectively.
+
+The following example shows how to gets the last ten Application event log
+messages from the server BadServer.
+
+{% highlight csharp %}
+Get-EventLog -ComputerName BadServer -LogName Application -Newest 10
+{% endhighlight %}
+
+For more in-depth documentation from Microsoft review [Get-EventLog][get-eventlog-docs] or their
+[examples][get-eventlog-examples].
 
 The Other Stuff
 ===============================================================================
@@ -263,6 +301,8 @@ Perfmon had a wierd problem for me when I first tried to connect from my Windows
 I needed to run [extra commands][perfmon-issue] to rebuild my perfmon settings.
 
 <!-- http://serverfault.com/questions/468934/connecting-to-remote-server-using-performance-monitor-does-not-work -->
+[get-eventlog-docs]: https://technet.microsoft.com/en-us/library/hh849834.aspx
+[get-eventlog-examples]: https://technet.microsoft.com/en-ca/library/ee176846.aspx
 [jump]: https://en.wikipedia.org/wiki/Jump_server
 [jump-security]: http://www.infoworld.com/article/2612700/security/-jump-boxes--improve-security--if-you-set-them-up-right.html?page=1
 [learn-ps]: {% post_url 2015-07-31-3-cmdlets-to-discover-powershell %}
