@@ -16,6 +16,12 @@ and click adventure of debugging Windows is not possible. This blog post is to
 share three ways I have been trying to remotely troubleshoot our servers
 without using an RDP session.
 
+<div class="disclaimer">
+<p>It was only my 3<sup>rd</sup> week using Server Core when I started writing this and my 2<sup>nd</sup> week was a vacation.
+I am <em>not</em> an expert. I am however very enthusiastic and hoping to learn more.</p>
+<p>If anything I have written here does not work, please add a comment.</p>
+</div>
+
 I think there are three major techniques you can use to start most remote
 troubleshooting. The first step is to perform the steps remotely that you would have done
 locally. I typically use the following three methods to do remoting:
