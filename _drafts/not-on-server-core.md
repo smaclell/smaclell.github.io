@@ -94,8 +94,8 @@ If the command line is more your thing there are a number of great cmdlets and
 tools you can use.
 
 The most comprehensive is ``sc.exe``. This is the swiss army knife of managing services.
-It has commands for changing almost anything about a service. You can also dump
-information about services and query to find exactly what you are looking for.
+It has commands for changing any service configuration. You can also print
+information about services and query the services to find exactly what you are looking for.
 
 Shown below are examples for viewing and modifying services on the remote server
 BadServer.
@@ -173,13 +173,28 @@ Get-Command -Noun Process
 
 ## 3. Watching performance counters
 
+GUI
+
+Get-Counter and Get-Counter -Continuous
+
 <span id="core-sln-04"></span>
 
 ## 4. Managing Scheduled Tasks
 
+Tasks GUI
+Warning of 2012 to 2012.
+
+schtasks basics
+
 <span id="core-sln-05"></span>
 
 ## 5. Testing a server is isolation
+
+Host file entry to hit that server.
+
+Curl approach.
+
+Failed Request Tracing.
 
 <span id="core-sln-06"></span>
 
@@ -201,6 +216,10 @@ Get-Command -Noun Process
 
 ## 10. Adjusting the Application Pools
 
+Bonus Managing IIS
+===============================================================================
+
+Awesome.
 
 The Other Stuff
 ===============================================================================
