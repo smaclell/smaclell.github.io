@@ -151,3 +151,8 @@ Get-EventLog Application -Newest 5 -EntryType Error `
 It is a [Bastion Host][bastion-host] which is a server which has been highly locked (via access, networking) and hardened to withstand attacks.
 They sound neat and talking to a few security guys both scared me. Security is important and so don't mess around.
 If you think you need one, you probably do and I would strongly encourage you to go learn more about them.
+
+[jump]: https://en.wikipedia.org/wiki/Jump_server
+[jump-security]: http://www.infoworld.com/article/2612700/security/-jump-boxes--improve-security--if-you-set-them-up-right.html?page=1
+[learn-ps]: {% post_url 2015-07-31-3-cmdlets-to-discover-powershell %}
+[bastion-host]: https://en.wikipedia.org/wiki/Bastion_host
