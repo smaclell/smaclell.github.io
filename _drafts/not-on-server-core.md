@@ -212,49 +212,53 @@ Failed Request Tracing.
 
 ## 9. Recycle an Application Pool
 
-<span id="core-sln-10"></span>
+You can use the IIS Manager to remotely connect to the GUI. This requires extra
+setup on the target server shown in the [Bonus section](#core-bonus). Otherwise
+follow these steps to connect to the remote computer:
 
-## 10. Adjusting the Application Pools
+1. On an extra computer open the IIS Manager
+2. In the File menu, click on "Connect to a Server ..."
+3. Enter the name of the server Select "Connect to Another Computer"
+4. Enter the computer name
+5. Enter your credentials
+6. Name the connection
+7. Profit
 
-<span id="core-bonus"></span>
+<figure class="image-center">
+	<img src="/images/IIS.PNG" alt="Opening the connect to another computer dialog in the IIS Manager" />
+	<figcaption>Connecting to another computer using the IIS Manager</figcaption>
+</figure>
 
-Bonus Managing IIS
-===============================================================================
+Once you have the IIS Manager connected you can recycle as needed.
 
-Awesome.
+The commandline options are very simple too.
 
-The Other Stuff
-===============================================================================
+The sledgehammer which will reset IIS completely is to run the following command:
 
-Not everything is puppy dogs and rainbows. Some troubleshooting steps require
-additional setup or different techniques. In this section I will show you
-commands which can be run using ``Invoke-Command`` or ``Enter-PSSession`` to
-manage iis, interact with files or perform local web requests.
-
-### Managing IIS
-
-I am going to show you how to use PowerShell commands to perform common operations.
-Using the GUI tools requires additional configuration to be enabled which is not
-required when you have such fantastic command line tools. If you still really want
-to use a GUI I will show how to enable remote management at the [end of this section](#iis-remote).
-
-First import the ``WebAdministration`` module installed with IIS.
-
-{% highlight powershell %}
-Import-Module WebAdministration
+{% highlight %}
+Invoke-Command -ComputerName BadServer -ScriptBlock {
+	iisreset
+}
 {% endhighlight %}
 
-Then lets do a really simple example, reviewing a single binding on the 'CoolSite' web site:
+If you want something more targetted you can use the PowerShell
+``WebAdministration`` module. There are many fantastic commands in this module
+for managing IIS which you can see by running:
 
 {% highlight powershell %}
-Get-WebBinding -Name 'CoolSite'
+Get-Command -Module WebAdministration
 {% endhighlight %}
 
-<span id="sln-9"></span>
+These commands are run locally on the server being modified. I would recommend
+using ``Enter-PsSession BadServer`` with your server. This will let you
+interactively run the various commands.
 
-Reviewing and restarting Application Pools is easy:
+This example shows reviewing and restarting application pools:
 
 {% highlight powershell %}
+# Import the module
+Import-Module 'WebAdministration'
+
 # For looking up the list of application pools.
 dir 'IIS:\AppPools\'
 
@@ -270,33 +274,16 @@ dir 'IIS:\AppPools\DefaultAppPool\WorkerProcesses\' | % {
 Restart-WebAppPool 'DefaultAppPool'
 {% endhighlight %}
 
-The entire ``WebAdministartion`` module is very useful for managing IIS. I
-recommend you review the rest of the module commands:
+<span id="core-sln-10"></span>
 
-{% highlight powershell %}
-Get-Command -Module WebAdministration
-{% endhighlight %}
+## 10. Adjusting the Application Pools
 
-To configure and review IIS settings I often use the ``appcmd`` tool. It is
-complicated which is why I prefer using the PowerShell module.
-Using ``appcmd`` takes getting used to. If you want to see what I mean read the
-[appcmd introduction][intro] for an overview.
+To adjust an Application Pool you can again use the IIS Manager remotely.
+Follow the exact same steps as [9. Recycle an Application Pool](#core-sln-09)
+to connect.
 
-I had an AHA moment when I started understanding the configuration files used
-by IIS. The primary files are the ``applicationHost.config`` for
-server settings and ``web.config`` for individual applications. They are
-XML documents and many of the commands act like filters or modifiers on the
-elements. The syntax for these expressions is similar to other XML tools like XPath.
-
-My favourite part about managing IIS is how well the configuration is
-documented. On the IIS website, [www.iis.net][iis.net], you can find information
-on every setting, what version they were added to and exactly how they work. The settings can be
-configured using the xml configuration files directly (i.e. ``web.config``) or using
-``appcmd``. For example here is the documentation for [application pools][pools]
-and how to configure their [recycling][recycling] based on
-[requests or memory limits][periodicRestart]. Wonderful!
-
-<span id="sln-10"></span>
+You can also update the Application Pool settings from the commandline using the ``appcmd`` tool.
+This tool can be used like ``WebAdministration`` to review/modify IIS settings.
 
 To demonstrate using ``appcmd`` this example configures the 'DefaultAppPool' to
 recycle at a virtual memory limit of 100MB and a private memory limit of 200MB:
@@ -324,10 +311,30 @@ value. The ``[name='DefaultAppPool']`` selects the application pool to change.
 * Since application pools are configured for the entire server ``/commit:apphost``
 is used to change the ``applicationHost.config`` which is for all server wide settings.
 
-<span id="iis-remote"></span>
+Using ``appcmd`` takes getting used to. If you want to see what I mean read the
+[appcmd introduction][intro] for an overview.
 
-If you still want the GUI tools there is some additional configuration required.
-There are [technet][technet] and [iis][iis] articles describing how this is done.
+I had an AHA moment when I started understanding the configuration files used
+by IIS. The primary files are the ``applicationHost.config`` for
+server settings and ``web.config`` for individual applications. They are
+XML documents and many of the commands act like filters or modifiers on the
+elements. The syntax for these expressions is similar to other XML tools like XPath.
+
+My favourite part about managing IIS is how well the configuration is
+documented. On the IIS website, [www.iis.net][iis.net], you can find information
+on every setting, what version they were added to and exactly how they work. The settings can be
+configured using the xml configuration files directly (i.e. ``web.config``) or using
+``appcmd``. For example here is the documentation for [application pools][pools]
+and how to configure their [recycling][recycling] based on
+[requests or memory limits][periodicRestart]. Wonderful!
+
+<span id="core-bonus"></span>
+
+Bonus: Setting up IIS Remote Management
+===============================================================================
+
+Extra setup is required to use the IIS Manager on a remote server. There are
+[technet][technet] and [iis][iis] articles describing how this is done.
 Alternatively, you can run this script (adapted from this
 [orcsweb tutorial][orcsweb]) on the target server to enable remote configuration:
 
@@ -346,6 +353,8 @@ Restart-Service 'WMSVC'
 
 # Profit.
 {% endhighlight %}
+
+Awesome.
 
 ### Files on the Server
 
