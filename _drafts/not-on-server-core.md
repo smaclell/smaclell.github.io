@@ -32,6 +32,7 @@ directly on servers:
 For the rest of the post I will break down how I would do each troubleshooting.
 
 TODO: You might want to review powershell basics or my remoting trifecta
+TODO: Mention powershell remoting
 
 <div class="disclaimer">
 <p>It was only my 3<sup>rd</sup> week using Server Core when I started writing this and my 2<sup>nd</sup> week was a vacation.
@@ -66,12 +67,60 @@ respectively.
 The following example shows how to gets the last ten Application event log
 messages from the server BadServer.
 
-{% highlight csharp %}
+{% highlight powershell %}
 Get-EventLog -ComputerName BadServer -LogName Application -Newest 10
 {% endhighlight %}
 
 For more in-depth documentation from Microsoft review [Get-EventLog][get-eventlog-docs] or their
 [examples][get-eventlog-examples].
+
+2. Checking the status of service/process
+===============================================================================
+
+<span id="core-sln-02"></span>
+
+The easiest way to review/manage Services on a remote computer is using MMC.
+
+1. On an extra computer open the Event Viewer
+2. Right click on "Services (Local)"
+3. Select "Connect to Another Computer"
+4. Enter the computer name
+5. Profit
+
+<figure class="image-center">
+	<img src="/images/Services.PNG" alt="Openning the connect to another computer dialog in Services" />
+	<figcaption>Connecting to another computer using Services' MMC snapin</figcaption>
+</figure>
+
+If the command line is more your thing there are a number of great cmdlets and
+tools you can use.
+
+The most basic is ``sc.exe``. This is the swiss army knife of managing services.
+It has commands for changing almost anything about a service. You can also dump
+information about services and query to find exactly what you are looking for.
+Below I show a number of examples for view services and modifying services on
+the remote server BadServer.
+
+{% highlight powershell %}
+# Query all services running
+sc.exe \\BadServer qc
+
+# Query the WMSVC service
+sc.exe \\BadServer qc WMSVC
+
+# Stopping then starting WMSVC
+# Warning: these commands are asynchronous
+sc.exe \\BadServer stop WMSVC
+sc.exe \\BadServer start WMSVC
+
+# Configuring the W3SVC service to startup automatically with the OS
+sc.exe \\BadServer config W3SVC start= auto
+{% endhighlight %}
+
+ which can natively do remote operations.
+
+However, this does not work for processes! I tried looking and could not find a
+good way to view or manage remote processes. Have no fear PowerShell is here.
 
 The Other Stuff
 ===============================================================================
