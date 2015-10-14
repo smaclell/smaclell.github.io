@@ -10,7 +10,7 @@ image:
 ---
 
 Troubleshooting boxes using only remote tools is a challenge. Troubleshooting a
-Windows server without any GUI makes it event more fun. I have been debugging
+Windows server without any GUI makes it event more fun. Lately, I have been debugging
 new Windows Server 2012 servers which are running Server Core. The normal point
 and click adventure of debugging Windows is not possible. This blog post is to
 share three ways I have been trying to remotely troubleshoot our servers
@@ -23,6 +23,10 @@ locally. I typically use the following three methods to do remoting:
 * Using another Computer
 * Connect to remotely with MMC
 * PowerShell Remoting
+
+TODO: Review RSAT capabilities
+http://searchwindowsserver.techtarget.com/tip/Multiserver-administration-and-more-with-RSAT-in-Windows-Server-2012
+http://searchwindowsserver.techtarget.com/definition/RSAT-Microsoft-Remote-Server-Administration-Tools
 
 Using another Computer
 ===============================================================================
