@@ -169,6 +169,39 @@ Invoke-Command -ComputerName BadServer -ScriptBlock {
 Get-Command -Noun Process
 {% endhighlight %}
 
+<span id="core-sln-03"></span>
+
+## 3. Watching performance counters
+
+<span id="core-sln-04"></span>
+
+## 4. Managing Scheduled Tasks
+
+<span id="core-sln-05"></span>
+
+## 5. Testing a server is isolation
+
+<span id="core-sln-06"></span>
+
+## 6. Review files on the server
+
+<span id="core-sln-07"></span>
+
+## 7. Configuring files on the server
+
+<span id="core-sln-08"></span>
+
+## 8. Deploying new files
+
+<span id="core-sln-09"></span>
+
+## 9. Recycle an Application Pool
+
+<span id="core-sln-10"></span>
+
+## 10. Adjusting the Application Pools
+
+
 The Other Stuff
 ===============================================================================
 
