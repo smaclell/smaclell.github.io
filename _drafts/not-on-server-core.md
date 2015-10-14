@@ -93,11 +93,12 @@ The easiest way to review/manage Services on a remote computer is using MMC.
 If the command line is more your thing there are a number of great cmdlets and
 tools you can use.
 
-The most basic is ``sc.exe``. This is the swiss army knife of managing services.
+The most comprehensive is ``sc.exe``. This is the swiss army knife of managing services.
 It has commands for changing almost anything about a service. You can also dump
 information about services and query to find exactly what you are looking for.
-Below I show a number of examples for view services and modifying services on
-the remote server BadServer.
+
+Shown below are examples for viewing and modifying services on the remote server
+BadServer.
 
 {% highlight powershell %}
 # Query all services running
@@ -115,11 +116,58 @@ sc.exe \\BadServer start WMSVC
 sc.exe \\BadServer config W3SVC start= auto
 {% endhighlight %}
 
-I prefer using the build in ``*-Service`` PowerShell commands.
- which can natively do remote operations.
+I prefer using the build in ``*-Service`` PowerShell commands. They are simpler
+and return objects which are easier to use. One drawback is the configuration
+changes which can be made are limited. You cannot change advanced settings like
+delays between retries or required services. Some of the commands also need to
+be run using PowerShell Remoting.
 
-However, this does not work for processes! I tried looking and could not find a
-good way to view or manage remote processes. Have no fear PowerShell is here.
+Here is the equivalent operations as the ``sc.exe`` above:
+
+{% highlight powershell %}
+# Query all services running
+Get-Service -ComputerName BadServer
+
+# Query the WMSVC service
+Get-Service -Name WMSVC -ComputerName BadServer
+
+# Stopping then starting WMSVC
+# Warning: Unlike sc.exe these commands are synchronous and need PowerShell Remoting
+Invoke-Command -ComputerName BadServer -ScriptBlock {
+	Stop-Service WMSVC
+	Start-Service WMSVC
+}
+
+# Configuring the W3SVC service to startup automatically with the OS
+Set-Service -Name W3SVC -ComputerName BadServer -StartupType Automatic
+
+# This will display additional service commands you can use
+Get-Command -Noun Service
+{% endhighlight %}
+
+For processes it is a different story. I was not able to find a good way to
+view or manage remote processes. Have no fear PowerShell is here. Like the
+``*-Service`` commands there are equivalent ``*-Process`` commands. These
+commands may also need to be run using PowerShell Remoting.
+
+This simple example will list the running processes on BadServer and try to
+stop 'notepad':
+
+{% highlight powershell %}
+# Get all the running processes
+Get-Process -ComputerName BadServer
+
+# Get the notepad process
+Get-Process -Name notepad -ComputerName BadServer
+
+# Stopping notepad using Powershell Remoting
+Invoke-Command -ComputerName BadServer -ScriptBlock {
+	Stop-Process notepad
+}
+
+# This will display additional process commands you can use
+Get-Command -Noun Process
+{% endhighlight %}
 
 The Other Stuff
 ===============================================================================
