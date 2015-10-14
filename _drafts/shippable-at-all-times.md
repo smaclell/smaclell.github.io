@@ -16,11 +16,19 @@ Ideas:
 Two aspects of being shippable at all times:
 
 A) Choosing what to ship.
-B) Being able to ship your code.
+B) Producing code worth shipping.
 
 Your code no good? You shouldn't choose to ship anything.
 Master is always shippable? You can choose between alot more options.
 
+We focus on choosing what to ship. It means you can always ship something when
+you want to release. It is more important for us to know exactly what is in each
+build and how it has been tested.
+
+Other teams focus on keeping their master shippable at all times. This goes
+above and beyond keeping your CI process green. No changes can be merged which
+will hold you back from releasing at any second. The plus side is you have many
+builds which could be shipped.
 
 
 The Options
