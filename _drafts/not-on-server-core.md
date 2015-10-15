@@ -261,7 +261,7 @@ The commandline options are very simple too.
 
 The sledgehammer which will reset IIS completely is to run the following command:
 
-{% highlight %}
+{% highlight powershell %}
 Invoke-Command -ComputerName BadServer -ScriptBlock {
 	iisreset
 }
