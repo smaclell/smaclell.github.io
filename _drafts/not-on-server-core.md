@@ -44,7 +44,7 @@ I am <em>not</em> an expert. I am however very enthusiastic and hoping to learn 
 
 ## 1. Check the Windows Event Log
 
-The easiest way to review the Event Log remotely is using MMC. Do the following:
+The easiest way to review the Event Log is by connecting a local Event Viewer GUI to the remote server. Do the following:
 
 1. On an extra computer open the Event Viewer
 2. Right click on "Event Viewer (Local)"
@@ -54,7 +54,7 @@ The easiest way to review the Event Log remotely is using MMC. Do the following:
 
 <figure class="image-center">
 	<img src="/images/EventViewer.PNG" alt="Opening the connect to another computer dialog in Event Viewer" />
-	<figcaption>Connecting to another computer using Event Viewer's MMC snapin</figcaption>
+	<figcaption>Connecting to another computer's Event Log using Event Viewer</figcaption>
 </figure>
 
 Alternatively, you can use the PowerShell cmdlet ``Get-EventLog`` to view/filter messages.
@@ -77,9 +77,10 @@ For more in-depth documentation from Microsoft review [Get-EventLog][get-eventlo
 
 ## 2. Checking the status of service/process
 
-The easiest way to review/manage Services on a remote computer is using MMC.
+The easiest way to review/manage Services on a remote computer is connecting
+your local Services GUI to the remote server.
 
-1. On an extra computer open the Event Viewer
+1. On an extra computer open the Services tool
 2. Right click on "Services (Local)"
 3. Select "Connect to Another Computer"
 4. Enter the computer name
@@ -87,7 +88,7 @@ The easiest way to review/manage Services on a remote computer is using MMC.
 
 <figure class="image-center">
 	<img src="/images/Services.PNG" alt="Opening the connect to another computer dialog in Services" />
-	<figcaption>Connecting to another computer using Services' MMC snapin</figcaption>
+	<figcaption>Connecting to another computer to manage Services</figcaption>
 </figure>
 
 If the command line is more your thing there are a number of great cmdlets and
@@ -200,9 +201,34 @@ Failed Request Tracing.
 
 ## 6. Review files on the server
 
-The simplest way to review the files is to read all thier content using
-``Get-Content`` on the server. This works great with small files. In the
-following example we print out everything in the hosts file:
+To review files using Windows Explorer you can use PowerShell to create a
+readonly file share on the remote server. It is easy to restrict the file share
+permissions so only you can view the content. Even better you can remove the
+file share when you are are done debugging to prevent others from using it.
+
+Here is how you create a readonly file share for Administrators on BadServer:
+
+{% highlight powershell %}
+Invoke-Commmand -ComputerName BadServer -ScriptBlock {
+    New-SmbShare -Name 'readonly' -Path 'C:\inetpub' -ReadAccess 'Administrators'
+}
+{% endhighlight %}
+
+By default the file share will continue to be availible after reboots. You can use
+the ``-Temporary`` parameter which will remove the file share after a reboot. It is
+better to explicitly remove the file share using the following command:
+
+{% highlight powershell %}
+Invoke-Commmand -ComputerName BadServer -ScriptBlock {
+    Remove-SmbShare -Name 'readonly'
+}
+{% endhighlight %}
+
+Another great way to review files is using the PowerShell ``Get-Content``
+cmdlet on the remote server. This works great for glancing at small files or
+simple searches.
+
+In the following example we print out the hosts file:
 
 {% highlight powershell %}
 Invoke-Command -ComputerName BadServer -ScriptBlock {
@@ -212,33 +238,90 @@ Invoke-Command -ComputerName BadServer -ScriptBlock {
 {% endhighlight %}
 
 You can get fancier using ``more`` and ``Select-String`` (aka the Powershell
-Grep).
+Grep). Using these commands you can read larger files in chunks or search for
+text in files/directories.
 
 {% highlight powershell %}
-Invoke-Command -ComputerName BadServer -ScriptBlock {
-	$hostFile = 'C:\Windows\System32\drivers\etc\hosts'
-	Get-Content $hostFile
-}
+# Start an interactive session to BadServer
+# This must be run separately before running the other commands
+Enter-PSSession BadServer
+
+# Print the contents of the host file in bitesized chunks
+$hostFile = 'C:\Windows\System32\drivers\etc\hosts'
+Get-Content $hostFile | more
+
+# Find all occurences of POST in files underneath the C:\inetpub\logs directory
+dir C:\inetpub\logs -Recurse | Select-String POST | more
 {% endhighlight %}
-
-
- would be to read thier content using
-remote PowerShell
-If you are okay reviewing files on the server.
 
 <span id="core-sln-07"></span>
 
 ## 7. Configuring files on the server
 
+Like the [previous example](#core-sln-06) you can use PowerShell to create a
+file share on the remote server to allow you to edit files remotely. The only
+difference from the previous example is the permissions applied to the file
+share.
+
+With these simple PowerShell commands you can create a file share to
+``C:\inetpub`` with full access for Administrators on BadServer:
+
+{% highlight powershell %}
+Invoke-Commmand -ComputerName BadServer -ScriptBlock {
+    New-SmbShare -Name 'fullaccess' -Path 'C:\inetpub' -FullAccess 'Administrators'
+}
+{% endhighlight %}
+
+Don't forget to remove the file share you created using the command:
+
+{% highlight powershell %}
+Invoke-Commmand -ComputerName BadServer -ScriptBlock {
+    Remove-SmbShare -Name 'fullaccess'
+}
+{% endhighlight %}
+
+For more examples of managing/using review this [basics of SMB PowerShell][smb] blog post.
+
 <span id="core-sln-08"></span>
 
 ## 8. Deploying new files
+
+Deploying new files is very similiar to editting existing files. You can use
+the steps from the [previous example](#core-sln-07) to create a file share for
+copying new files to the server.
+
+Alternatively, you could connect the remote server to a network file share then
+copy files directly only the remote server. You can also use this to easily
+move files off the remote server. By running the following commands one at time
+would create, use and delete a connection to a network file share on the remote
+server, BadServer:
+
+{% highlight powershell %}
+# Start a remote session to run the subsequent commands interactively
+Enter-PsSession BadServer
+
+# Create a new drive (including specific credentials)
+New-PSDrive -Name 'X' -Root '\\network\share' -PSProvider FileSystem
+
+# Do what you want to do with the remote share
+cp 'X:\files' 'c:\files'  -Recurse
+
+# When you are all done you can remove the added drive
+Remove-PSDrive -Name 'X'
+{% endhighlight %}
+
+If you need to use specific credentials on the network share use the
+``Credential`` parameter like so:
+
+{% highlight powershell %}
+New-PSDrive -Name 'X' -Root '\\network\share' -PSProvider FileSystem -Credential (Get-Credential)
+{% endhighlight %}
 
 <span id="core-sln-09"></span>
 
 ## 9. Recycle an Application Pool
 
-You can use the IIS Manager to remotely connect to the GUI. This requires extra
+Using the IIS Manager you can connect a local GUI to the remote server. This requires extra
 setup on the target server shown in the [Bonus section](#core-bonus). Otherwise
 follow these steps to connect to the remote computer:
 
@@ -381,43 +464,6 @@ Restart-Service 'WMSVC'
 {% endhighlight %}
 
 Awesome.
-
-### Files on the Server
-
-Files on the server pose another challenge. Without being able to use explorer
-how do you find your way around? How do you copy files over? How do you read files?
-
-<span id="sln-6"></span>
-<span id="sln-7"></span>
-<span id="sln-8"></span>
-
-The simplest way to read/write files on the target server is by creating a
-network share. Here are some examples of creating and deleting shares with
-different access:
-
-{% highlight powershell %}
-# Creating and deleting a readonly share for Administrators
-New-SmbShare -Name 'readonly' -Path 'C:\inetpub' -ReadAccess 'Administrators'
-
-# Creating and deleting a share with full access for Administrators
-New-SmbShare -Name 'fullaccess' -Path 'C:\inetpub' -FullAccess 'Administrators'
-
-# Removing both of the shares
-Remove-SmbShare -Name 'readonly'
-Remove-SmbShare -Name 'fullaccess'
-{% endhighlight %}
-
-For more examples review this [basics of SMB PowerShell][smb] blog post.
-
-TODO: This fails miserably from a remote session.
-
-What if you want to read files from another server? This is also fairly easy
-using ``New-PSDrive`` or ``net use``. With this example I am creating the drive
-Q to another network share.
-
-{% highlight powershell %}
-New-PSDrive -Name 'Q' -Root '\\network\share' -Credential (Get-Credential)
-{% endhighlight %}
 
 ### Local Requests
 
