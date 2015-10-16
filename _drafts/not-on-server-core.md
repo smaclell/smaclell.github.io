@@ -176,6 +176,8 @@ Get-Command -Noun Process
 
 GUI
 
+typeperf
+
 Get-Counter and Get-Counter -Continuous
 
 <span id="core-sln-04"></span>
