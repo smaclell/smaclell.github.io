@@ -209,7 +209,7 @@ file share when you are are done debugging to prevent others from using it.
 Here is how you create a readonly file share for Administrators on BadServer:
 
 {% highlight powershell %}
-Invoke-Commmand -ComputerName BadServer -ScriptBlock {
+Invoke-Commmand -ComputerName 'BadServer' -ScriptBlock {
     New-SmbShare -Name 'readonly' -Path 'C:\inetpub' -ReadAccess 'Administrators'
 }
 {% endhighlight %}
@@ -219,7 +219,7 @@ the ``-Temporary`` parameter which will remove the file share after a reboot. It
 better to explicitly remove the file share using the following command:
 
 {% highlight powershell %}
-Invoke-Commmand -ComputerName BadServer -ScriptBlock {
+Invoke-Commmand -ComputerName 'BadServer' -ScriptBlock {
     Remove-SmbShare -Name 'readonly'
 }
 {% endhighlight %}
@@ -231,9 +231,9 @@ simple searches.
 In the following example we print out the hosts file:
 
 {% highlight powershell %}
-Invoke-Command -ComputerName BadServer -ScriptBlock {
-	$hostFile = 'C:\Windows\System32\drivers\etc\hosts'
-	Get-Content $hostFile
+Invoke-Command -ComputerName 'BadServer' -ScriptBlock {
+    $hostFile = 'C:\Windows\System32\drivers\etc\hosts'
+    Get-Content $hostFile
 }
 {% endhighlight %}
 
@@ -244,14 +244,14 @@ text in files/directories.
 {% highlight powershell %}
 # Start an interactive session to BadServer
 # This must be run separately before running the other commands
-Enter-PSSession BadServer
+Enter-PSSession 'BadServer'
 
 # Print the contents of the host file in bitesized chunks
 $hostFile = 'C:\Windows\System32\drivers\etc\hosts'
 Get-Content $hostFile | more
 
 # Find all occurences of POST in files underneath the C:\inetpub\logs directory
-dir C:\inetpub\logs -Recurse | Select-String POST | more
+dir 'C:\inetpub\logs' -Recurse | Select-String 'POST' | more
 {% endhighlight %}
 
 <span id="core-sln-07"></span>
@@ -267,7 +267,7 @@ With these simple PowerShell commands you can create a file share to
 ``C:\inetpub`` with full access for Administrators on BadServer:
 
 {% highlight powershell %}
-Invoke-Commmand -ComputerName BadServer -ScriptBlock {
+Invoke-Commmand -ComputerName 'BadServer' -ScriptBlock {
     New-SmbShare -Name 'fullaccess' -Path 'C:\inetpub' -FullAccess 'Administrators'
 }
 {% endhighlight %}
@@ -275,7 +275,7 @@ Invoke-Commmand -ComputerName BadServer -ScriptBlock {
 Don't forget to remove the file share you created using the command:
 
 {% highlight powershell %}
-Invoke-Commmand -ComputerName BadServer -ScriptBlock {
+Invoke-Commmand -ComputerName 'BadServer' -ScriptBlock {
     Remove-SmbShare -Name 'fullaccess'
 }
 {% endhighlight %}
@@ -298,13 +298,13 @@ server, BadServer:
 
 {% highlight powershell %}
 # Start a remote session to run the subsequent commands interactively
-Enter-PsSession BadServer
+Enter-PsSession 'BadServer'
 
 # Create a new drive (including specific credentials)
-New-PSDrive -Name 'X' -Root '\\network\share' -PSProvider FileSystem
+New-PSDrive -Name 'X' -Root '\\network\share' -PSProvider 'FileSystem'
 
 # Do what you want to do with the remote share
-cp 'X:\files' 'c:\files'  -Recurse
+cp 'X:\files' 'c:\files' -Recurse
 
 # When you are all done you can remove the added drive
 Remove-PSDrive -Name 'X'
@@ -314,7 +314,7 @@ If you need to use specific credentials on the network share use the
 ``Credential`` parameter like so:
 
 {% highlight powershell %}
-New-PSDrive -Name 'X' -Root '\\network\share' -PSProvider FileSystem -Credential (Get-Credential)
+New-PSDrive -Name 'X' -Root '\\network\share' -PSProvider 'FileSystem' -Credential (Get-Credential)
 {% endhighlight %}
 
 <span id="core-sln-09"></span>
