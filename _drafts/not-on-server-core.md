@@ -117,7 +117,7 @@ sc.exe \\BadServer start WMSVC
 sc.exe \\BadServer config W3SVC start= auto
 {% endhighlight %}
 
-I prefer using the build in ``*-Service`` PowerShell commands. They are simpler
+I prefer using the built in ``*-Service`` PowerShell commands. They are simpler
 and return objects which are easier to use. One drawback is the configuration
 changes which can be made are limited. You cannot change advanced settings like
 delays between retries or required services. Some of the commands also need to
