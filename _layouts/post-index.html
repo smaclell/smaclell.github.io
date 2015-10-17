@@ -26,7 +26,7 @@
   <div class="header-title">
     <div class="header-title-wrap">
       <h1><a href="{{ site.url }}">{{ site.title }}</a></h1>
-      <h2>{{ page.title }}</h2>
+      <h2>{{ page.title }}{% if paginator.page > 1 %} &#8211; Page {{ paginator.page }}{% endif %}</h2>
     </div><!-- /.header-title-wrap -->
   </div><!-- /.header-title -->
 </div><!-- /.entry-header -->
