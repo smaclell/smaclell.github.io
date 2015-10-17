@@ -43,7 +43,7 @@ permalink:   /posts/:title/
 
 # Amount of post to show on home page
 paginate: 5
-#paginate_path: "/page/:num/"
+paginate_path: "/page/:num/"
 
 sitemap:
   file: "/sitemap.xml"
