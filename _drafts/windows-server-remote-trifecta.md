@@ -27,7 +27,7 @@ troubleshooting. The first step is to perform the steps remotely that you would 
 locally. I typically use the following three methods to do remoting:
 
 * Using another Computer
-* Connect to remotely with MMC
+* Remote Administrative Tools
 * PowerShell Remoting
 
 TODO: Review RSAT capabilities
