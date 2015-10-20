@@ -174,11 +174,28 @@ Get-Command -Noun Process
 
 ## 3. Watching performance counters
 
-GUI
+The easiest way to review/manage Performance Counters on a remote computer is
+connecting your local PerfMon GUI to the remote server.
 
-typeperf
+1. On an extra computer open the PerfMon tool
+2. Expand the "Monitoring Tools"
+3. Click on "Performance Monitor"
+4. Begin adding a counter
+5. In the "Select counters from computer" enter the remote computer name prefixed with ``\\``
+6. Select the counters you want
+7. Profit
 
-Get-Counter and Get-Counter -Continuous
+<figure class="image-center">
+	<img src="/images/perfmon.gif" alt="Openning PerfMon then adding counters from a remote computer" />
+	<figcaption>Watching performance counters for a remote computer</figcaption>
+</figure>
+
+If you want to use PowerShell you can try the ``Get-Counter`` cmdlet. Check out
+this [example][counter-examples] for how to use it. You can review the
+[online documentation][get-counter] to learn.
+
+There is also ``typeperf`` which is a simple commandline tool. See the
+online documentation for [syntax][typeperf] and [examples][typeperf-examples].
 
 <span id="core-sln-04"></span>
 
@@ -516,12 +533,6 @@ different techniques, but can still get your job done. Good luck!
 *I would like to thank Stephen for the idea behind this post and the handy list
 of reasons to login to a server.*
 
-<hr />
-
-<a id="notes-1-not-on-server-core-reverse" href="#notes-1-not-on-server-core">2.</a>
-Perfmon had a wierd problem for me when I first tried to connect from my Windows 7 Desktop.
-I needed to run [extra commands][perfmon-issue] to rebuild my perfmon settings.
-
 <!-- http://serverfault.com/questions/468934/connecting-to-remote-server-using-performance-monitor-does-not-work -->
 [get-eventlog-docs]: https://technet.microsoft.com/en-us/library/hh849834.aspx
 [get-eventlog-examples]: https://technet.microsoft.com/en-ca/library/ee176846.aspx
@@ -539,3 +550,7 @@ I needed to run [extra commands][perfmon-issue] to rebuild my perfmon settings.
 [smb]: http://blogs.technet.com/b/josebda/archive/2012/06/27/the-basics-of-smb-powershell-a-feature-of-windows-server-2012-and-smb-3-0.aspx
 [bastion-host]: https://en.wikipedia.org/wiki/Bastion_host
 [perfmon-issue]: http://serverfault.com/questions/468934/connecting-to-remote-server-using-performance-monitor-does-not-work
+[get-counter]: https://technet.microsoft.com/en-us/library/hh849685.aspx
+[counter-examples]: https://technet.microsoft.com/en-us/magazine/ee872428.aspx
+[typeperf]: https://technet.microsoft.com/en-us/library/bb490960.aspx
+[typeperf-examples]: http://blogs.technet.com/b/askperf/archive/2009/05/12/two-minute-drill-typeperf.aspx
