@@ -201,10 +201,24 @@ online documentation for [syntax][typeperf] and [examples][typeperf-examples].
 
 ## 4. Managing Scheduled Tasks
 
-Tasks GUI
-Warning of 2012 to 2012.
+The easiest way to review/manage Scheduled Tasks on a remote computer is
+connecting your local Tasks Scheduler GUI to the remote server. Both computers
+must be Windows Server 2012 due to changes in Windows.
 
-schtasks basics
+1. On an extra computer open the Tasks Scheduler tool
+2. Right click on "Tasks Scheduler (Local)"
+3. Select "Connect to Another Computer"
+4. Enter the computer name
+5. Profit
+
+<figure class="image-center">
+	<img src="/images/Tasks.PNG" alt="Opening the connect to another computer dialog in Task Scheduler" />
+	<figcaption>Connecting to another computer to manage Scheduled Tasks</figcaption>
+</figure>
+
+If you prefer using the commandline you can use ``schtasks``. It has many
+options for customizing/reviewing Scheduled Tasks. See
+the [online documentation][schtasks] for details.
 
 <span id="core-sln-05"></span>
 
@@ -554,3 +568,4 @@ of reasons to login to a server.*
 [counter-examples]: https://technet.microsoft.com/en-us/magazine/ee872428.aspx
 [typeperf]: https://technet.microsoft.com/en-us/library/bb490960.aspx
 [typeperf-examples]: http://blogs.technet.com/b/askperf/archive/2009/05/12/two-minute-drill-typeperf.aspx
+[schtasks]: https://technet.microsoft.com/en-us/library/cc725744.aspx
