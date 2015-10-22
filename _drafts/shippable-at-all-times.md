@@ -2,7 +2,7 @@
 layout: post
 title:  "Being Shippable At All Times"
 date:   2015-09-29 22:37:07
-tags: releases builds ci preflights shipping release process
+tags: releases builds process ci preflights shipping release
 ---
 
 In this post I explore two approaches to being shippable at all times;
@@ -108,6 +108,7 @@ LKG
 
 - Overhead is from communication and process. Automate it out.
 - Tolerating frequent failures slows down merging
+- Incomplete features cause a delay
 - Delays are when you approach releasing
 
 
@@ -116,6 +117,8 @@ GM
 - Disincentives small changes. It has to be perfect right?
 - Delays integration which makes refactoring harder
 - Delays are before merging
+
+TODO: Do these makes sense?
 
 So what is the big deal? Forcing teams to always have perfect master branch
 puts much more pressure on every change. Everything must be perfectly tested
@@ -137,14 +140,21 @@ does not matter. Every change includes some element of uncertainty. Both Last
 Known Good and Golden Master strategies address the risks associated with
 releases, but approach the problem differently.
 
-LKG
+The Last Known Good approach builds in accounting for risk in how you choose
+which version to use. Picking which builds are good could be a factor of
+automated testing, selection by testers, voting by a group of people, etc.
+Business pressure to release something too soon can cause issues to be shipped
+to production.
 
-- Acknoledges risk is how it is formulated. Only as good as the formulation
+Gaps in automation indicating whether or not master is broken reduce the
+effectiveness for the Golden Master. As with any CI process, they are only as
+good as the coverage they provide. Risk can be reduced with an extra
+stabilization period or intermediate branches, but this pushes the problem
+to that location and introduces delays.
 
-GM
-
-- Risk comes from gaps in automated validation and how extra stabilization happens
-
+Both approaches suffer from issues with the validation used to determine good
+versions and stop bad versions. If the validation is limited then bad versions
+will sneak through.
 
 Going Continuous
 ===============================================================================
@@ -177,7 +187,7 @@ shipping continuously is the logical next step.
 
 What both our team and others are doing is closer to Continuous Delivery. We
 make potential releases all the time and then choose when we want to ship based
-on our client needs. Early this year we [accelerated our releases][boring] and
+on our client needs. Earlier this year we [accelerated our releases][boring] and
 do full Continuous Deployment into some of our environments.
 
 For a more thorough description of each term see this fantastic Stack Overflow
