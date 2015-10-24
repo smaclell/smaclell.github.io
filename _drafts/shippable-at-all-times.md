@@ -102,21 +102,45 @@ Each model has a different tendency to introduce overhead and delays. Overhead
 makes releases more expensive and challenging. Delays slow down the feedback
 teams get from releasing frequently.
 
-Tracking the Last Known Good takes effort. This can be reduced through automation.
+#### LKG
 
-LKG
+**More tracking is required.** Tracking the Last Known Good takes
+effort. Understanding what is in each build and why they are good/bad is more
+work than using the Golden Master. This can be simplified by building it into
+your deployment pipeline.
 
-- Overhead is from communication and process. Automate it out.
-- Tolerating frequent failures slows down merging
-- Incomplete features cause a delay
-- Delays are when you approach releasing
+**Potential communication and process overhead.** Depending
+on how you determine the Last Known Good version there may be more communication
+and overhead. If you need to coordinate across many teams or have manual signoff
+it will add to the delays.
 
+**Unstable builds add delays.** Teams who do not keep their builds stable will
+have a harder time with having enough Last Known Good versions. If no version
+is readily available and it is time to release teams may have more delays while
+they try to find what to ship.
 
-GM
+#### Golden Master
 
-- Disincentives small changes. It has to be perfect right?
-- Delays integration which makes refactoring harder
-- Delays are before merging
+**Delays occur before merging.** Unlike the Last Known Good, the Golden Master
+approach the delays are encounter prior to merging the code. Additional
+preflights and stabilization branches increase the amount of time before code
+is merged. The added testing to ensure the change is ready to be shipped
+further slows down merging. Using feature flags and more automated validation
+can mitigate the added delays.
+
+**Small changes can be discouraged.** Since every change touching master must
+be perfect teams often avoid making small changes. After all every change is a
+risk. This line of thinking is actually a fallacy and increases the risk of
+each change. The recommendation is to focus on making smaller changes safe and
+frequently merge.
+
+**Delayed integration increases risks and prohibits refactoring.** The added
+time prior to merging can cause delayed integrations. The longer these delays
+are the more impact they can have on normal programming. Refactoring can cause
+more merge conflicts than normal. The longer a refactoring waits before being
+merged the higher the likelihood of other changes conflicting with it. Normal
+changes can also be broken by other branches which are inflight. It is better
+to merge more often and allow other code to build on each other.
 
 TODO: Do these makes sense?
 
