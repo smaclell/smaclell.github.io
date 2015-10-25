@@ -13,7 +13,13 @@ giving any process, user or program the least access possible. I think this
 idea should also be applied to your code. You should **restrict your code as
 much as possible.**
 
-Great. Restrict what exactly? I think the focus should be controlling
+The idea behind the standard Principle of Least Privilege is straight forward
+and typically applied to security. The wider the surface area of any system the
+more that can be attacked by hackers. By using the lowest permissions possible
+for any user, process, service or server reduces what is exposed if they were
+compromised.
+
+Great. So we can apply the idea to code too. Restrict what exactly? I think the focus should be controlling
 visibility between classes/assemblies. This also naturally leads to strictly
 defining your public API. After all if you have not exposed it then it remains
 private. Anyone else does not have enough privilege to use you code outside of
@@ -50,6 +56,30 @@ Luckily in C# they control over classes is pretty simple.
 At two ends of a very narrow spectrum are ``public`` and ``internal``. You want
 almost all your classes to be ``internal`` and only a few exposed using
 ``public``.
+
+The next modifiers ``abstract`` and ``sealed`` are great for controlling how
+and if your classes are inherited. Both modifiers are very powerful and define
+how classes can be used.
+
+Using ``abstract`` classes with abstract methods force
+consumers to implement your base classes. This can be great for [Template Methods/Classes][TODO]
+for laying out how you want the class to be used.
+
+After having inheritance
+abused for too long we have started to use ``sealed`` heavily. If this is not a
+problem for you I would not both including it. However, it allow you
+intentionally force composition over inheritance by preventing classes from
+being extended unless you want them too be.
+
+The next modifier ``partial`` is nice to break up larger classes or isolate
+generated code. It is reasonable to say if you want to use ``partial`` to break
+up large classes it is a code smell. However, it is commonly used to split
+generated code from your code. If you are generating you code code, try it out.
+
+Marking utility classes as ``static`` is fantastic. They can never be
+instantiated and cannot have normal class variables.
+
+The exception I would make to this is allowing test classes to access internal classes.
 
 Notes
 -------------------------------------------------------------------------------
