@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Safe Ordering For Breaking Changes"
-date:   2015-10-26 23:35:07
+date:   2015-10-26 23:51:07
 tags: versioning services api
 ---
 
