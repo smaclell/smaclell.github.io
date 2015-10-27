@@ -21,7 +21,7 @@ curl http://yourservice.com/api/v1.0/route \
 {% endhighlight %}
 
 Time goes on and all is well. Out of the blue you have an epiphany. A change to
-the api which is soooo much better than Version 1.0. You could replace the old
+the API which is soooo much better than Version 1.0. JSON instead of XML. You could replace the old
 API in place, but it would be a breaking change which would hurt all those
 users of your API.
 
@@ -45,8 +45,8 @@ This will be okay. Take a deep breath. Begin your changes in this order:
 </figure>
 
 The key to this is step 1. By having both versions live at the same time users
-can switching to Version B at their leisure. This is key. They are not forced
-to immediately take the new version. Although Version 2.0 breaks Version 1.0
+can switch to Version B at their leisure. This is key. They are not forced
+to immediately update all their clients to take the new version. Although Version 2.0 breaks Version 1.0,
 temporarily supporting both makes the change safe for all the clients.
 
 Steps 2 and 3 can happen as quickly or slowly as you would like. I like to
