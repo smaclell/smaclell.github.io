@@ -28,22 +28,20 @@ any build shippable.
 
 Lately teams we work with have been intentionally trying to stay shippable.
 They want to support releasing at any point and other Continuous Delivery
-norms. Our team has long been trying to have small shippable iterations so we
-can be more effective.
-
-TODO: Read these paragraphs. Decide if I should add more connector and fold them into their sections.
+norms. Our team has long been trying to track the last package we deemed
+shippable. Both approaches are effective and have their own trade-offs.
 
 We focus on choosing what to ship. It means you can always ship something when
 you want to release. It is more important for us to know exactly what is in each
 build and how it has been tested. We keep track of the last build to be fully
-tested, what went into it and what environments it has been used in. From this
+tested, what went into it and the environments it has been used in. From this
 we determine what our Last Known Good version. When it comes time to release
 into production we ship that version.
 
-Other teams focus on keeping their master shippable at all times. This goes
-above and beyond keeping your Continuous Integration process green. No changes
-can be merged which will hold you back from releasing. Risky changes are avoid.
-When it is time to release the latest commit to the current branch is used.
+The other teams focus on keeping their master branch shippable at all times. This
+goes above and beyond keeping your Continuous Integration process green. No changes
+can be merged which will hold you back from releasing. Risky changes should be
+broken down. When it is time to release the latest commit to the master branch is used.
 
 Last Known Good
 ===============================================================================
@@ -132,7 +130,8 @@ can mitigate the added delays.
 be perfect teams often avoid making small changes. After all every change is a
 risk. This line of thinking is actually a fallacy and increases the risk of
 each change. The recommendation is to focus on making smaller changes safe and
-frequently merge.
+frequently merge. At all costs, avoid the anti pattern of merging many branches
+at near the end of a release.
 
 **Delayed integration increases risks and prohibits refactoring.** The added
 time prior to merging can cause delayed integrations. The longer these delays
@@ -141,20 +140,6 @@ more merge conflicts than normal. The longer a refactoring waits before being
 merged the higher the likelihood of other changes conflicting with it. Normal
 changes can also be broken by other branches which are inflight. It is better
 to merge more often and allow other code to build on each other.
-
-TODO: Do these makes sense?
-
-So what is the big deal? Forcing teams to always have perfect master branch
-puts much more pressure on every change. Everything must be perfectly tested
-and validated before you can even consider merging it. This shifts the
-mentality from small bite-sized changes to complete features which tend to all
-flood in at the last minute.
-
-On the contrary if master can be unstable or not perfect to release you can
-plan your work differently. It becomes okay to merge little pieces instead of
-complete feature. If it makes sense you defer manual testing a little bit
-later. You might not want to ship the current changes and that is okay. Once
-the changes are manually validated you can decide which package is ready.
 
 Risk
 ===============================================================================
