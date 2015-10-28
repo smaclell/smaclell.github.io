@@ -2,6 +2,7 @@
 layout: post
 title:  "Safe Ordering For Breaking Changes"
 date:   2015-10-26 23:51:07
+description: "A safe easy order to follow when making breaking changes to your API"
 tags: versioning services api
 ---
 
