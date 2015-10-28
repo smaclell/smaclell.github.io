@@ -2,6 +2,7 @@
 layout: post
 title:  "Being Shippable At All Times"
 date:   2015-09-29 22:37:07
+description: "Comparing and contrasting two approaches to being always shippable"
 tags: releases builds process ci preflights shipping release
 ---
 
