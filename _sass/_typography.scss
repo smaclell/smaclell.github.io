@@ -86,9 +86,14 @@ figcaption {
 // Blockquotes
 // --------------------------------------------------
 blockquote {
+	color: darken($text-color, 10%);
 	font-family: $alt-font;
-	background-color: lighten($base-color, 85%);
+	font-weight: 500;
+	background-color: lighten($base-color, 75%);
 	border-left: 8px solid $border-color;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 2px;
 	padding-left: 20px;
 	@media #{$medium} {
 		margin-left: -28px;
