@@ -16,7 +16,7 @@ thoroughly tracks our last good build/deploy/version. Other teams stay
 shippable by keeping whatever is currently checked in stable. They can ship
 their master branch and we can ship our Last Known Good package.
 
-In order two ship software you need to do the following:
+In order to ship software you need to do the following:
 
 * Choose what to ship.
 * Produce code worth shipping.
@@ -55,14 +55,14 @@ We track our last known good set of binaries through our deployment pipeline
 and then choose which one set we want to ship at the end of the release. We
 know exactly what went into each build and the testing which was performed.
 
-With this approach there are are few aspects which are really important:
+With this approach there are few aspects which are really important:
 
 * Tracing inputs
 * Tracking builds between different stages/validation
 * Visibility into the deployment pipeline
 
 What we ship is a human choice supported by our tracking. If more
-testing/validation is required we communicate with the team to make sure it
+testing and validation is required we communicate with the team to make sure it
 happens before we release. We closely follow which stories have been merged and
 make it into each build.
 
@@ -78,7 +78,7 @@ Golden Master
 ===============================================================================
 
 Other teams focus on keeping their code shippable by ensuring the master branch
-can always be built/deployed. For each commit we ensure all integration tests
+can always be built and deployed. For each commit we ensure all integration tests
 pass thanks to solid Continuous Integration. The majority of the deployment
 pipeline is automated or part of later stability phases.
 
@@ -125,7 +125,7 @@ they try to find what to ship.
 #### Golden Master
 
 **Delays occur before merging.** Unlike the Last Known Good, the Golden Master
-approach the delays are encounter prior to merging the code. Additional
+approach the delays are encountered prior to merging the code. Additional
 preflights and stabilization branches increase the amount of time before code
 is merged. The added testing to ensure the change is ready to be shipped
 further slows down merging. Using feature flags and more automated validation
@@ -135,7 +135,7 @@ can mitigate the added delays.
 be perfect teams often avoid making small changes. After all every change is a
 risk. This line of thinking is actually a fallacy and increases the risk of
 each change. The recommendation is to focus on making smaller changes safe and
-frequently merge. At all costs, avoid the anti pattern of merging many branches
+frequently merge. At all costs, avoid the anti-pattern of merging many branches
 at near the end of a release.
 
 **Delayed integration increases risks and prohibits refactoring.** The added
@@ -181,7 +181,7 @@ Continuous Delivery is where you create potential releases all the time. You
 can deploy your code in development to production-like environments for
 comprehensive testing. You then choose which release to deploy. This is in
 essence our Last Known Good including the deployment process. You could take
-it further an include a big button to deploy into production what you have made.
+it further and include a big button to deploy into production what you have made.
 Press the button often. Always be able to ship.
 
 Continuous Deployment deploys every build into production which passes through all the
@@ -210,14 +210,14 @@ question: [Continuous Integration vs. Continuous Delivery vs. Continuous Deploym
 Why Not Both?
 ===============================================================================
 
-These two options don't compete with one another. The complement one another.
+These two options don't compete with one another. They complement one another.
 You can happily do them both at the same time. They shift what you will emphasize.
 
 By applying both approaches at the same time you increase you odds of having
 great releases. You can ship more. You will have higher confidence in each
 release. The closer you get to a golden master branch you will have many
 last known good builds to choose from. The more thorough your automated
-validation the more confidence you have in each build you make.
+validation, the more confidence you have in each build you make.
 
 Choose the best of each approach you want to apply to your deployment pipeline.
 Then get to work shipping great software.
