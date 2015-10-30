@@ -211,5 +211,5 @@ Then get to work shipping great software.
 
 [preflights]: {% post_url 2015-09-29-preflights-changed-our-world %}
 [fowler-test]: http://martinfowler.com/bliki/ContinuousDelivery.html
-[boring]: {% post_url 2015-01-28-deploys-becoming-boring-part-3 %}
+[boring]: {% post_url 2015-01-28-deploys-becoming-boring-part-1 %}
 [ci-cd-cd]: http://stackoverflow.com/questions/28608015/continuous-integration-vs-continuous-delivery-vs-continuous-deployment
