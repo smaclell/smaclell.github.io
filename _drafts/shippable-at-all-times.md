@@ -50,6 +50,15 @@ broken down. When it is time to release the latest commit to the master branch i
 Last Known Good
 ===============================================================================
 
+<figure class="image-center">
+	<img
+		src="/images/lkg.jpg"
+		alt="An image of various builds and commits highlighting the Last Known Good package">
+	<figcaption>
+		The Last Known Good package picked from the possible builds from the master branch.
+	</figcaption>
+</figure>
+
 We track our last known good set of binaries through our deployment pipeline
 and then choose which one set we want to ship at the end of the release. We
 know exactly what went into each build and the testing which was performed.
@@ -77,6 +86,15 @@ recommended to use Continuous Integration and keep builds green.
 
 Golden Master
 ===============================================================================
+
+<figure class="image-center">
+	<img
+		src="/images/golden-master.jpg"
+		alt="Multiple branches merged into a master branch. The tip is highlighted as the Golden Master">
+	<figcaption>
+		The Golden Master keeping the master branch shippable. Can always release the latest commit.
+	</figcaption>
+</figure>
 
 Other teams focus on keeping their code shippable by ensuring the master branch
 can always be built and deployed. For each commit they ensure all integration tests
@@ -132,16 +150,15 @@ then bad versions will sneak through.
 Going Continuous
 ===============================================================================
 
-If you take both ideas to the limit you end up at Continuous Delivery and
-Continuous Deployment. They are very similar and focus on taking your code into
-production.
+If you take both approaches to the limit you end up at Continuous Delivery and
+Continuous Deployment. Shipping more frequently and being ready to release at
+any moment.
 
-Continuous Delivery is where you create potential releases all the time. You
-can deploy your code in development to production-like environments for
-comprehensive testing. You then choose which release to deploy. This is in
-essence our Last Known Good including the deployment process. You could take
-it further and include a big button to deploy into production what you have made.
-Press the button often. Always be able to ship.
+With Continuous Delivery it is important to be able to release at any point. What
+and when to release is chosen based on needs and features. Two common practices are
+maintaining an automated deployment and doing comprehensive testing in development by deploying to
+production-like environments. This is in essence our Last Known Good including the
+deployment process with more frequent releases.
 
 Continuous Deployment deploys every build into production which passes through all the
 automated testing and validation. It is what you would get if after you tested
