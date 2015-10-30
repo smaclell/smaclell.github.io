@@ -31,7 +31,7 @@ With solid Continuous Integration you can improve the confidence in each commit.
 The confidence from great unit and acceptance testing can be enough to declare
 any build shippable.
 
-Lately teams we work with have been intentionally trying to stay shippable.
+Lately, teams we work with have been intentionally trying to stay shippable.
 They want to support releasing at any point and other Continuous Delivery
 norms. Our team has long been trying to track the last package we deemed
 shippable. Both approaches are effective and have their own trade-offs.
@@ -78,7 +78,7 @@ There is more communication overhead with this approach. The more people involve
 with each releases the harder it is to agree on what the Last Known Good
 is at any given point.
 
-The current branch does not need to be perfect. Doing testing on master is okay,
+The current branch does not need to be perfect. Doing testing on the master branch is okay,
 but needs to be coordinated. The worst case is master may be broken for short
 periods. This can be dangerous for less
 rigorous teams who may leave their code broken for days. It is still highly
@@ -97,7 +97,7 @@ Golden Master
 </figure>
 
 Other teams focus on keeping their code shippable by ensuring the master branch
-can always be built and deployed. For each commit they ensure all integration tests
+can always be built and deployed. For each commit, they ensure all integration tests
 pass thanks to solid Continuous Integration. The majority of the deployment
 pipeline is automated. More stability may be achieved using extra hardening phases.
 
@@ -126,10 +126,10 @@ picking which build or tracking what has happened.
 Risk
 ===============================================================================
 
-All releases have risk. Whether the risk is technological or business related it
+All releases have risks. Whether the risks are technological or business-related it
 does not matter. Every change includes some element of uncertainty. Both Last
 Known Good and Golden Master strategies address the risks associated with
-releases, but approach the problem differently.
+releases but approach the problem differently.
 
 The Last Known Good approach builds in accounting for risk in how you choose
 which version to use. Picking which builds are good could be a factor of
