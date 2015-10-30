@@ -147,7 +147,7 @@ Both approaches suffer from issues with the validation used to determine good
 versions and stop bad versions. If the version choice or validation are incomplete
 then bad versions will sneak through.
 
-Going Continuous
+Next Step: Going Continuous
 ===============================================================================
 
 If you take both approaches to the limit you end up at Continuous Delivery and
@@ -155,15 +155,17 @@ Continuous Deployment. Shipping more frequently and being ready to release at
 any moment.
 
 With Continuous Delivery it is important to be able to release at any point. What
-and when to release is chosen based on needs and features. Two common practices are
-maintaining an automated deployment and doing comprehensive testing in development by deploying to
-production-like environments. This is in essence our Last Known Good including the
-deployment process with more frequent releases.
+and when to release is chosen based on needs and features. It is essential to
+do comprehensive testing in development by deploying to production-like environments.
+The deployment process and configuration should be automated. This is close to
+our Last Known Good approach with a great emphasis on being deployment ready.
+The Golden Master can easily be used the same way since every commit should be
+shippable.
 
-Continuous Deployment deploys every build into production which passes through all the
-automated testing and validation. It is what you would get if after you tested
-your Golden Master you deployed every passing build into production. The button
-has been removed and releases are automatically deployed.
+Continuous Deployment takes Continuous Delivery further. Every build which
+passes automated testing is automatically deployed into production.
+It is what you would get if after you tested your Golden Master you deployed
+every passing build into production.
 
 To know gauge how continuous your process is you can use this test from [Martin Fowler][fowler-test]:
 
@@ -171,14 +173,18 @@ To know gauge how continuous your process is you can use this test from [Martin 
 > **the current development version of the software can be deployed into production at a moment's notice**
 > - and nobody would bat an eyelid, let alone panic.
 
-So far our focus in this blog post has been on everything leading up to a final
-release which is shipped to production. Improving your release process and
-shipping continuously is the logical next step.
-
-What both our team and others are doing is closer to Continuous Delivery. We
+Both our team and others are trying to do Continuous Delivery. We
 make potential releases all the time and then choose when we want to ship based
 on our client needs. Earlier this year we [accelerated our releases][boring] and
-do full Continuous Deployment into some of our environments.
+do full Continuous Deployment into some environments. Releasing more often has
+been fantastic and lets us react to changes more effectively.
+
+So far our focus in this blog post has been on everything leading up to a final
+release into production. Improving your release process and
+shipping continuously is the logical next step.
+
+Don't stop at being shippable; keep going for Continuous Delivery or Continuous
+Deployment.
 
 For a more thorough description of each term see this fantastic Stack Overflow
 question: [Continuous Integration vs. Continuous Delivery vs. Continuous Deployment][ci-cd-cd]
@@ -187,15 +193,20 @@ Why Not Both?
 ===============================================================================
 
 These two options don't compete with one another. They complement one another.
-You can happily do them both at the same time. They shift what you will emphasize.
+You can happily do them both at the same time. Emphasizing shifts what to
+prioritize when improving your deployment pipeline.
 
-By applying both approaches at the same time you increase you odds of having
+By applying both approaches together, you increase your odds of having
 great releases. You can ship more. You will have higher confidence in each
-release. The closer you get to a golden master branch you will have many
-last known good builds to choose from. The more thorough your automated
-validation, the more confidence you have in each build you make.
+release. The closer you get to a Golden Master branch you will have many
+Last Known Good builds to choose from.
 
-Choose the best of each approach you want to apply to your deployment pipeline.
+The more thorough your automated validation, the more confidence you have
+in each build you make. Reduce the overhead and effort for each release.
+Keep improving your releases and try Continuous Delivery or Continuous
+Deployment.
+
+Choose the best from each approach and apply it to your deployment pipeline.
 Then get to work shipping great software.
 
 [preflights]: {% post_url 2015-09-29-preflights-changed-our-world %}
