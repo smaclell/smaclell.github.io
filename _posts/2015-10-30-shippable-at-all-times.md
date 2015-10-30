@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Being Shippable At All Times"
-date:   2015-10-28 22:37:07
+date:   2015-10-30 01:00:07
 description: "Comparing and contrasting two approaches to being always shippable"
-tags: releases builds process ci preflights shipping release
+tags: releases builds process ci preflights shipping release master
 image:
   feature: nord-galaxy.jpg
   credit: Nord Galaxy by James Brooks CC BY 2.0
