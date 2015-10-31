@@ -38,6 +38,8 @@ In this post I am going to go show how to control visibility in C#. With these
 tools you can shape your classes to only allow the behaviour and visibility you
 want.
 
+TODO: indicate focus is on C#, assemblies and types
+
 The Basics: Classes
 ===============================================================================
 
@@ -103,6 +105,11 @@ immutabable classes (get, but no set)
 what about tests? The exception I would make to this is allowing test classes to access internal classes.
 As little as you can in web API's
 Consider the future, wait until then to act on it.
+namespaces
+
+Conclusion
+
+Minimize API. Use the language to your advantage to do exactly what you want.
 
 Notes
 -------------------------------------------------------------------------------
