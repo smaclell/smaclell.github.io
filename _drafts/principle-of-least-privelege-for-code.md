@@ -77,9 +77,32 @@ up large classes it is a code smell. However, it is commonly used to split
 generated code from your code. If you are generating you code code, try it out.
 
 Marking utility classes as ``static`` is fantastic. They can never be
-instantiated and cannot have normal class variables.
+instantiated and cannot have normal class variables. Great for helper classes
+which contain methods or does not need to save any state within the class. In
+order to create extension methods your class must be static.
 
-The exception I would make to this is allowing test classes to access internal classes.
+Deeper Inside Classes
+===============================================================================
+
+private
+protected
+internal
+internal protected ;)
+public
+
+abstract
+virtual
+static
+
+const
+readonly
+
+Advanced
+
+immutabable classes (get, but no set)
+what about tests? The exception I would make to this is allowing test classes to access internal classes.
+As little as you can in web API's
+Consider the future, wait until then to act on it.
 
 Notes
 -------------------------------------------------------------------------------
