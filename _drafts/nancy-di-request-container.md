@@ -6,7 +6,9 @@ tags: troubleshooting dependency-injection nancyfx viktor chris
 ---
 
 This week my coworkers, Chris and Viktor, had a fun issue they had a hard time
-getting to the root cause.
+getting to the root cause. They added some caching to speed up a heavily used
+route which led to some unexpected tests breaking. In this post I wanted to dig
+into the root cause for why it broke.
 
 Change:
 
@@ -47,3 +49,8 @@ request it broke.
 Having two levels of container is common. The child container is used first
 and then if a dependency cannot be found it then tries the application
 container.
+
+Reminder
+
+The one major lesson I learnt last year, was it is important to understand
+how your code works (TODO: Link). Have fun. Get to the root cause.
