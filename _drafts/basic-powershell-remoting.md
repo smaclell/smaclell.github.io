@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "The Windows Server Remote Trifecta"
-date:   2015-07-24 01:19:07
+title:  "Basic PowerShell Remoting"
+date:   2015-11-01 23:45:07
 description: "A simple overview of Enter-PSSession and Invoke-Command."
 tags: windows server-core remoting
 image:
@@ -12,7 +12,7 @@ image:
 
 Using remote PowerShell commands is a great way to remotely manage servers.
 I have been spending more time using Windows 2012 Server Core which makes using
-remote tools essential. In this post I will show off some extremely basic remote
+remote tools essential. In this post, I will show off some extremely basic remote
 PowerShell commands, ``Enter-PSSession`` and ``Invoke-Command``.
 
 Using PowerShell Remoting has changed how I manage other computers. Instead of
@@ -23,10 +23,10 @@ Shameless plug: if you have never used PowerShell before I strongly encourage
 you to learn [Get-Command, Get-Help and Get-Member][learn-ps] before getting
 started.
 
-Lets start with a simple command:
+Let's start with a simple command:
 
 {% highlight powershell %}
-Enter-PSSession -ComputerName Target
+Enter-PSSession -ComputerName 'Target'
 {% endhighlight %}
 
 This amazing command lets uses your current PowerShell prompt to run PowerShell
@@ -56,29 +56,38 @@ current prompt. This is great for one line commands like restarting IIS on the
 remote server "Target":
 
 {% highlight powershell %}
-Invoke-Command -ComputerName Target -ScriptBlock { iisreset }
+Invoke-Command -ComputerName 'Target' -ScriptBlock { iisreset }
 {% endhighlight %}
 
 Remote commands are allowed by default on Windows Server 2012 and beyond.
 On older operating systems you can run ``Enabled-PSRemoting -Force`` from
 an Administrator PowerShell prompt on the target machine to enable remoting. You can
-then test the connection by running ``Invoke-Command -ComputerName Target -ScriptBlock { echo hello }`` from another computer.
+then test the connection by running the following on another computer:
+
+{% highlight powershell %}
+ Invoke-Command -ComputerName 'Target' -ScriptBlock { echo 'hello' }
+{% endhighlight %}
 
 There are many other commands which natively support remote operations.
-These commands will often have a ``ComputerName`` parameter
-(you can see a whole list using ``Get-Command -ParameterName ComputerName``).
+These commands will often have a ``ComputerName`` parameter. You can see a list
+of commands with the ``ComputerName`` parameter by using:
+
+{% highlight powershell %}
+Get-Command -ParameterName 'ComputerName'
+{% endhighlight %}
 
 Among my favourites is ``Get-EventLog``. It is a great way to look at messages
 from a remote server without ever leaving the terminal. This example
 retrieves, formats and displays the last 5 error messages:
 
 {% highlight powershell %}
-Get-EventLog Application -Newest 5 -EntryType Error `
+Get-EventLog -ComputerName 'Target' -LogName 'Application' -Newest 5 -EntryType 'Error' `
 	| Format-List TimeWritten, Message `
 	| more
 {% endhighlight %}
 
 I hope you liked this mini intro to PowerShell remoting.
+Now go run some commands!
 
 
 [learn-ps]: {% post_url 2015-07-31-3-cmdlets-to-discover-powershell %}
