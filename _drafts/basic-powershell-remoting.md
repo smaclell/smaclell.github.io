@@ -10,18 +10,12 @@ image:
   creditlink: https://www.flickr.com/photos/johnsonderman/16031914875/
 ---
 
-Using remote PowerShell commands is a great way to remotely manage servers.
+Using remote PowerShell commands is a great way to manage servers.
 I have been spending more time using Windows 2012 Server Core which makes using
-remote tools essential. In this post, I will show off some extremely basic remote
-PowerShell commands, ``Enter-PSSession`` and ``Invoke-Command``.
-
-Using PowerShell Remoting has changed how I manage other computers. Instead of
-connecting using Remote Desktop I try to do everything using PowerShell remotely.
-I am going to show you some techniques for running commands remotely.
-
-Shameless plug: if you have never used PowerShell before I strongly encourage
-you to learn [Get-Command, Get-Help and Get-Member][learn-ps] before getting
-started.
+remote tools essential. Instead of connecting using Remote Desktop, I try to do
+everything using PowerShell remotely. In this post, I will show off some
+extremely basic remote PowerShell commands, ``Enter-PSSession`` and
+``Invoke-Command``.
 
 Let's start with a simple command:
 
@@ -29,11 +23,10 @@ Let's start with a simple command:
 Enter-PSSession -ComputerName 'Target'
 {% endhighlight %}
 
-This amazing command lets uses your current PowerShell prompt to run PowerShell
-commands on the remote computer "Target" interactively. You can run one command
-after another on the remote server just like how you would locally. When you
+This amazing command uses your current PowerShell prompt to run PowerShell
+commands interactively on the remote computer, "Target". When you
 are done type ``exit``. With this command you now have the complete
-might of a fully operational PowerShell at your fingers!
+might of a fully operational PowerShell!
 
 <figure class="image-center">
 	<a href="https://commons.wikimedia.org/wiki/File%3ALong_Beach_Comic_Expo_2011_-_Darth_Vader_and_his_stormtroopers_(5648076179).jpg">
@@ -51,9 +44,8 @@ might of a fully operational PowerShell at your fingers!
 
 You can run single or multiple commands using
 ``Invoke-Command``. Unlike ``Enter-PSSession``, this command is not interactive
-and will only run what you give it. Again results will be returned to your
-current prompt. This is great for one line commands like restarting IIS on the
-remote server "Target":
+and will still stream results back to your current prompt. This is great for
+one line commands like restarting IIS on the remote server "Target":
 
 {% highlight powershell %}
 Invoke-Command -ComputerName 'Target' -ScriptBlock { iisreset }
@@ -62,10 +54,10 @@ Invoke-Command -ComputerName 'Target' -ScriptBlock { iisreset }
 Remote commands are allowed by default on Windows Server 2012 and beyond.
 On older operating systems you can run ``Enabled-PSRemoting -Force`` from
 an Administrator PowerShell prompt on the target machine to enable remoting. You can
-then test the connection by running the following on another computer:
+then test the connection by running the following from another computer:
 
 {% highlight powershell %}
- Invoke-Command -ComputerName 'Target' -ScriptBlock { echo 'hello' }
+Invoke-Command -ComputerName 'Target' -ScriptBlock { echo 'hello' }
 {% endhighlight %}
 
 There are many other commands which natively support remote operations.
@@ -78,7 +70,8 @@ Get-Command -ParameterName 'ComputerName'
 
 Among my favourites is ``Get-EventLog``. It is a great way to look at messages
 from a remote server without ever leaving the terminal. This example
-retrieves, formats and displays the last 5 error messages:
+retrieves, formats and displays the last 5 error messages from the remote
+server "Target":
 
 {% highlight powershell %}
 Get-EventLog -ComputerName 'Target' -LogName 'Application' -Newest 5 -EntryType 'Error' `
@@ -88,6 +81,3 @@ Get-EventLog -ComputerName 'Target' -LogName 'Application' -Newest 5 -EntryType 
 
 I hope you liked this mini intro to PowerShell remoting.
 Now go run some commands!
-
-
-[learn-ps]: {% post_url 2015-07-31-3-cmdlets-to-discover-powershell %}
