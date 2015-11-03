@@ -79,12 +79,16 @@ up large classes it is a code smell. However, it is commonly used to split
 generated code from your code. If you are generating you code code, try it out.
 
 Marking utility classes as ``static`` is fantastic. They can never be
-instantiated and cannot have normal class variables. Great for helper classes
+instantiated and cannot have normal class variables. Every method and field
+must be declared as ``static``. Great for helper classes
 which contain methods or does not need to save any state within the class. In
 order to create extension methods your class must be static.
 
 Deeper Inside Classes
 ===============================================================================
+
+Within classes there is a great deal which can be done to modify visibility.
+Fields and methods can be modified so they are more or less exposed.
 
 private
 protected
@@ -94,12 +98,23 @@ public
 
 abstract
 virtual
-static
 
-const
-readonly
+Like utility classes, ``static`` can be used to define class level methods or
+fields. Small helper methods 
 
-Advanced
+Two modifiers in order to prevent fields from being written or updated are
+``const`` and ``readonly``. ``const`` can only be used with types which can
+be constants at compile time and cannot be modified at all. This works great
+with primitive types. ``readonly`` types can have other modifiers applied and
+can only be set when the object is being constructed. More complex types can be
+created using ``readonly`` and how they are built is up to you.
+
+Advanced Techniques Beyond Classes
+===============================================================================
+
+#### Immutability
+
+Allowing data you pass around to be created and never modified
 
 immutabable classes (get, but no set)
 what about tests? The exception I would make to this is allowing test classes to access internal classes.
