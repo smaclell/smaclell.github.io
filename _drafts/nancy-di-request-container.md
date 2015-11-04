@@ -42,7 +42,6 @@ class CachingProvider : IProvider {
         return m_value;
     }
 }
-
 {% endhighlight %}
 
 We adjusted our NancyBootstrapper configuration so TinyIoc would create reuse
@@ -52,19 +51,68 @@ Trouble In Paradise
 ===============================================================================
 
 Code was fine, oddly broke an integration tests which seemed unrelated.
-Test faked big chunks of the application including the area they changed.
+
+The test which broke was a larger integration test which faked a bunch of code
+to cut out dependencies which would slow down the tests or need to be
+controlled so we can create different cases. We overwrite the dependency
+injection configuration to modify the types we need for the test. It looks like
+this:
+
+{% highlight csharp %}
+class TestBootstrapper : NancyBootstrapper {
+
+    protected override void ConfigureApplicationContainer( TinyIoCContainer container ) {
+        base.ConfigureApplicationContainer( container );
+
+        container.Register<IProvider, TestProvider>();
+    }
+}
+{% endhighlight %}
+
+With some more investigation we found out the type that had been changed
+``IProvider`` was the type updated in the change! Fantastic.
 
 Getting It Working
 ===============================================================================
 
-They were able to track the problem down to the dependency injection of their
-new component, but did not know why. The test was replacing the component they
-had updated, but it had stopped working. Show original registration.
+After many hours of debugging and head to desk slamming they managed to fix the
+issue by allowing the registration to be overridden directly. The approach they
+used was to replace the registration for the faulty type they had modified.
+This change was pretty invasive and added new methods to be overridden.
 
-After many
-hours of debugging and head to desk slamming they managed to fix the issue by 
-allowing the registration to be overridden directly. This worked by the did
-not understand the root cause behind what was broken.
+The code sample below shows the new methods
+
+{% highlight csharp linenos %}
+class NancyBootstrapper {
+
+    protected override void ConfigureApplicationContainer( TinyIoCContainer container ) {
+        // Register other dependencies
+    }
+
+    protected override void ConfigureRequestContainer( TinyIoCContainer container ) {
+        // Register other dependencies
+
+        RegisterProvider();
+    }
+
+    protected virtual void RegisterProvider() {
+        container.Register<IProvider, CachingProvider>();
+    }
+}
+
+class TestBootstrapper : NancyBootstrapper {
+
+    protected override void ConfigureApplicationContainer( TinyIoCContainer container ) {
+        base.ConfigureApplicationContainer( container );
+    }
+
+    protected override void RegisterProvider( TinyIoCContainer container ) {
+        container.Register<IProvider, TestProvider>();
+    }
+}
+{% endhighlight %}
+
+This worked but they did not understand the root cause behind what was broken.
 
 Going Deeper: The Root Cause
 ===============================================================================
@@ -86,6 +134,38 @@ request it broke.
 Having two levels of container is common. The child container is used first
 and then if a dependency cannot be found it then tries the application
 container.
+
+{% highlight csharp linenos %}
+// Previously
+class TestBootstrapper : NancyBootstrapper {
+
+    protected override void ConfigureApplicationContainer( TinyIoCContainer container ) {
+        base.ConfigureApplicationContainer( container );
+
+        container.Register<IProvider, TestProvider>();
+    }
+
+    protected override void ConfigureRequestContainer( TinyIoCContainer container ) {
+        base.ConfigureRequestContainer( container );
+    }
+}
+{% endhighlight %}
+
+{% highlight csharp linenos %}
+// Fixed Test Boot
+class TestBootstrapper : NancyBootstrapper {
+
+    protected override void ConfigureApplicationContainer( TinyIoCContainer container ) {
+        base.ConfigureApplicationContainer( container );
+    }
+
+    protected override void ConfigureRequestContainer( TinyIoCContainer container ) {
+        base.ConfigureRequestContainer( container );
+
+        container.Register<IProvider, TestProvider>();
+    }
+}
+{% endhighlight %}
 
 Public Service Announcement
 ===============================================================================
