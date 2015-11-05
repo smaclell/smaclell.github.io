@@ -165,7 +165,14 @@ types are resolved the Request container is tried first and if nothing is found
 then the Application container is tried. If nothing is found the dependency
 fails to resolve which can cause an exception.
 
-TODO: Picture of the hierarchy
+<figure class="image-center">
+	<img
+		src="/images/di-levels.jpg"
+		alt="An image of the Application and Request containers with the TestProvider and CachingProvider respectively beside them">
+	<figcaption>
+		The test failed because it found the new CachingProvider instead of the TestProvider it needed.
+	</figcaption>
+</figure>
 
 With this new knowledge the fix was relatively straight forward. We registered
 the fake ``IProvider`` per Request and the problem was solved.
