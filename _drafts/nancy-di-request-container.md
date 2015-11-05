@@ -2,6 +2,7 @@
 layout: post
 title:  "NancyFx's DI Request Container"
 date:   2015-11-06 22:37:07
+description: "A story about digging into an issue we caused then fixed with NancyFX and TinyIoC"
 tags: troubleshooting dependency-injection nancyfx tinyioc viktor chris
 ---
 
@@ -50,17 +51,11 @@ the same ``CachingProvider`` for each request and were off to the races.
 {% highlight csharp %}
 class NancyBootstrapper : DefaultNancyBootstrapper {
 
-    protected override void ConfigureApplicationContainer(
-        TinyIoCContainer container
-    ) {
-        base.ConfigureApplicationContainer( container );
-    }
-
     protected override void ConfigureRequestContainer(
         TinyIoCContainer container,
         NancyContext context
     ) {
-        base.ConfigureRequestContainer( container, context );
+        // Register other types here
 
         container.Register<IProvider>( (x, options) => {
             IProvider implementation = x.Resolve<RealProvider>();
@@ -90,7 +85,7 @@ class TestBootstrapper : NancyBootstrapper {
     protected override void ConfigureApplicationContainer(
         TinyIoCContainer container
     ) {
-        base.ConfigureApplicationContainer( container );
+        // Register other types here
 
         container.Register<IProvider, TestProvider>();
     }
@@ -114,12 +109,6 @@ register the updated type:
 
 {% highlight csharp %}
 class NancyBootstrapper : DefaultNancyBootstrapper {
-
-    protected override void ConfigureApplicationContainer(
-        TinyIoCContainer container
-    ) {
-        // Register other dependencies
-    }
 
     protected override void ConfigureRequestContainer(
         TinyIoCContainer container,
@@ -188,7 +177,7 @@ class TestBootstrapper : NancyBootstrapper {
     protected override void ConfigureApplicationContainer(
         TinyIoCContainer container
     ) {
-        base.ConfigureApplicationContainer( container );
+        // Register other types here
 
         // Previously configured here
         // container.Register<IProvider, TestProvider>();
@@ -198,7 +187,7 @@ class TestBootstrapper : NancyBootstrapper {
         TinyIoCContainer container,
         NancyContext context
     ) {
-        base.ConfigureRequestContainer( container, context );
+        // Register other types here
 
         // Fixes the root cause and overwrites the new IProvider
         container.Register<IProvider, TestProvider>();
@@ -209,7 +198,18 @@ class TestBootstrapper : NancyBootstrapper {
 Public Service Announcement
 ===============================================================================
 
-The one major lesson I learnt last year, was it is important to understand
-how your code works (TODO: Link). Have fun. Get to the root cause.
+Phew. You made it this far. What is the major lesson?
+
+> It is important to [understand how your code works][rc]!
+> Especially when it breaks.
+
+We went deeper into Nancy and figured out how the dependency injection worked!
+It was great and afterwards we could make a fix in a much simpler way.
+
+Next time you are troubleshooting an issue make sure you find the root cause.
+Going deeper is worth the extra time. You will understand the problem better
+and the next time something comes up you will know what to do.
+
+Until then happy troubleshooting.
 
 [rc]: {% post_url 2015-03-04-lessons-learnt-while-finding-the-root-cause %}
