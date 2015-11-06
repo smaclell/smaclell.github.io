@@ -152,7 +152,7 @@ class TestBootstrapper : NancyBootstrapper {
 }
 {% endhighlight %}
 
-This worked but they still had not gotten the the root cause as to why the test
+This worked but they still had not gotten the root cause as to why the test
 was broken. They had only addressed the symptom which was causing the test to fail.
 It is not shown here, but several other methods were moved around to accommodate the change. We did not
 like this and knew there must be a better way.
@@ -218,7 +218,7 @@ Phew. You made it this far. What is the major lesson?
 > Especially when it doesn't.
 
 We went deeper into Nancy and figured out how the dependency injection worked!
-It was great. Afterwards we could make the fix in a much simpler way.
+It was great. Afterwards, we could make the fix in a much simpler way.
 
 Next time you are troubleshooting an issue make sure you find the root cause.
 Going deeper is worth the extra time. You will understand the problem better
