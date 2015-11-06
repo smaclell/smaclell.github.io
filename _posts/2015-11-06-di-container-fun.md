@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Dependency Injection Fun in NancyFx/TinyIoC"
-date:   2015-11-06 22:37:07
+date:   2015-11-06 00:34:07
 description: "A story about digging into an issue with dependency injection in NancyFX and TinyIoC we caused then fixed"
 tags: troubleshooting dependency-injection nancyfx tinyioc viktor chris
 ---
