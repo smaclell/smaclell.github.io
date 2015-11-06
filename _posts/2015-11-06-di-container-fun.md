@@ -226,6 +226,11 @@ and the next time something comes up you will know what to do.
 
 Until then happy troubleshooting.
 
+<hr />
+
+*I would like to thank Chris and Viktor for letting me write up this post and
+doing all the leg work for this issue.*
+
 [rc]: {% post_url 2015-03-04-lessons-learnt-while-finding-the-root-cause %}
 [nancy]: http://nancyfx.org/
 [tinyioc]: https://github.com/grumpydev/TinyIoC
