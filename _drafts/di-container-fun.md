@@ -17,7 +17,7 @@ a focused performance improvement. On the surface the change was straight
 forward. They wanted to add caching to a specific request which queried the
 same values multiple times.
 
-To simplify the logic they decided to reused the same values ever time it was
+To simplify the logic they decided to reuse the same values ever time it was
 used during a request. This kept the caching rules really simple and meant
 we did not have to care about cache invalidation. A new request could get new values and
 we did not need to determine how long cached values are valid.
@@ -182,7 +182,7 @@ fails to resolve which can cause an exception.
 
 With this new knowledge the fix was relatively straight forward. We registered
 the fake ``IProvider`` per Request. This overwrites the ``CachingProvider``
-registration with the ``TestProvider`` and the solves the problem.
+registration with the ``TestProvider`` and solves the problem.
 
 {% highlight csharp %}
 // Fixed Test Boot
