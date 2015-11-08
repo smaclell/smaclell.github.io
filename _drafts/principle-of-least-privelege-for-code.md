@@ -34,14 +34,28 @@ Strive for private by default. Everything not public can be more easily
 refactored and improved. By keeping as much code private/internal you can you
 decrease the surface area of the public API. If it ain't pubic it is private.
 
-In this post I am going to go show how to control visibility in C#. With these
-tools you can shape your classes to only allow the behaviour and visibility you
-want.
+In this post I am going to go show how to classes and assemblies in C#. While
+these ideas are applicable at many levels I find they are easier to apply to
+raw code. The examples will show how you can shape your classes to only allow
+the behaviour and visibility you want.
 
 TODO: indicate focus is on C#, assemblies and types
 
 The Basics: Classes
 ===============================================================================
+
+Here is the story of two classes. One is very open and could easily by used in
+ways you would not want. The second is locked down so it can only be used in
+the way it was intended. The goal is to streamline the API provided by your
+classes and assemblies.
+
+// TODO: Travis recommended writing side by side example then breaking them down.
+{% highlight csharp %}
+public class CsvCalculator {
+    public int Process( string filePath ) { ... }
+    public int Add( IEnumeable<int> values ) { ... }
+}
+{% endhighlight %}
 
 Classes tend to be a bit chunkier. They provide larger entry points to the
 concrete behaviour your library or project provides.
