@@ -19,20 +19,18 @@ more that can be attacked by hackers. By using the lowest permissions possible
 for any user, process, service or server reduces what is exposed if they were
 compromised.
 
-Great. So we can apply the idea to code too. Restrict what exactly? I think the focus should be controlling
-visibility between classes/assemblies. This also naturally leads to strictly
-defining your public API. After all if you have not exposed it then it remains
-private. Anyone else does not have enough privilege to use you code outside of
-the limited surface area you define.
+Great. So we can apply the idea to code too. Restrict what exactly? The
+visibility between classes/assemblies. What is exposed at this level defines
+their public API.
 
-You want to be very intentional with what you make public. Anything you make
-public will need to be supported, maintained and versioned over time. I think
-it is important to strive for clean minimalist APIs which provide the exact
-functionality they were designed to provide.
+You should be very intentional with what you make public. Anything you make
+public will need to be supported and maintained. Once made public removing or
+changing what is exposed without break changes is harder. Having a bigger API
+has more chances to expose the code you will later want to change.
 
-Strive for private by default. Everything not public can be more easily
+For this reason I favour minimalist APIs. Everything not public can be more easily
 refactored and improved. By keeping as much code private/internal you can you
-decrease the surface area of the public API. If it ain't pubic it is private.
+decrease the surface area of the public API.
 
 In this post I am going to go show how to classes and assemblies in C#. While
 these ideas are applicable at many levels I find they are easier to apply to
@@ -40,6 +38,24 @@ raw code. The examples will show how you can shape your classes to only allow
 the behaviour and visibility you want.
 
 TODO: indicate focus is on C#, assemblies and types
+
+A simple example: A Factory
+===============================================================================
+
+Some database context.
+
+Hide Internals: A Worker Class
+===============================================================================
+
+How do you test?
+Inputs to Outputs.
+Behaviours.
+
+All Action: Helper Classes
+===============================================================================
+
+Manage state: Immutable Classes
+===============================================================================
 
 The Basics: Classes
 ===============================================================================
