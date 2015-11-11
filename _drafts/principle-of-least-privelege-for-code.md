@@ -5,8 +5,6 @@ date:   2015-09-29 22:37:07
 tags: preflights builds ci daryl quality
 ---
 
-Recommendation: Write the post then work on breaking it down. Idea, Extension and Practice are three possible ways.
-
 There is a principle in computer science called the Principle of Least
 Privilege. It was originally applied to security as a recommendation for
 giving any process, user or program the least access possible. I think this
@@ -50,6 +48,9 @@ Hide Internals: A Worker Class
 How do you test?
 Inputs to Outputs.
 Behaviours.
+
+Inheritance: Template Class
+===============================================================================
 
 All Action: Helper Classes
 ===============================================================================
