@@ -71,9 +71,58 @@ internal class CoolWidget : IWidget {
 Hide Internals: A Worker Class
 ===============================================================================
 
-How do you test?
-Inputs to Outputs.
-Behaviours.
+Doing work in classes can get complicated. I looked through a whole bunch of
+our code and found we often tried to use private methods for doing little bits
+for work.
+
+We had worker classes which would process some work then at the end send a
+callback. Within the class there was a handy method for sending callbacks.
+It used other classes to do the real heavy lifting and helped do some setup.
+
+{% highlight csharp %}
+public class Worker {
+    public void Process( Work work ) {
+        ...
+        SendCallback( work.CallbackUrl )
+    }
+
+    public void SendCallback( Uri url ) {
+        ...
+    }
+}
+{% endhighlight %}
+
+The sample above doesn't make sense. Why would ``SendCallback`` be public? It
+doesn't fit with the purpose of the rest of the class. It would be private!
+
+{% highlight csharp %}
+public class Worker {
+    private void SendCallback( Uri url ) {
+        ...
+    }
+}
+{% endhighlight %}
+
+Much better. Had we left this method public it could accidentally be used.
+Keeping it private allows it to continue to evolve with the class it supports.
+
+Sounds good right? There is a catch, testing these methods is harder. You can't
+test them directly because they are now private. Instead you need to test them
+through the inputs/outputs on the other methods or their behaviours. If the
+logic is really complicated you might want to pull it out into it's own classes
+and interfaces.
+
+{% highlight csharp %}
+internal interface ISender {
+    void SendCallback( Uri url );
+}
+
+internal class Sender {
+    void SendCallback( Uri url ) { ... }
+}
+{% endhighlight %}
+
+This lets us keep the logic testable yet keeps the external API small.
 
 Inheritance: Template Class
 ===============================================================================
