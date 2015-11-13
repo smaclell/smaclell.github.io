@@ -40,7 +40,33 @@ TODO: indicate focus is on C#, assemblies and types
 A simple example: A Factory
 ===============================================================================
 
-Some database context.
+Lets try a simple example. If you have a factory class you wouldn't keep the
+original factory public would you?
+
+{% highlight csharp %}
+public class WidgetFactory {
+    IWidget Create() {
+        return new CoolWidget();
+    }
+}
+
+public class CoolWidget : IWidget {
+    ...
+}
+{% endhighlight %}
+
+If ``CoolWidget`` is public then why would you need the factory? People could
+start calling the class directly which would make the factory unnecessary. Or
+unneeded until you want to change the type created by the ``WidgetFactory``.
+By exposing ``CoolWidget`` you make it harder to change the widgets.
+
+Instead ``CoolWidget`` should be internal! Much better.
+
+{% highlight csharp %}
+internal class CoolWidget : IWidget {
+    ...
+}
+{% endhighlight %}
 
 Hide Internals: A Worker Class
 ===============================================================================
