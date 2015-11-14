@@ -122,13 +122,114 @@ internal class Sender {
 }
 {% endhighlight %}
 
-This lets us keep the logic testable yet keeps the external API small.
+This lets us keep the logic testable yet keeps the external API small. There
+are now more classes which might make the code more complicated.
 
 Inheritance: Template Class
 ===============================================================================
 
+Controlling inheritance is useful. Most developers I work with avoid using it
+like the plague due to issues they had in the past. Now the default is to mark
+all classes as ``sealed``:
+
+{% highlight csharp %}
+public sealed class CantTouchThis { }
+{% endhighlight %}
+
+Marking classes as ``sealed`` prevents them from being inherited which can lock
+down bad uses of inheritance. To be honest I think it can be overkill as there
+are very few cases where you want to explicitly block inheritance. More often
+than not you don't have to worry about it since people don't willy nilly start
+inheriting from your classes.
+
+Base classes can be useful. I use them to setup [template methods][templates]
+or share common/optional functionality. This isn't often and I like to treat it
+as yet another tool in my tool belt.
+
+{% highlight csharp %}
+public abstract class PaymentCalculatorBase {
+
+    public decimal CalculatePayment() {
+
+        ...
+        decimal multiplier = GetTaxesMultiplier( totalIncome );
+        ...
+
+    }
+
+    protected decimal abstract GetTaxesMultiplier( decimal totalIncome ) {
+        ...
+    }
+}
+
+public sealed class FlatPaymentCalculator {
+
+    protected override GetTaxesMultiplier( decimal totalIncome ) {
+        return 0.05;
+    }
+}
+
+public sealed class ProgressivePaymentCalculator {
+
+    protected override GetTaxesMultiplier( decimal totalIncome ) {
+        if( totalIncome > 75000) {
+            return 0.15;
+        } else if( totalIncome > 50000) {
+            return 0.12;
+        } else if( totalIncome > 25000) {
+            return 0.08;
+        } else
+            return 0.05;
+        }
+    }
+}
+{% endhighlight %}
+
+The ``PaymentCalculatorBase`` is an abstract class with the template method
+``CalculatePayment`` which uses the abstract ``GetTaxesMultiplier`` method.
+This forces classes inheriting from ``PaymentCalculatorBase`` to implement
+the required methods. Child classes can choose to implement the behaviour
+however they like.
+
+Another great alternative is to have the base class implement a range of
+common functionality with methods that can be optionally overridden. I used
+this recently to make optionally implementing part of an API easier. The class
+had a method to return an ``IEnumerable`` which would return an empty
+``IEnumerable`` from the base class. When they were ready child classes could
+override the method and provide the new functionality.
+
+{% highlight csharp %}
+public class HandyBase {
+    public virtual IEnumerable<IExample> GetExamples() {
+        return Enumerable.Empty<IExample>();
+    }
+}
+{% endhighlight %}
+
 All Action: Helper Classes
 ===============================================================================
+
+Every now and then there are ``Helper`` classes with nothing, but simple
+functions to make life easier. It is useful to mark these classes as ``static``
+to prevent them from being instantiated. Having the class be ``static`` ensures
+all the methods must also be declared as ``static``. You might use it for a
+helper class like this one:
+
+{% highlight csharp %}
+internal static class UrlHelpers {
+    public static Uri FormatUri( Uri baseUrl, string route ) {
+        ...
+    }
+
+    public static Uri TruncateUri( Uri baseUrl ) {
+        ...
+    }
+
+    public static Uri SomethingWithAUri( Uri baseUrl ) {
+        ...
+    }
+}
+{% endhighlight %}
 
 Manage state: Immutable Classes
 ===============================================================================
@@ -247,3 +348,5 @@ Few public classes intentionally exposed which define the API. Everything not ex
 Fewer places to carefully version and update.
 
 Don't leave data open for whatif scenarios. Expose it when you need it. YAGNI.
+
+[templates]: https://sourcemaking.com/design_patterns/template_method
