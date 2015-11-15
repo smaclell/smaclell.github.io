@@ -234,6 +234,48 @@ internal static class UrlHelpers {
 Manage state: Immutable Classes
 ===============================================================================
 
+I think it is worth the minor effort to control whether fields/properties can
+be modified. Limiting the number of ways data can be modified and passed around
+can help highlight the right way to use your classes.
+
+In this simple example I have made a ``Person`` class which is immutable. If this
+data was stored in a database, you would have other classes for retrieving and
+updating. Anyone trying to create a ``Person`` must provide the necessary fields
+which prevent invalid objects from being created.
+
+{% highlight csharp %}
+public sealed class Person {
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
+
+    public Person( string first, string last ) {
+        FirstName = first;
+        LastName = last;
+    }
+}
+{% endhighlight %}
+
+You can take this even further if you would like. I used properties to make
+writing ``FirstName`` and ``LastName`` easier. You can just as easily use
+``readonly`` to only allow the fields to be initialized in the constructor.
+This further enforces the class being created as immutable with extra help
+from the compiler.
+
+{% highlight csharp %}
+public sealed class Person {
+    private readonly string m_firstName;
+    private readonly string m_lastName;
+
+    public string FirstName { get { return m_firstName; } }
+    public string LastName { get { return m_lastName; } }
+
+    public Person( string first, string last ) {
+        m_firstName = first;
+        m_lastName = last;
+    }
+}
+{% endhighlight %}
+
 The Basics: Classes
 ===============================================================================
 
