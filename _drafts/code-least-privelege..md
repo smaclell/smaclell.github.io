@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Principle of Least Privilege for Code"
-date:   2015-09-29 22:37:07
-tags: preflights builds ci daryl quality
+title:  "Code with the Least Privilege"
+date:   2015-11-16 22:37:07
+tags: code ideas minimalist
 ---
 
 There is a principle in computer science called the Principle of Least
@@ -150,16 +150,12 @@ as yet another tool in my tool belt.
 public abstract class PaymentCalculatorBase {
 
     public decimal CalculatePayment() {
-
         ...
         decimal multiplier = GetTaxesMultiplier( totalIncome );
         ...
-
     }
 
-    protected decimal abstract GetTaxesMultiplier( decimal totalIncome ) {
-        ...
-    }
+    protected decimal abstract GetTaxesMultiplier( decimal totalIncome );
 }
 
 public sealed class FlatPaymentCalculator {
