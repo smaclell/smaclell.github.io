@@ -30,12 +30,11 @@ For this reason I favour minimalist APIs. Everything not public can be more easi
 refactored and improved. By keeping as much code private/internal you can you
 decrease the surface area of the public API.
 
-In this post I am going to go show how to classes and assemblies in C#. While
-these ideas are applicable at many levels I find they are easier to apply to
-raw code. The examples will show how you can shape your classes to only allow
-the behaviour and visibility you want.
-
-TODO: indicate focus is on C#, assemblies and types
+In this post I am going to go show how to use the keywords in C# to restrict
+your code as much as possible. While you can apply the sane ideas to APIs, I
+will focus on backend code here. Continue for several examples inspired by code
+we use daily which highlight different techniques for controlling your code to
+only allow the behaviour and visibility you want.
 
 A simple example: A Factory
 ===============================================================================
@@ -72,12 +71,12 @@ Hide Internals: A Worker Class
 ===============================================================================
 
 Doing work in classes can get complicated. I looked through a whole bunch of
-our code and found we often tried to use private methods for doing little bits
-for work.
+our code and found we often use private methods for doing little bits of work.
 
-We had worker classes which would process some work then at the end send a
-callback. Within the class there was a handy method for sending callbacks.
-It used other classes to do the real heavy lifting and helped do some setup.
+We had worker classes which would process queued work then send callbacks.
+Within the class there was a handy method for sending callbacks.
+It used other classes to do the real heavy lifting. The helpers method would
+format the callback url and other parameters.
 
 {% highlight csharp %}
 public class Worker {
@@ -93,13 +92,14 @@ public class Worker {
 {% endhighlight %}
 
 The sample above doesn't make sense. Why would ``SendCallback`` be public? It
-doesn't fit with the purpose of the rest of the class. It would be private!
+doesn't fit with the purpose of the rest of the class. The method is only used
+for one reason and benefits from being isolated from the rest of the Worker
+class while still being related enough to the other code to stay there. Since
+we would never want other classes using the method, it should be private!
 
 {% highlight csharp %}
 public class Worker {
-    private void SendCallback( Uri url ) {
-        ...
-    }
+    private void SendCallback( Uri url ) { ... }
 }
 {% endhighlight %}
 
@@ -108,22 +108,33 @@ Keeping it private allows it to continue to evolve with the class it supports.
 
 Sounds good right? There is a catch, testing these methods is harder. You can't
 test them directly because they are now private. Instead you need to test them
-through the inputs/outputs on the other methods or their behaviours. If the
-logic is really complicated you might want to pull it out into it's own classes
-and interfaces.
+indirectly through the inputs/outputs on the other methods or their behaviours.
+If the logic is really complicated you might want to pull it out into it's own
+classes and interfaces.
+
+In the example above we have separated actually sending the callback into a
+different class. This lets us test the two classes separately and better
+isolate the logic for sending callbacks. The private method is still useful
+and allows us to prepare the ``Payload``. The resulting helper classes look
+like this:
 
 {% highlight csharp %}
 internal interface ISender {
-    void SendCallback( Uri url );
+    void SendCallback( Uri url, Payload payload );
 }
 
 internal class Sender {
-    void SendCallback( Uri url ) { ... }
+    void SendCallback( Uri url, Payload payload ) { ... }
 }
 {% endhighlight %}
 
 This lets us keep the logic testable yet keeps the external API small. There
 are now more classes which might make the code more complicated.
+
+We intentionally keep these helper classes internal. While they are useful they
+have been created just for use within this assembly. Right now we don't think
+anyone else would want to send their callbacks the same way and otherwise it
+doesn't belong in the API.
 
 Inheritance: Template Class
 ===============================================================================
