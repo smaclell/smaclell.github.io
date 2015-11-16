@@ -140,9 +140,8 @@ Inheritance: No Family History
 ===============================================================================
 
 Controlling inheritance is useful. Most developers I work with avoid using it
-like the plague due to issues they had in the past. Composition over
-inheritence is not only recommended, it is enforced by marking most classes as
-``sealed``:
+like the plague due to issues they had in the past. [Composition over inheritance][coi]
+is not only recommended, it is enforced by marking most classes as ``sealed``:
 
 {% highlight csharp %}
 public sealed class CantTouchThis { }
@@ -408,3 +407,4 @@ Fewer places to carefully version and update.
 Don't leave data open for whatif scenarios. Expose it when you need it. YAGNI.
 
 [templates]: https://sourcemaking.com/design_patterns/template_method
+[coi]: https://en.wikipedia.org/wiki/Composition_over_inheritance
