@@ -136,31 +136,40 @@ have been created just for use within this assembly. Right now we don't think
 anyone else would want to send their callbacks the same way and otherwise it
 doesn't belong in the API.
 
-Inheritance: Template Class
+Inheritance: No Family History
 ===============================================================================
 
 Controlling inheritance is useful. Most developers I work with avoid using it
-like the plague due to issues they had in the past. Now the default is to mark
-all classes as ``sealed``:
+like the plague due to issues they had in the past. Composition over
+inheritence is not only recommended, it is enforced by marking most classes as
+``sealed``:
 
 {% highlight csharp %}
 public sealed class CantTouchThis { }
 {% endhighlight %}
 
 Marking classes as ``sealed`` prevents them from being inherited which can lock
-down bad uses of inheritance. To be honest I think it can be overkill as there
+down bad inheritance. To be honest I think it is overkill since there
 are very few cases where you want to explicitly block inheritance. More often
-than not you don't have to worry about it since people don't willy nilly start
-inheriting from your classes.
+than not you don't have to worry about it. People don't willy nilly start
+inheriting from classes.
+
+Inheritance: Template Class
+===============================================================================
 
 Base classes can be useful. I use them to setup [template methods][templates]
 or share common/optional functionality. This isn't often and I like to treat it
-as yet another tool in my tool belt.
+as yet another tool which can be used.
+
+To enforce the purpose you envisioned for your base classes I recommend using
+``abstract`` classes/methods. It ensures your desired methods must be
+implemented by child classes. The base class itself cannot be instantiated
+which further clarifies its purpose.
 
 {% highlight csharp %}
-public abstract class PaymentCalculatorBase {
+public abstract class TaxesCalculatorBase {
 
-    public decimal CalculatePayment() {
+    public decimal CalculateTaxes() {
         ...
         decimal multiplier = GetTaxesMultiplier( totalIncome );
         ...
@@ -169,14 +178,14 @@ public abstract class PaymentCalculatorBase {
     protected decimal abstract GetTaxesMultiplier( decimal totalIncome );
 }
 
-public sealed class FlatPaymentCalculator {
+public sealed class FlatTaxesCalculator : TaxesCalculatorBase {
 
     protected override GetTaxesMultiplier( decimal totalIncome ) {
         return 0.05;
     }
 }
 
-public sealed class ProgressivePaymentCalculator {
+public sealed class ProgressiveTaxesCalculator : TaxesCalculatorBase{
 
     protected override GetTaxesMultiplier( decimal totalIncome ) {
         if( totalIncome > 75000) {
@@ -192,21 +201,21 @@ public sealed class ProgressivePaymentCalculator {
 }
 {% endhighlight %}
 
-The ``PaymentCalculatorBase`` is an abstract class with the template method
-``CalculatePayment`` which uses the abstract ``GetTaxesMultiplier`` method.
-This forces classes inheriting from ``PaymentCalculatorBase`` to implement
-the required methods. Child classes can choose to implement the behaviour
-however they like.
+The ``TaxesCalculatorBase`` is an abstract class with the template method
+``CalculateTaxes`` which uses the abstract ``GetTaxesMultiplier`` method.
+This forces classes inheriting from ``TaxesCalculatorBase`` to implement
+the required methods however they like. To prevent the hierarchy from
+growing out of hand you can optionally mark the child classes as ``sealed``.
 
-Another great alternative is to have the base class implement a range of
-common functionality with methods that can be optionally overridden. I used
+Another great usage is implementing common or optional functions in the base
+class. I used
 this recently to make optionally implementing part of an API easier. The class
-had a method to return an ``IEnumerable`` which would return an empty
-``IEnumerable`` from the base class. When they were ready child classes could
-override the method and provide the new functionality.
+had a method to return an ``IEnumerable`` which would be empty in the base
+implementation. When they were ready child classes could
+override the method to provide new functionality.
 
 {% highlight csharp %}
-public class HandyBase {
+public class ExampleProviderBase {
     public virtual IEnumerable<IExample> GetExamples() {
         return Enumerable.Empty<IExample>();
     }
