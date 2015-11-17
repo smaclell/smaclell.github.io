@@ -224,27 +224,23 @@ public class ExampleProviderBase {
 All Action: Helper Classes
 ===============================================================================
 
-Every now and then there are ``Helper`` classes with nothing, but simple
-functions to make life easier. It is useful to mark these classes as ``static``
-to prevent them from being instantiated. Having the class be ``static`` ensures
-all the methods must also be declared as ``static``. You might use it for a
-helper class like this one:
+Every now and then we have ``Helper`` classes with only methods and no state.
+Stateless classes with helper methods can be made ``static`` to prevent them
+from being instantiated or having instance variables added. If you had a
+helper classes for ``Uri``'s it might look like this:
 
 {% highlight csharp %}
 internal static class UrlHelpers {
-    public static Uri FormatUri( Uri baseUrl, string route ) {
-        ...
-    }
+    public static Uri FormatUri( Uri baseUrl, string route ) { ... }
 
-    public static Uri TruncateUri( Uri baseUrl ) {
-        ...
-    }
+    public static Uri TruncateUri( Uri baseUrl ) { ... }
 
-    public static Uri SomethingWithAUri( Uri baseUrl ) {
-        ...
-    }
+    public static Uri SomethingWithAUri( Uri baseUrl ) { ... }
 }
 {% endhighlight %}
+
+The ``static`` constraint helps the class stay functional. Having the class be
+``static`` ensures all the methods must also be declared as ``static``.
 
 Manage state: Immutable Classes
 ===============================================================================
