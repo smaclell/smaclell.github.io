@@ -311,6 +311,37 @@ Immutable classes strongly shape how users interact with them. They can
 reinforce readonly parts of the system and highlight how you actually want data
 to be updated.
 
+TODO: Show off the new C# 6 options.
+
+Generics: A different Animal
+===============================================================================
+
+When using generics I try to include any applicable constraints. They don't
+come up often, but the little extra treatment to add constraints ensures they
+values they contain match your expectations.
+
+TODO: Finish and Test
+
+{% highlight csharp %}
+// All instances of T must be a reference type
+public class ClassyList<T> where T: class {}
+
+// T is both an Exception and has a default constructor
+public class ExceptionThrower<T> where T: Exception, new() {}
+
+public interface IFactory<T> where T : class { }
+
+public class DefaultFactory<T> : IFactory<T>, where T: new() {
+    public T Create() {
+        return new T();
+    }
+}
+
+public class Adapter<T,V> {
+    
+}
+{% endhighlight %}
+
 The Basics: Classes
 ===============================================================================
 
@@ -428,3 +459,4 @@ Don't leave data open for whatif scenarios. Expose it when you need it. YAGNI.
 
 [templates]: https://sourcemaking.com/design_patterns/template_method
 [coi]: https://en.wikipedia.org/wiki/Composition_over_inheritance
+[generics]: https://msdn.microsoft.com/en-us/library/d5x73970.aspx
