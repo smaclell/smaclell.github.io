@@ -342,120 +342,15 @@ public class Adapter<T,V> {
 }
 {% endhighlight %}
 
-The Basics: Classes
-===============================================================================
-
-Here is the story of two classes. One is very open and could easily by used in
-ways you would not want. The second is locked down so it can only be used in
-the way it was intended. The goal is to streamline the API provided by your
-classes and assemblies.
-
-// TODO: Travis recommended writing side by side example then breaking them down.
-{% highlight csharp %}
-public class CsvCalculator {
-    public int Process( string filePath ) { ... }
-    public int Add( IEnumeable<int> values ) { ... }
-}
-{% endhighlight %}
-
-Classes tend to be a bit chunkier. They provide larger entry points to the
-concrete behaviour your library or project provides.
-
-Luckily in C# they control over classes is pretty simple. 
-
-* Expose a class using ``public``
-* Hide a class within an assembly using ``internal``
-* Force inheritance to implement methods using ``abstract``
-* Prevent all inheritance using ``sealed``
-* Break up declaring a class into separate files using ``partial``
-* Create utility classes using ``static``
-
-At two ends of a very narrow spectrum are ``public`` and ``internal``. You want
-almost all your classes to be ``internal`` and only a few exposed using
-``public``.
-
-The next modifiers ``abstract`` and ``sealed`` are great for controlling how
-and if your classes are inherited. Both modifiers are very powerful and define
-how classes can be used.
-
-Using ``abstract`` classes with abstract methods force
-consumers to implement your base classes. This can be great for [Template Methods/Classes][TODO]
-for laying out how you want the class to be used.
-
-After having inheritance
-abused for too long we have started to use ``sealed`` heavily. If this is not a
-problem for you I would not both including it. However, it allow you
-intentionally force composition over inheritance by preventing classes from
-being extended unless you want them too be.
-
-The next modifier ``partial`` is nice to break up larger classes or isolate
-generated code. It is reasonable to say if you want to use ``partial`` to break
-up large classes it is a code smell. However, it is commonly used to split
-generated code from your code. If you are generating you code code, try it out.
-
-Marking utility classes as ``static`` is fantastic. They can never be
-instantiated and cannot have normal class variables. Every method and field
-must be declared as ``static``. Great for helper classes
-which contain methods or does not need to save any state within the class. In
-order to create extension methods your class must be static.
-
-Deeper Inside Classes
-===============================================================================
-
-Within classes there is a great deal which can be done to modify visibility.
-Fields and methods can be modified so they are more or less exposed.
-
-private
-protected
-internal
-internal protected ;)
-public
-
-abstract
-virtual
-
-Like utility classes, ``static`` can be used to define class level methods or
-fields. Small helper methods 
-
-Two modifiers in order to prevent fields from being written or updated are
-``const`` and ``readonly``. ``const`` can only be used with types which can
-be constants at compile time and cannot be modified at all. This works great
-with primitive types. ``readonly`` types can have other modifiers applied and
-can only be set when the object is being constructed. More complex types can be
-created using ``readonly`` and how they are built is up to you.
-
-Advanced Techniques Beyond Classes
-===============================================================================
-
-#### Immutability
-
-Allowing data you pass around to be created and never modified
-
-immutabable classes (get, but no set)
-what about tests? The exception I would make to this is allowing test classes to access internal classes.
-As little as you can in web API's
-Consider the future, wait until then to act on it.
-namespaces
-
 Conclusion
+===============================================================================
 
 Minimize API. Use the language to your advantage to do exactly what you want.
-
-Notes
--------------------------------------------------------------------------------
 
 Everything should be private/internal.
 Be very intentional about what is made public.
 
 Minimalist APIs
-
-Small the surface area the fewer places classes can break each other.
-Increases the attention on fewer places.
-
-Few public classes intentionally exposed which define the API. Everything not exposed is free to evolve whereas the API is not.
-Fewer places to carefully version and update.
-
-Don't leave data open for whatif scenarios. Expose it when you need it. YAGNI.
 
 [templates]: https://sourcemaking.com/design_patterns/template_method
 [coi]: https://en.wikipedia.org/wiki/Composition_over_inheritance
