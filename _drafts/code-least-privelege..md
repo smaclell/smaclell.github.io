@@ -291,6 +291,30 @@ public sealed class Person {
 }
 {% endhighlight %}
 
+Another great immutability technique is to create a new object after every
+method which would otherwise modify the current object. A great example of this
+is the ``DateTime`` and ``string`` classes:
+
+{% highlight csharp %}
+DateTime now = DateTime.Now;
+DateTime future = now.AddDays( 2.5 );
+
+if( now == future ) {
+    Console.WriteLine( "The future {0} is different than now {1}", future, now );
+}
+
+string example = "Hello World";
+string updated = example.Replace( "l", "" );
+
+if( updated == "Heo Word" ) {
+    Console.WriteLine( "The example phrase was updated!")
+}
+{% endhighlight %}
+
+Immutable classes strongly shape how users interact with them. They can
+reinforce readonly parts of the system and highlight how you actually want data
+to be updated.
+
 The Basics: Classes
 ===============================================================================
 
