@@ -323,22 +323,24 @@ values they contain match your expectations.
 TODO: Finish and Test
 
 {% highlight csharp %}
-// All instances of T must be a reference type
-public class ClassyList<T> where T: class {}
-
 // T is both an Exception and has a default constructor
 public class ExceptionThrower<T> where T: Exception, new() {}
 
+// All instances of T must be a reference type
 public interface IFactory<T> where T : class { }
 
-public class DefaultFactory<T> : IFactory<T>, where T: new() {
+public class DefaultFactory<T> : IFactory<T>, where T: class, new() {
     public T Create() {
         return new T();
     }
 }
 
-public class Adapter<T,V> {
-    
+public class Cloner<T> where T : IClonable {
+    public IEnumerable<T> For( T original, int n ) {
+        for( int i = 0; i < n; i++ ) {
+            yield return (T)original.Clone();
+        }
+    }
 }
 {% endhighlight %}
 
