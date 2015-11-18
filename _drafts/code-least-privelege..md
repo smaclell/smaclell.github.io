@@ -320,26 +320,29 @@ When using generics I try to include any applicable constraints. They don't
 come up often, but the little extra treatment to add constraints ensures they
 values they contain match your expectations.
 
-TODO: Finish and Test
-
 {% highlight csharp %}
 // T is both an Exception and has a default constructor
 public class ExceptionThrower<T> where T: Exception, new() {}
 
-// All instances of T must be a reference type
-public interface IFactory<T> where T : class { }
+// Using generics to keep callers type safe
+public static class Cloner {
+    public static IEnumerable<T> For<T>( T original, int n )
+        where T : ICloneable {
 
-public class DefaultFactory<T> : IFactory<T>, where T: class, new() {
-    public T Create() {
-        return new T();
-    }
-}
-
-public class Cloner<T> where T : IClonable {
-    public IEnumerable<T> For( T original, int n ) {
         for( int i = 0; i < n; i++ ) {
             yield return (T)original.Clone();
         }
+    }
+}
+
+// Fun with generics to create type safe factories
+public interface IFactory<T> where T : class {
+    T Create();
+}
+
+public class DefaultFactory<T> : IFactory<T> where T: class, new() {
+    public T Create() {
+        return new T();
     }
 }
 {% endhighlight %}
@@ -354,6 +357,58 @@ Be very intentional about what is made public.
 
 Minimalist APIs
 
+I decided to move this to the footer. I have been known to commit generics
+abuse in the past. Here is some fun code which uses constraints against
+multiple types to enforce a strongly typed API. Within the class the types
+are relaxed a bit so they can all play together.
+
+I would discourage you from ever using a class like this. Use a DI container
+like [Autofac][autofac] instead.
+
+{% highlight csharp %}
+public class FactoryCollection {
+    private readonly Dictionary<Type, object> m_factories =
+        new Dictionary<Type, object>();
+
+    public void Add<TDependencyType, TFactoryType>( TFactoryType factory )
+        where TDependencyType : class
+        where TFactoryType : IFactory<TDependencyType> {
+
+        m_factories[typeof(TDependencyType)] = factory;
+    }
+
+    public void Add<TDependencyType, TFactoryType>( TFactoryType factory )
+        where TDependencyType : class
+        where TFactoryType : IFactory<TDependencyType>, new() {
+
+        Add<TDependencyType, TFactoryType>( new TFactoryType() );
+    }
+
+    public void Add<TDependencyType>()
+        where TDependencyType : class, new() {
+
+        Add<TDependencyType, DefaultFactory<TDependencyType>>(
+            new DefaultFactory<TDependencyType>()
+        );
+    }
+
+    public bool TryCreate<TDependencyType>( out TDependencyType result )
+        where TDependencyType : class {
+
+        Type type = typeof(TDependencyType);
+        if( !m_factories.ContainsKey( type ) ) {
+            result = default( TDependencyType );
+            return false;
+        }
+
+        IFactory<TDependencyType> factory = (IFactory<TDependencyType>)m_factories[type];
+        result = factory.Create();
+        return true;
+    }
+}
+{% endhighlight %}
+
 [templates]: https://sourcemaking.com/design_patterns/template_method
 [coi]: https://en.wikipedia.org/wiki/Composition_over_inheritance
 [generics]: https://msdn.microsoft.com/en-us/library/d5x73970.aspx
+[autofac]: http://autofac.org/
