@@ -6,41 +6,40 @@ tags: code ideas minimalist
 ---
 
 There is a principle in computer science called the Principle of Least
-Privilege. It was originally applied to security as a recommendation for
+Privilege. It is a recommended security practice for
 giving any process, user or program the least access possible. I think this
 idea should also be applied to your code. You should **restrict your code as
 much as possible.**
 
 The idea behind the standard Principle of Least Privilege is straight forward
 and typically applied to security. The wider the surface area of any system the
-more that can be attacked by hackers. By using the lowest permissions possible
-for any user, process, service or server reduces what is exposed if they were
-compromised.
+more hackers can attack. By using the lowest permissions possible
+for any user, process, server or service what could be lost or stolen when a
+system is compromised is reduced.
 
-Great. So we can apply the idea to code too. Restrict what exactly? The
-visibility between classes/assemblies. What is exposed at this level defines
-their public API.
+Great. We can also apply the idea to code. Restrict what? The visibility
+between classes/assemblies to intentionally define a smaller public API.
 
 You should be very intentional with what you make public. Anything you make
 public will need to be supported and maintained. Once made public removing or
-changing what is exposed without break changes is harder. Having a bigger API
-has more chances to expose the code you will later want to change.
+changing an API is harder. There is more to maintain and changes which would
+otherwise be private could cause breaking changes.
 
 For this reason I favour minimalist APIs. Everything not public can be more easily
-refactored and improved. By keeping as much code private/internal you can you
-decrease the surface area of the public API.
+refactored and improved. By keeping as much code as you can private/internal you
+shrink public API's surface area.
 
 In this post I am going to go show how to use the keywords in C# to restrict
-your code as much as possible. While you can apply the sane ideas to APIs, I
-will focus on backend code here. Continue for several examples inspired by code
-we use daily which highlight different techniques for controlling your code to
-only allow the behaviour and visibility you want.
+your code and help you intentionally craft your APIs. While you can apply the
+same ideas to external APIs, I will focus on backend code here. The following
+examples are inspired by our code to highlight different techniques we use
+to achieve the exact code behaviour and visibility we want.
 
 A simple example: A Factory
 ===============================================================================
 
-Lets try a simple example. If you have a factory class you wouldn't keep the
-original factory public would you?
+Lets try a simple example. If you have a factory class the class being created
+can be made internal instead of public. Here is what you do NOT want to do:
 
 {% highlight csharp %}
 public class WidgetFactory {
@@ -55,9 +54,9 @@ public class CoolWidget : IWidget {
 {% endhighlight %}
 
 If ``CoolWidget`` is public then why would you need the factory? People could
-start calling the class directly which would make the factory unnecessary. Or
-unneeded until you want to change the type created by the ``WidgetFactory``.
-By exposing ``CoolWidget`` you make it harder to change the widgets.
+start calling the class directly which would make the factory unnecessary. With
+other using the original class directly changing the constructor, dependencies
+or class being created are all breaking changes.
 
 Instead ``CoolWidget`` should be internal! Much better.
 
@@ -73,10 +72,10 @@ Hide Internals: A Worker Class
 Doing work in classes can get complicated. I looked through a whole bunch of
 our code and found we often use private methods for doing little bits of work.
 
-We had worker classes which would process queued work then send callbacks.
-Within the class there was a handy method for sending callbacks.
-It used other classes to do the real heavy lifting. The helpers method would
-format the callback url and other parameters.
+We had worker classes for processing queued work and then send callbacks
+indicating the work is done or failed. Within the class there was a handy
+method for sending callbacks. The helpers method would format the callback url
+and other parameters then use other classes for actually sending the callback.
 
 {% highlight csharp %}
 public class Worker {
@@ -91,11 +90,10 @@ public class Worker {
 }
 {% endhighlight %}
 
-The sample above doesn't make sense. Why would ``SendCallback`` be public? It
-doesn't fit with the purpose of the rest of the class. The method is only used
-for one reason and benefits from being isolated from the rest of the Worker
-class while still being related enough to the other code to stay there. Since
-we would never want other classes using the method, it should be private!
+The sample above shares too much. Why would ``SendCallback`` be public? It
+doesn't fit with ``Worker``'s purpose of processing work items. The method is
+only used within the class and is nicely isolated within ``Worker``. Since
+we would never want other classes using the method it should be private!
 
 {% highlight csharp %}
 public class Worker {
@@ -104,18 +102,20 @@ public class Worker {
 {% endhighlight %}
 
 Much better. Had we left this method public it could accidentally be used.
-Keeping it private allows it to continue to evolve with the class it supports.
+Keeping it private allows it to continue to evolve separate from the API of
+``Worker``.
 
 Sounds good right? There is a catch, testing these methods is harder. You can't
 test them directly because they are now private. Instead you need to test them
-indirectly through the inputs/outputs on the other methods or their behaviours.
-If the logic is really complicated you might want to pull it out into it's own
+indirectly through the inputs/outputs of other methods or their behaviours.
+If the logic is really complicated you might want to pull it out into separate
 classes and interfaces.
 
-In the example above we have separated actually sending the callback into a
-different class. This lets us test the two classes separately and better
-isolate the logic for sending callbacks. The private method is still useful
-and allows us to prepare the ``Payload``. The resulting helper classes look
+In the example above we have separated sending the callback into a
+different class. This lets us test the Worker and sending callbacks separately.
+The logic for sending callbacks is consolidated in the dedicated class.
+The private method in ``Worker`` is still useful
+and allows us to prepare the ``Payload`` to be sent. The resulting helper classes look
 like this:
 
 {% highlight csharp %}
@@ -131,10 +131,10 @@ internal class Sender {
 This lets us keep the logic testable yet keeps the external API small. There
 are now more classes which might make the code more complicated.
 
-We intentionally keep these helper classes internal. While they are useful they
-have been created just for use within this assembly. Right now we don't think
-anyone else would want to send their callbacks the same way and otherwise it
-doesn't belong in the API.
+We intentionally keep these helper classes internal. While they are useful on their own,
+they have been created just for use within this assembly. Right now we don't think
+anyone else would want to send their callbacks the same way. Due to this we have
+left them out of the public API until we are proven otherwise.
 
 Inheritance: No Family History
 ===============================================================================
