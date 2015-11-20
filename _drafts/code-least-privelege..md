@@ -136,7 +136,7 @@ they have been created just for use within this assembly. Right now we don't thi
 anyone else would want to send their callbacks the same way. Due to this we have
 left them out of the public API until we are proven otherwise.
 
-Inheritance: No Family History
+Inheritance: Family Planning
 ===============================================================================
 
 Controlling inheritance is useful. Most developers I work with avoid using it
@@ -148,20 +148,21 @@ public sealed class CantTouchThis { }
 {% endhighlight %}
 
 Marking classes as ``sealed`` prevents them from being inherited which can lock
-down bad inheritance. To be honest I think it is overkill since there
-are very few cases where you want to explicitly block inheritance. More often
+down abusing inheritance. To be honest I think it is overkill since there
+are very few cases where you need to explicitly block inheritance. More often
 than not you don't have to worry about it. People don't willy nilly start
-inheriting from classes.
+inheriting from classes when none of the methods can be overridden and there
+are no protected fields.
 
 Inheritance: Template Class
 ===============================================================================
 
-Base classes can be useful. I use them to setup [template methods][templates]
+I think base classes can be useful when used correctly. I use them to setup [template methods][templates]
 or share common/optional functionality. This isn't often and I like to treat it
-as yet another tool which can be used.
+as yet another code design tool.
 
 To enforce the purpose you envisioned for your base classes I recommend using
-``abstract`` classes/methods. It ensures your desired methods must be
+``abstract`` classes and methods. This keyword ensures your desired methods must be
 implemented by child classes. The base class itself cannot be instantiated
 which further clarifies its purpose.
 
@@ -202,16 +203,15 @@ public sealed class ProgressiveTaxesCalculator : TaxesCalculatorBase{
 
 The ``TaxesCalculatorBase`` is an abstract class with the template method
 ``CalculateTaxes`` which uses the abstract ``GetTaxesMultiplier`` method.
-This forces classes inheriting from ``TaxesCalculatorBase`` to implement
-the required methods however they like. To prevent the hierarchy from
+This classes inheriting from ``TaxesCalculatorBase`` must implement
+the required methods and can do so however they like. To prevent the hierarchy from
 growing out of hand you can optionally mark the child classes as ``sealed``.
 
-Another great usage is implementing common or optional functions in the base
-class. I used
+Another usage of base classes is implementing common or optional functions. I used
 this recently to make optionally implementing part of an API easier. The class
-had a method to return an ``IEnumerable`` which would be empty in the base
-implementation. When they were ready child classes could
-override the method to provide new functionality.
+had a method to return an ``IEnumerable`` and a default implementation in the
+base class returning an empty list. When the team was ready we could override
+the update the child classes one at a time to provide the new functionality.
 
 {% highlight csharp %}
 public class ExampleProviderBase {
@@ -225,7 +225,7 @@ All Action: Helper Classes
 ===============================================================================
 
 Every now and then we have ``Helper`` classes with only methods and no state.
-Stateless classes with helper methods can be made ``static`` to prevent them
+Stateless classes can be made ``static`` to prevent them
 from being instantiated or having instance variables added. If you had a
 helper classes for ``Uri``'s it might look like this:
 
@@ -239,7 +239,7 @@ internal static class UrlHelpers {
 }
 {% endhighlight %}
 
-The ``static`` constraint helps the class stay functional. Having the class be
+The ``static`` constraint helps the class stay stateless. Having the class be
 ``static`` ensures all the methods must also be declared as ``static``.
 
 Manage state: Immutable Classes
@@ -249,13 +249,13 @@ I think it is worth the minor effort to control whether fields/properties can
 be modified. Limiting the number of ways data can be modified and passed around
 can help highlight the right way to use your classes.
 
-In this simple example I have made a ``Person`` class which is immutable. If this
-data was stored in a database, you would have other classes for retrieving and
-updating. Anyone trying to create a ``Person`` must provide the necessary fields
-which prevent invalid objects from being created.
+In this simple example I have made a ``Person`` class which is immutable. You
+would have other classes for retrieving and updating the data. Anyone trying to
+create a ``Person`` must provide the necessary fields which prevents invalid
+objects from being created.
 
 {% highlight csharp %}
-public sealed class Person {
+internal sealed class Person {
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
 
@@ -269,11 +269,11 @@ public sealed class Person {
 You can take this even further if you would like. I used properties to make
 writing ``FirstName`` and ``LastName`` easier. You can just as easily use
 ``readonly`` to only allow the fields to be initialized in the constructor.
-This further enforces the class being created as immutable with extra help
+This further enforces immutability within the class with extra help
 from the compiler.
 
 {% highlight csharp %}
-public sealed class Person {
+internal sealed class Person {
     private readonly string m_firstName;
     private readonly string m_lastName;
 
@@ -287,9 +287,26 @@ public sealed class Person {
 }
 {% endhighlight %}
 
+In [C# 6][cs] readonly fields become even easier thanks to getter only properties.
+This is the same as the first example except for the missing ``private set`` on the
+properties. It also has the added benefit of compiler support enforcing the
+immutability.
+
+{% highlight csharp %}
+internal sealed class Person {
+    public string FirstName { get; }
+    public string LastName { get; }
+
+    public Person( string first, string last ) {
+        FirstName = first;
+        LastName = last;
+    }
+}
+{% endhighlight %}
+
 Another great immutability technique is to create a new object after every
 method which would otherwise modify the current object. A great example of this
-is the ``DateTime`` and ``string`` classes:
+are the ``DateTime`` and ``string`` classes:
 
 {% highlight csharp %}
 DateTime now = DateTime.Now;
@@ -307,11 +324,9 @@ if( updated == "Heo Word" ) {
 }
 {% endhighlight %}
 
-Immutable classes strongly shape how users interact with them. They can
+Immutable classes strongly affect how users interact with them. They can
 reinforce readonly parts of the system and highlight how you actually want data
 to be updated.
-
-TODO: Show off the new C# 6 options.
 
 Generics: A different Animal
 ===============================================================================
@@ -410,5 +425,6 @@ public class FactoryCollection {
 
 [templates]: https://sourcemaking.com/design_patterns/template_method
 [coi]: https://en.wikipedia.org/wiki/Composition_over_inheritance
+[cs]: https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6
 [generics]: https://msdn.microsoft.com/en-us/library/d5x73970.aspx
 [autofac]: http://autofac.org/
