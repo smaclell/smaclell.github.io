@@ -1,34 +1,10 @@
 ---
 layout: post
-title:  "Least Privilege in Code "
+title:  "Crafting Code with C#"
 date:   2015-11-16 22:37:07
 description: "Using C# keywords to restrict code to achieve the exact behaviour and visibility you want."
 tags: code ideas minimalist
 ---
-
-There is a principle in computer science called the Principle of Least
-Privilege. It is a recommended security practice for
-giving any process, user or program the least access possible. I think this
-idea should also be applied to your code. You should **restrict your code as
-much as possible.**
-
-The idea behind the standard Principle of Least Privilege is straight forward
-and typically applied to security. The wider the surface area of any system the
-more hackers can attack. By using the lowest permissions possible
-for any user, process, server or service what could be lost or stolen when a
-system is compromised is reduced.
-
-Great. We can also apply the idea to code. Restrict what? The visibility
-between classes/assemblies to intentionally define a smaller public API.
-
-You should be very intentional with what you make public. Anything you make
-public will need to be supported and maintained. Once made public removing or
-changing an API is harder. There is more to maintain and changes which would
-otherwise be private could cause breaking changes.
-
-For this reason I favour minimalist APIs. Everything not public can be more easily
-refactored and improved. By keeping as much code as you can private/internal you
-shrink public API's surface area.
 
 In this post I am going to go show how to use the keywords in C# to restrict
 your code and help you intentionally craft your APIs. While you can apply the
