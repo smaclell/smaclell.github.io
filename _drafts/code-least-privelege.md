@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "Code with the Least Privilege"
+title:  "Least Privilege in Code "
 date:   2015-11-16 22:37:07
+description: "Using C# keywords to restrict code to achieve the exact behaviour and visibility you want."
 tags: code ideas minimalist
 ---
 
@@ -333,7 +334,8 @@ Generics: A different Animal
 
 When using generics I try to include any applicable constraints. They don't
 come up often, but the little extra treatment to add constraints ensures they
-values they contain match your expectations.
+types they contain match your expectations. If nothing else I find them
+[fun](#generics-fun) to strictly enforce strong typing.
 
 {% highlight csharp %}
 // T is both an Exception and has a default constructor
@@ -365,17 +367,22 @@ public class DefaultFactory<T> : IFactory<T> where T: class, new() {
 Conclusion
 ===============================================================================
 
-Minimize API. Use the language to your advantage to do exactly what you want.
+I hope you enjoyed these examples showcasing the C# keywords and how you can
+use them to create the exact API you want. I believe it is important to
+restrict the behaviour and visibility of your API to make future maintenance
+easier.
 
-Everything should be private/internal.
-Be very intentional about what is made public.
+Be intentional with your APIs and keep as much as you can private/internal.
 
-Minimalist APIs
+<hr />
 
-I decided to move this to the footer. I have been known to commit generics
+<span id="generics-fun"> </span>
+
+I decided to move this to the footer. I have been known to commit generic
 abuse in the past. Here is some fun code which uses constraints against
-multiple types to enforce a strongly typed API. Within the class the types
-are relaxed a bit so they can all play together.
+multiple types to enforce a strongly typed API. Within the class less
+restrictive types are used so we can have the generics of the API play
+nicely together without needing a common interface.
 
 I would discourage you from ever using a class like this. Use a DI container
 like [Autofac][autofac] instead.
