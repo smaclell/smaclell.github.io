@@ -10,7 +10,7 @@ image:
   creditlink: https://www.flickr.com/photos/yaketyyakyak/8064389346/
 ---
 
-In this post I am going to go show how to use the keywords in C# to restrict
+In this post. I am going to go show how to use the keywords in C# to restrict
 your code and help you intentionally craft your APIs. While you can apply the
 same ideas to external APIs, I will focus on backend code here. The following
 examples are inspired by our code to highlight different techniques we use
@@ -19,7 +19,7 @@ to achieve the exact code behaviour and visibility we want.
 A simple example: A Factory
 ===============================================================================
 
-Lets try a simple example. If you have a factory class the class being created
+Let's try a simple example. If you have a factory class the class being created
 can be made internal instead of public. Here is what you do NOT want to do:
 
 {% highlight csharp %}
@@ -39,7 +39,7 @@ start calling the class directly which would make the factory unnecessary. With
 other using the original class directly changing the constructor, dependencies
 or class being created are all breaking changes.
 
-Instead ``CoolWidget`` should be internal! Much better.
+Instead, ``CoolWidget`` should be internal! Much better.
 
 {% highlight csharp %}
 internal class CoolWidget : IWidget {
@@ -54,9 +54,9 @@ Doing work in classes can get complicated. I looked through a whole bunch of
 our code and found we often use private methods for doing little bits of work.
 
 We had worker classes for processing queued work and then send callbacks
-indicating the work is done or failed. Within the class there was a handy
-method for sending callbacks. The helpers method would format the callback url
-and other parameters then use other classes for actually sending the callback.
+indicating the work is done or failed. Within the class, there was a handy
+method for sending callbacks. The helper method would format the callback URL
+and other parameters then use other classes to actually send the callback.
 
 {% highlight csharp %}
 public class Worker {
@@ -74,7 +74,7 @@ public class Worker {
 The sample above shares too much. Why would ``SendCallback`` be public? It
 doesn't fit with ``Worker``'s purpose of processing work items. The method is
 only used within the class and is nicely isolated within ``Worker``. Since
-we would never want other classes using the method it should be private!
+we would never want other classes using the method, it should be private!
 
 {% highlight csharp %}
 public class Worker {
@@ -83,11 +83,11 @@ public class Worker {
 {% endhighlight %}
 
 Much better. Had we left this method public it could accidentally be used.
-Keeping it private allows it to continue to evolve separate from the API of
+Keeping it private allows it to continue to evolve separately from the API of
 ``Worker``.
 
-Sounds good right? There is a catch, testing these methods is harder. You can't
-test them directly because they are now private. Instead you need to test them
+Sounds good, right? There is a catch, testing these methods is harder. You can't
+test them directly because they are now private. Instead, you need to test them
 indirectly through the inputs/outputs of other methods or their behaviours.
 If the logic is really complicated you might want to pull it out into separate
 classes and interfaces.
@@ -128,8 +128,8 @@ is not only recommended, it is enforced by marking most classes as ``sealed``:
 public sealed class CantTouchThis { }
 {% endhighlight %}
 
-Marking classes as ``sealed`` prevents them from being inherited which can lock
-down abusing inheritance. To be honest I think it is overkill since there
+Marking classes as ``sealed`` prevent the class from being inherited from which
+stop inheritance abuse. To be honest, I think it is overkill since there
 are very few cases where you need to explicitly block inheritance. More often
 than not you don't have to worry about it. People don't willy nilly start
 inheriting from classes when none of the methods can be overridden and there
@@ -142,7 +142,7 @@ I think base classes can be useful when used correctly. I use them to setup [tem
 or share common/optional functionality. This isn't often and I like to treat it
 as yet another code design tool.
 
-To enforce the purpose you envisioned for your base classes I recommend using
+To enforce the purpose you envisioned for your base classes, I recommend using
 ``abstract`` classes and methods. This keyword ensures your desired methods must be
 implemented by child classes. The base class itself cannot be instantiated
 which further clarifies its purpose.
@@ -186,7 +186,7 @@ The ``TaxesCalculatorBase`` is an abstract class with the template method
 ``CalculateTaxes`` which uses the abstract ``GetTaxesMultiplier`` method.
 This classes inheriting from ``TaxesCalculatorBase`` must implement
 the required methods and can do so however they like. To prevent the hierarchy from
-growing out of hand you can optionally mark the child classes as ``sealed``.
+growing out of hand, you can optionally mark the child classes as ``sealed``.
 
 Another usage of base classes is implementing common or optional functions. I used
 this recently to make optionally implementing part of an API easier. The class
@@ -230,10 +230,10 @@ I think it is worth the minor effort to control whether fields/properties can
 be modified. Limiting the number of ways data can be modified and passed around
 can help highlight the right way to use your classes.
 
-In this simple example I have made a ``Person`` class which is immutable. You
+In this simple example, I have made a ``Person`` class which is immutable. You
 would have other classes for retrieving and updating the data. Anyone trying to
-create a ``Person`` must provide the necessary fields which prevents invalid
-objects from being created.
+create a ``Person`` must provide the necessary fields at creation time which
+prevents invalid objects from being created.
 
 {% highlight csharp %}
 internal sealed class Person {
@@ -286,7 +286,7 @@ internal sealed class Person {
 {% endhighlight %}
 
 Another great immutability technique is to create a new object after every
-method which would otherwise modify the current object. A great example of this
+method which would otherwise modify the current object. Great examples of this
 are the ``DateTime`` and ``string`` classes:
 
 {% highlight csharp %}
@@ -360,7 +360,7 @@ Be intentional with your APIs and keep as much as you can private/internal.
 
 I decided to move this to the footer. I have been known to commit generic
 abuse in the past. Here is some fun code which uses constraints against
-multiple types to enforce a strongly typed API. Within the class less
+multiple types to enforce a strongly typed API. Within the class, less
 restrictive types are used so we can have the generics of the API play
 nicely together without needing a common interface.
 
