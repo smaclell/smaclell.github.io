@@ -4,6 +4,10 @@ title:  "Crafting Code with C#"
 date:   2015-11-16 22:37:07
 description: "Using C# keywords to restrict code to achieve the exact behaviour and visibility you want."
 tags: code ideas minimalist
+image:
+  feature: https://farm9.staticflickr.com/8318/8064389346_891cf17296_c.jpg
+  credit: "Ickworth Wood & Craft Fair by Dave Catchpole - CC BY 2.0"
+  creditlink: https://www.flickr.com/photos/yaketyyakyak/8064389346/
 ---
 
 In this post I am going to go show how to use the keywords in C# to restrict
