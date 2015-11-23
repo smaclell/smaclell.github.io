@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Crafting Code with C#"
-date:   2015-11-16 22:37:07
-description: "Using C# keywords to restrict code to achieve the exact behaviour and visibility you want."
+date:   2015-11-22 23:42:07
+description: "Using C# keywords to restrict code to achieve the exact API you want."
 tags: code ideas minimalist
 image:
   feature: https://farm9.staticflickr.com/8318/8064389346_891cf17296_c.jpg
@@ -12,7 +12,7 @@ image:
 
 In this post. I am going to go show how to use the keywords in C# to restrict
 your code and help you intentionally craft your APIs. While you can apply the
-same ideas to external APIs, I will focus on backend code here. The following
+same ideas to external APIs, I will focus on backend C# code here. The following
 examples are inspired by our code to highlight different techniques we use
 to achieve the exact code behaviour and visibility we want.
 
@@ -36,10 +36,11 @@ public class CoolWidget : IWidget {
 
 If ``CoolWidget`` is public then why would you need the factory? People could
 start calling the class directly which would make the factory unnecessary. With
-other using the original class directly changing the constructor, dependencies
-or class being created are all breaking changes.
+other classes directly using ``CoolWidget`` changing the constructor, dependencies
+or creating a different class in the factory are all breaking changes.
 
-Instead, ``CoolWidget`` should be internal! Much better.
+Instead, ``CoolWidget`` should be internal! Much better. The factory cannot be
+bypassed.
 
 {% highlight csharp %}
 internal class CoolWidget : IWidget {
@@ -53,27 +54,25 @@ Hide Internals: A Worker Class
 Doing work in classes can get complicated. I looked through a whole bunch of
 our code and found we often use private methods for doing little bits of work.
 
-We had worker classes for processing queued work and then send callbacks
-indicating the work is done or failed. Within the class, there was a handy
+We have worker classes for processing queued work which then send callbacks
+indicating the work is done or has failed. Within the class, there was a handy
 method for sending callbacks. The helper method would format the callback URL
 and other parameters then use other classes to actually send the callback.
 
 {% highlight csharp %}
 public class Worker {
-    public void Process( Work work ) {
+    public void Process( WorkItem work ) {
         ...
         SendCallback( work.CallbackUrl )
     }
 
-    public void SendCallback( Uri url ) {
-        ...
-    }
+    public void SendCallback( Uri url ) { ... }
 }
 {% endhighlight %}
 
 The sample above shares too much. Why would ``SendCallback`` be public? It
-doesn't fit with ``Worker``'s purpose of processing work items. The method is
-only used within the class and is nicely isolated within ``Worker``. Since
+doesn't fit with ``Worker``'s purpose: processing work items. The method is
+only used by ``Worker`` and is nicely isolated to the class. Since
 we would never want other classes using the method, it should be private!
 
 {% highlight csharp %}
@@ -87,13 +86,13 @@ Keeping it private allows it to continue to evolve separately from the API of
 ``Worker``.
 
 Sounds good, right? There is a catch, testing these methods is harder. You can't
-test them directly because they are now private. Instead, you need to test them
-indirectly through the inputs/outputs of other methods or their behaviours.
-If the logic is really complicated you might want to pull it out into separate
+test them as easily because they are now private. Instead, you need to test them
+indirectly through the inputs/outputs of other methods or using their behaviours.
+If the logic is really complicated you might want to move it into separate
 classes and interfaces.
 
 In the example above we have separated sending the callback into a
-different class. This lets us test the Worker and sending callbacks separately.
+different class. This lets us test the ``Worker`` and sending callbacks separately.
 The logic for sending callbacks is consolidated in the dedicated class.
 The private method in ``Worker`` is still useful
 and allows us to prepare the ``Payload`` to be sent. The resulting helper classes look
@@ -109,11 +108,11 @@ internal class Sender {
 }
 {% endhighlight %}
 
-This lets us keep the logic testable yet keeps the external API small. There
+This lets us keep the logic testable and the external API small. There
 are now more classes which might make the code more complicated.
 
 We intentionally keep these helper classes internal. While they are useful on their own,
-they have been created just for use within this assembly. Right now we don't think
+they have been created for use only within this assembly. Right now we don't think
 anyone else would want to send their callbacks the same way. Due to this we have
 left them out of the public API until we are proven otherwise.
 
@@ -125,11 +124,11 @@ like the plague due to issues they had in the past. [Composition over inheritanc
 is not only recommended, it is enforced by marking most classes as ``sealed``:
 
 {% highlight csharp %}
-public sealed class CantTouchThis { }
+public sealed class CantTouchThis { ... }
 {% endhighlight %}
 
-Marking classes as ``sealed`` prevent the class from being inherited from which
-stop inheritance abuse. To be honest, I think it is overkill since there
+Marking classes as ``sealed`` prevent the class from being inherited. This
+stops inheritance abuse. To be honest, I think it is overkill since there
 are very few cases where you need to explicitly block inheritance. More often
 than not you don't have to worry about it. People don't willy nilly start
 inheriting from classes when none of the methods can be overridden and there
@@ -139,13 +138,13 @@ Inheritance: Template Class
 ===============================================================================
 
 I think base classes can be useful when used correctly. I use them to setup [template methods][templates]
-or share common/optional functionality. This isn't often and I like to treat it
-as yet another code design tool.
+or share common/optional functionality. This isn't a technique I use too often.
+I like to treat it as yet another code design tool.
 
 To enforce the purpose you envisioned for your base classes, I recommend using
 ``abstract`` classes and methods. This keyword ensures your desired methods must be
 implemented by child classes. The base class itself cannot be instantiated
-which further clarifies its purpose.
+which further clarifies its purpose as a base class.
 
 {% highlight csharp %}
 public abstract class TaxesCalculatorBase {
@@ -184,18 +183,18 @@ public sealed class ProgressiveTaxesCalculator : TaxesCalculatorBase{
 
 The ``TaxesCalculatorBase`` is an abstract class with the template method
 ``CalculateTaxes`` which uses the abstract ``GetTaxesMultiplier`` method.
-This classes inheriting from ``TaxesCalculatorBase`` must implement
+Classes inheriting from ``TaxesCalculatorBase`` must implement
 the required methods and can do so however they like. To prevent the hierarchy from
 growing out of hand, you can optionally mark the child classes as ``sealed``.
 
 Another usage of base classes is implementing common or optional functions. I used
 this recently to make optionally implementing part of an API easier. The class
-had a method to return an ``IEnumerable`` and a default implementation in the
-base class returning an empty list. When the team was ready we could override
-the update the child classes one at a time to provide the new functionality.
+had a method to return an ``IEnumerable``. The default implementation in the
+base class returns an empty list. When the team was ready we could update the
+child classes one at a time to provide the new functionality.
 
 {% highlight csharp %}
-public class ExampleProviderBase {
+public abstract class ExampleProviderBase {
     public virtual IEnumerable<IExample> GetExamples() {
         return Enumerable.Empty<IExample>();
     }
@@ -205,7 +204,7 @@ public class ExampleProviderBase {
 All Action: Helper Classes
 ===============================================================================
 
-Every now and then we have ``Helper`` classes with only methods and no state.
+Every now and then we have helper classes with only methods and no state.
 Stateless classes can be made ``static`` to prevent them
 from being instantiated or having instance variables added. If you had a
 helper classes for ``Uri``'s it might look like this:
@@ -216,11 +215,11 @@ internal static class UrlHelpers {
 
     public static Uri TruncateUri( Uri baseUrl ) { ... }
 
-    public static Uri SomethingWithAUri( Uri baseUrl ) { ... }
+    public static Uri SomethingCoolWithAUri( Uri baseUrl ) { ... }
 }
 {% endhighlight %}
 
-The ``static`` constraint helps the class stay stateless. Having the class be
+The ``static`` constraint helps the class stay stateless and cannot be instantiated. Having the class be
 ``static`` ensures all the methods must also be declared as ``static``.
 
 Manage state: Immutable Classes
@@ -228,12 +227,15 @@ Manage state: Immutable Classes
 
 I think it is worth the minor effort to control whether fields/properties can
 be modified. Limiting the number of ways data can be modified and passed around
-can help highlight the right way to use your classes.
+can help highlight the right way to use your classes. The extreme version of
+this are immutable classes which cannot have their values changed and must be
+fully initialized when they are created.
 
-In this simple example, I have made a ``Person`` class which is immutable. You
-would have other classes for retrieving and updating the data. Anyone trying to
-create a ``Person`` must provide the necessary fields at creation time which
-prevents invalid objects from being created.
+In this simple example, I have made a ``Person`` class which is immutable. There
+would be other classes for retrieving and updating the data. Anyone trying to
+create a ``Person`` must provide the necessary value at creation time. This is
+a great opportunity to validate any inputs to prevent invalid objects from being
+created.
 
 {% highlight csharp %}
 internal sealed class Person {
@@ -249,9 +251,8 @@ internal sealed class Person {
 
 You can take this even further if you would like. I used properties to make
 writing ``FirstName`` and ``LastName`` easier. You can just as easily use
-``readonly`` to only allow the fields to be initialized in the constructor.
-This further enforces immutability within the class with extra help
-from the compiler.
+``readonly`` to force the fields to be initialized inside the constructor.
+This allows the compiler to enforce keeping the class immutable.
 
 {% highlight csharp %}
 internal sealed class Person {
@@ -268,10 +269,10 @@ internal sealed class Person {
 }
 {% endhighlight %}
 
-In [C# 6][cs] readonly fields become even easier thanks to getter only properties.
+In [C# 6][cs] ``readonly`` fields become even easier thanks to getter only properties.
 This is the same as the first example except for the missing ``private set`` on the
-properties. It also has the added benefit of compiler support enforcing the
-immutability.
+properties. Like the second example, the compiler will again ensure the properites are
+not modified outside the constructor.
 
 {% highlight csharp %}
 internal sealed class Person {
@@ -285,9 +286,9 @@ internal sealed class Person {
 }
 {% endhighlight %}
 
-Another great immutability technique is to create a new object after every
-method which would otherwise modify the current object. Great examples of this
-are the ``DateTime`` and ``string`` classes:
+Another great immutability technique is to create a new object with every
+operation which would otherwise modify the current object. Great examples of this
+approach are the ``DateTime`` and ``string`` classes:
 
 {% highlight csharp %}
 DateTime now = DateTime.Now;
@@ -306,16 +307,15 @@ if( updated == "Heo Word" ) {
 {% endhighlight %}
 
 Immutable classes strongly affect how users interact with them. They can
-reinforce readonly parts of the system and highlight how you actually want data
-to be updated.
+reinforce readonly parts your API and highlight how you want data to be updated.
 
-Generics: A different Animal
+Generics: A Different Animal
 ===============================================================================
 
-When using generics I try to include any applicable constraints. They don't
-come up often, but the little extra treatment to add constraints ensures they
-types they contain match your expectations. If nothing else I find them
-[fun](#generics-fun) to strictly enforce strong typing.
+Generics are an extremely powerful way to stay flexible while remaining strongly typed.
+Adding constraints to generic parameters, ensure the types used with your class
+match your expectations. If nothing else I find the constraints are a
+[fun](#generics-fun) way to strictly enforce strong typing.
 
 {% highlight csharp %}
 // T is both an Exception and has a default constructor
@@ -349,22 +349,20 @@ Conclusion
 
 I hope you enjoyed these examples showcasing the C# keywords and how you can
 use them to create the exact API you want. I believe it is important to
-restrict the behaviour and visibility of your API to make future maintenance
-easier.
-
-Be intentional with your APIs and keep as much as you can private/internal.
+intentionally limit the surface area of your API by restricting how your
+classes can be used and the properties/methods they expose. Carefully crafting
+your API should make future maintenance easier.
 
 <hr />
 
-<span id="generics-fun"> </span>
+<strong id="generics-fun">Fun with Generics</strong>
 
-I decided to move this to the footer. I have been known to commit generic
-abuse in the past. Here is some fun code which uses constraints against
-multiple types to enforce a strongly typed API. Within the class, less
-restrictive types are used so we can have the generics of the API play
-nicely together without needing a common interface.
+I decided to move this to the footer. I have been known to abuse generics
+in the past. Here is some fun code which has constraints against
+multiple types. This ensures stronger types throughout the API. Within the class, less
+restrictive types are used to avoid needing a common interface for the inputs.
 
-I would discourage you from ever using a class like this. Use a DI container
+I would discourage using this particular class in your code. Use a DI container
 like [Autofac][autofac] instead.
 
 {% highlight csharp %}

@@ -26,6 +26,7 @@ Intervention
 ===============================================================================
 
 Single point of failure
+By definition singletons can create a single point of failure.
 
 Cannot scale out any more
 
