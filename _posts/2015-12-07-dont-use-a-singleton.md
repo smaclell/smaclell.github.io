@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Don't Use A Singleton"
-date:   2015-12-06 22:37:07
+date:   2015-12-07 00:12:07
 tags: design-patterns design daryl
 ---
 
