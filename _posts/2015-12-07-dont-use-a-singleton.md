@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Don't Use A Singleton"
+description: "Singleton objects (and the wider Singleton Pattern) are not normally what you want to use to solve problems"
 date:   2015-12-07 00:12:07
 tags: design-patterns design daryl
 ---
