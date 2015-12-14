@@ -86,7 +86,8 @@ figcaption {
 // Blockquotes
 // --------------------------------------------------
 blockquote {
-	color: darken($text-color, 10%);
+	@include font($doc-font-size * 1.2);
+	color: darken($text-color, 15%);
 	font-family: $alt-font;
 	font-weight: 500;
 	background-color: lighten($base-color, 75%);
