@@ -77,9 +77,9 @@ improvements to code I have created.
 
 How does this work if the way your colleagues think about you is with respect
 to your code reviews? This seems like the opposite perspective from
-'you are not your code'.
+*you are not your code*.
 
-This contradiction was what gave me pause.
+This contradiction is what gave me pause.
 
 Caring Professionally
 ===============================================================================
@@ -112,14 +112,14 @@ I care too much.
 
 > Unfortunately, the world is full of people who don't give a damn about their
 > work. Those of us who love programming enough to become highly skilled at it
-> tend to have the opposite problem-- we care too much
+> tend to have the opposite problem -- **we care too much**
 
 The solution is to convert my caring into actions which help the team. Care
-about your work and do your best.
+about your work and do your best for each code review.
 
 [d2l]: http://www.d2l.com/
-[slicing]: TODO
 [imposter]: http://www.hanselman.com/blog/ImAPhonyAreYou.aspx
 [scott]: http://www.hanselman.com/blog/YouAreNotYourCode.aspx
 [jeff]: http://blog.codinghorror.com/egoless-programming-you-are-not-your-job/
 [google]: https://www.google.ca/search?q=you+are+not+your+code
+[slicing]: /posts/slicing-pull-requests
