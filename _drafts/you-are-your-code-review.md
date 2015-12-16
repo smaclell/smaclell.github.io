@@ -6,7 +6,7 @@ date:   2015-12-10 23:19:07
 tags: windows server-core troubleshooting stephen
 ---
 
-I recently attended a bunch of fantastic developer talks where I [work][d2l].
+I recently attended several fantastic developer talks where I [work][d2l].
 My co-worker, Chris, had a very interesting talk about lessons he learnt during
 7 months of code reviews with a team from another office. He had some great
 insights I have been thinking through. The one which sticks with me is: how your
@@ -17,16 +17,22 @@ and I appreciate the work his team put in. His presentation reviewed what he
 learned after months of working with the same people. Code reviews were the
 focal point for most of his interactions.
 
-In his talk, Chris took an extreme position. For some people their code reviews
-is the primary way you interact with them. You don't know them as a person and
+When code reviews become the primary way you interact things change.
+You don't know them as a person and
 you cannot see them on a daily basis. If they keep giving crappy code reviews
 your opinion of them forms quickly. Likewise, consistently great code can help
-you stand apart.
+them stand apart.
 
 This was the reality for Chris while working with the remote team. Being a talk
-on code reviews he found some special ones to highlight the lessons he wanted to
-share. After a while the code reviews became the main representation
-of peoples' current ability.
+on code reviews he found special examples highlighting lessons he wanted to
+share. He felt after a while the code reviews became the main representation
+of a persons' current ability.
+
+This all got me thinking about being evaluated and represented by each of
+code review. I thought about how I often become too attached to my code.
+Then there were several great blog posts I had read which try to separate your
+worth and being from the code you write. In the end I think I found a way I can
+bring these conflicting views together.
 
 <div class="disclaimer">
 <strong>Reminder:</strong> My blog is my own opinion and not necessarily that of my employer.
@@ -36,32 +42,27 @@ That said thanks for the great sessions!
 Invested
 ===============================================================================
 
-It is really easy to become invested in your code. I often find I put lots of
-effort and care into my work I do. You become emotionally invested. Too often
-I am extremely defencive about my code and take too feedback personally.
+Connecting this with what Chris said, I take feedback to my code reviews to
+heart. On the receiving end, I really care about maintaining the quality of
+what we built. When I send code reviews I try to be careful in how I approach
+making changes and hope I don't look stupid.
+
+The darkside is when I treat the comments I give or receive like an attack.
+Reviews need to be an open discussion and not to showcase how brilliant you are.
+Instead, humility and listening need to be an important part of each code review.
+
+It is really easy to become invested in your code. I put lots of
+effort and care into my work I do. I become emotionally invested. Too often
+I am extremely defencive about my code and take feedback too personally.
 
 The feelings of ownership intensify the longer I have been with a project and
 what role I had in its formation. This is where I am with my current project.
 We have been on it since it began and seen it go through many changes.
 
 Over the last few weeks I was able to wrap up a project I had slowly been working on for 7
-months. I presented about this project and how the code changed over time.
-Due to this work I feel personally responsible for the code. Any feedback on
+months. At the same set of talks, I presented about how this project evolved.
+I feel personally responsible for the code. It feels like any feedback on
 the project or results reflect on me.
-
-This year I am experimenting with lots [thin slicing][slicing] all my work. The
-result has been many many more code reviews. This has created new challenges for
-code reviews since the overall picture can be harder to see. More code reviews
-mean more times I need to put myself on the line.
-
-Connecting this with what Chris said, I take feedback to my code reviews to
-heart. On the receiving end ,I really care about maintaining the quality of
-what we built. When I send code reviews I try to be careful in how I approach
-making changes and hope I don't look stupid.
-
-The darkside is when I treat the comments I give or receive like an attack.
-Reviews need to be an open discussion and not a moment to show how smart you are.
-Instead, humility and listening need to be an important part of each code review.
 
 I am self conscious about by ability as a developer. I often feel like an
 [imposter][imposter]. Combined putting myself out there in my code reviews
@@ -75,11 +76,20 @@ There are many great [blog][scott] [posts][jeff] about how [you are not your cod
 need to take this message to heart and separate myself from suggestions and
 improvements to code I have created.
 
+TODO: Explain roughly what the posts mean to you. Relate them back to code reviews
+
+The gist of these posts is to separate your self esteem and worth from the code
+you create. You are so much more than the code you write for your job or hobby.
+
+Criticism of code you have written is natural and healthy. The important part
+is how you learn from the feedback you are given.
+
 How does this work if the way your colleagues think about you is with respect
 to your code reviews? This seems like the opposite perspective from
-*you are not your code*.
+*you are not your code*. If you are not your code then how can your reviews
+represent you?
 
-This contradiction is what gave me pause.
+Wrestling through this contradiction caused me to rethink Chris' talk.
 
 Caring Professionally
 ===============================================================================
@@ -122,4 +132,3 @@ about your work and do your best for each code review.
 [scott]: http://www.hanselman.com/blog/YouAreNotYourCode.aspx
 [jeff]: http://blog.codinghorror.com/egoless-programming-you-are-not-your-job/
 [google]: https://www.google.ca/search?q=you+are+not+your+code
-[slicing]: /posts/slicing-pull-requests
