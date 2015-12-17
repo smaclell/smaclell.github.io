@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "You are your Code Review"
+title:  "Are you your Code Review?"
 description: "Your code reviews are a reflection of your workmanship. Care about what you do and put your best effort forward."
 date:   2015-12-10 23:19:07
 tags: code-reviews learning
