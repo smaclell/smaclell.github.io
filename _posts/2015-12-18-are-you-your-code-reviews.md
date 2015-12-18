@@ -128,6 +128,11 @@ The solution is to convert caring into actions which help others.
 You are not your code, but your code reviews are a reflection of your workmanship.
 Care about your work and do your best in every code review.
 
+<hr />
+
+*P.S. Thanks Josh for helping me review this blog post. Without your help I
+would be stuck in the present and past tense at the same time.*
+
 [d2l]: http://www.d2l.com/
 [imposter]: http://www.hanselman.com/blog/ImAPhonyAreYou.aspx
 [sam]: http://sstephenson.us/posts/you-are-not-your-code
