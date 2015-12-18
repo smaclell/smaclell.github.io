@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Are you your Code Review?"
-description: "Your code reviews are a reflection of your workmanship. Care about what you do and put your best effort forward."
-date:   2015-12-10 23:19:07
+title:  "Are you your Code Reviews?"
+description: "You are not your code, but your code reviews are a reflection of your workmanship. Care about your work and do your best in every code review."
+date:   2015-12-18 1:17:07
 tags: code-reviews learning
 ---
 
@@ -125,8 +125,8 @@ I care too much.
 
 The solution is to convert caring into actions which help others.
 
-You are not your code or your code reviews. However, they do represent what
-you care about. Care about your work and do your best in every code review.
+You are not your code, but your code reviews are a reflection of your workmanship.
+Care about your work and do your best in every code review.
 
 [d2l]: http://www.d2l.com/
 [imposter]: http://www.hanselman.com/blog/ImAPhonyAreYou.aspx
