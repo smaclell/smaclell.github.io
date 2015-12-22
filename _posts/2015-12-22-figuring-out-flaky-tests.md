@@ -2,7 +2,7 @@
 layout: post
 title:  "Figuring Out Flaky Tests"
 description: "The day before I went on vacation I walked through investigating issues I was having with a flaky test. We looked at isolating the test, looking at the timing and getting better information."
-date:   2015-12-22 16:17:07
+date:   2015-12-22 16:44:07
 tags: testing troubleshooting chris
 image:
   feature: https://farm5.staticflickr.com/4106/4957110777_88230c8926_b.jpg
