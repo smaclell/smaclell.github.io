@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Do what must to be done"
+title:  "Do what must be done"
 date:   2015-11-09 23:16:07
 description: "I talk about the tough week I have coming up and how I plan to deal with it."
 tags: feelings
