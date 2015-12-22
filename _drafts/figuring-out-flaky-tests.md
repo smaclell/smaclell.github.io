@@ -2,8 +2,12 @@
 layout: post
 title:  "Figuring Out Flaky Tests"
 description: "The day before I went on vacation I walked through investigating issues I was having with a flaky test. We looked at isolating the test, looking at the timing and getting better information."
-date:   2015-12-18 1:17:07
-tags: tests troubleshooting chris
+date:   2015-12-22 16:17:07
+tags: testing troubleshooting chris
+image:
+  feature: https://farm1.staticflickr.com/213/462206324_1393a72c01_z.jpg
+  credit: "Icarus by Steve Jurvetson - CC BY 2.0"
+  creditlink: https://www.flickr.com/photos/jurvetson/462206324/
 ---
 
 Recently, I noticed tests near code I worked on being flaky. Sometimes they
@@ -22,13 +26,13 @@ with each other.
 
 I found exactly where the code was failing:
 
-TODO: Rough snippet
-
 {% highlight csharp %}
-T x = single.SingleOrDefault()
+Item item = GetAllItems().SingleOrDefault( x => x.Id == "Expected Id" )
+
+Assert.IsNotNull( item );
 {% endhighlight %}
 
-It was not clear whether there were no items in the list or too many. I tested
+It was not clear what ``SingleOrDefault`` would do when there were no items in the list or too many. I tested
 what happened when there were too many items and confirmed it fails a different
 way. It explodes. This case would not fail the test in the way we were seeing.
 
@@ -59,12 +63,12 @@ investigating and fixing flaky tests.
 ===============================================================================
 
 Chris recommended to confirm whether the test had intermittent issues alone.
-He had a simple trick to repeat the test multiple times. Add the [Repeat][TODO]
+He had a simple trick to repeat the test multiple times. Add the [Repeat][repeat]
 attribute to the test.
 
-This would essentially run the test 1000 times in a loop. If the test had
-problems then this would easily show them. Otherwise we would have to continue
-looking elsewhere.
+This would essentially run the test 1000 times in a loop. If any test run fails
+then the test fails. If the test had problems alone then this would easily show
+them. Otherwise we would have to continue looking elsewhere.
 
 The test passed with flying colours. The search continued for other tests which
 would have caused it to fail.
@@ -121,5 +125,6 @@ Sadly we have yet to find the root cause. We decided to wait and see what
 happens the next time the test fails. Although we did not reach the destination
 I hope you enjoyed the journey. Until next time.
 
+[repeat]: http://www.nunit.org/index.php?p=repeat&r=2.6
 [swart]: http://michaeljswart.com
 [blocked]: http://www.brentozar.com/archive/2014/03/extended-events-doesnt-hard/
