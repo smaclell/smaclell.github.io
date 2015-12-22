@@ -3,7 +3,7 @@ layout: post
 title:  "Are you your Code Reviews?"
 description: "You are not your code, but your code reviews are a reflection of your workmanship. Care about your work and do your best in every code review."
 date:   2015-12-18 1:17:07
-tags: code-reviews learning
+tags: code-reviews learning chris
 ---
 
 I recently attended several fantastic developer talks where I [work][d2l].
