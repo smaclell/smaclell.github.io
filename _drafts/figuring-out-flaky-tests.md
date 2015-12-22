@@ -5,9 +5,9 @@ description: "The day before I went on vacation I walked through investigating i
 date:   2015-12-22 16:17:07
 tags: testing troubleshooting chris
 image:
-  feature: https://farm1.staticflickr.com/213/462206324_1393a72c01_z.jpg
-  credit: "Icarus by Steve Jurvetson - CC BY 2.0"
-  creditlink: https://www.flickr.com/photos/jurvetson/462206324/
+  feature: https://farm5.staticflickr.com/4106/4957110777_88230c8926_b.jpg
+  credit: "[4/365] Training By Pascal - Public Domain"
+  creditlink: https://www.flickr.com/photos/pasukaru76/4957110777/
 ---
 
 Recently, I noticed that some tests near code I had worked on were pretty
@@ -29,26 +29,29 @@ The test case looked something like this:
 
 {% highlight csharp %}
 public class ItemCopyTests {
-	
-	[SetUp]
-	public void Setup() {
-		// Create original item and container
-	}
 
-	[Test]
-	public void CopyingItemsToANewContainerCopiesEverything() {
-		// Copy the item to a new container
+    [SetUp]
+    public void Setup() {
+        // Create original item and container
+    }
 
-		Item item = GetAllItems( NewContainerId ).SingleOrDefault( x => x.Id == "Expected Id" );
+    [Test]
+    public void CopyingItemsToANewContainerCopiesEverything() {
+        // Copy the item to a new container
 
-		// This was the failing assertion
-		Assert.IsNotNull( item );
-	}
+        Item item = GetAllItems( NewContainerId )
+                        .SingleOrDefault( x => x.Id == "Expected Id" );
 
-	[TearDown]
-	public void TearDown() {
-		// Delete all the items
-	}
+        // This was the failing assertion
+        Assert.IsNotNull( item );
+    }
+
+    [TearDown]
+    public void TearDown() {
+        // Delete all the items
+    }
+
+}
 {% endhighlight %}
 
 The failing assertion seemed like either the test or underlying operation was not
@@ -141,7 +144,7 @@ We decided to gather more data on the tests. We wanted to disprove our hunch
 about the deadlocks being the root cause by capturing them the next time the test failed.
 Our co-worker, [Michael Swart][swart] a majestic database whisperer, gave us a
 script to add additional tracing on the database server. The script was roughly the
-same as this fantastic [script][script] from [brentozar.com][blocked].
+same as this fantastic [script][blocked] from [brentozar.com][blocked].
 
 Extra tracing was fine, since the database server was only being used to run tests.
  qOn a production database, however, I am not sure if the same approach would be recommended.
