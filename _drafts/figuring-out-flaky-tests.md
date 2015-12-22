@@ -13,7 +13,7 @@ image:
 Recently, I noticed tests near code I worked on being flaky. Sometimes they
 would fail and sometimes they would pass. There didn't seem to be any pattern.
 For all I knew it changed based on the time of day. On my last day before
-vacation I decided to dig into the tests to find a root cause.
+vacation, I decided to dig into the tests to find a root cause.
 
 Start Obvious
 ===============================================================================
@@ -27,9 +27,16 @@ with each other.
 I found exactly where the code was failing:
 
 {% highlight csharp %}
-Item item = GetAllItems().SingleOrDefault( x => x.Id == "Expected Id" )
+// Create item
 
+// Copy the item to a new container
+
+Item item = GetAllItems( ContainerId ).SingleOrDefault( x => x.Id == "Expected Id" )
+
+// This was the failing assertion
 Assert.IsNotNull( item );
+
+// Delete the items
 {% endhighlight %}
 
 It was not clear what ``SingleOrDefault`` would do when there were no items in the list or too many. I tested
@@ -46,7 +53,7 @@ isolated from other tests. The tests used standard libraries which are safe to
 run in parallel. Nothing jumped out to me which would cause this test to
 collide with others or itself.
 
-At this point I was stumped and was not sure how to continue. All the obvious
+At this point, I was stumped and was not sure how to continue. All the obvious
 things had been ruled out. So far we have:
 
 * Confirmed the failure
@@ -62,13 +69,13 @@ investigating and fixing flaky tests.
 [Repeat( 1000 )]
 ===============================================================================
 
-Chris recommended to confirm whether the test had intermittent issues alone.
+Chris recommended confirming whether the test had intermittent issues when running alone.
 He had a simple trick to repeat the test multiple times. Add the [Repeat][repeat]
 attribute to the test.
 
 This would essentially run the test 1000 times in a loop. If any test run fails
 then the test fails. If the test had problems alone then this would easily show
-them. Otherwise we would have to continue looking elsewhere.
+them. Otherwise, we would have to continue looking elsewhere.
 
 The test passed with flying colours. The search continued for other tests which
 would have caused it to fail.
@@ -113,10 +120,9 @@ thought we could run the tests again and again to better reproduce it.
 
 We decided to gather more data on the tests. We wanted to disprove our hunch
 regarding the deadlocks by trying to capture on the next time the tests failed.
-Our co-worker, [Micheal Swart][swart] a majestic database whisperer, gave us a
-script to additional tracing on the database server. The script was roughly the
-same as this fantastic script from [brentozar.com][blocked] (not included here
-because I am not sure their about their embedding policies).
+Our co-worker, [Michael Swart][swart] a majestic database whisperer, gave us a
+script to add additional tracing on the database server. The script was roughly the
+same as this fantastic [script][script] from [brentozar.com][blocked].
 
 Since only our tests run against this server the extra tracing is fine. On a
 production database I am not sure if this same approach would be recommended.
