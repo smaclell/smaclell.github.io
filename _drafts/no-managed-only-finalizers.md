@@ -10,40 +10,40 @@ image:
   creditlink: https://www.flickr.com/photos/cayusa/2962437091/
 ---
 
-TODO: Image of magic
-
-We cleaned up a fruity issues caused by .NET Finalizers with managed classes.
-Finalizers are a magical method called by the garbage collector. Like most
+We cleaned up a fruity issues caused by using [.NET Finalizers][object] with managed classes.
+Finalizers are a magical method called by the Garbage Collector. Like most
 magic you need to be careful or you might saw your legs off.
 While Finalizers might sound like a cool way to clean up after yourself they should
- only be used to cleanup unmanaged resources. If not they can lead
-to instability and are not recommended.
+ only be used to cleanup unmanaged resources. Otherwise, they are not recommended
+and can lead to instability.
 
-There are two primary mechanisms for cleaning up resources in .NET,
+There are two primary mechanisms for cleaning up resources in .NET:
 Finalizers and ``IDisposable``.
 
 Finalizers are meant to ensure unmanaged resources are cleaned up by the
-garbage collector. They feel like a hold over from unmanaged code and I get
+Garbage Collector. They feel like a hold over from unmanaged code and I get
 uncomfortable when I see them. In 99.9% of the managed code I have worked in they
 don't belong.
 
 Whereas most .NET classes implement the ``IDisposable`` interface to tidy up
 after themselves. Closing database connections and cleaning up files are
 standard examples. The interface works great for allowing your consumers clean
-up resources when they want to instead of waiting for the garbage collector.
+up resources when they want to instead of waiting for the Garbage Collector.
+
+We were using Finalizers and were doing it wrong.
 
 What went Wrong
 ===============================================================================
 
-With Finalizers like their C++ sibling Destructors it is important to pay
+With Finalizers, like their C++ sibling destructors, it is important to pay
 attention to how objects are connected. We ran into a problem where a Finalizer
 was disposing the object which created it.
 
-The classes ``TestData`` and ``TestUtiltiy`` were used together in integration
+The classes ``TestData`` and ``TestUtility`` were used together in integration
 tests to setup/cleanup data. The tests intermittently failed because the
-``TheDataYouCareAbout`` was deleted when the ``TestData`` Finalizer ran.
+``DataWeCareAbout`` was deleted when the ``TestData`` Finalizer ran.
 
-Our classes looked like this:
+Our classes looked roughly like this (minus a bunch of boring code):
 
 {% highlight csharp %}
 internal class TestData {
@@ -53,6 +53,7 @@ internal class TestData {
         m_helper = helper;
     }
 
+    // The Bad Finalizer
     ~TestData() {
         m_helper.Dispose();
     }
@@ -66,18 +67,18 @@ internal class TestHelper : IDisposable {
 
     public void Dispose() {
         m_conn.Execute(
-            "DELETE TheDataYouCareAbout WHERE Id = @Id",
+            "DELETE DataWeCareAbout WHERE Id = @Id",
             new { Id }
         );
     }
 
 }
-
 {% endhighlight %}
 
-This was hard to find since when the code would run was not consistent. We
-eventually found it by tracing what could delete the data during the test along
-with code which could run at at time. This led us to the Finalizers.
+Since Finalizers are called directly by the Garbage Collector the failures
+were not consistent. They would happen if the Garbage Collector ran early in
+the test run. We eventually found it by stepping through the code to isolate
+what was deleting the data during the test. This led us to the Finalizers.
 
 Daryl, a great developer I work with, insisted Finalizers should not be used
 with only managed code. Their sole purpose is to ensure unmanaged resources can
@@ -85,23 +86,28 @@ be cleaned up even if the programmer forgets.
 
 We had two problems:
 
-* When ``TestData`` disposed the ``TestUtility`` it cleaned up data it was not responsible for
+* ``TestData`` disposed the ``TestUtility`` which deleted ``DataWeCareAbout`` too soon
 * We should not have used a Finalizer at all
 
 
-Finding More?
+Finding More Finalizers
 ===============================================================================
 
-We looked through our code base to see if Finalizers were used elsewhere. We
+We looked through our code base to see if more Finalizers were used elsewhere. We
 only found one where it was needed and many others which needed to be removed.
 
-Many were using a fun pattern which is a hybrid between Finalizers and Dispose
-which were completely overkill for our classes. You can read more about
-implementing Finalizers and this pattern on [msdn][impl]. Here is a sample
-based on our code/msdn:
+The extra Finalizers were not needed at all! They had no unmanaged resources!
+We deleted them without a second thought.
+
+As an added bonus, they were using a fun pattern which mixes Finalizers and ``IDisposable``.
+Consumers can proactively call ``Dispose`` and clean up the data. If that is
+forgotten then the Finalizer will be used. This was complete overkill for the Finalizers
+we didn't even need.
+
+You can read more about this pattern and implementing Finalizers on [msdn][impl].
+For completeness here is a sample of the pattern based on our code/msdn:
 
 {% highlight csharp %}
-
 public class Example : IDisposable {
 
     private bool m_disposed = false;
@@ -136,41 +142,30 @@ public class Example : IDisposable {
     }
 
 }
-
 {% endhighlight %}
-
-This pattern is meant to give you a nice balance between proactively cleaning
-up by calling ``Dispose`` and ensuring the data will otherwise be cleaned up
-when the Finalizer runs.
-
-Like the original example we did not need most of our Finalizers. The other
-classes did not have any unmanaged resources and
-therefore should not have been using Finalizers at all. We deleted
-them without a second thought.
 
 Learning More
 ===============================================================================
 
-It turns out having a [Finalizer][object] makes classes special. They are called
-by the Garbage Collector (GC) in order perform extra clean up of unmanaged
-resources.
+It turns out having a [Finalizer][object] makes classes special. Here are a few
+highlights which further convinced me I should avoid them like the plague:
 
-* The GC handles them differently which can [degrade performance][perf]
+* They are handled differently which [degrades performance][perf]
 * When they are called is non-deterministic
-* Managed references in the Finalizer may already be garbage collected and horribly broken
+* Any managed references may already be garbage collected and be horribly broken
 * Are only for cleaning up unmanaged resources
 
 Don't Do It
 ===============================================================================
 
 Odds are you will never need a Finalizer. If you are not sure then you shouldn't
-do add one.
+add one.
 
 We were using it for automatic clean up with only managed code. This
-was both lazy and wrong. Instead we should have used ``IDisposable`` and
-cleaned up the data at the end of the test.
+was both lazy and wrong. Instead, we should have used ``IDisposable`` to
+clean up at the end of the test.
 
-We learnt a valuable lesson: **We didn't need Finalizers* **
+We learnt a valuable lesson: **We didn't need Finalizers**
 
 <hr />
 
