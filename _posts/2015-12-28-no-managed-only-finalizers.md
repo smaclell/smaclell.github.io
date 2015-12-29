@@ -2,7 +2,7 @@
 layout: post
 title:  "No Managed-Only Finalizers"
 description: "We had intermittently failing tests due to an unnecessary Finalizer. It was only being used with managed code. We didn't need one, you probably don't either."
-date:   2015-12-25 1:17:07
+date:   2015-12-28 23:55:07
 tags: troubleshooting daryl chris testing
 image:
   feature: https://farm4.staticflickr.com/3167/2962437091_d7ec9fdfb0_b.jpg
