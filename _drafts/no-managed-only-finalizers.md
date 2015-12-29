@@ -1,13 +1,16 @@
 ---
 layout: post
-title:  "Avoid Managed Only Finalizers"
-description: "We had intermittently failing tests due to an unnecessary Finalizer. We didn't need one, you probably don't either."
+title:  "No Managed-Only Finalizers"
+description: "We had intermittently failing tests due to an unnecessary Finalizer. It was only being used with managed code. We didn't need one, you probably don't either."
 date:   2015-12-25 1:17:07
 tags: troubleshooting daryl chris testing
+image:
+  feature: https://farm4.staticflickr.com/3167/2962437091_d7ec9fdfb0_b.jpg
+  credit: "Magic by Bart - CC BY-NC 2.0"
+  creditlink: https://www.flickr.com/photos/cayusa/2962437091/
 ---
 
 TODO: Image of magic
-TODO: Double check the interface name
 
 We cleaned up a fruity issues caused by .NET Finalizers with managed classes.
 Finalizers are a magical method called by the garbage collector. Like most
