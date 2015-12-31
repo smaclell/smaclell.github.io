@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Rock-Solid PowerShell Projects"
-description: "How we now treat our PowerShell projects to keep them easy to maintain."
-date:   2015-12-31 23:55:07
+description: "How we now setup our PowerShell projects to keep them easy to maintain."
+date:   2015-12-30 23:45:07
 tags: powershell conventions maintenance
 image:
   feature: https://farm8.staticflickr.com/7528/15037595713_077b784de6_b.jpg
