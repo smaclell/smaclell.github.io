@@ -79,6 +79,7 @@ Dependency Injection. The [principle's definition][dip]<a href="#di-note-1"><sup
 [Robert Martin][bob] as follows:
 
 > A. High level modules should not depend upon low level modules. Both should depend upon abstractions.
+>
 > B. Abstractions should not depend upon details. Details should depend upon abstractions.
 
 [The abstraction could be anything][di-abstraction]. Typically it will be an
@@ -129,25 +130,78 @@ create. The caller needs to decide how to create the object. We have moved the
 choice for how the object is created making it harder for every other class.
 
 This can really REALLY get out of hand. You can quickly get to large chains of
-dependencies which need to bet put together.
+dependencies which need to bet put together. One class has a dependency, the
+dependency has more dependencies, those dependencies have even more dependencies.
+This is the tip of the iceberg:
 
-// TODO: Finish
 {% highlight csharp %}
+SqlConnection connection = new SqlConnection( "connection string" );
 
-FooRepository repository = new 
+FooRepository repository = new FooRepository( connection );
 
-DatabaseFoo
+Logger logger = new ConsoleLogger();
 
+BarService controller = new BarService( repository, logger );
 {% endhighlight %}
 
-If every class repeated this setup it would be a big problem. Thankfully there
-are better solutions.
+If every class repeated this setup it would be a big problem. Creating anything
+would be a nightmare. Thankfully there are better solutions.
 
 Enter the Factories
 ===============================================================================
 
-Show the factory method
-Show a factory class
+With all this injection madness we need to find a better way to abstract how
+classes are created.  Before we go deeper try to simplify using Dependency
+Injection lets take a pitstop at the most basic creational pattern: A Factory.
+
+With the Factory we will create a simple class responsible for creating a
+concrete ``IFoo``. It can be used any time an ``IFoo`` is needed without any
+knowledge of the real ``IFoo``. For this example, we can rely on the
+``FooFactory`` instead of directly creating either ``ConsoleFoo`` or ``FileFoo``.
+
+{% highlight csharp %}
+public class FooFactory {
+    public IFoo Create() {
+        return new ConsoleFoo();
+    }
+}
+
+public interface IFoo {
+    void Hello( string message );
+}
+
+internal class ConsoleFoo : IFoo {
+    public void Hello( string message ) {
+        Console.WriteLine( "Hello {0}", message );
+    }
+}
+
+internal class FileFoo : IFoo {
+    public void Hello( string message ) {
+        File.AppendAllText( "C:\\foo.txt", "Hola " + message );
+    }
+}
+
+public class Bar {
+    IFoo m_foo;
+
+    public Bar( IFoo foo ) {
+        m_foo = foo;
+    }
+
+    public void Example() {
+        m_foo.Hello( "World" );
+    }
+}
+{% endhighlight %}
+
+This can contains the sprawling dependencies, but leads to many small lightly
+used classes. Everytime a ``IFoo`` is needed we need to recreate the factory.
+If there are many factories the factories themselves can become pretty
+complicated with lots of factories calling factories.
+
+This is a little better. There is still a bunch of glue code for wiring all
+the dependencies together. I think we can do better.
 
 Poor Man's Dependency Injection Container
 ===============================================================================
