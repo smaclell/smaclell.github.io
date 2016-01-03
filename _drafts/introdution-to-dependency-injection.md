@@ -206,6 +206,17 @@ the dependencies together. I think we can do better.
 Poor Man's Dependency Injection Container
 ===============================================================================
 
+I think we can do better than all the write up caused by the original code and
+the Factory. What if we could use a single class to get any dependency we
+wanted? Think of an ``IDictionary`` which could return an instance of any class
+it knows how to create.
+
+In many ways this the core functionality most Dependency Injection Containers
+provide. Before we go to the real thing I wanted to explore the simple dictionary
+version.
+
+
+
 Show the dictionary of types. I can now get instances of classes, but it is aweful.
 Don't do this at home. Show the concept.
 
