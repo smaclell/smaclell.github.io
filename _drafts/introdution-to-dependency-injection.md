@@ -208,14 +208,89 @@ Poor Man's Dependency Injection Container
 
 I think we can do better than all the write up caused by the original code and
 the Factory. What if we could use a single class to get any dependency we
-wanted? Think of an ``IDictionary`` which could return an instance of any class
-it knows how to create.
+wanted?
 
-In many ways this the core functionality most Dependency Injection Containers
-provide. Before we go to the real thing I wanted to explore the simple dictionary
-version.
+In this section we are going to create a really simple class to do just
+that. Let's call this class a 'Container'. It will know how to create classes
+in our application based on the dependencies we give the Container. It will
+contain our application's dependencies.
 
+The Container needs to:
 
+1. Resolve dependencies our application needs
+2. Register dependencies our application provides
+
+Enough with the words! First one little hickup, our Container needs to know how
+to create any dependency. For now lets avoid that problem and use a simple
+``Func<T>`` like a Factory. Okay, onto the code!
+
+{% highlight csharp %}
+public interface ISimpleContainer {
+    public T Resolve<T>();
+
+    public void Register<T>( Func<T> factory );
+}
+{% endhighlight %}
+
+Pretty simple right? One method to Register dependencies and another to Resolve
+them. This pair of methods makes the entire Container behave like a fancy
+``Dictionary``. Real Dependency Injection Containers can do so much more, but
+for now lets implement our simple version.
+
+{% highlight csharp %}
+public class SimpleContainer : ISimpleContainer {
+    private readonly Dictionary<Type, Delegate> m_registrations =
+        new Dictionary<Type, Delegate>();
+
+    public T Resolve<T>() {
+        Func<T> factory = (Func<T>)m_registrations[typeof(T)];
+        return factory();
+    }
+
+    public void Register<T>( Func<T> factory ) {
+        m_registrations.Add( typeof(T), factory );
+    }
+}
+{% endhighlight %}
+
+Using the Container is easy. In the next example we register all the types (lines 5-11)
+then resolve them (lines 8 and 13). Once we have resolved ``Bar`` we can use it normally!
+
+{% highlight csharp linenos %}
+public class Program {
+    static void Main() {
+        SimpleContainer container = new SimpleContainer();
+
+        container.Register<IFoo>( () => new ConsoleFoo() );
+        container.Register<Bar>(
+            () => {
+                IFoo foo = container.Resolve<IFoo>();
+                return new Bar( foo );
+            }
+        );
+
+        Bar bar = container.Resolve<Bar>();
+
+        bar.Example();
+    }
+}
+{% endhighlight %}
+
+TODO: Summarize the section, Explore the pro/cons and setup the next section
+
+We have simplified resolving dependencies compared to our previous approaches.
+There are a few minor downsides to using our Container. We added registering
+all dependencies with a single container. Before we would call the constructor
+directly or use a Factory which was nice and simple.
+
+Although registration adds complexity it is worth it since the consuming code
+can easily resolve whatever dependencies it needs. ,
+which must be done for all dependencies against the single container. This is a reasonable
+tradeoff since we want to  These are reasonable tra
+
+Real Dependency Injection libraries To be honest, this poor man version is not much better than Factories everywhere.
+I would not use in my own projects. 
+This is the primary area where full fledged frameworks are fantastic.
 
 Show the dictionary of types. I can now get instances of classes, but it is aweful.
 Don't do this at home. Show the concept.
@@ -226,8 +301,21 @@ Complete Dependency Injection FTW
 Talk about libraries, splitting providing dependencies and consuming them.
 This scales great even for really large applications.
 
+The Darkside
+===============================================================================
+
 Downside is following how the code fits together is really hard. Troubleshooting
 can be harder.
+
+It is recommended to isolate the libraries. They are complicated and generally
+weaving them through you code is not good.
+
+Further Reading
+
+Off to the Races
+===============================================================================
+
+Have fun!
 
 <hr />
 
