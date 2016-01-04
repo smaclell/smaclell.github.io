@@ -150,6 +150,8 @@ would be a nightmare. Thankfully there are better solutions.
 Enter the Factories
 ===============================================================================
 
+TODO: Explain what this has to do with the post
+
 With all this injection madness we need to find a better way to abstract how
 classes are created.  Before we go deeper try to simplify using Dependency
 Injection lets take a pitstop at the most basic creational pattern: A Factory.
@@ -205,6 +207,8 @@ the dependencies together. I think we can do better.
 
 Poor Man's Dependency Injection Container
 ===============================================================================
+
+TODO: Describe the mental model of DI as Factory on Steroids or Dictionary which can create dependencies
 
 I think we can do better than all the write up caused by the original code and
 the Factory. What if we could use a single class to get any dependency we
@@ -298,22 +302,59 @@ Don't do this at home. Show the concept.
 Complete Dependency Injection FTW
 ===============================================================================
 
+Thankfully there are many great full fledged Dependency Injection Containers.
+Here are a few of my favourites we use in various projects:
+
+* [Autofac][autofac]
+* [StructureMap][structuremap]
+* [TinyIoC][tinyioc] via [Nancy][nancyfx]
+
+Autofac is new, super clean, powerful and generally just nice. This would be my
+first choice if starting a new application using ASP.NET MVC.
+
+StructureMap is battle hardened having been the original .NET Dependency Injection
+Container. The latest version of StructureMap was a massive step forward with
+learning from the 10 years supporting the project. A great choice, I highly
+recommend checking it out.
+
+Lastly, we use Nancy a lot! For the simpler application we take advantage of the
+built in TinyIoC. It is simpler than the other Containers.
+
+TODO: Talk about their benefits when it comes to resolving.
+TODO: Talk about their benefits when it comes to registering.
+
+They vastly simplify registering different types. Registering types often takes
+on additional responsibility like providing caching for created types,
+
 Talk about libraries, splitting providing dependencies and consuming them.
 This scales great even for really large applications.
 
-The Darkside
+Further Reading
 ===============================================================================
 
-Downside is following how the code fits together is really hard. Troubleshooting
-can be harder.
+TODO: Format and review
 
-It is recommended to isolate the libraries. They are complicated and generally
-weaving them through you code is not good.
+**[DIP in the Wild](http://martinfowler.com/articles/dipInTheWild.html)**
 
-Further Reading
+Real life applications of Dependency Injection in the wild plus a good recap of
+the concepts I introduced here. Good discussions about abstractions they added
+to their application and how the concepts apply. It is pretty big.
 
 Off to the Races
 ===============================================================================
+
+Throughout this post we have seen the basics of Dependency Injection. We walked
+through:
+
+1. Reviewed concrete classes which created their own dependencies
+2. Applied the Dependency Inversion Principle
+3. Demystified Dependency Injection
+4. Saw our dependencies get out of hand
+5. Explored Factories as another creation pattern
+6. Considered a REALLY simple Dependency Injection Container
+7. Arrived at complete Dependency Injection Containers
+
+Piecing
 
 Have fun!
 
@@ -330,3 +371,7 @@ via [this][di-abstraction] great article explainning how an abstraction is not s
 [bob]: https://twitter.com/unclebobmartin
 [di-abstraction]: https://lostechies.com/derickbailey/2008/10/20/dependency-inversion-abstraction-does-not-mean-interface/
 [james]: http://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html
+[autofac]: http://autofac.org/
+[structuremap]: http://structuremap.github.io/
+[tinyioc]: https://github.com/grumpydev/TinyIoC/wiki
+[nancyfx]: http://nancyfx.org/
