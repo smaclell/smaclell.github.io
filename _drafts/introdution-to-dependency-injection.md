@@ -299,7 +299,7 @@ This is the primary area where full fledged frameworks are fantastic.
 Show the dictionary of types. I can now get instances of classes, but it is aweful.
 Don't do this at home. Show the concept.
 
-Complete Dependency Injection FTW
+Awesome Containers
 ===============================================================================
 
 Thankfully there are many great full fledged Dependency Injection Containers.
@@ -309,7 +309,10 @@ Here are a few of my favourites we use in various projects:
 * [StructureMap][structuremap]
 * [TinyIoC][tinyioc] via [Nancy][nancyfx]
 
-Autofac is new, super clean, powerful and generally just nice. This would be my
+Autofac is new, super clean, powerful and generally just nice. The registration
+API is fantastic! They have an interesting separation between registered items
+and the dependencies which can be resolved. They also have great support for
+controlling [lifetimes/scoping][auto-life] and [cleaning up for you][auto-dispose]. This would be my
 first choice if starting a new application using ASP.NET MVC.
 
 StructureMap is battle hardened having been the original .NET Dependency Injection
@@ -318,23 +321,37 @@ learning from the 10 years supporting the project. A great choice, I highly
 recommend checking it out.
 
 Lastly, we use Nancy a lot! For the simpler application we take advantage of the
-built in TinyIoC. It is simpler than the other Containers.
+built in TinyIoC. It is simpler than the other Containers. So far we have been
+able to use it exclusively in our applications. As our services get bigger it is
+starting show it's age and more sophisticated configuration is harder. As a
+result we periodically consider updating to one of the other libraries.
 
-TODO: Talk about their benefits when it comes to resolving.
-TODO: Talk about their benefits when it comes to registering.
+What all these libraries have in common is how they enhance how you can register
+and resolve components. Often these capabilities are linked as a feature used
+when registering influences how objects are resolved.
 
-They vastly simplify registering different types. Registering types often takes
-on additional responsibility like providing caching for created types,
+Many have shortcuts for simple transactions, i.e. from ``T`` to ``Lazy<T>``.
+They offer the ability to register sets of dependencies in
+[Modules][auto-modules] or [Registries][sm-registry]. Most provide mechanisms
+for automatically registering your types based on conventions so you do not
+need to configure everything by hand.
 
-Talk about libraries, splitting providing dependencies and consuming them.
-This scales great even for really large applications.
+Perhaps the greatest benefit is simplified integration with various frameworks.
+They have shortcuts to hook into popular web frameworks, like ASP.NET MVC or
+Nancy, so they can resolve types you need. This lets you use Dependency
+Injection while still isolating the Container within your code. Everything
+fits together as if by magic.
+
+The larger our applications get the better these frameworks are. We no longer
+worry about how we are going to wire our classes together. Instead we can
+concentrate on designing our interfaces and classes so we can solve problems.
 
 Further Reading
 ===============================================================================
 
 TODO: Format and review
 
-**[DIP in the Wild](http://martinfowler.com/articles/dipInTheWild.html)**
+**[DIP in the Wild][wild]**
 
 Real life applications of Dependency Injection in the wild plus a good recap of
 the concepts I introduced here. Good discussions about abstractions they added
@@ -372,6 +389,11 @@ via [this][di-abstraction] great article explainning how an abstraction is not s
 [di-abstraction]: https://lostechies.com/derickbailey/2008/10/20/dependency-inversion-abstraction-does-not-mean-interface/
 [james]: http://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html
 [autofac]: http://autofac.org/
+[auto-life]: http://autofac.readthedocs.org/en/latest/lifetime/index.html
+[auto-dispose]: http://autofac.readthedocs.org/en/latest/lifetime/disposal.html
 [structuremap]: http://structuremap.github.io/
 [tinyioc]: https://github.com/grumpydev/TinyIoC/wiki
 [nancyfx]: http://nancyfx.org/
+[auto-modules]: http://autofac.readthedocs.org/en/latest/configuration/modules.html
+[sm-registry]: http://structuremap.github.io/registration/
+[wild]: http://martinfowler.com/articles/dipInTheWild.html
