@@ -147,13 +147,27 @@ BarService controller = new BarService( repository, logger );
 If every class repeated this setup it would be a big problem. Creating anything
 would be a nightmare. Thankfully there are better solutions.
 
-Enter the Factories
+Containers
 ===============================================================================
+
+With all this injection madness we need to find a better way to abstract how
+classes are created. Don't worry! There are fantastic libraries to help address
+this problem. These are commonly referred to as Dependency Injection Containers
+because they contain and managed all of your dependencies.
+
+Before we get to the real thing I want to take you through 3 simple mental
+models for how the Containers behave. They real Containers are still a little
+complicated. I like to think about Containers as a little bit like:
+
+* A Default Constructor
+* A Factory
+* A Dictionary for types
+
+### Enter the Factories
 
 TODO: Explain what this has to do with the post
 
-With all this injection madness we need to find a better way to abstract how
-classes are created.  Before we go deeper try to simplify using Dependency
+Before we go deeper try to simplify using Dependency
 Injection lets take a pitstop at the most basic creational pattern: A Factory.
 
 With the Factory we will create a simple class responsible for creating a
@@ -205,8 +219,7 @@ complicated with lots of factories calling factories.
 This is a little better. There is still a bunch of glue code for wiring all
 the dependencies together. I think we can do better.
 
-Poor Man's Dependency Injection Container
-===============================================================================
+### Poor Man's Dependency Injection Container
 
 TODO: Describe the mental model of DI as Factory on Steroids or Dictionary which can create dependencies
 
@@ -299,8 +312,7 @@ This is the primary area where full fledged frameworks are fantastic.
 Show the dictionary of types. I can now get instances of classes, but it is aweful.
 Don't do this at home. Show the concept.
 
-Awesome Containers
-===============================================================================
+### Awesome Containers
 
 Thankfully there are many great full fledged Dependency Injection Containers.
 Here are a few of my favourites we use in various projects:
@@ -349,7 +361,17 @@ concentrate on designing our interfaces and classes so we can solve problems.
 Further Reading
 ===============================================================================
 
-TODO: Format and review
+Phew, you made it this far! I hope this helped shed some light on Dependency
+Injection and the surrounding concepts. This is just scratching the tip of the
+iceberg. There is so much more you can read and learn. While writing this post
+here are some great resources I found:
+
+**[Autofac][auto-docs] and [StructureMap][sm-docs] Documentation**
+
+Both these libraries are fantastic and their maintainers have put some serious
+work into writing comprehensive documentation. They share many recommendations
+and pitfalls for using their frameworks. The most interesting is insights into
+decisions they made and why they made them.
 
 **[DIP in the Wild][wild]**
 
@@ -396,4 +418,6 @@ via [this][di-abstraction] great article explainning how an abstraction is not s
 [nancyfx]: http://nancyfx.org/
 [auto-modules]: http://autofac.readthedocs.org/en/latest/configuration/modules.html
 [sm-registry]: http://structuremap.github.io/registration/
+[auto-docs]: http://autofac.readthedocs.org/en/latest/index.html
+[sm-docs]:
 [wild]: http://martinfowler.com/articles/dipInTheWild.html
