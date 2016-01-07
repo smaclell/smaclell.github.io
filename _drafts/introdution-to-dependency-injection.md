@@ -10,7 +10,7 @@ TODO: Cover
 
 I have had the privilege of mentoring several co-workers this year. One of the
 topics they find confusing was Dependency Injection. We use it everywhere. To
-them it felt like magic. Code just fits together through mystical Containers.
+them it felt like magic. The code just fits together through mystical Containers.
 Have no fear. In this post we will break down the powerful concepts surrounding
 Dependency Injection.
 
@@ -95,11 +95,11 @@ In fact, we used it without really knowing it. Where Dependency Inversion was
 all about the abstractions and layers, Dependency Injection is all about how
 dependencies are provided.
 
-Don't worry. At it is a really simple idea. Here is the demysified version by [James Shore][james]:
+Don't worry. At it is a really simple idea. Here is the demystified version by [James Shore][james]:
 
 > Dependency injection means giving an object its instance variables.
 
-Literally injecting dependencies into a class. In our previous example we 
+Literally, injecting dependencies into a class. In our previous example, we 
 injected our dependencies using parameters on the constructor,
 but you could also use properties or specialized methods.
 
@@ -127,7 +127,7 @@ Injecting Inverted Dependencies
 ===============================================================================
 
 Until this point we have inverted our dependencies so we could inject them
-into our classes. This is fanstastic! Our code is nicely decoupled.We can
+into our classes. This is fantastic! Our code is nicely decoupled. We can
 easily change what is injected for testing, introducing new features or to
 compose your code differently.
 
@@ -150,8 +150,8 @@ has been moved to their callers. Choosing what concrete implementations to use
 is unclear.
 
 This can really REALLY get out of hand. You can quickly have large dependency
-chains which need to be meshed together. One class has a dependency, the
-dependency has more dependencies, those dependencies have their own dependencies.
+chains which don't mesh together easily. One class has a dependency, the
+dependency has more dependencies and those dependencies have their own dependencies.
 You can see how this might spiral out of control. This is the tip of the iceberg:
 
 {% highlight csharp %}
@@ -246,10 +246,11 @@ We can do better.
 ### Poor Man's Dependency Injection Container
 
 What if we could use a single class to get any dependency we wanted?
-Instead of a Factory, we could have Super Dictionary where add how to create
-types then get fully created instances back.
+Instead of a Factory, we could have a Dictionary keyed on types where the
+values define how to create any class. We could then create any class the
+Dictionary knows about.
 
-In this section we are going to create a really simple class to do just
+In this section, we are going to create a really simple class to do just
 that. Our very own simple Dependency Injection Container.
 
 Why is it called a Container? It will contain all our application's dependencies.
@@ -261,8 +262,8 @@ The Container needs to:
 1. Resolve dependencies our application needs
 2. Register dependencies our application provides
 
-Enough with the words! First one little hickup, our Container needs to know how
-to create any dependency. For now lets avoid that problem and use a simple
+Enough with the words! First one little hiccup, our Container needs to know how
+to create any dependency. For now let's avoid that problem and use a simple
 ``Func<T>`` like a Factory. Okay, onto the code!
 
 {% highlight csharp %}
@@ -293,7 +294,7 @@ public class SimpleContainer : ISimpleContainer {
 }
 {% endhighlight %}
 
-Using the Container is easy. In the next example we register all the types (lines 5-11)
+Using the Container is easy. In the next example, we register all the types (lines 5-11)
 then resolve them (lines 8 and 13). Once we have resolved ``Bar`` we can use it normally!
 
 {% highlight csharp linenos %}
@@ -340,7 +341,7 @@ existing open source Dependency Injection Containers.
 ### Awesome Containers
 
 Thankfully, there are many great open source Dependency Injection Containers.
-Here are a few of my favourites we use in various projects:
+The following three are my favourites. We have used each of them on different projects.
 
 **[Autofac][autofac]**
 
@@ -359,16 +360,17 @@ recommend checking it out.
 
 **[TinyIoC][tinyioc] via [Nancy][nancyfx]**
 
-Lastly, we use Nancy a lot! For the simpler application we take advantage of the
-built in TinyIoC. It is simpler than the other Containers. So far we have been
+Lastly, we use Nancy a lot! For the simpler applications, we take advantage of the
+built-in TinyIoC. It is simpler than the other Containers. So far we have been
 able to use it exclusively in our applications. As our services get bigger it is
-starting show it's age and more sophisticated configuration is harder. As a
-result we periodically consider updating to one of the other libraries.
+starting to not work as well. We have needed to complicate our configuration since
+more advanced features are not included. As a result, we periodically consider
+switching to one of the other libraries.
 
 ### More Out of the Box
 
 These libraries greatly enhance how you can register and resolve components.
-Often these capabilities are connected, features used
+Often these capabilities are connected; features used
 when registering influence how objects are resolved.
 
 They can all wire together classes based on their dependencies. You could
@@ -418,7 +420,7 @@ Injection while decoupling your code from the Container. Everything
 fits together as if by magic.
 
 The larger our applications get the better these frameworks are. We no longer
-worry about how we are going to wire our classes together. Instead we can
+worry about how we are going to wire our classes together. Instead, we can
 concentrate on designing our interfaces and classes so we can solve problems.
 
 Connecting the Dots
@@ -461,7 +463,7 @@ decisions they made and why they made them.
 **[Container Guidelines][guidelines]**
 
 Dependency Injection Containers can be extremely impactful to how you design
-your application. They do need to be treated with some care. Jimmy, has a
+your application. They do need to be treated with some care. Jimmy has a
 number of great recommendations<a href="#di-note-2"><sup id="reverse-di-note-2">2</sup></a> to keep your application clean and stay out
 of the weeds.
 
@@ -473,7 +475,7 @@ to their application and how the concepts apply. WARNING: It is pretty big.
 
 **[Inversion of Control Containers and the Dependency Injection pattern][injection]**
 
-This is a more indepth explaination of the concepts. They also go into the
+This is a more in-depth explanation of the concepts. They also go into the
 closely related idea of "Inversion of Control" and "Service Locators".
 Again there is a good review of best practices and trade-offs from different
 approaches. WARNING: It is pretty big.
@@ -483,7 +485,7 @@ approaches. WARNING: It is pretty big.
 ### Footnotes
 
 <a href="#reverse-di-note-1"><span id="di-note-1">1.</span></a> I could not get this link to work. I found it
-via [this][di-abstraction] great article explainning how an abstraction is not synonymous with interfaces.
+via [this][di-abstraction] great article explaining how an abstraction is not synonymous with interfaces.
 
 <a href="#reverse-di-note-2"><span id="di-note-2">2.</span></a> For some applications we intentionally call
 the container from our tests. We treat the Container configuration as part of our integration tests. I will
