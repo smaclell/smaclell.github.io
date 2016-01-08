@@ -1,15 +1,17 @@
 ---
 layout: post
 title:  "Introduction to Dependency Injection"
-description: "The nuts and bolts of Dependency Injection. Everything you need to know plus how it compares against other patterns like a Factory."
+description: "Dependency Inversion with out all the magic. Review the basics and learn simple models of Dependency Injection Containers."
 date:   2016-01-08 23:45:07
-tags: dependency-injection
+tags: dependency-injection dependency-inversion introduction basics Autofac StructureMap Nancyfx TinyIoc
+image:
+  feature: https://farm6.staticflickr.com/5269/5610940978_1195ce9cff_b.jpg
+  credit: "The Wizard of Oz 0778 by Mraz Center - CC BY-NC 2.0"
+  creditlink: https://www.flickr.com/photos/theatrebhs/5610940978/
 ---
 
-TODO: Cover
-
-I have had the privilege of mentoring several co-workers this year. One of the
-topics they find confusing was Dependency Injection. We use it everywhere. To
+I had the privilege of mentoring several co-workers in 2015. One of the
+topics they found confusing was Dependency Injection. We use it everywhere. To
 them it felt like magic. The code just fits together through mystical Containers.
 Have no fear. In this post we will break down the powerful concepts surrounding
 Dependency Injection.
