@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Introduction to Dependency Injection"
-description: "Dependency Inversion with out all the magic. Review the basics and learn simple models of Dependency Injection Containers."
+description: "Dependency Inversion without all the magic. Review the basics and learn simple models of Dependency Injection Containers."
 date:   2016-01-08 23:45:07
 tags: dependency-injection dependency-inversion introduction basics Autofac StructureMap Nancyfx TinyIoc
 image:
@@ -16,7 +16,7 @@ them it felt like magic. The code just fits together through mystical Containers
 Have no fear. In this post we will break down the powerful concepts surrounding
 Dependency Injection.
 
-Let's start with some really simple classes:
+Let's start with some simple classes:
 
 {% highlight csharp %}
 public class Foo {
@@ -38,14 +38,28 @@ public class Bar {
 }
 {% endhighlight %}
 
-These are all concrete classes. No fancy dependency injection or inversion
+These are all concrete classes. No fancy dependency magic
 here. What this code does is very clear. ``Bar`` creates a ``Foo`` then
 uses it to print ``Hello World``.
+
+A complete program using this code is also straightforward:
+
+{% highlight csharp %}
+public class Program {
+    static void Main() {
+        Bar bar = new Bar();
+
+        bar.Example();
+    }
+}
+{% endhighlight %}
+
+Create a new ``Bar`` then call ``Example``. Hello World!
 
 Dependency Inversion Principle Applied
 ===============================================================================
 
-Let's spice things up! Instead of using creating the ``Foo`` in ``Bar``'s
+Let's spice things up! Instead of creating the ``Foo`` in ``Bar``'s
 constructor we can pass it in. Better yet, we can switch to an interface with
 all the same methods as ``Foo``.
 
@@ -75,8 +89,8 @@ public class Bar {
 
 So what have we gained? Well, the low level ``Bar`` class no longer knows
 anything about the ``IFoo`` implementation it is using. That is now up to
-callers using ``Bar``. We have switched from a concrete implementation to a higher level
-abstraction.
+callers using ``Bar``. We have switched from a concrete implementation to a higher level abstraction.
+This decouples the code making it easier to maintain.
 
 We have applied the [Dependency Inversion Principle][dip]<a href="#di-note-1"><sup id="reverse-di-note-1">1</sup></a>.
 As defined by [Robert Martin][bob] it is:
@@ -86,7 +100,7 @@ As defined by [Robert Martin][bob] it is:
 > B. Abstractions should not depend upon details. Details should depend upon abstractions.
 
 [The abstraction could be anything][di-abstraction]. Typically it will be an
-interface, but can also be a base class, delegate or other abstraction. The key
+interface, but can also be a base class, delegate or another abstraction. The key
 is shifting the code from the implementation to a higher level.
 
 What About Dependency Injection?
@@ -97,64 +111,69 @@ In fact, we used it without really knowing it. Where Dependency Inversion was
 all about the abstractions and layers, Dependency Injection is all about how
 dependencies are provided.
 
-Don't worry. At it is a really simple idea. Here is the demystified version by [James Shore][james]:
+Don't worry, it is a really simple idea. Here is the demystified definition by [James Shore][james]:
 
 > Dependency injection means giving an object its instance variables.
 
-Literally, injecting dependencies into a class. In our previous example, we 
-injected our dependencies using parameters on the constructor,
-but you could also use properties or specialized methods.
+Literally, injecting dependencies into a class. In our previous example, we
+injected our dependencies using constructor parameters. This is the
+most common approach, but you can also inject dependencies using properties or specialized methods.
 
-Look at the constructor from the example again:
+Look look at the program from the last example:
 
 {% highlight csharp %}
-public class Bar {
-    IFoo m_foo;
+public class Program {
+    static void Main() {
+        IFoo foo = new Foo();
 
-    // --> Boom, injected
-    public Bar( IFoo foo ) {
-        m_foo = foo;
-    }
+        // Boom, IFoo injected!
+        Bar bar = new Bar( foo );
 
-    public void Example() {
-        m_foo.Hello( "World" );
+        bar.Example();
     }
 }
 {% endhighlight %}
 
-The ``IFoo`` is injected into the constructor by whatever code is using the
-``Bar`` class.
+We inject the ``IFoo`` into the constructor of the ``Bar``. The program can
+now choose which ``IFoo`` to use. This is more flexible than when the choice
+was buried in the ``Bar`` class.
 
-Injecting Inverted Dependencies
+The Benefits
 ===============================================================================
 
-Until this point we have inverted our dependencies so we could inject them
+We have inverted our dependencies and injected them
 into our classes. This is fantastic! Our code is nicely decoupled. We can
-easily change what is injected for testing, introducing new features or to
-compose your code differently.
+easily change what is injected for testing or introducing new features.
 
 Implementations are hidden
 behind abstractions and can be easily replaced. Want an ``IFoo`` which writes
-out to files? No problem. You can change the code to use it without ever
+out to files? No problem. You can change the code to your new ``FileFoo`` without ever
 modifying ``Bar``.
 
-The original implementation would be hard to test ``Bar`` in isolation due to
-the concrete classes. We could now fake ``IFoo`` in the test to do whatever
-we want. This is a great way to set up specific scenarios and/or avoid external
+The original ``Bar`` is impossible to test in isolation. The direct dependency
+on ``Foo`` forces the two classes to be tested together. Changes to ``Foo``
+could break the tests for ``Bar``.
+
+By injecting the dependencies, we can use a fake ``IFoo`` in
+tests to do whatever we want. This is a great way to set up specific scenarios and/or avoid external
 systems (i.e. databases or services).
 
 Dependencies For Everyone!
 ===============================================================================
 
-We have one little problem. When every class applies both ideas, creating
-anything is really hard. The choice for what to inject into our inverted classes
-has been moved to their callers. Choosing what concrete implementations to use
-is unclear.
+Creating classes is more challenging when you use Dependency Injection and
+Dependency Inversion frequently.
 
-This can really REALLY get out of hand. You can quickly have large dependency
-chains which don't mesh together easily. One class has a dependency, the
+We have moved where dependencies are created. This poses a problem for
+consumers of the original classes. They must both choose what to inject and
+create all the dependencies. I mean *ALL* the dependencies.
+
+Your dependencies start to have their own dependencies. While this is not too bad with
+a few dependencies, once you get into chains of dependencies it gets nasty.
+
+Think about it. One class has a dependency, the
 dependency has more dependencies and those dependencies have their own dependencies.
-You can see how this might spiral out of control. This is the tip of the iceberg:
+This is the tip of the iceberg:
 
 {% highlight csharp %}
 SqlConnection connection = new SqlConnection( "connection string" );
@@ -163,30 +182,32 @@ FooRepository repository = new FooRepository( connection );
 
 Logger logger = new ConsoleLogger();
 
-BarService controller = new BarService( repository, logger );
+BazService controller = new BazService( repository, logger );
 {% endhighlight %}
 
-If every class repeated this setup it would be a big problem. Creating anything
-would be a nightmare. Thankfully there are better solutions.
+If every class repeated setups like this it would be a big problem. Creating anything
+would be a nightmare. Thankfully there is a better solution, Dependency Injection Containers.
 
-(Dependency Injection) Containers
+Dependency Injection Containers
 ===============================================================================
 
-With all this injection madness we need to find a better way to create classes.
-Don't worry! There are fantastic libraries to help address
-this problem. These are commonly referred to as Dependency Injection Containers
-because they contain and seamlessly connect all of your dependencies.
+With all this dependency madness we need to find a better way to create classes.
+Don't worry! There are fantastic libraries to address
+this problem. They are commonly referred to as Dependency Injection Containers
+or Containers for short.
 
-Before we get to the real thing I want to walk you through 3 simple mental
-models for how the Containers behave. The real Containers are still a little
-complicated. Conceptually they are a little bit like:
+Containers contain and seamlessly connect all of your dependencies. Within your
+application they are used to instantiate dependencies they know about.
 
-* A Factory
-* A Dictionary for types
+Before we get to the real thing I want to walk you through a mental
+models for Containers.
+
+* Externally they are like one massive Factory for any type
+* Internally they are like a Dictionary of Factories
 
 ### Enter the Factories
 
-A Factory is a really simple creational pattern. They allow you to abstract
+A Factory is a common creational pattern. They allow you to abstract
 what is being created and how it is created. Dependency Injection Containers
 behave like Super Factories which can create any type they know about.
 
@@ -206,7 +227,7 @@ internal class ConsoleFoo : IFoo {
 }
 {% endhighlight %}
 
-It can be used any time an ``IFoo`` is needed without any knowledge of which ``IFoo`` is created.
+The Factory can be used any time an ``IFoo`` is needed without any knowledge of which ``IFoo`` is created.
 We could easily update the ``FooFactory`` to create a ``FileFoo``.
 
 {% highlight csharp %}
@@ -223,12 +244,13 @@ internal class FileFoo : IFoo {
 }
 {% endhighlight %}
 
-This can partially contain the sprawling dependencies. There will be many
-factories and often factories will need to call factories. This can get
+Factories can partially contain the sprawling dependencies. The more
+dependencies you have the more factories you will need. Factories will need
+to call other factories to create nested dependencies. This can get
 complicated when many dependencies are needed. The extra classes and glue code
-is tedious to maintain.
+are tedious to maintain.
 
-Prior to using ``IFoo`` we still need to create one using the factory:
+Prior to using ``IFoo`` we need to create one using the factory:
 
 {% highlight csharp linenos %}
 public class Program {
@@ -243,30 +265,28 @@ public class Program {
 }
 {% endhighlight %}
 
-We can do better.
+Having to use the factory everywhere is not fun. We can do better.
 
 ### Poor Man's Dependency Injection Container
 
 What if we could use a single class to get any dependency we wanted?
-Instead of a Factory, we could have a Dictionary keyed on types where the
-values define how to create any class. We could then create any class the
-Dictionary knows about.
+We could use a Dictionary of Factories! The Dictionary would be keyed on types
+where the values would define how to create their respective types.
+We could then create any class the Dictionary knows about.
 
 In this section, we are going to create a really simple class to do just
 that. Our very own simple Dependency Injection Container.
 
-Why is it called a Container? It will contain all our application's dependencies.
+Question: Why is it called a "Container"? It will contain all our application's dependencies.
 When our application starts we will give it all the dependencies we want to
 create and classes we want to inject the dependencies into.
 
 The Container needs to:
 
-1. Resolve dependencies our application needs
-2. Register dependencies our application provides
+1. Resolve types our application needs
+2. Register types our application provides
 
-Enough with the words! First one little hiccup, our Container needs to know how
-to create any dependency. For now let's avoid that problem and use a simple
-``Func<T>`` like a Factory. Okay, onto the code!
+Enough with the words! Onto the code!
 
 {% highlight csharp %}
 public interface ISimpleContainer {
@@ -276,9 +296,12 @@ public interface ISimpleContainer {
 }
 {% endhighlight %}
 
-Not bad. One method to Register dependencies and another to Resolve
-them. This pair of methods makes the entire Container behave like a fancy
-Dictionary. Let's implement our simple version:
+Not bad. One method to ``Register`` dependencies and another to ``Resolve``
+them. The methods line up with our "Factory for any type" and "Dictionary of Factories" mental models.
+We accept ``Func<T>``'s as simple factories for each type. Once all the types
+have been registered, ``Resolve`` behaves like a Factory for any type.
+
+Let's implement our simple version:
 
 {% highlight csharp %}
 public class SimpleContainer : ISimpleContainer {
@@ -295,6 +318,9 @@ public class SimpleContainer : ISimpleContainer {
     }
 }
 {% endhighlight %}
+
+Internally we have the "Dictionary of Factories". ``Resolve`` uses the
+``Func<T>``'s we registered.
 
 Using the Container is easy. In the next example, we register all the types (lines 5-11)
 then resolve them (lines 8 and 13). Once we have resolved ``Bar`` we can use it normally!
@@ -319,65 +345,57 @@ public class Program {
 }
 {% endhighlight %}
 
-Cool we have a Container. It is awkward to use though. I would not use it in a
-real project. Again we had to wire everything together on our own. We had to
-tell it exactly how to create a ``Bar`` even though it already knew how to
+Cool. We have a Container. I would not use it in a real project. It is awkward
+to use. The classes need to be wired together manually. We had to tell it
+exactly how to create a ``Bar`` even though it already knew how to
 create an ``IFoo``.
 
 This is where real Dependency Injection Containers are fantastic. They solve
-this wiring problem and automatically inject dependencies they know about. I
-might not need to register ``Bar`` at all.
-
-We replaced using Factories with calls to the Container. The individual classes
-don't need to know how they are created. That logic can live within the
-Container. We can now use the Container as glue to binds everything together.
+the wiring problem and automatically inject dependencies they know about.
+We can use the Container like glue to bind everything together.
 
 Abstractions are registered as concrete types. Consumers can resolve and use
 those abstractions directly. They have no knowledge of the concrete types being
-used. Instead they rely on the Container. This preserves the Dependency
+injected. Instead they rely on the Container. This preserves the Dependency
 Inversion principle and helps decouple our code.
-
-We don't have to do any better than this Container. We can use any of the
-existing open source Dependency Injection Containers.
 
 ### Awesome Containers
 
 Thankfully, there are many great open source Dependency Injection Containers.
-The following three are my favourites. We have used each of them on different projects.
+The following three are my favourites. Our team has used them on different projects.
 
 **[Autofac][autofac]**
 
-Autofac is new, super clean, powerful and generally just nice. The registration
-API is fantastic! They have an interesting separation between registered items
-and the dependencies which can be resolved. They also have great support for
-controlling [lifetimes/scoping][auto-life] and [cleaning up for you][auto-dispose]. This would be my
-first choice if starting a new application using ASP.NET MVC.
+Autofac is new, super clean and powerful. The registration
+API is fun! They also have great support for
+controlling [lifetimes/scoping][auto-life] and [cleaning up for you][auto-dispose].
+This would be my first choice when starting a new application.
 
 **[StructureMap][structuremap]**
 
 StructureMap is battle hardened having been the original .NET Dependency Injection
-Container. The latest version of StructureMap was a massive step forward with
-learning from the 10 years supporting the project. A great choice, I highly
-recommend checking it out.
+Container. The latest version of StructureMap was a massive step forward. The authors
+incoperated many improvements they learned from 10 years of supporting the project.
+A great choice you should definitely check out.
 
 **[TinyIoC][tinyioc] via [Nancy][nancyfx]**
 
-Lastly, we use Nancy a lot! For the simpler applications, we take advantage of the
-built-in TinyIoC. It is simpler than the other Containers. So far we have been
-able to use it exclusively in our applications. As our services get bigger it is
-starting to not work as well. We have needed to complicate our configuration since
-more advanced features are not included. As a result, we periodically consider
-switching to one of the other libraries.
+Lastly, we use Nancy a lot! For the simpler applications, we exclusively use the
+built-in TinyIoC. It is simpler than the other Containers and is missing some
+advanced options. We periodically consider switching to one of the other
+libraries for these features which we believe would simplify our configuration.
 
 ### More Out of the Box
 
-These libraries greatly enhance how you can register and resolve components.
+These libraries greatly enhance how you register and resolve components.
 Often these capabilities are connected; features used
-when registering influence how objects are resolved.
+when registering define how objects are resolved.
 
-They can all wire together classes based on their dependencies. You could
+All the Containers can wire together classes based on what they need injected. You could
 register ``Bar`` and when it is resolved the Container would automatically
-inject an ``IFoo`` based on what was registered.
+inject an ``IFoo`` based on what was registered for ``IFoo``.
+
+Here is an example of our application using Autofac:
 
 {% highlight csharp linenos %}
 using System;
@@ -399,31 +417,35 @@ public class Program {
 }
 {% endhighlight %}
 
-Many have shortcuts for simple transformations, i.e. from ``T`` to ``Lazy<T>``.
-Often they can support resolving/registering generic types.
+It does the right thing and gives ``Bar`` the registered ``ConsoleFoo``.
 
-They offer the ability to register sets of dependencies in
+Many Containers have shortcuts for simple transformations, i.e. from ``T`` to ``Lazy<T>``.
+Containers often they can support resolving/registering open generic types.
+
+Containers can offer the ability to register sets of dependencies in
 [Modules][auto-modules] or [Registries][sm-registry]. This provides a simple
 way to group registrations together or split them apart. For example, you could
 register all database related classes in one module separate from your logging
-configuration.
+module.
 
-Most provide mechanisms
+Most Containers provide mechanisms
 for registering your types based on conventions so you do not
-need to configure everything by hand. For example register all interface
-implementations similar to the interface name, ``Example`` would be registered
-for ``IExample``.
+need to configure everything by hand. For example register all classes
+implementing a similar interface name, i.e. ``Foo`` would be registered
+for ``IFoo``. This is cool for people who like conventions over configuration,
+but can be too much magic other people. We use this approach and only configure
+classes which violate our simple conventions.
 
-Perhaps the greatest benefit is simplified integration with various frameworks.
-They have shortcuts to hook into popular web frameworks, like ASP.NET MVC or
-Nancy, so the framework can resolve types they need. We use this to create
-Controllers and inject any dependencies they need. This lets you use Dependency
-Injection while decoupling your code from the Container. Everything
+Perhaps the greatest benefit how they integrate with various frameworks.
+Containers often have shortcuts to hook into popular web frameworks, like ASP.NET MVC or
+Nancy. The framework can use the Container to resolve types it needs. We use this to create
+Controllers and automatically inject thier dependencies. This lets you use Dependency
+Injection while decoupling your code from the Container itself. Everything
 fits together as if by magic.
 
-The larger our applications get the better these frameworks are. We no longer
-worry about how we are going to wire our classes together. Instead, we can
-concentrate on designing our interfaces and classes so we can solve problems.
+The larger our applications become the more benefit we get from using Dependency Injection
+Containers. We no longer worry about how we are going to wire our classes together. Instead, we can
+focus on designing our interfaces and classes.
 
 Connecting the Dots
 ===============================================================================
@@ -433,16 +455,15 @@ Injection and the surrounding concepts.
 
 Instead of using concrete classes we switched to higher level dependencies,
 applying Dependency Inversion. We needed to get those dependencies from
-somewhere so we used Dependency Injection, via the constructor, to inject the
+somewhere so we used Dependency Injection, via constructor parameters, to inject the
 dependencies we wanted.
 
-We looked at two simple mental models for Dependency Injection  Container:
+We explored Dependency Injection Containers using these mental models:
 
-* A Factory
-* A Dictionary for types
+* Externally they are like one massive Factory for any type
+* Internally they are like a Dictionary of Factories
 
-Then we dug into real Dependency Injection Containers and some of their
-advanced features.
+Then we dug into complete Dependency Injection Containers and their extra features.
 
 Have fun decoupling your dependencies!
 
@@ -450,37 +471,34 @@ Have fun decoupling your dependencies!
 
 ### Further Reading
 
-This is just scratching the tip of the
-iceberg. There is so much more you can read and learn. While writing this post
-here are some great resources I found:
+There is so much more you can read and learn. While writing this post I found
+these additional resources:
 
 **[Autofac][auto-docs] and [StructureMap][sm-docs] Documentation**
 
 Both these libraries are fantastic and their maintainers have put some serious
 work into writing comprehensive documentation. They share many recommendations
-and pitfalls for using their frameworks. The most interesting is insights into
-decisions they made and why they made them.
-
+and pitfalls for using their frameworks. The most interesting articles include
+insights into the decisions they made and why they made them.
 
 **[Container Guidelines][guidelines]**
 
-Dependency Injection Containers can be extremely impactful to how you design
-your application. They do need to be treated with some care. Jimmy has a
-number of great recommendations<a href="#di-note-2"><sup id="reverse-di-note-2">2</sup></a> to keep your application clean and stay out
-of the weeds.
+Dependency Injection Containers impact how you design your application and need
+to be treated with care. These recommendations will help you
+avoid problems<a href="#di-note-2"><sup id="reverse-di-note-2">2</sup></a>.
 
 **[DIP in the Wild][wild]**
 
 Real life applications of Dependency Injection in the wild plus a good recap of
-the concepts I introduced here. Good discussions about abstractions they added
-to their application and how the concepts apply. WARNING: It is pretty big.
+the concepts. WARNING: It is pretty big.
 
 **[Inversion of Control Containers and the Dependency Injection pattern][injection]**
 
-This is a more in-depth explanation of the concepts. They also go into the
-closely related idea of "Inversion of Control" and "Service Locators".
-Again there is a good review of best practices and trade-offs from different
-approaches. WARNING: It is pretty big.
+This is a more in-depth explanation of the concepts. The
+closely related ideas of "Inversion of Control" and "Service Locators" are explained.
+There is a review of best practices and trade-offs. Some of the best practices may be
+a little dated, i.e. using Service Locators instead of Dependency Injection Containers.
+WARNING: It is pretty big.
 
 <hr />
 
@@ -490,8 +508,8 @@ approaches. WARNING: It is pretty big.
 via [this][di-abstraction] great article explaining how an abstraction is not synonymous with interfaces.
 
 <a href="#reverse-di-note-2"><span id="di-note-2">2.</span></a> For some applications we intentionally call
-the container from our tests. We treat the Container configuration as part of our integration tests. I will
-agree this is not ideal, but it simplifies creating various types and better mimics our users.
+the Container from our tests. We treat the Container configuration as part of our integration tests. I will
+agree this is not ideal, but it simplifies creating various types and better mimics what our users will run.
 
 <hr />
 
@@ -501,7 +519,7 @@ agree this is not ideal, but it simplifies creating various types and better mim
 
 *Thanks again to my co-worker Josh who helped review this article. He had the
 great recommendation of renaming the "Poor Man's DI Container section" to
-"Man with too much time on his hands' DI Container". Maybe I need to go write
+"Man with too much time on his hands DI Container". Maybe I need to go write
 more code.*
 
 [dip]: http://www.objectmentor.com/resources/articles/dip.pdf
