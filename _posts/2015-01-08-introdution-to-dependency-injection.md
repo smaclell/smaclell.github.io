@@ -2,7 +2,7 @@
 layout: post
 title:  "Introduction to Dependency Injection"
 description: "Dependency Inversion without all the magic. Review the basics and learn simple models of Dependency Injection Containers."
-date:   2016-01-08 23:45:07
+date:   2016-01-08 10:33:07
 tags: dependency-injection dependency-inversion introduction basics Autofac StructureMap Nancyfx TinyIoc
 image:
   feature: https://farm6.staticflickr.com/5269/5610940978_1195ce9cff_b.jpg
@@ -13,7 +13,7 @@ image:
 I had the privilege of mentoring several co-workers in 2015. One of the
 topics they found confusing was Dependency Injection. We use it everywhere. To
 them it felt like magic. The code just fits together through mystical Containers.
-Have no fear. In this post we will break down the powerful concepts surrounding
+In this post we will break down the powerful concepts surrounding
 Dependency Injection.
 
 Let's start with some simple classes:
@@ -420,7 +420,7 @@ public class Program {
 It does the right thing and gives ``Bar`` the registered ``ConsoleFoo``.
 
 Many Containers have shortcuts for simple transformations, i.e. from ``T`` to ``Lazy<T>``.
-Containers often they can support resolving/registering open generic types.
+Containers often support resolving/registering open generic types.
 
 Containers can offer the ability to register sets of dependencies in
 [Modules][auto-modules] or [Registries][sm-registry]. This provides a simple
@@ -430,18 +430,18 @@ module.
 
 Most Containers provide mechanisms
 for registering your types based on conventions so you do not
-need to configure everything by hand. For example register all classes
+need to configure everything by hand. You can register all classes
 implementing a similar interface name, i.e. ``Foo`` would be registered
 for ``IFoo``. This is cool for people who like conventions over configuration,
 but can be too much magic other people. We use this approach and only configure
 classes which violate our simple conventions.
 
-Perhaps the greatest benefit how they integrate with various frameworks.
+Perhaps the greatest benefit is how they integrate with various frameworks.
 Containers often have shortcuts to hook into popular web frameworks, like ASP.NET MVC or
 Nancy. The framework can use the Container to resolve types it needs. We use this to create
-Controllers and automatically inject thier dependencies. This lets you use Dependency
+Controllers and automatically inject their dependencies. This lets you use Dependency
 Injection while decoupling your code from the Container itself. Everything
-fits together as if by magic.
+magically fits together.
 
 The larger our applications become the more benefit we get from using Dependency Injection
 Containers. We no longer worry about how we are going to wire our classes together. Instead, we can
@@ -490,15 +490,14 @@ avoid problems<a href="#di-note-2"><sup id="reverse-di-note-2">2</sup></a>.
 **[DIP in the Wild][wild]**
 
 Real life applications of Dependency Injection in the wild plus a good recap of
-the concepts. WARNING: It is pretty big.
+the concepts.
 
 **[Inversion of Control Containers and the Dependency Injection pattern][injection]**
 
 This is a more in-depth explanation of the concepts. The
 closely related ideas of "Inversion of Control" and "Service Locators" are explained.
 There is a review of best practices and trade-offs. Some of the best practices may be
-a little dated, i.e. using Service Locators instead of Dependency Injection Containers.
-WARNING: It is pretty big.
+a little dated, i.e. using a Service Locator instead of Dependency Injection Containers.
 
 <hr />
 
@@ -519,7 +518,7 @@ agree this is not ideal, but it simplifies creating various types and better mim
 
 *Thanks again to my co-worker Josh who helped review this article. He had the
 great recommendation of renaming the "Poor Man's DI Container section" to
-"Man with too much time on his hands DI Container". Maybe I need to go write
+"Man with too much time on his hands' DI Container". Maybe I need to go write
 more code.*
 
 [dip]: http://www.objectmentor.com/resources/articles/dip.pdf
