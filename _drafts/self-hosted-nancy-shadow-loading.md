@@ -10,13 +10,14 @@ image:
   creditlink: https://www.flickr.com/photos/nickimm/11554965345/
 ---
 
-This is response to an [issue][issue] on the Nancy. The user is trying to
+This is in response to an [issue][issue] on the [Nancy][nancyfx]. The user is trying to
 self-host Nancy without locking any of their DLLs. One easy way to do this is
-creating a separate executable which shadow loads then runs the real program.
-No DLLs are locked and your code barely changes.
+to create a wrapper program which runs the actual program while shadow copying assemblies.
+No DLLs are locked and the only change is one more executable.
 
-In my example application I will have a ``Program`` to self-host Nancy and wait
-for requests. Any key will kill the program. The code is pretty simple:
+I will first show a simple application which self-hosts Nancy and can serve a
+request to ``"/"``. The program will start listening, wait for a key to be
+pressed and then exit. This is the code:
 
 {% highlight csharp %}
 using System;
@@ -39,7 +40,7 @@ class Program {
 }
 {% endhighlight %}
 
-We will then add a simple ``NancyModule`` so we can test the application at ``http://localhost:12345/``:
+We will add a simple ``NancyModule`` so we can test the application at ``http://localhost:12345/``:
 
 {% highlight csharp %}
 using System;
@@ -57,15 +58,23 @@ public class HelloWorldService : NancyModule {
 {% endhighlight %}
 
 This program will work as is. The problem is that it will lock all the
-executables and assemblies.
+assemblies it references.
 
 To work around this problem we will add another executable to wrap the actual
-implementation. Instead of running the code from the current directory we will
-have it run the actual implementation from a separate [AppDomain][appdomain].
+implementation. In order to keep the DLLs unlocked we will run the implementation from
+a separate [AppDomain][appdomain] with [Shadow Copying][shadow] enabled. AppDomains are a very powerful feature of
+the Common Language Runtime for isolating code with different security or runtime
+needs.
 
-This allows us to enable the ``ShadowCopyFiles`` option to ``"true"`` which will cause the
+Together the whole solution would look like the diagram below:
+
+<figure class="image-center">
+	<img src="{{ site.url }}/images/wrapper-executable.jpg" alt="The wrapper executable calling the actual program to run it" />
+</figure>
+
+Using the separate AppDomain allows us to set the ``ShadowCopyFiles`` option to ``"true"`` which will cause the
 assemblies to be loaded to another directory, preventing the local copies from
-being locked.
+being locked. For more information on [Shadow Copying Assemblies][shadow] refer to MSDN.
 
 This is the wrapper program to call the actual executable ``NancyShadowAssemblies.Implementation.exe``:
 
@@ -94,10 +103,12 @@ class Program {
 {% endhighlight %}
 
 That is all there is to it. Don't want your dlls to be locked? The easy solution
-is to use another AppDomain with Shadow Copy.
+is to use another AppDomain with Shadow Copy enabled.
 
 **All the code for this blog post can be found in this [sample project][project] on my github.**
 
 [issue]: https://github.com/NancyFx/Nancy/issues/2123
+[nancyfx]: http://nancyfx.org/
 [appdomain]: https://msdn.microsoft.com/en-us/library/2bh4z9hs(v=vs.110).aspx
+[shadow]: https://msdn.microsoft.com/en-us/library/ms404279(v=vs.110).aspx
 [project]: https://github.com/smaclell/NancyShadowAssemblies
