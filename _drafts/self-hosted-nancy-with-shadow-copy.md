@@ -67,11 +67,11 @@ AppDomains are a very powerful feature of
 the Common Language Runtime for isolating code. They can use different security
 contexts, modify how assemblies are loaded and can be managed independently.
 There can be multiple AppDomains within a single process and can achieve some
-of the same isolation benefits.
+of the same isolation benefits as processes.
 
 Using the separate AppDomain allows us to set the ``ShadowCopyFiles`` option to ``"true"``. This option will cause the
-assemblies to be loaded to another directory, preventing the local copies from
-being locked. For more information on [Shadow Copying Assemblies][shadow] refer to MSDN.
+assembly loading process to copy each assembly into a different directory and then load them from the new location.
+The local copies are left unlocked. For more information on [Shadow Copying Assemblies][shadow] refer to MSDN.
 
 The whole solution would look like the diagram below:
 
@@ -79,7 +79,7 @@ The whole solution would look like the diagram below:
 	<img src="{{ site.url }}/images/wrapper-executable.jpg" alt="The wrapper executable calling the actual program to run it" />
 </figure>
 
-This is the wrapper program to call the actual executable ``NancyShadowAssemblies.Implementation.exe``:
+This is the wrapper program to call the actual executable ``Implementation.exe``:
 
 {% highlight csharp %}
 using System;
@@ -95,7 +95,7 @@ class Program {
 
         // Execute your real application in the new app domain
         int result = domain.ExecuteAssembly(
-            "NancyShadowAssemblies.Implementation.exe",
+            "Implementation.exe",
             args
         );
 
@@ -106,7 +106,7 @@ class Program {
 {% endhighlight %}
 
 That is all there is to it. Don't want your DLLs to be locked? The easy solution
-is to use another AppDomain with Shadow Copy enabled.
+is to use another AppDomain with Shadow Copying enabled.
 
 **All the code for this blog post can be found in this [sample project][project].**
 
