@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "How to Self-Host Nancy Without Locking Your DLLs: Shadow Copying"
-description: "How we now setup our PowerShell projects to keep them easy to maintain."
-date:   2015-12-30 23:45:07
+description: "Using AppDomains and Shadow Copy to prevent your DLLs from being locked."
+date:   2016-01-12 22:11:07
 tags: nancyfx shadow-copy appdomains examples
 image:
   feature: https://farm3.staticflickr.com/2841/11554965345_cd1e35c7fa_b.jpg
