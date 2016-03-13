@@ -15,6 +15,13 @@ static fields to declare data within our application. The fields for the object
 are all related to one another and never change. They are useful as values
 throughout the application and benefit from being declared constants.
 
+Every now and then I need data in our application which will never change. Using
+a simple class to contain this data is handy. It can be used like an enum on
+steroids.
+
+You can setup your type to require all the necessary data. Even better you can
+use the right type for each field to further lock down what can be stored.
+
 {% highlight csharp %}
 public class Pokemon {
     internal class PokemonData(
