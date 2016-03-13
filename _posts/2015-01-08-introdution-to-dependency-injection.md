@@ -252,7 +252,7 @@ are tedious to maintain.
 
 Prior to using ``IFoo`` we need to create one using the factory:
 
-{% highlight csharp linenos %}
+{% highlight csharp %}
 public class Program {
     static void Main() {
         FooFactory factory = new FooFactory();
@@ -397,7 +397,7 @@ inject an ``IFoo`` based on what was registered for ``IFoo``.
 
 Here is an example of our application using Autofac:
 
-{% highlight csharp linenos %}
+{% highlight csharp %}
 using System;
 using Autofac;
 

@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
-gem 'github-pages', '33'
+gem 'github-pages', '58'
 
 require 'rbconfig'
 gem 'wdm', '~> 0.1.0' if RbConfig::CONFIG['target_os'] =~ /mswin|mingw/i
 
-gem 'jekyll', '2.4.0'
-gem 'coderay'
+gem 'jekyll', '~> 3.0'
 gem 'sass', '3.4.5'
-gem 'octopress', '~> 3.0.0.rc.12'
 gem 'jekyll-sitemap'
+gem 'jekyll-paginate'
+gem 'rouge'
 
 group :test do
   gem "html-proofer"
