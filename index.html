@@ -26,6 +26,7 @@ image:
             <img src="{{ site.url }}/images/{{ post.image.feature }}" alt="{{ post.title }}">
           {% endif %}
         </a>
+        {% if post.image.credit %}<div class="image-credit">Image source: <a href="{{ post.image.creditlink }}">{{ post.image.credit }}</a></div><!-- /.image-credit -->{% endif %}
       </div><!-- /.entry-image -->
     {% endif %}
     <div class="entry-meta">
