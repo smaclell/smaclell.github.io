@@ -24,17 +24,6 @@ My time with the [Exterminators][exterminators] was a blast. I felt re-energized
 and excited about software development again. While with the team I found new
 growth areas and doubled down on existing skills. This left me wanting more.
 
-Q: Which is better?
-
-A:
-
-Returning to my previous team was jarring. Our project was becoming routine
-work and I felt like I wanted to go a different direction. In order to continue
-learning I thought I needed bigger and bigger projects. My heart was not entirely
-in the work. [Focus and quality][fq] suffered.
-
-B:
-
 Returning to my previous team was jarring. When I left I was excited about a
 new project which would have a huge impact. Incorrectly, I thought I would
 get to dive into it right away. After I had started prototyping portions of it,
@@ -45,8 +34,6 @@ maintenance on a different project. My learning slowed. Shortly afterwards our t
 Another project I was excited about went with the other half of the team. I
 felt like I had been punted to the B team. My heart was not
 in my work. [Focus and quality][fq] suffered.
-
-:Q
 
 In the months leading up to January I was contemplating a larger change. The
 essential question was whether I could still have an impact in my job or company.
@@ -109,7 +96,7 @@ something I did? Something I didn't do? Why was I chosen? Not knowing why is
 perhaps the hardest part.
 
 Even now I doubt myself. Have I been a [phony][phony] for all these years? Am I
-a horrible programmer or worst? There is a interesting cognitive bias known as the [Dunning-Kruger][dk]
+a horrible programmer or worst? There is an interesting cognitive bias known as the [Dunning-Kruger][dk]
 effect where the truly incompetent cannot possibly know how bad they are. They
 lack the meta-thinking to understand their own faults. In short, you can be so
 bad you don't realize it. Is that me?
@@ -145,7 +132,7 @@ During those first few days the wierdest thing I needed to accept was my
 coworkers were suddenly not there. Waking up every morning I was confronted
 with the fact I would not be seeing Travis and Josh today. Many of my
 coworkers had grown into close friends who I rely on a great deal. I was always
-happy to see them again or beat them at foozball. Our relationship would need
+happy to see them again or beat them at foosball. Our relationship would need
 to change if it was to survive.
 
 Another odd thought experiment I needed to accept was the other choices D2L
@@ -241,7 +228,7 @@ up to a difficult choice.
 
 In the final stages I was fortunate to have several offers from great companies.
 Each presented different opportunities and challenges. I don't think I could
-have went wrong choosing from any of the options. Other interviews were not successful
+have gone wrong choosing from any of the options. Other interviews were not successful
 and I will need to try again another time.
 
 Over the weekend I made my decision. Due to
@@ -262,7 +249,7 @@ helped me understand what matters most.
 
 At D2L, I poured alot of time, effort and self worth into my job only to see it come to
 and end. I was slowly learning work should not be my #1 priority. This
-experience brought that realization painfully to forefront.
+experience brought that realization painfully to the forefront.
 
 <figure class="image-center">
 	<img
