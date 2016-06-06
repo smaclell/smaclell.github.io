@@ -39,13 +39,13 @@ In the months leading up to January I was contemplating a larger change. The
 essential question was whether I could still have an impact in my job or company.
 Getting things done was frustrating and I did not deal
 with this well. Over time my morale eroded further as I considered
-greener pastures else where.
+greener pastures elsewhere.
 
-However, during a company wide developer conference and the holidays I started to see
+However, during a company-wide developer conference and the holidays I started to see
 life differently. In my role
 I might have plateaued, but I realized [D2L][d2l] as a whole still has many
 great things to offer. I worked with phenomenal
-people like Craig and [Daryl][daryl] who I could still learn from. They operate on a large scale and have different
+people like Craig and [Daryl][daryl] whom I could still learn from. D2L operates on a large scale and have different
 challenges which are exciting. Lastly, I fully believe in D2L's [mission][d2l-mission] of transforming learning.
 
 TODO: Lego picture
@@ -84,7 +84,14 @@ lost the baby. Even months later, I am immediately brought back to the
 devastation we felt. All we could do was hold each other and cry. As I write
 this I am crying again as the memories come flooding back.
 
-TODO: Necklace picture
+<figure class="image-center">
+	<img
+		title="Although we never knew you, we still love you."
+		alt="A commemorative necklace my wife wears for the miscarriage."
+		width="640"
+		src="{{ site.url }}/images/angel-necklace.jpg" />
+	<figcaption>A commemorative necklace my wife wears for the miscarriage.</figcaption>
+</figure>
 
 This was the worst week of my life.
 
@@ -96,7 +103,7 @@ something I did? Something I didn't do? Why was I chosen? Not knowing why is
 perhaps the hardest part.
 
 Even now I doubt myself. Have I been a [phony][phony] for all these years? Am I
-a horrible programmer or worst? There is an interesting cognitive bias known as the [Dunning-Kruger][dk]
+a horrible programmer or worse? There is an interesting cognitive bias known as the [Dunning-Kruger][dk]
 effect where the truly incompetent cannot possibly know how bad they are. They
 lack the meta-thinking to understand their own faults. In short, you can be so
 bad you don't realize it. Is that me?
@@ -126,18 +133,19 @@ what had happened. Daily life was permanently altered. We needed to accept this 
 		alt="A very large picture of Josh's face upside down."
 		width="480"
 		src="{{ site.url }}/images/josh.jpg" />
+	<figcaption>Oh Josh, you are so silly.</figcaption>
 </figure>
 
-During those first few days the wierdest thing I needed to accept was my
+During those first few days the weirdest thing that I needed to accept was my
 coworkers were suddenly not there. Waking up every morning I was confronted
-with the fact I would not be seeing Travis and Josh today. Many of my
-coworkers had grown into close friends who I rely on a great deal. I was always
+with the fact that I would not be seeing Travis and Josh today. Many of my
+coworkers had grown into close friends on whom I rely a great deal. I was always
 happy to see them again or beat them at foosball. Our relationship would need
 to change if it was to survive.
 
-Another odd thought experiment I needed to accept was the other choices D2L
+Another odd thought experiment was the other choices D2L
 could have made. Was I chosen instead of other people? Would me
-staying mean someone else leaving. In the end I felt it was
+staying mean someone else leaving? In the end I felt it was
 better that I was chosen instead
 of someone else. Better I go through this than one of my friends. After our life
 had normalized a bit, I was optimistic we would be okay and didn't want them to
@@ -173,8 +181,7 @@ I had great role models at D2L who were willing to be references.
 Thanks to my [network][linkedin], finding potential jobs changed dramatically.
 The first step in my search was to talk to my connections. Right away I was introduced
 to potential companies. I went for coffee to learn about open positions. Casual
-meetings turned into interviews. Suddenly leaving a company does wonders for your
-LinkedIn profile:
+meetings turned into interviews.
 
 <figure class="image-center">
 	<img
@@ -182,11 +189,12 @@ LinkedIn profile:
 		alt="A graph of my linked in profile getting tonnes of traffic."
 		width="480"
 		src="{{ site.url }}/images/linkedin-traffic.png" />
+	<figcaption>Suddenly leaving a company does wonders for your LinkedIn profile.</figcaption>
 </figure>
 
 Finding potential jobs in Kitchener-Waterloo is also extremely easy thanks to
 services through Communitech. They run an active [job board][tech-jobs] which
-has hundreds of fantastics postings available. I found many interesting
+has hundreds of fantastic postings available. I found many interesting
 companies with a diverse range of sizes and needs.
 
 A number of recruiters reached out with various opportunities. While I did
@@ -236,7 +244,7 @@ the timing I had another week off to relax and decompress before starting work.
 The end was in sight after the harrowing month which preceded it.
 
 On March 7<sup>th</sup> I started working at [Vidyard][vidyard] full time!
-Even before the first day I was blown away by the amazing the culture. They were
+Even before the first day I was blown away by the amazing culture. They were
 so welcoming and helped me get connected right away. On my second day I pushed
 code to production! I am thrilled to be part of the team.
 
@@ -247,8 +255,8 @@ What may have been the worst week of my life at the time, will now be the start
 of a bigger change in my life. This entire experience has taught me so much and
 helped me understand what matters most.
 
-At D2L, I poured alot of time, effort and self worth into my job only to see it come to
-and end. I was slowly learning work should not be my #1 priority. This
+At D2L, I poured alot of time, effort and self worth into my job, only to see it come to
+an end. I was slowly learning work should not be my #1 priority. This
 experience brought that realization painfully to the forefront.
 
 <figure class="image-center">
@@ -257,6 +265,7 @@ experience brought that realization painfully to the forefront.
 		alt="My wife and cute son hugging."
 		width="480"
 		src="{{ site.url }}/images/ange-and-jude.jpg" />
+	<figcaption>These are the people I care about most.</figcaption>
 </figure>
 
 What really matters is our relationships and loved ones. The quiet moments as a family during
@@ -296,7 +305,7 @@ better. The entire experience was yet another testament to why Vidyard is
 awesome.
 
 Now, I have shipped a few features and am working on something bigger. It has
-been a blast. I feel like I have learnt so much in very little time.
+been a blast. I feel like I have learned so much in very little time.
 Hopefully, in the coming weeks I will be able to share what I have learned
 with you.
 
