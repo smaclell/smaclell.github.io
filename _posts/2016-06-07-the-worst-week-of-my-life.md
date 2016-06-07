@@ -135,7 +135,7 @@ Acceptance
 Our family took the first week to recover and get back to normal. There was no changing
 what had happened. Daily life was permanently altered. We needed to accept this new reality and move forward.
 
-<figure class="image-center">
+<figure id="josh" class="image-center">
 	<img
 		title="Oh, hello there."
 		alt="A very large picture of Josh's face upside down."
@@ -317,6 +317,15 @@ been a blast. I feel like I have learned so much in very little time.
 Hopefully, in the coming weeks I will be able to share what I have learned
 with you.
 
+<hr />
+
+*Thanks to my former co-worker [Josh](#josh) for helping me with the grammars.
+Sorry for turning down your edit about who wins our foosball.
+Thanks for the many years we spent together at D2L. I miss you canoe buddy.*
+
+*I would like to thank my lovely wife [Angela][ange] for helping review this
+post. I would be lost without you. I love you.*
+
 [exterminators]: /posts/exterminator/
 [fq]: {% post_url 2015-03-30-exterminators-2-focus-and-quality %}
 [d2l]: http://d2l.com
@@ -329,3 +338,4 @@ with you.
 [tech-jobs]: https://www.waterlootechjobs.com/jobs/
 [algorithms]: https://www.amazon.com/Introduction-Algorithms-Thomas-H-Cormen/dp/0262033844
 [vidyard]: https://www.vidyard.com/
+[ange]: http://macangela.tumblr.com
