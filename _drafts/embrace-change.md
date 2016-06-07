@@ -3,6 +3,8 @@ layout: post
 title:  "The Worst Week of My Life"
 date:   2016-06-07 17:55:00
 category: meta interviewing career "losing your job"
+image:
+  feature: 5-years.jpg
 ---
 
 In January I had the worst week of my life. My wife and I joked we wanted to
@@ -48,7 +50,13 @@ great things to offer. I worked with phenomenal
 people like Craig and [Daryl][daryl] whom I could still learn from. D2L operates on a large scale and have different
 challenges which are exciting. Lastly, I fully believe in D2L's [mission][d2l-mission] of transforming learning.
 
-TODO: Lego picture
+<figure class="image-center">
+	<img
+		title="Starting January differently."
+		alt="A picture of my desk with a small lego statue celebrating my 5 years at D2L."
+		src="{{ site.url }}/images/5-years-small.jpg" />
+	<figcaption>A fantastic gift from the D2L developer conference celebrating my 5 years there.</figcaption>
+</figure>
 
 In January I hit the ground running. I reset my perspective. I was excited again. Each task I worked on
 received my complete attention. I was crushing it again. Coming to work each day was fantastic. We had
@@ -108,7 +116,7 @@ effect where the truly incompetent cannot possibly know how bad they are. They
 lack the meta-thinking to understand their own faults. In short, you can be so
 bad you don't realize it. Is that me?
 
-I talked a little bit about my self doubts in my post
+I talked a little bit about my self-doubts in my post
 '[Are you your code review?][review]'. They have always been with me. This event fanned the flames of those
 doubts even more.
 
@@ -221,9 +229,9 @@ Regardless of how an interview went I always sent a follow up email to:
 * Reiterate why I would be a great fit
 
 Due to my background I am less good at algorithms and get caught up on some standard interview
-questions. I spent alot of time practicing interview problems and reading up on
+questions. I spent a lot of time practicing interview problems and reading up on
 [algorithms][algorithms]. When that wasn't enough I tried learning Ruby and refreshing
-my knowledge of Javascript frameworks/idioms. After coming home from interviews, I implemented
+my knowledge of JavaScript frameworks/idioms. After coming home from interviews, I implemented
 the programming questions I was given to double check my solutions.
 
 Success
@@ -255,7 +263,7 @@ What may have been the worst week of my life at the time, will now be the start
 of a bigger change in my life. This entire experience has taught me so much and
 helped me understand what matters most.
 
-At D2L, I poured alot of time, effort and self worth into my job, only to see it come to
+At D2L, I poured a lot of time, effort and self-worth into my job, only to see it come to
 an end. I was slowly learning work should not be my #1 priority. This
 experience brought that realization painfully to the forefront.
 
