@@ -10,6 +10,16 @@ exactly the same with different input and output data. Data driven or parameteri
 are a great way to combine tests with different values and the same behaviour.
 In this post I will show you how to use NUnit's features to create parameterized tests.
 
+<div class="disclaimer">
+<p>
+If you like this post and want to go deeper, I would like to recommend
+<a href="http://www.readytorocksd.com/the-complete-value-source-tutorial/">"The Complete Value
+Source Tutorial"</a> by Robert Gowland. There are alot more examples which show
+how to use the various attributes together. This post is just a teaser. Go there
+when you are done if you want the full story.
+</p>
+</div>
+
 In order to demo parameterized test I will be using a simple ``StringCalculator`` based
 on the [String Calculator kata][kata]. The class, ``StringCalculator`` has one
 method ``Add`` which takes in a string containing delimited numbers as input
@@ -166,7 +176,7 @@ public class TestCaseSourceStringCalculatorTests {
         yield return new TestCaseData( "1", 1 );
         yield return new TestCaseData( "1,2", 3 );
     }
-    
+
     [Test, TestCaseSource( "AddCases" )]
     public void Add_SimpleInputs_AddsNumbers( string numbers, int expectedTotal ) {
         StringCalculator calculator = new StringCalculator();
