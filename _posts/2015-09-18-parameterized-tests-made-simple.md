@@ -13,8 +13,7 @@ In this post I will show you how to use NUnit's features to create parameterized
 <div class="disclaimer">
 <p>
 If you like this post and want to go deeper, I would like to recommend
-<a href="http://www.readytorocksd.com/the-complete-value-source-tutorial/">"The Complete Value
-Source Tutorial"</a> by Robert Gowland. There are alot more examples which show
+<a href="https://github.com/gowland/nunit-docs/blob/master/valuesource-tutorial.md">"NUnit ValueSource: the Complete Tutorial"</a> by Robert Gowland. There are alot more examples which show
 how to use the various attributes together. This post is just a teaser. Go there
 when you are done if you want the full story.
 </p>
